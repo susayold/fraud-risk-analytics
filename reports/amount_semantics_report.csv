@@ -1,0 +1,6 @@
+metric,row_count,amount_sum,status,notes
+negative_amount_rows,1244683,-127022342.04,PASS,Signed transaction amount semantics.
+zero_amount_rows,20213,0.0,PASS,Signed transaction amount semantics.
+positive_amount_rows,23122004,1191120459.199969,PASS,Signed transaction amount semantics.
+fraud_negative_amount_rows,1125,-316755.0,PASS,Fraud amount rate uses signed amounts.
+fraud_zero_amount_rows,13,0.0,PASS,Fraud amount rate uses signed amounts.

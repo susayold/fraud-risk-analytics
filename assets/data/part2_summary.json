@@ -1,5 +1,5 @@
 {
-  "status": "READY",
+  "status": "FOUNDATION_READY",
   "source": "IBM Synthetic Credit Card Transactions",
   "source_file": "card_transaction.v1.csv",
   "transactions": 24386900,
@@ -14,10 +14,128 @@
   "active_days": 10599,
   "split_status": "OBSERVED_CHRONOLOGICAL_SPLITS",
   "splits": [
-    {"split_name": "DEVELOPMENT", "date_start": "1991-01-02", "date_end": "2011-06-15", "row_count": 9673486, "fraud_count": 13661},
-    {"split_name": "VALIDATION", "date_start": "2011-06-16", "date_end": "2015-10-22", "row_count": 7170680, "fraud_count": 6586},
-    {"split_name": "OUT_OF_TIME_OOT", "date_start": "2015-10-23", "date_end": "2020-02-28", "row_count": 7542734, "fraud_count": 9510}
+    {
+      "split_name": "DEVELOPMENT",
+      "date_start": "1991-01-02",
+      "date_end": "2011-06-15",
+      "row_count": 9673486,
+      "fraud_count": 13661,
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    },
+    {
+      "split_name": "VALIDATION",
+      "date_start": "2011-06-16",
+      "date_end": "2015-10-22",
+      "row_count": 7170680,
+      "fraud_count": 6586,
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    },
+    {
+      "split_name": "OUT_OF_TIME_OOT",
+      "date_start": "2015-10-23",
+      "date_end": "2020-02-28",
+      "row_count": 7542734,
+      "fraud_count": 9510,
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    }
   ],
   "total_amount": 1064098117.16,
-  "fraud_amount": 3231338.63
+  "fraud_amount": 3231338.63,
+  "source_sha256": "68c438319cf27614d5564b7b520814036f0d7e087b3a17d8c15081848e0f02de",
+  "source_file_size_bytes": 2354626737,
+  "merchant_identifier_values": 100343,
+  "pit_status": "LOCKED",
+  "storage_status": "PASS",
+  "reconciliation_status": "PASS",
+  "reconciliation": [
+    {
+      "layer": "SOURCE_CSV",
+      "row_count": "24386900",
+      "distinct_source_row_id": "",
+      "min_source_row_id": "",
+      "max_source_row_id": "",
+      "fraud_rows": ""
+    },
+    {
+      "layer": "PARQUET",
+      "row_count": "24386900",
+      "distinct_source_row_id": "24386900",
+      "min_source_row_id": "1",
+      "max_source_row_id": "24386900",
+      "fraud_rows": "29757"
+    },
+    {
+      "layer": "DUCKDB_RAW",
+      "row_count": "24386900",
+      "distinct_source_row_id": "24386900",
+      "min_source_row_id": "1",
+      "max_source_row_id": "24386900",
+      "fraud_rows": "29757"
+    },
+    {
+      "layer": "STANDARDIZED",
+      "row_count": "24386900",
+      "distinct_source_row_id": "24386900",
+      "min_source_row_id": "1",
+      "max_source_row_id": "24386900",
+      "fraud_rows": "29757"
+    },
+    {
+      "layer": "TRANSACTION_BASE",
+      "row_count": "24386900",
+      "distinct_source_row_id": "24386900",
+      "min_source_row_id": "1",
+      "max_source_row_id": "24386900",
+      "fraud_rows": "29757"
+    },
+    {
+      "layer": "MODEL_SPLITS",
+      "row_count": "24386900",
+      "distinct_source_row_id": "24386900",
+      "min_source_row_id": "1",
+      "max_source_row_id": "24386900",
+      "fraud_rows": "29757"
+    }
+  ],
+  "split_summary": [
+    {
+      "split_name": "DEVELOPMENT",
+      "date_start": "1991-01-02",
+      "date_end": "2011-06-15",
+      "row_count": "9673486",
+      "fraud_count": "13661",
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    },
+    {
+      "split_name": "VALIDATION",
+      "date_start": "2011-06-16",
+      "date_end": "2015-10-22",
+      "row_count": "7170680",
+      "fraud_count": "6586",
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    },
+    {
+      "split_name": "OUT_OF_TIME_OOT",
+      "date_start": "2015-10-23",
+      "date_end": "2020-02-28",
+      "row_count": "7542734",
+      "fraud_count": "9510",
+      "status": "OBSERVED",
+      "notes": "Chronological date split; no random sampling."
+    }
+  ],
+  "run_manifest": {
+    "run_timestamp": "2026-08-29T18:12:36.585756+00:00",
+    "python_version": "3.14.2",
+    "source_sha256": "68c438319cf27614d5564b7b520814036f0d7e087b3a17d8c15081848e0f02de",
+    "source_rows": 24386900,
+    "parquet_rows": 24386900,
+    "base_rows": 24386900,
+    "summary_status": "FOUNDATION_READY"
+  }
 }

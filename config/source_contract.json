@@ -1,0 +1,9 @@
+{
+  "dataset": "IBM TabFormer Synthetic Credit Card Transactions",
+  "source_file_pattern": "card_transaction.v1.csv",
+  "expected_columns": ["User", "Card", "Year", "Month", "Day", "Time", "Amount", "Use Chip", "Merchant Name", "Merchant City", "Merchant State", "Zip", "MCC", "Errors?", "Is Fraud?"],
+  "grain": "one source row = one card transaction event",
+  "source_business_key": null,
+  "transaction_id_supplied": false,
+  "source_storage": "Google Drive / temporary staging only"
+}

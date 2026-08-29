@@ -1,3 +1,3 @@
 table_name,key_name,total_rows,distinct_keys,duplicate_key_rows,orphan_rows,status,notes
-card_transaction.v1,User,24386900,2000,not_applicable_transaction_grain,not_available_denormalized_source,REVIEW,User repeats by design; no separate user dimension supplied.
-card_transaction.v1,User + Card,24386900,6139,not_applicable_transaction_grain,not_available_denormalized_source,REVIEW,Composite card entity key; card repeats across transactions.
+card_transaction.v1,User,24386900,2000,not_applicable_transaction_grain,not_available_denormalized_source,PASS_WITH_LIMITATION,User repeats by design; no separate user dimension supplied.
+card_transaction.v1,User + Card,24386900,6139,not_applicable_transaction_grain,not_available_denormalized_source,PASS_WITH_LIMITATION,Composite card entity key; card repeats across transactions.

@@ -1,2 +1,2 @@
-file_name,file_type,file_size_mb,row_count,column_count,primary_grain,candidate_key,date_min,date_max,notes
-card_transaction.v1.csv,csv,2245.547,24386900,15,transaction,,1991-01-02,2020-02-28,Observed from IBM TabFormer source; no explicit transaction_id column is present.
+file_name,file_type,file_size_bytes,file_size_mb,sha256,row_count,column_count,primary_grain,candidate_key,date_min,date_max,notes
+card_transaction.v1.csv,csv,2354626737,2245.547,68c438319cf27614d5564b7b520814036f0d7e087b3a17d8c15081848e0f02de,24386900,15,transaction,,1991-01-02,2020-02-28,Observed from IBM TabFormer source; no explicit transaction_id column is present.

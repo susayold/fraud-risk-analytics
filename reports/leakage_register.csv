@@ -1,5 +1,5 @@
 field_or_feature,role,decision_time_rule,status,notes
 Is Fraud?,target,never a feature,TARGET_ONLY,Observed target label.
 post_event_outcome,post-event,exclude,EXCLUDE,Not supplied as a source feature.
-historical_aggregate,derived,strict prior timestamp only,DERIVE,Use point-in-time join.
-User/Card/Zip,identifier_like,review necessity and handling,REVIEW,Synthetic identifiers; no raw identifier claim is made.
+historical_aggregate,derived,strict prior timestamp only,DERIVE,Use point-in-time join with history timestamp < T0.
+User/Card/Zip,identifier_like,controlled entity key or model exclusion,CONTROLLED,Synthetic identifiers; entity-key use is documented and raw identifier claims are not made.

@@ -22,7 +22,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | Part | Chapter | Status |
 |---|---|---|
 | 1 | Business Scope & Project Governance | ✅ Complete |
-| 2 | Data & SQL Foundation | ✅ Complete |
+| 2 | Data & SQL Foundation | ✅ Locked |
 | 3 | Fraud Portfolio Analytics | ⬜ Planned |
 | 4 | Behavioral Fraud Analytics | ⬜ Planned |
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
@@ -49,11 +49,11 @@ HTML / CSS / JavaScript · GSAP / ScrollTrigger / Lenis · Python / SQL / DuckDB
 
 ## Current Deliverable
 
-Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, streaming audit, Parquet/DuckDB and SQL-foundation scaffolding. Observed metrics are sourced from the IBM TabFormer transaction archive stored on Google Drive; the raw archive is not committed to GitHub.
+Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, streaming audit, executed Parquet/DuckDB and SQL-foundation pipeline. Observed metrics are sourced from the IBM TabFormer transaction archive stored on Google Drive; the raw archive is not committed to GitHub.
 
 ## Part 2 — Data & SQL Foundation
 
-The Part 2 experience documents the transaction grain, entity keys, quality gates, fraud-label audit, leakage policy, storage boundary, point-in-time feature rule, and chronological development/validation/OOT split. The verified source archive is stored in the private Google Drive `Fraud Risk` folder. To reproduce the audit without committing raw data, stage the extracted CSV in a temporary directory and run `python src/audit.py --raw-dir <temporary-source-dir>`, then run `python src/validate_outputs.py`. Raw data, processed Parquet, and the local DuckDB database are ignored by Git.
+The Part 2 experience documents the transaction grain, entity keys, quality gates, fraud-label audit, leakage policy, Drive-only storage boundary, point-in-time feature rule, row reconciliation and chronological development/validation/OOT split. The verified source archive is stored in Google Drive. To reproduce the complete foundation without committing raw data, stage the extracted CSV in a temporary directory and run `python src/run_part2_pipeline.py --source-file <temporary-source.csv> --work-dir <temporary-work-dir>`, then run `python src/validate_outputs.py`. Raw data, processed Parquet, and the local DuckDB database are ignored by Git and should be deleted after the run.
 
 ## Limitations
 

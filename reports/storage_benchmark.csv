@@ -1,0 +1,4 @@
+layer,size_bytes,size_mb,elapsed_seconds,compression,methodology
+CSV,2354626737,2245.547,,none,Source file size.
+PARQUET_ZSTD,219727756,209.549,36.751,ZSTD,DuckDB COPY with ROW_NUMBER source_row_id.
+DUCKDB_DATABASE,1410871296,1345.512,19.179,DuckDB storage,DuckDB raw + audit + analytics tables.

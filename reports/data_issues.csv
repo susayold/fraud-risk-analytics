@@ -1,4 +1,4 @@
 issue_id,severity,status,area,description,recommended_action
 P2-001,INFO,CLOSED,source,Raw IBM transaction archive acquired and audited outside repository storage.,Keep raw archive on Drive; use temporary processing only.
-P2-002,MEDIUM,OPEN,keys,Source has no explicit transaction_id; transaction grain is represented by file row.,Create a documented surrogate row id only for analytical processing.
-P2-003,MEDIUM,OPEN,schema,Source is denormalized; standalone user/card/merchant dimension tables are not supplied.,Treat User + Card as an observed composite entity key and document join limitations.
+P2-002,MEDIUM,ACCEPTED_LIMITATION,keys,Source has no explicit transaction_id; transaction grain is represented by file row.,Use source_row_id as a documented analytical surrogate only; do not present it as a business key.
+P2-003,MEDIUM,ACCEPTED_LIMITATION,schema,Source is denormalized; standalone user/card/merchant dimension tables are not supplied.,Keep a denormalized transaction base and document join limitations.

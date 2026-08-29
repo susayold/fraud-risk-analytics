@@ -1,0 +1,3 @@
+check_name,checked_rows,violations,status,notes
+historical_timestamp_strictly_before_t0,3,0,PASS,Only the strictly prior example is eligible; same/future timestamps are excluded.
+transaction_timestamp_nulls,24386900,0,PASS,Canonical event timestamp must be present.

@@ -9,10 +9,10 @@ card_transaction.v1,Amount,null_count,24386900,0,0.0,PASS,Empty strings counted 
 card_transaction.v1,Use Chip,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
 card_transaction.v1,Merchant Name,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
 card_transaction.v1,Merchant City,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
-card_transaction.v1,Merchant State,null_count,24386900,2720821,11.156896,REVIEW,Empty strings counted as nulls.
-card_transaction.v1,Zip,null_count,24386900,2878135,11.801972,REVIEW,Empty strings counted as nulls.
+card_transaction.v1,Merchant State,null_count,24386900,2720821,11.156896,DOCUMENTED_LIMITATION,Empty strings counted as nulls; structural missingness is documented separately.
+card_transaction.v1,Zip,null_count,24386900,2878135,11.801972,DOCUMENTED_LIMITATION,Empty strings counted as nulls; structural missingness is documented separately.
 card_transaction.v1,MCC,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
-card_transaction.v1,Errors?,null_count,24386900,23998469,98.407215,REVIEW,Empty strings counted as nulls.
+card_transaction.v1,Errors?,null_count,24386900,23998469,98.407215,DOCUMENTED_LIMITATION,Empty strings counted as nulls; structural missingness is documented separately.
 card_transaction.v1,Is Fraud?,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
 card_transaction.v1,Amount,numeric_parse,24386900,0,0.0,PASS,Currency symbols and commas stripped before parse.
 card_transaction.v1,Year/Month/Day,valid_date,24386900,0,0.0,PASS,Composite transaction date.

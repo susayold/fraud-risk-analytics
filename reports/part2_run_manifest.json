@@ -1,0 +1,9 @@
+{
+  "run_timestamp": "2026-08-29T18:12:36.585756+00:00",
+  "python_version": "3.14.2",
+  "source_sha256": "68c438319cf27614d5564b7b520814036f0d7e087b3a17d8c15081848e0f02de",
+  "source_rows": 24386900,
+  "parquet_rows": 24386900,
+  "base_rows": 24386900,
+  "summary_status": "FOUNDATION_READY"
+}

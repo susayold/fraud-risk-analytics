@@ -1,0 +1,31 @@
+field_name,value,row_count,fraud_rows,fraud_rate,status,notes
+Use Chip,Swipe Transaction,15386082,6572,0.00042713928081236017,SCREENED,"Fraud concentration is an artifact screen, not an automatic leakage finding."
+Use Chip,Chip Transaction,6287598,4836,0.000769133141145474,SCREENED,"Fraud concentration is an artifact screen, not an automatic leakage finding."
+MCC,5411,2860738,943,0.00032963522000267065,SCREENED,Categorical concentration is not leakage by itself.
+Use Chip,Online Transaction,2713220,18349,0.00676281318875727,SCREENED,"Fraud concentration is an artifact screen, not an automatic leakage finding."
+MCC,5499,2680609,260,9.699288482579892e-05,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5541,2638982,354,0.000134142635304068,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5812,1797920,327,0.00018187683545430275,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5912,1407636,1057,0.0007509043531140153,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4829,1129061,1607,0.0014233066238228049,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4784,1124291,0,0.0,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5300,1123037,2201,0.0019598641896927706,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4121,981523,558,0.0005685042530842374,SCREENED,Categorical concentration is not leakage by itself.
+MCC,7538,914630,51,5.57602527798126e-05,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5814,900255,466,0.0005176311156283497,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5311,885720,4824,0.005446416474732421,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4900,457616,0,0.0,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5310,454107,2152,0.004738971211630739,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5813,439018,274,0.0006241201955272905,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5942,416894,88,0.00021108483211559773,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4814,407465,401,0.0009841336065674353,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5211,323456,475,0.0014685150375939849,SCREENED,Categorical concentration is not leakage by itself.
+MCC,7832,248946,240,0.0009640644959147767,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5921,225654,308,0.0013649215170127718,SCREENED,Categorical concentration is not leakage by itself.
+MCC,7230,198664,14,7.047074457375266e-05,SCREENED,Categorical concentration is not leakage by itself.
+MCC,9402,175823,91,0.0005175659612223657,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4214,175640,289,0.0016454110680938284,SCREENED,Categorical concentration is not leakage by itself.
+MCC,4111,173819,0,0.0,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5719,160277,717,0.004473505244046245,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5651,137489,849,0.006175039457702071,SCREENED,Categorical concentration is not leakage by itself.
+MCC,5970,125511,139,0.0011074726517994438,SCREENED,Categorical concentration is not leakage by itself.

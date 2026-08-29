@@ -1,0 +1,15 @@
+raw_field,canonical_field,data_role,t0_availability,model_use,missingness_policy,rationale
+source row,source_row_id,analytical surrogate,available,ENTITY_KEY_ONLY,not applicable,Physical scan-order identifier; not a source business key.
+User,user_id,synthetic identifier,available,ENTITY_KEY_ONLY,not applicable,Use for grouping only; do not feed as numeric feature.
+Card,card_index,within-user card index,available,ENTITY_KEY_ONLY,not applicable,Not globally unique; pair with User.
+derived User + Card,card_key,composite entity key,derived at T0,ENTITY_KEY_ONLY,not applicable,Observed card identity for grouping.
+Year/Month/Day/Time,transaction_timestamp,current event time,available,DERIVE,invalid rows fail,Canonical event timestamp.
+Amount,amount,current transaction attribute,available,MODEL_OK,parse failures fail,Numeric currency amount after symbol cleanup.
+Use Chip,use_chip,current transaction channel,available,MODEL_OK_WITH_MISSINGNESS,missing category retained,Current channel context.
+Merchant Name,merchant_id_raw,identifier-like merchant value,available,EDA_ONLY,missingness indicator,Distinct source values are not a validated merchant dimension.
+Merchant City,merchant_city,current merchant context,available,MODEL_OK_WITH_MISSINGNESS,missing category retained,Location context available at event time.
+Merchant State,merchant_state,current merchant context,available,MODEL_OK_WITH_MISSINGNESS,structural missingness indicator,Missingness may reflect location/source coverage.
+Zip,merchant_zip,location code,available,MODEL_OK_WITH_MISSINGNESS,store as string plus missing flag,Code not continuous numeric quantity.
+MCC,merchant_category_code,categorical merchant code,available,MODEL_OK,encode categorically,MCC magnitude has no ordinal meaning.
+Errors?,errors_raw,error descriptor,uncertain,EDA_ONLY,retain missingness and review timing,Blank semantics and decision-time availability require caution.
+Is Fraud?,fraud_label,target,not available at T0,TARGET_ONLY,never impute as feature,Observed synthetic label; never a model input.

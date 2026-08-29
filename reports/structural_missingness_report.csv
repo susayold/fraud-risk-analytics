@@ -1,0 +1,4 @@
+field_name,null_rows,null_rate_pct,fraud_null_rows,policy,notes
+merchant_state,2720821,11.156895710401896,18349,MODEL_OK_WITH_MISSINGNESS,Retain missingness indicator; source coverage limitation.
+merchant_zip,2878135,11.801971550299546,24852,MODEL_OK_WITH_MISSINGNESS,Store as string/code; retain missingness indicator.
+errors_raw,23998469,98.40721452911194,28471,EDA_ONLY,Blank error descriptor; timing/semantics require review.

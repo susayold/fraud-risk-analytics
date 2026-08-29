@@ -1,0 +1,10 @@
+{
+  "method": "chronological_by_transaction_date",
+  "development_end": "2011-06-15",
+  "validation_start": "2011-06-16",
+  "validation_end": "2015-10-22",
+  "oot_start": "2015-10-23",
+  "oot_end": "2020-02-28",
+  "rationale": "Freeze observed date boundaries before downstream modeling; preserve an out-of-time period for final temporal assessment.",
+  "random_split": false
+}

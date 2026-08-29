@@ -1,6 +1,6 @@
 (() => {
   const summaryText = (value, fallback = '—') => value === null || value === undefined || value === '' ? fallback : String(value);
-  const formatNumber = value => typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : summaryText(value);
+  const formatNumber = value => { const numeric = typeof value === 'number' ? value : Number(value); return Number.isFinite(numeric) ? new Intl.NumberFormat('en-US').format(numeric) : summaryText(value); };
   const formatRate = value => typeof value === 'number' ? `${(value * 100).toFixed(2)}%` : summaryText(value);
   const setText = (key, value) => document.querySelectorAll(`[data-summary="${key}"]`).forEach(el => { el.textContent = value; });
   fetch('assets/data/part2_summary.json').then(response => response.ok ? response.json() : Promise.reject(new Error('summary unavailable'))).then(data => {
@@ -20,10 +20,13 @@
       fraudBar.style.width = `${data.fraud_rate * 100}%`;
     }
     (data.splits || []).forEach(split => document.querySelectorAll(`[data-split="${split.split_name}"]`).forEach(el => { el.textContent = `${split.date_start} → ${split.date_end} · ${formatNumber(split.row_count)} rows`; }));
-    setText('statusLabel', data.status === 'READY' ? 'AUDIT READY' : 'AUDIT PENDING');
+    const foundationReady = data.status === 'FOUNDATION_READY';
+    setText('statusLabel', foundationReady ? 'FOUNDATION READY' : (data.status === 'READY' ? 'AUDIT READY' : 'AUDIT PENDING'));
+    document.querySelectorAll('[data-recon]').forEach(el => { const row = (data.reconciliation || []).find(item => item.layer === el.dataset.recon); if (row) el.textContent = formatNumber(row.row_count); });
+    document.querySelectorAll('[data-status]').forEach(el => { el.dataset.status = foundationReady ? 'pass' : 'review'; });
   }).catch(() => setText('statusLabel', 'AUDIT PENDING'));
   if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   gsap.from('.p2-hero .hero-copy > *, .hero-architecture', { y: 22, opacity: 0, duration: .7, stagger: .08, ease: 'power3.out' });
-  gsap.utils.toArray('.metric-card, .table-card, .audit-list > div, .storage-pipeline > div, .deliver-list > div').forEach(group => gsap.from(group, { y: 18, opacity: 0, duration: .55, ease: 'power2.out', scrollTrigger: { trigger: group, start: 'top 88%', once: true } }));
+  gsap.utils.toArray('.metric-card, .table-card, .audit-list > div, .storage-pipeline > div, .recon-card, .deliver-list > div').forEach(group => gsap.from(group, { y: 18, opacity: 0, duration: .55, ease: 'power2.out', scrollTrigger: { trigger: group, start: 'top 88%', once: true } }));
   gsap.utils.toArray('.split, .pit-timeline > div').forEach(item => gsap.from(item, { scale: .96, opacity: 0, duration: .5, scrollTrigger: { trigger: item, start: 'top 88%', once: true } }));
 })();
