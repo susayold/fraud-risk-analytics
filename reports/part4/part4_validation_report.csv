@@ -1,0 +1,6 @@
+check_name,status,notes
+P4T01_feature_mart_reconciliation,PASS,Source and feature evaluation rows reconcile.
+P4T05_target_exclusion,PASS,Behavior source and family SQL contain no fraud_label.
+P4T06_strict_pit,PASS,All family windows end at one microsecond before T0; logical policy is timestamp < T0.
+P4T30_summary_contract,PASS,Aggregate-only summary contract written.
+

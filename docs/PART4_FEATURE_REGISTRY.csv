@@ -1,0 +1,45 @@
+feature_name,feature_family,definition,entity,lookback_window,uses_current_value,uses_historical_values,strict_pit_required,minimum_history,null_semantics,cold_start_behavior,model_role,source_fields,notes
+user_prior_txn_count,entity_history,Count of prior rows for user,user_id,unbounded,false,true,true,0,0 when none,cold=1 when 0,primary,User|timestamp,history crosses splits
+card_prior_txn_count,entity_history,Count of prior rows for card,card_key,unbounded,false,true,true,0,0 when none,cold=1 when 0,primary,User|Card|timestamp,history crosses splits
+merchant_prior_txn_count,entity_history,Count of prior rows for merchant,merchant_id_raw,unbounded,false,true,true,0,0 when none,cold=1 when 0,primary,Merchant Name|timestamp,raw merchant identifier retained for audit
+user_cold_start,cold_start,1 when user has no prior event,user_id,unbounded,false,true,true,0,0/1 flag,explicit flag,primary,User|timestamp,no label history
+card_cold_start,cold_start,1 when card has no prior event,card_key,unbounded,false,true,true,0,0/1 flag,explicit flag,primary,User|Card|timestamp,no label history
+merchant_cold_start,cold_start,1 when merchant has no prior event,merchant_id_raw,unbounded,false,true,true,0,0/1 flag,explicit flag,primary,Merchant Name|timestamp,no label history
+user_seconds_since_prev_txn,recency,Seconds since prior user event,user_id,unbounded,false,true,true,0,NULL if none,recency NULL,primary,User|timestamp,strict prior max timestamp
+card_seconds_since_prev_txn,recency,Seconds since prior card event,card_key,unbounded,false,true,true,0,NULL if none,recency NULL,primary,User|Card|timestamp,strict prior max timestamp
+merchant_seconds_since_prev_txn,recency,Seconds since prior merchant event,merchant_id_raw,unbounded,false,true,true,0,NULL if none,recency NULL,primary,Merchant Name|timestamp,strict prior max timestamp
+user_txn_count_1h,velocity,Prior user transactions in [T0-1h T0),user_id,1h,false,true,true,0,0 when none,0,primary,User|timestamp,strict upper bound
+user_txn_count_24h,velocity,Prior user transactions in [T0-24h T0),user_id,24h,false,true,true,0,0 when none,0,primary,User|timestamp,strict upper bound
+user_txn_count_7d,velocity,Prior user transactions in [T0-7d T0),user_id,7d,false,true,true,0,0 when none,0,primary,User|timestamp,strict upper bound
+card_txn_count_1h,velocity,Prior card transactions in [T0-1h T0),card_key,1h,false,true,true,0,0 when none,0,primary,User|Card|timestamp,strict upper bound
+card_txn_count_24h,velocity,Prior card transactions in [T0-24h T0),card_key,24h,false,true,true,0,0 when none,0,primary,User|Card|timestamp,strict upper bound
+card_txn_count_7d,velocity,Prior card transactions in [T0-7d T0),card_key,7d,false,true,true,0,0 when none,0,primary,User|Card|timestamp,strict upper bound
+merchant_txn_count_1h,velocity,Prior merchant transactions in [T0-1h T0),merchant_id_raw,1h,false,true,true,0,0 when none,0,primary,Merchant Name|timestamp,7d is extended only
+merchant_txn_count_24h,velocity,Prior merchant transactions in [T0-24h T0),merchant_id_raw,24h,false,true,true,0,0 when none,0,primary,Merchant Name|timestamp,7d is extended only
+user_positive_amount_sum_24h,amount_velocity,Prior positive amount sum in 24h,user_id,24h,false,true,true,0,0 when none,0,primary,User|Amount|timestamp,amount > 0 only
+user_positive_amount_sum_7d,amount_velocity,Prior positive amount sum in 7d,user_id,7d,false,true,true,0,0 when none,0,primary,User|Amount|timestamp,amount > 0 only
+card_positive_amount_sum_24h,amount_velocity,Prior positive amount sum in 24h,card_key,24h,false,true,true,0,0 when none,0,primary,User|Card|Amount|timestamp,amount > 0 only
+card_positive_amount_sum_7d,amount_velocity,Prior positive amount sum in 7d,card_key,7d,false,true,true,0,0 when none,0,primary,User|Card|Amount|timestamp,amount > 0 only
+user_prior_positive_amount_mean,amount_baseline,Mean of prior positive amounts,user_id,unbounded,false,true,true,1,NULL if none,0,primary,User|Amount|timestamp,strict prior frame
+user_prior_positive_amount_std,amount_baseline,Sample stddev of prior positive amounts,user_id,unbounded,false,true,true,2,NULL if <2,0,primary,User|Amount|timestamp,strict prior frame
+card_prior_positive_amount_mean,amount_baseline,Mean of prior positive amounts,card_key,unbounded,false,true,true,1,NULL if none,0,primary,User|Card|Amount|timestamp,strict prior frame
+card_prior_positive_amount_std,amount_baseline,Sample stddev of prior positive amounts,card_key,unbounded,false,true,true,2,NULL if <2,0,primary,User|Card|Amount|timestamp,strict prior frame
+current_positive_amount_vs_user_mean,amount_deviation,Current positive amount divided by prior user mean,user_id,unbounded,true,true,true,1,NULL if current or mean nonpositive,0,primary,User|Amount|timestamp,analysis-safe current context
+current_positive_amount_vs_card_mean,amount_deviation,Current positive amount divided by prior card mean,card_key,unbounded,true,true,true,1,NULL if current or mean nonpositive,0,primary,User|Card|Amount|timestamp,analysis-safe current context
+current_positive_amount_user_z,amount_deviation,(current positive amount-prior mean)/prior std,user_id,unbounded,true,true,true,5,NULL if history <5 or std=0,0,primary,User|Amount|timestamp,minimum history five
+current_positive_amount_card_z,amount_deviation,(current positive amount-prior mean)/prior std,card_key,unbounded,true,true,true,5,NULL if history <5 or std=0,0,primary,User|Card|Amount|timestamp,minimum history five
+user_merchant_prior_txn_count,merchant_familiarity,Prior transactions for user-merchant pair,user_id|merchant_id_raw,unbounded,false,true,true,0,0 when none,new=1,primary,User|Merchant Name|timestamp,relationship key retained for audit
+user_merchant_is_new,merchant_familiarity,1 when user has no prior merchant pair,user_id|merchant_id_raw,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Merchant Name|timestamp,relationship feature
+user_merchant_seconds_since_prev_txn,merchant_familiarity,Seconds since prior user-merchant event,user_id|merchant_id_raw,unbounded,false,true,true,0,NULL if none,recency NULL,primary,User|Merchant Name|timestamp,strict prior max timestamp
+card_merchant_prior_txn_count,merchant_familiarity,Prior transactions for card-merchant pair,card_key|merchant_id_raw,unbounded,false,true,true,0,0 when none,new=1,primary,User|Card|Merchant Name|timestamp,relationship key retained for audit
+card_merchant_is_new,merchant_familiarity,1 when card has no prior merchant pair,card_key|merchant_id_raw,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Card|Merchant Name|timestamp,relationship feature
+card_merchant_seconds_since_prev_txn,merchant_familiarity,Seconds since prior card-merchant event,card_key|merchant_id_raw,unbounded,false,true,true,0,NULL if none,recency NULL,primary,User|Card|Merchant Name|timestamp,strict prior max timestamp
+user_mcc_prior_txn_count,mcc_familiarity,Prior transactions for user-MCC pair,user_id|merchant_category_code,unbounded,false,true,true,0,0 when none,new=1,primary,User|MCC|timestamp,relationship key retained for audit
+user_mcc_is_new,mcc_familiarity,1 when user has no prior MCC pair,user_id|merchant_category_code,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|MCC|timestamp,relationship feature
+card_mcc_prior_txn_count,mcc_familiarity,Prior transactions for card-MCC pair,card_key|merchant_category_code,unbounded,false,true,true,0,0 when none,new=1,primary,User|Card|MCC|timestamp,relationship key retained for audit
+card_mcc_is_new,mcc_familiarity,1 when card has no prior MCC pair,card_key|merchant_category_code,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Card|MCC|timestamp,relationship feature
+user_channel_prior_txn_count,channel_familiarity,Prior transactions for user-channel pair,user_id|use_chip,unbounded,false,true,true,0,0 when none,new=1,primary,User|Use Chip|timestamp,unseen channel safe
+user_channel_is_new,channel_familiarity,1 when user has no prior channel pair,user_id|use_chip,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Use Chip|timestamp,unseen channel safe
+card_channel_prior_txn_count,channel_familiarity,Prior transactions for card-channel pair,card_key|use_chip,unbounded,false,true,true,0,0 when none,new=1,primary,User|Card|Use Chip|timestamp,unseen channel safe
+card_channel_is_new,channel_familiarity,1 when card has no prior channel pair,card_key|use_chip,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Card|Use Chip|timestamp,unseen channel safe
+

@@ -1,0 +1,28 @@
+version: PART4_v1.0
+description: Point-in-time behavioral feature contract for Part 4
+pit:
+  rule: history_timestamp < current_timestamp
+  same_timestamp_peers_excluded: true
+  history_reset_at_split: false
+  target_history_allowed: false
+windows:
+  short: 1h
+  daily: 24h
+  weekly: 7d
+amount:
+  purchase_definition: amount > 0
+  refunds_and_zero_kept_separate: true
+zscore:
+  minimum_history: 5
+  zero_standard_deviation: null
+geography:
+  state_policy: extended_only
+  missing_current_state: null_not_new
+signal_analysis:
+  split: DEVELOPMENT
+  numeric_bins_fit_on: DEVELOPMENT
+  minimum_public_support: 1000
+storage:
+  row_level_feature_mart_publication: forbidden
+  raw_data_publication: forbidden
+

@@ -1,0 +1,12 @@
+{
+  "status": "BEHAVIOR_READY_SAMPLE_QA",
+  "feature_contract_version": "PART4_v1.0",
+  "pit_rule": "history_timestamp < current_timestamp",
+  "python_version": "3.14.2",
+  "threads": 4,
+  "memory_limit": "2GB",
+  "elapsed_seconds": 12.364,
+  "row_level_mart_retained": false,
+  "raw_publication": false,
+  "sample_row_limit": 100000
+}

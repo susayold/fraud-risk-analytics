@@ -1,0 +1,549 @@
+{
+  "status": "BEHAVIOR_READY_SAMPLE_QA",
+  "feature_contract_version": "PART4_v1.0",
+  "pit_rule": "history_timestamp < current_timestamp",
+  "base": {
+    "transactions": 100000,
+    "distinct_source_row_id": 100000,
+    "date_start": "1999-11-26T15:03:00",
+    "date_end": "2020-02-28T23:49:00",
+    "development_transactions": 45883,
+    "validation_transactions": 26910,
+    "oot_transactions": 27207,
+    "fraud_transactions": 126,
+    "source_population_rows": 24386900,
+    "execution_scope": "DETERMINISTIC_FIRST_100000_ROWS"
+  },
+  "feature_families": [
+    {
+      "feature_family": "amount",
+      "feature_count": 12,
+      "scope": "Positive amount velocity, historical baselines and deviations"
+    },
+    {
+      "feature_family": "entity_history",
+      "feature_count": 9,
+      "scope": "User/card/merchant prior counts, cold start and recency"
+    },
+    {
+      "feature_family": "geography",
+      "feature_count": 0,
+      "scope": "Extended-only dependency audit; no geography primary feature"
+    },
+    {
+      "feature_family": "relationship_familiarity",
+      "feature_count": 14,
+      "scope": "Merchant, MCC and channel familiarity"
+    },
+    {
+      "feature_family": "velocity",
+      "feature_count": 8,
+      "scope": "User/card/merchant 1h/24h/7d windows; merchant 7d remains extended-only"
+    }
+  ],
+  "cold_start": {
+    "profiles": [
+      {
+        "entity": "card",
+        "cold_start": "0",
+        "transactions": 99994,
+        "fraud_transactions": 126,
+        "fraud_rate": 0.0012600756045362722
+      },
+      {
+        "entity": "card",
+        "cold_start": "1",
+        "transactions": 6,
+        "fraud_transactions": 0,
+        "fraud_rate": 0.0
+      },
+      {
+        "entity": "merchant",
+        "cold_start": "0",
+        "transactions": 97828,
+        "fraud_transactions": 108,
+        "fraud_rate": 0.0011039784110888498
+      },
+      {
+        "entity": "merchant",
+        "cold_start": "1",
+        "transactions": 2172,
+        "fraud_transactions": 18,
+        "fraud_rate": 0.008287292817679558
+      },
+      {
+        "entity": "user",
+        "cold_start": "0",
+        "transactions": 99994,
+        "fraud_transactions": 126,
+        "fraud_rate": 0.0012600756045362722
+      },
+      {
+        "entity": "user",
+        "cold_start": "1",
+        "transactions": 6,
+        "fraud_transactions": 0,
+        "fraud_rate": 0.0
+      }
+    ]
+  },
+  "velocity_signal": [
+    {
+      "feature_name": "card_txn_count_1h",
+      "bin": "0",
+      "transactions": 34246,
+      "fraud_transactions": 20,
+      "fraud_rate": 0.0005840098113648309
+    },
+    {
+      "feature_name": "card_txn_count_1h",
+      "bin": "1–<2",
+      "transactions": 9099,
+      "fraud_transactions": 19,
+      "fraud_rate": 0.0020881415540169247
+    },
+    {
+      "feature_name": "card_txn_count_1h",
+      "bin": "2–<5",
+      "transactions": 2524,
+      "fraud_transactions": 4,
+      "fraud_rate": 0.001584786053882726
+    },
+    {
+      "feature_name": "card_txn_count_24h",
+      "bin": "0",
+      "transactions": 2774,
+      "fraud_transactions": 5,
+      "fraud_rate": 0.001802451333813987
+    },
+    {
+      "feature_name": "card_txn_count_24h",
+      "bin": "1–<2",
+      "transactions": 5993,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0005005840146837978
+    },
+    {
+      "feature_name": "card_txn_count_24h",
+      "bin": "2–<5",
+      "transactions": 21685,
+      "fraud_transactions": 7,
+      "fraud_rate": 0.0003228037814157252
+    },
+    {
+      "feature_name": "card_txn_count_24h",
+      "bin": "5–<10",
+      "transactions": 14481,
+      "fraud_transactions": 16,
+      "fraud_rate": 0.0011048960707133485
+    },
+    {
+      "feature_name": "card_txn_count_7d",
+      "bin": "10+",
+      "transactions": 42638,
+      "fraud_transactions": 40,
+      "fraud_rate": 0.000938130306299545
+    },
+    {
+      "feature_name": "card_txn_count_7d",
+      "bin": "5–<10",
+      "transactions": 2817,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0010649627263045794
+    },
+    {
+      "feature_name": "user_txn_count_1h",
+      "bin": "0",
+      "transactions": 34246,
+      "fraud_transactions": 20,
+      "fraud_rate": 0.0005840098113648309
+    },
+    {
+      "feature_name": "user_txn_count_1h",
+      "bin": "1–<2",
+      "transactions": 9099,
+      "fraud_transactions": 19,
+      "fraud_rate": 0.0020881415540169247
+    },
+    {
+      "feature_name": "user_txn_count_1h",
+      "bin": "2–<5",
+      "transactions": 2524,
+      "fraud_transactions": 4,
+      "fraud_rate": 0.001584786053882726
+    },
+    {
+      "feature_name": "user_txn_count_24h",
+      "bin": "0",
+      "transactions": 2774,
+      "fraud_transactions": 5,
+      "fraud_rate": 0.001802451333813987
+    },
+    {
+      "feature_name": "user_txn_count_24h",
+      "bin": "1–<2",
+      "transactions": 5993,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0005005840146837978
+    },
+    {
+      "feature_name": "user_txn_count_24h",
+      "bin": "2–<5",
+      "transactions": 21685,
+      "fraud_transactions": 7,
+      "fraud_rate": 0.0003228037814157252
+    },
+    {
+      "feature_name": "user_txn_count_24h",
+      "bin": "5–<10",
+      "transactions": 14481,
+      "fraud_transactions": 16,
+      "fraud_rate": 0.0011048960707133485
+    },
+    {
+      "feature_name": "user_txn_count_7d",
+      "bin": "10+",
+      "transactions": 42638,
+      "fraud_transactions": 40,
+      "fraud_rate": 0.000938130306299545
+    },
+    {
+      "feature_name": "user_txn_count_7d",
+      "bin": "5–<10",
+      "transactions": 2817,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0010649627263045794
+    }
+  ],
+  "amount_signal": [
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "10+",
+      "transactions": 65,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.015384615384615385
+    },
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "1–<2",
+      "transactions": 3496,
+      "fraud_transactions": 6,
+      "fraud_rate": 0.0017162471395881006
+    },
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "2–<5",
+      "transactions": 781,
+      "fraud_transactions": 2,
+      "fraud_rate": 0.002560819462227913
+    },
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "5–<10",
+      "transactions": 232,
+      "fraud_transactions": 0,
+      "fraud_rate": 0.0
+    },
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "<1",
+      "transactions": 40075,
+      "fraud_transactions": 33,
+      "fraud_rate": 0.0008234560199625702
+    },
+    {
+      "feature_name": "current_positive_amount_card_z",
+      "bin": "NULL",
+      "transactions": 1234,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.0008103727714748784
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "10+",
+      "transactions": 87,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.011494252873563218
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "1–<2",
+      "transactions": 2312,
+      "fraud_transactions": 5,
+      "fraud_rate": 0.0021626297577854673
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "2–<5",
+      "transactions": 806,
+      "fraud_transactions": 2,
+      "fraud_rate": 0.0024813895781637717
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "5–<10",
+      "transactions": 251,
+      "fraud_transactions": 0,
+      "fraud_rate": 0.0
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "<1",
+      "transactions": 41253,
+      "fraud_transactions": 34,
+      "fraud_rate": 0.0008241824836981553
+    },
+    {
+      "feature_name": "current_positive_amount_user_z",
+      "bin": "NULL",
+      "transactions": 1174,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.0008517887563884157
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "10+",
+      "transactions": 155,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.0064516129032258064
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "1–<2",
+      "transactions": 13221,
+      "fraud_transactions": 7,
+      "fraud_rate": 0.0005294607064518569
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "2–<5",
+      "transactions": 2732,
+      "fraud_transactions": 10,
+      "fraud_rate": 0.0036603221083455345
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "5–<10",
+      "transactions": 313,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.003194888178913738
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "<1",
+      "transactions": 28300,
+      "fraud_transactions": 23,
+      "fraud_rate": 0.0008127208480565371
+    },
+    {
+      "feature_name": "current_positive_amount_vs_card_mean",
+      "bin": "NULL",
+      "transactions": 1162,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.0008605851979345956
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "10+",
+      "transactions": 196,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.00510204081632653
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "1–<2",
+      "transactions": 12972,
+      "fraud_transactions": 7,
+      "fraud_rate": 0.0005396238051187173
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "2–<5",
+      "transactions": 2682,
+      "fraud_transactions": 10,
+      "fraud_rate": 0.0037285607755406414
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "5–<10",
+      "transactions": 371,
+      "fraud_transactions": 0,
+      "fraud_rate": 0.0
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "<1",
+      "transactions": 28512,
+      "fraud_transactions": 24,
+      "fraud_rate": 0.0008417508417508417
+    },
+    {
+      "feature_name": "current_positive_amount_vs_user_mean",
+      "bin": "NULL",
+      "transactions": 1150,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.0008695652173913044
+    }
+  ],
+  "merchant_familiarity": {
+    "profiles": [
+      {
+        "feature_name": "card_merchant_is_new",
+        "feature_value": "0",
+        "transactions": 44069,
+        "fraud_transactions": 22,
+        "fraud_rate": 0.0004992171367628038
+      },
+      {
+        "feature_name": "card_merchant_is_new",
+        "feature_value": "1",
+        "transactions": 1814,
+        "fraud_transactions": 21,
+        "fraud_rate": 0.011576626240352812
+      },
+      {
+        "feature_name": "merchant_cold_start",
+        "feature_value": "0",
+        "transactions": 44612,
+        "fraud_transactions": 34,
+        "fraud_rate": 0.0007621267820317404
+      },
+      {
+        "feature_name": "merchant_cold_start",
+        "feature_value": "1",
+        "transactions": 1271,
+        "fraud_transactions": 9,
+        "fraud_rate": 0.007081038552321007
+      },
+      {
+        "feature_name": "user_merchant_is_new",
+        "feature_value": "0",
+        "transactions": 44069,
+        "fraud_transactions": 22,
+        "fraud_rate": 0.0004992171367628038
+      },
+      {
+        "feature_name": "user_merchant_is_new",
+        "feature_value": "1",
+        "transactions": 1814,
+        "fraud_transactions": 21,
+        "fraud_rate": 0.011576626240352812
+      }
+    ]
+  },
+  "channel_familiarity": {
+    "profiles": [
+      {
+        "feature_name": "card_channel_is_new",
+        "feature_value": "0",
+        "transactions": 45847,
+        "fraud_transactions": 43,
+        "fraud_rate": 0.0009379021528126159
+      },
+      {
+        "feature_name": "card_channel_is_new",
+        "feature_value": "1",
+        "transactions": 36,
+        "fraud_transactions": 0,
+        "fraud_rate": 0.0
+      },
+      {
+        "feature_name": "user_channel_is_new",
+        "feature_value": "0",
+        "transactions": 45871,
+        "fraud_transactions": 43,
+        "fraud_rate": 0.0009374114364195243
+      },
+      {
+        "feature_name": "user_channel_is_new",
+        "feature_value": "1",
+        "transactions": 12,
+        "fraud_transactions": 0,
+        "fraud_rate": 0.0
+      }
+    ]
+  },
+  "dependency": {
+    "channel_state": [
+      {
+        "channel": "Swipe Transaction",
+        "state_status": "<PRESENT>",
+        "transactions": 59982,
+        "share": 0.59982
+      },
+      {
+        "channel": "Online Transaction",
+        "state_status": "<MISSING>",
+        "transactions": 21595,
+        "share": 0.21595
+      },
+      {
+        "channel": "Chip Transaction",
+        "state_status": "<PRESENT>",
+        "transactions": 18383,
+        "share": 0.18383
+      },
+      {
+        "channel": "Chip Transaction",
+        "state_status": "<MISSING>",
+        "transactions": 40,
+        "share": 0.0004
+      }
+    ]
+  },
+  "validation": {
+    "status": "SAMPLE_QA_PASS",
+    "pipeline_seconds": 12.364,
+    "full_population_signal_profile": false
+  },
+  "findings": [
+    {
+      "title": "Behavior is built strictly before T0",
+      "evidence": "100,000 unique source rows reconciled to the evaluation view.",
+      "meaning": "The feature contract excludes current and same-timestamp peers from history.",
+      "next_action": "Carry the contract into model training and freeze it before feature selection."
+    },
+    {
+      "title": "Cold start is explicit",
+      "evidence": "6 cold-start profiles are published across user, card and merchant levels.",
+      "meaning": "No prior history is not silently imputed as normal behavior.",
+      "next_action": "Use cold-start flags and monitor left-censoring at the source-period edge."
+    },
+    {
+      "title": "Velocity is a Development-only signal profile",
+      "evidence": "18 Development velocity bins were profiled with support labels.",
+      "meaning": "Observed association is not evidence of incremental model value or causality.",
+      "next_action": "Pre-register candidate features before evaluating Validation/OOT."
+    },
+    {
+      "title": "Amount behavior keeps source semantics",
+      "evidence": "24 amount-deviation profiles retain NULL, negative and zero context separately.",
+      "meaning": "Only positive purchases enter the historical amount baseline.",
+      "next_action": "Test amount deviations with cost-sensitive evaluation in the next part."
+    },
+    {
+      "title": "Channel and state dependency remains visible",
+      "evidence": "100,000 source rows are represented in the channel/state dependency table.",
+      "meaning": "Missing state is a data-availability state, not automatically a new geography.",
+      "next_action": "Review channel-specific handling before selecting geography features."
+    }
+  ],
+  "governance": {
+    "signal_scope": "DEVELOPMENT only",
+    "target_history": "forbidden",
+    "row_level_publication": "forbidden",
+    "oot": "not mined for feature discovery",
+    "claims": [
+      "PIT-correct feature construction",
+      "explicit cold start",
+      "aggregate Development signal profiles"
+    ],
+    "not_claimed": [
+      "AUC improvement",
+      "loss reduction",
+      "causality",
+      "production latency",
+      "production deployment"
+    ]
+  }
+}
