@@ -1,0 +1,1 @@
+body{transition:background-color .2s ease}.page-shell{transition:transform .85s cubic-bezier(.76,0,.24,1),opacity .85s ease}.is-leaving-left .page-shell{transform:translateX(-8vw);opacity:0}.is-leaving-right .page-shell{transform:translateX(8vw);opacity:0}@media(prefers-reduced-motion:reduce){.page-shell{transition:none!important}}
