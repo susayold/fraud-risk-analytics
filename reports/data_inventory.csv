@@ -1,2 +1,2 @@
 file_name,file_type,file_size_mb,row_count,column_count,primary_grain,candidate_key,date_min,date_max,notes
-__NO_RAW_FILES_FOUND__,,,,,,,,,Raw dataset is not present in data/raw; run this script after acquisition.
+card_transaction.v1.csv,csv,2245.547,24386900,15,transaction,,1991-01-02,2020-02-28,Observed from IBM TabFormer source; no explicit transaction_id column is present.

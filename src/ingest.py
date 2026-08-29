@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 import json
 import re
 from datetime import datetime
@@ -29,17 +30,25 @@ def parse_date(value: str) -> datetime | None:
     return None
 
 
+def parse_composite_date(row: dict[str, str]) -> datetime | None:
+    try:
+        return datetime(int(row["Year"]), int(row["Month"]), int(float(row["Day"])))
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
 def inspect_csv(path: Path) -> tuple[list[str], int, str | None, str | None]:
     with path.open("r", encoding="utf-8-sig", newline="", errors="replace") as handle:
         reader = csv.DictReader(handle)
         columns = reader.fieldnames or []
-        date_column = next((c for c in columns if any(h in normalize(c) for h in DATE_HINTS)), None)
+        has_composite_date = all(name in columns for name in ("Year", "Month", "Day"))
+        date_column = None if has_composite_date else next((c for c in columns if any(h in normalize(c) for h in DATE_HINTS)), None)
         row_count = 0
         dates: list[datetime] = []
         for row in reader:
             row_count += 1
-            if date_column:
-                parsed = parse_date(row.get(date_column, ""))
+            if date_column or has_composite_date:
+                parsed = parse_composite_date(row) if has_composite_date else parse_date(row.get(date_column, ""))
                 if parsed:
                     dates.append(parsed)
     return columns, row_count, min(dates).date().isoformat() if dates else None, max(dates).date().isoformat() if dates else None
@@ -67,7 +76,10 @@ def primary_grain(path: Path) -> str:
 
 
 def main() -> None:
-    files = sorted(p for p in RAW_DIR.rglob("*") if p.is_file() and p.suffix.lower() in {".csv", ".parquet"})
+    parser = argparse.ArgumentParser(description="Inventory a source directory without committing raw data.")
+    parser.add_argument("--raw-dir", type=Path, default=RAW_DIR, help="Source directory; a temporary Drive staging directory is supported.")
+    args = parser.parse_args()
+    files = sorted(p for p in args.raw_dir.rglob("*") if p.is_file() and p.suffix.lower() in {".csv", ".parquet"})
     inventory: list[dict[str, object]] = []
     dictionary: list[dict[str, object]] = []
     for path in files:

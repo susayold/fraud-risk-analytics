@@ -1,2 +1,2 @@
 relationship,left_table,right_table,join_key,expected_cardinality,observed_left_rows,matched_rows,unmatched_rows,duplicate_key_rows,status,notes
-user → card → transaction,,,,,,,,,PENDING,Cardinality is never assumed; populate from key audit SQL.
+user → card → transaction,users/cards,card_transaction.v1,User + Card,1-to-many,6139,24386900,not_available,not_applicable_transaction_grain,OBSERVED_WITH_LIMITATION,Source is denormalized; no standalone dimension tables.

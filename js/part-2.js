@@ -6,8 +6,20 @@
   fetch('assets/data/part2_summary.json').then(response => response.ok ? response.json() : Promise.reject(new Error('summary unavailable'))).then(data => {
     setText('transactions', formatNumber(data.transactions));
     setText('fraudRate', formatRate(data.fraud_rate));
+    setText('users', formatNumber(data.users));
+    setText('cardsMerchants', `${formatNumber(data.cards)} cards · ${formatNumber(data.merchants)} merchants`);
     setText('entityCoverage', data.users !== null || data.cards !== null ? `${formatNumber(data.users)} users · ${formatNumber(data.cards)} cards` : 'Pending');
     setText('dateCoverage', data.date_min && data.date_max ? `${data.date_min} → ${data.date_max}` : 'Pending');
+    setText('fraudTransactions', formatNumber(data.fraud_transactions));
+    setText('fraudRateLabel', formatRate(data.fraud_rate));
+    setText('legitRate', formatRate(1 - data.fraud_rate));
+    const legitBar = document.querySelector('[data-legit-bar]');
+    const fraudBar = document.querySelector('[data-fraud-bar]');
+    if (legitBar && fraudBar && typeof data.fraud_rate === 'number') {
+      legitBar.style.width = `${(1 - data.fraud_rate) * 100}%`;
+      fraudBar.style.width = `${data.fraud_rate * 100}%`;
+    }
+    (data.splits || []).forEach(split => document.querySelectorAll(`[data-split="${split.split_name}"]`).forEach(el => { el.textContent = `${split.date_start} → ${split.date_end} · ${formatNumber(split.row_count)} rows`; }));
     setText('statusLabel', data.status === 'READY' ? 'AUDIT READY' : 'AUDIT PENDING');
   }).catch(() => setText('statusLabel', 'AUDIT PENDING'));
   if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;

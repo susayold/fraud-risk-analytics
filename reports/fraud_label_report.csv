@@ -1,2 +1,4 @@
-total_transactions,fraud_transactions,legitimate_transactions,fraud_rate,fraud_amount,total_amount,fraud_amount_rate,date_min,date_max,label_nulls,label_domain,status,notes
-,,,,,,,,,,,PENDING,No raw dataset is present; run the audit pipeline.
+metric,label,transaction_count,amount,rate,status,notes
+label_count,no,24357143,,0.9987798,OBSERVED,Exact source label value.
+label_count,yes,29757,,0.0012202,OBSERVED,Exact source label value.
+fraud_amount_rate,Yes,29757,3231338.63,0.003036692366888857,OBSERVED,Fraud amount divided by total parsed transaction amount.

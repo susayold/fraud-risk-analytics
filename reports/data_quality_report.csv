@@ -1,2 +1,18 @@
 table_name,column_name,check_name,total_rows,affected_rows,affected_pct,status,notes
-,,inventory prerequisite,,,,PENDING,Run DuckDB quality SQL after source files are acquired.
+card_transaction.v1,User,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Card,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Year,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Month,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Day,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Time,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Amount,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Use Chip,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Merchant Name,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Merchant City,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Merchant State,null_count,24386900,2720821,11.156896,REVIEW,Empty strings counted as nulls.
+card_transaction.v1,Zip,null_count,24386900,2878135,11.801972,REVIEW,Empty strings counted as nulls.
+card_transaction.v1,MCC,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Errors?,null_count,24386900,23998469,98.407215,REVIEW,Empty strings counted as nulls.
+card_transaction.v1,Is Fraud?,null_count,24386900,0,0.0,PASS,Empty strings counted as nulls.
+card_transaction.v1,Amount,numeric_parse,24386900,0,0.0,PASS,Currency symbols and commas stripped before parse.
+card_transaction.v1,Year/Month/Day,valid_date,24386900,0,0.0,PASS,Composite transaction date.

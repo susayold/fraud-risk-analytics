@@ -1,14 +1,23 @@
 {
-  "status": "PENDING_DATA_INVENTORY",
+  "status": "READY",
   "source": "IBM Synthetic Credit Card Transactions",
-  "transactions": null,
-  "users": null,
-  "cards": null,
-  "fraud_transactions": null,
-  "fraud_rate": null,
-  "fraud_amount_rate": null,
-  "date_min": null,
-  "date_max": null,
-  "active_days": null,
-  "split_status": "NOT_DEFINED_UNTIL_DATE_AUDIT"
+  "source_file": "card_transaction.v1.csv",
+  "transactions": 24386900,
+  "users": 2000,
+  "cards": 6139,
+  "merchants": 100343,
+  "fraud_transactions": 29757,
+  "fraud_rate": 0.0012202042900081602,
+  "fraud_amount_rate": 0.003036692366888857,
+  "date_min": "1991-01-02",
+  "date_max": "2020-02-28",
+  "active_days": 10599,
+  "split_status": "OBSERVED_CHRONOLOGICAL_SPLITS",
+  "splits": [
+    {"split_name": "DEVELOPMENT", "date_start": "1991-01-02", "date_end": "2011-06-15", "row_count": 9673486, "fraud_count": 13661},
+    {"split_name": "VALIDATION", "date_start": "2011-06-16", "date_end": "2015-10-22", "row_count": 7170680, "fraud_count": 6586},
+    {"split_name": "OUT_OF_TIME_OOT", "date_start": "2015-10-23", "date_end": "2020-02-28", "row_count": 7542734, "fraud_count": 9510}
+  ],
+  "total_amount": 1064098117.16,
+  "fraud_amount": 3231338.63
 }

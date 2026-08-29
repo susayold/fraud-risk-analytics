@@ -1,4 +1,4 @@
-split, date_min,date_max,transaction_rows,fraud_rows,fraud_rate,status,notes
-DEVELOPMENT,,,,,,PENDING,Chronological boundaries require audited date coverage.
-VALIDATION,,,,,,PENDING,Chronological boundaries require audited date coverage.
-OUT_OF_TIME_OOT,,,,,,PENDING,Chronological boundaries require audited date coverage.
+split_name,date_start,date_end,row_count,fraud_count,status,notes
+DEVELOPMENT,1991-01-02,2011-06-15,9673486,13661,OBSERVED,Chronological date split; no random sampling.
+VALIDATION,2011-06-16,2015-10-22,7170680,6586,OBSERVED,Chronological date split; no random sampling.
+OUT_OF_TIME_OOT,2015-10-23,2020-02-28,7542734,9510,OBSERVED,Chronological date split; no random sampling.
