@@ -4,6 +4,9 @@ data/processed/*.parquet
 database/*.duckdb
 reports/storage_benchmark.csv
 
+__pycache__/
+*.pyc
+
 !data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
