@@ -22,7 +22,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | Part | Chapter | Status |
 |---|---|---|
 | 1 | Business Scope & Project Governance | ✅ Complete |
-| 2 | Data & SQL Foundation | ⬜ Planned |
+| 2 | Data & SQL Foundation | 🚧 In Progress |
 | 3 | Fraud Portfolio Analytics | ⬜ Planned |
 | 4 | Behavioral Fraud Analytics | ⬜ Planned |
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
@@ -49,7 +49,11 @@ HTML / CSS / JavaScript · GSAP / ScrollTrigger / Lenis · Python / SQL / DuckDB
 
 ## Current Deliverable
 
-Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles.
+Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, audit, Parquet/DuckDB and SQL-foundation scaffolding; observed metrics remain pending until the raw source file is added locally.
+
+## Part 2 — Data & SQL Foundation
+
+The Part 2 experience documents the transaction grain, entity keys, quality gates, fraud-label audit, leakage policy, storage boundary, point-in-time feature rule, and chronological development/validation/OOT split. Run `python src/ingest.py`, `python src/audit.py`, and `python src/validate_outputs.py` after placing the source dataset under `data/raw/`. Raw data, processed Parquet, and the local DuckDB database are ignored by Git.
 
 ## Limitations
 
@@ -60,4 +64,4 @@ Part 1 defines business context, fraud use case, KPI framework, validation quest
 
 ## Repository Structure
 
-`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` through `part-9.html` provide the standardized chapter shell for subsequent work. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, and supplied artwork lives in `assets/`.
+`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the Data & SQL Foundation chapter; `part-3.html` through `part-9.html` provide the standardized chapter shell for subsequent work. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, and supplied artwork lives in `assets/`.

@@ -1,0 +1,4 @@
+column_name,source_table,available_at_T0,potential_leakage,reason,allowed_for_eda,allowed_for_model,allowed_for_graph_ground_truth,final_status
+fraud_label,transactions,false,true,Outcome is only known after labeling or investigation,true,false,false,TARGET_ONLY
+post_event_outcome,transactions,false,true,Post-event information is unavailable at decision time,true,false,false,EXCLUDE
+raw_identifiers,transactions,review,review,Useful for joins/history but unsafe as naive numeric inputs,true,review,review,REVIEW

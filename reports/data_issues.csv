@@ -1,0 +1,2 @@
+issue_id,table,column,issue_type,severity,rows_affected,description,resolution,status
+P2-001,data/raw,,,HIGH,,Raw source files have not been supplied in this checkout,Run src/ingest.py after acquisition,OPEN

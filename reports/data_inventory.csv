@@ -1,0 +1,2 @@
+file_name,file_type,file_size_mb,row_count,column_count,primary_grain,candidate_key,date_min,date_max,notes
+__NO_RAW_FILES_FOUND__,,,,,,,,,Raw dataset is not present in data/raw; run this script after acquisition.

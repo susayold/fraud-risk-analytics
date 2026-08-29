@@ -1,0 +1,9 @@
+data/raw/*
+data/interim/*
+data/processed/*.parquet
+database/*.duckdb
+reports/storage_benchmark.csv
+
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep

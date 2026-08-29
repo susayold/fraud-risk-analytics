@@ -1,0 +1,1 @@
+table_name,column_name,raw_dtype,standardized_dtype,description,grain,nullable,candidate_key,decision_time_available,target_related,pii_like,use_status,reason

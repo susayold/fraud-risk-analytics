@@ -1,0 +1,4 @@
+split, date_min,date_max,transaction_rows,fraud_rows,fraud_rate,status,notes
+DEVELOPMENT,,,,,,PENDING,Chronological boundaries require audited date coverage.
+VALIDATION,,,,,,PENDING,Chronological boundaries require audited date coverage.
+OUT_OF_TIME_OOT,,,,,,PENDING,Chronological boundaries require audited date coverage.

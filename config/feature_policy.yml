@@ -1,0 +1,9 @@
+# Decision-time feature policy. Update column-level entries after inventory.
+# T0 is the transaction fraud-screening / authorization timestamp.
+t0_definition: transaction fraud-screening / authorization time
+rules:
+  feature_timestamp: "must be <= transaction_timestamp"
+  fraud_label: TARGET_ONLY
+  post_event_outcomes: EXCLUDE
+  raw_identifiers: REVIEW
+  historical_aggregates: DERIVE_WITH_POINT_IN_TIME_JOIN

@@ -1,0 +1,2 @@
+total_transactions,fraud_transactions,legitimate_transactions,fraud_rate,fraud_amount,total_amount,fraud_amount_rate,date_min,date_max,label_nulls,label_domain,status,notes
+,,,,,,,,,,,PENDING,No raw dataset is present; run the audit pipeline.

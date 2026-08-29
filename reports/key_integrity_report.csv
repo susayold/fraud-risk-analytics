@@ -1,0 +1,2 @@
+table_name,key_name,total_rows,distinct_keys,duplicate_key_rows,orphan_rows,status,notes
+,,,,,,PENDING,Populate from sql/02_key_integrity.sql.

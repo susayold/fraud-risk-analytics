@@ -1,0 +1,2 @@
+relationship,left_table,right_table,join_key,expected_cardinality,observed_left_rows,matched_rows,unmatched_rows,duplicate_key_rows,status,notes
+user → card → transaction,,,,,,,,,PENDING,Cardinality is never assumed; populate from key audit SQL.

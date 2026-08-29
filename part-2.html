@@ -1,1 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="FraudRisk Analytics portfolio chapter"><title>Part 2 — Data & SQL Foundation</title><link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/navigation.css"><link rel="stylesheet" href="css/placeholder.css"><link rel="stylesheet" href="css/transitions.css"></head><body data-current-part="2"><div class="scroll-progress" aria-hidden="true"></div><header class="top-nav"><a class="brand" href="part-1.html"><img class="brand-symbol" src="assets/icons/brand-shield-check.svg" alt=""><span class="brand-copy"><strong>FraudRisk</strong><span>Analytics</span></span></a><nav class="part-nav" aria-label="Case study parts"><a href="part-1.html" data-part="1">01 Scope</a><a href="part-2.html" data-part="2">02 Data</a><a href="part-3.html" data-part="3">03 Portfolio</a><a href="part-4.html" data-part="4">04 Behavior</a><a href="part-5.html" data-part="5">05 ML</a><a href="part-6.html" data-part="6">06 Graph</a><a href="part-7.html" data-part="7">07 Decision</a><a href="part-8.html" data-part="8">08 Monitor</a><a href="part-9.html" data-part="9">09 Deliver</a></nav></header><main class="page-transition-wrapper"><div class="page-shell js-page"><section class="placeholder"><div class="placeholder-card"><img src="assets/icons/dataset-database.svg" alt=""><span class="part-pill">PART 2</span><h1>Part 2 — Data & SQL Foundation</h1><p>This chapter is scaffolded for the next implementation pass. The shared shell, navigation, motion system and accessibility foundations are ready.</p><a class="back-link" href="part-1.html" data-target-part="1">← Previous Part</a></div></section></div></main><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script><script src="js/app.js"></script><script src="js/page-transitions.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="FraudRisk Analytics Part 2: data and SQL foundation">
+  <title>Part 2 — Data &amp; SQL Foundation | FraudRisk Analytics</title>
+  <link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css"><link rel="stylesheet" href="css/transitions.css">
+  <link rel="stylesheet" href="css/part-2.css">
+</head>
+<body data-current-part="2">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="top-nav">
+    <a class="brand" href="part-1.html"><img class="brand-symbol" src="assets/icons/brand-shield-check.svg" alt=""><span class="brand-copy"><strong>FraudRisk</strong><span>Analytics</span></span></a>
+    <nav class="part-nav" aria-label="Case study parts">
+      <a href="part-1.html" data-part="1">01 Scope</a><a class="active" href="part-2.html" data-part="2">02 Data</a>
+      <a href="part-3.html" data-part="3">03 Portfolio</a><a href="part-4.html" data-part="4">04 Behavior</a>
+      <a href="part-5.html" data-part="5">05 ML</a><a href="part-6.html" data-part="6">06 Graph</a>
+      <a href="part-7.html" data-part="7">07 Decision</a><a href="part-8.html" data-part="8">08 Monitor</a><a href="part-9.html" data-part="9">09 Deliver</a>
+    </nav>
+  </header>
+
+  <main class="page-transition-wrapper"><div class="page-shell js-page">
+    <section class="p2-hero section-pad">
+      <div class="hero-copy">
+        <span class="part-pill">PART 2 · DATA FOUNDATION</span>
+        <h1>Data &amp; SQL<br><span>Foundation</span></h1>
+        <p class="hero-lede">Turn raw transaction files into a traceable, point-in-time analytical base for fraud portfolio analysis, behavior features and model validation.</p>
+        <div class="audit-banner" data-status="pending"><span class="status-dot"></span><span data-summary="statusLabel">AUDIT PENDING</span><small>Connect the source file to populate observed metrics</small></div>
+      </div>
+      <div class="hero-architecture" aria-label="Data foundation architecture">
+        <div class="architecture-node"><img src="assets/icons/dataset-database.svg" alt=""><b>RAW FILES</b><small>source inventory</small></div>
+        <span class="architecture-arrow">→</span><div class="architecture-node"><img src="assets/icons/dataset-database.svg" alt=""><b>PARQUET</b><small>columnar storage</small></div>
+        <span class="architecture-arrow">→</span><div class="architecture-node"><img src="assets/icons/dataset-database.svg" alt=""><b>DUCKDB</b><small>local SQL engine</small></div>
+        <span class="architecture-arrow">→</span><div class="architecture-node accent"><img src="assets/icons/flow-rules.svg" alt=""><b>SQL BASE</b><small>auditable tables</small></div>
+      </div>
+    </section>
+
+    <section class="summary-grid section-pad" aria-label="Audit summary">
+      <div class="metric-card"><span>Transactions</span><strong data-summary="transactions">—</strong><small>Observed row count</small></div>
+      <div class="metric-card"><span>Entity coverage</span><strong data-summary="entityCoverage">Pending</strong><small>Users · cards · merchants</small></div>
+      <div class="metric-card"><span>Fraud rate</span><strong data-summary="fraudRate">—</strong><small>Label audit required</small></div>
+      <div class="metric-card"><span>Date coverage</span><strong data-summary="dateCoverage">Pending</strong><small>Exact range after inventory</small></div>
+    </section>
+
+    <section class="panel section-pad" id="data-landscape">
+      <div class="section-heading"><div><span class="eyebrow">01 · INVENTORY</span><h2>Data Landscape</h2></div><p>Start with facts: files, grain, keys, timestamps and labels. The site reads these values from the local audit output instead of inventing a dashboard number.</p></div>
+      <div class="table-cards">
+        <article class="table-card"><div class="table-card-top"><span class="table-icon">T</span><div><h3>transactions</h3><small>Primary analytical grain</small></div><span class="state pending">PENDING</span></div><dl><dt>One row</dt><dd>One card transaction</dd><dt>Required key</dt><dd>transaction_id</dd><dt>Time anchor</dt><dd>transaction_timestamp</dd></dl></article>
+        <article class="table-card"><div class="table-card-top"><span class="table-icon blue">U</span><div><h3>users</h3><small>Customer entity</small></div><span class="state pending">PENDING</span></div><dl><dt>Join key</dt><dd>user_id</dd><dt>Use</dt><dd>customer history and profile</dd><dt>Validation</dt><dd>orphan and duplicate audit</dd></dl></article>
+        <article class="table-card"><div class="table-card-top"><span class="table-icon purple">C</span><div><h3>cards / merchants</h3><small>Transaction context</small></div><span class="state pending">PENDING</span></div><dl><dt>Join keys</dt><dd>card_id · merchant_id</dd><dt>Use</dt><dd>portfolio and network views</dd><dt>Validation</dt><dd>coverage and integrity audit</dd></dl></article>
+      </div>
+      <div class="callout"><img src="assets/icons/governance-claim-boundary.svg" alt=""><div><b>Evidence boundary</b><span>Until a raw source file is present, every numeric field remains pending. Conceptual table roles are documented; observed values will be generated by <code>src/ingest.py</code>.</span></div></div>
+    </section>
+
+    <section class="two-column section-pad">
+      <article class="panel compact-panel" id="entity-relationships"><div class="section-heading"><div><span class="eyebrow">02 · GRAIN &amp; KEYS</span><h2>Entity Relationships</h2></div><p>Keep one transaction row as the base grain and test every join before feature engineering.</p></div>
+        <div class="entity-map"><div class="entity-box primary"><b>transactions</b><small>transaction_id</small><em>1</em></div><div class="entity-line"><span>user_id</span>──────▶</div><div class="entity-box"><b>users</b><small>user_id</small><em>1</em></div><div class="entity-line"><span>card_id</span>──────▶</div><div class="entity-box"><b>cards</b><small>card_id</small><em>1</em></div><div class="entity-line"><span>merchant_id</span>──▶</div><div class="entity-box"><b>merchants</b><small>merchant_id</small><em>1</em></div></div>
+        <div class="mini-note"><b>Integrity checks</b><span>Duplicate transaction keys · orphan foreign keys · row-count reconciliation after joins</span></div>
+      </article>
+      <article class="panel compact-panel" id="quality-audit"><div class="section-heading"><div><span class="eyebrow">03 · QUALITY GATES</span><h2>Data Quality Audit</h2></div><p>Each gate is explicit and should be resolved before modeling.</p></div>
+        <div class="audit-list"><div><span class="audit-mark pending">—</span><b>Completeness</b><small>Nulls in keys, timestamps and labels</small><span class="state pending">PENDING</span></div><div><span class="audit-mark pending">—</span><b>Validity</b><small>Dates, amounts and categorical domains</small><span class="state pending">PENDING</span></div><div><span class="audit-mark pending">—</span><b>Uniqueness</b><small>Transaction key and entity key checks</small><span class="state pending">PENDING</span></div><div><span class="audit-mark pending">—</span><b>Consistency</b><small>Cross-table joins and row reconciliation</small><span class="state pending">PENDING</span></div></div>
+      </article>
+    </section>
+
+    <section class="panel section-pad" id="fraud-label-audit"><div class="section-heading"><div><span class="eyebrow">04 · TARGET AUDIT</span><h2>Fraud Label Audit</h2></div><p>Measure class balance only after validating the target definition, timestamp availability and label quality.</p></div>
+      <div class="label-audit"><div class="imbalance-box"><div class="pending-bar"><span></span></div><div class="bar-legend"><span><i class="legit"></i> Legitimate <b>—</b></span><span><i class="fraud"></i> Fraud <b>—</b></span></div><small>Distribution is intentionally blank until the actual source inventory runs.</small></div><div class="audit-facts"><div><span>Target column</span><b>fraud_label</b></div><div><span>Allowed values</span><b>0 / 1</b></div><div><span>Amount capture</span><b>Calculated after validation</b></div><div><span>Decision use</span><b>Target only — never a feature</b></div></div></div>
+    </section>
+
+    <section class="two-column section-pad" id="leakage-policy"><article class="panel compact-panel"><div class="section-heading"><div><span class="eyebrow">05 · T0 POLICY</span><h2>Leakage &amp; Decision-Time Policy</h2></div><p>At decision time T0, only information available at or before the transaction timestamp may enter the feature base.</p></div><div class="policy-columns"><div><h3 class="allow-title">Allowed at T0</h3><ul><li>Transaction amount, currency and channel</li><li>Historical aggregates with strict time joins</li><li>Prior approved or declined outcomes</li><li>Pre-existing customer and card attributes</li></ul></div><div><h3 class="exclude-title">Exclude / review</h3><ul><li>Fraud label and investigation outcome</li><li>Chargeback or post-transaction status</li><li>Future transactions and future aggregates</li><li>Identifiers without a documented use case</li></ul></div></div></article>
+      <article class="panel compact-panel"><div class="section-heading"><div><span class="eyebrow">CONTROL REGISTER</span><h2>Leakage Register</h2></div></div><div class="register"><div><code>fraud_label</code><span>Target only</span><b class="tag red">EXCLUDE</b></div><div><code>post_event_outcome</code><span>Observed after T0</span><b class="tag red">EXCLUDE</b></div><div><code>historical_aggregate</code><span>Strict prior window</span><b class="tag green">DERIVE</b></div><div><code>raw_identifiers</code><span>Review necessity</span><b class="tag amber">REVIEW</b></div></div></article></section>
+
+    <section class="panel section-pad" id="storage-architecture"><div class="section-heading"><div><span class="eyebrow">06 · STORAGE</span><h2>Storage Architecture</h2></div><p>Large or sensitive data stays local. GitHub contains reproducible code, schemas, small audit summaries and documentation.</p></div><div class="storage-pipeline"><div><span class="storage-step">01</span><b>Raw</b><small>Local only<br>CSV / Parquet</small></div><span>→</span><div><span class="storage-step">02</span><b>Columnar</b><small>ZSTD Parquet<br>typed fields</small></div><span>→</span><div><span class="storage-step">03</span><b>DuckDB</b><small>local database<br>raw + audit</small></div><span>→</span><div class="storage-final"><span class="storage-step">04</span><b>SQL Base</b><small>one row / transaction<br>model-ready</small></div></div><div class="storage-foot"><span>Committed to GitHub</span><b>Code · SQL · config · report schemas · summary JSON</b><span>Not committed</span><b>Raw files · processed Parquet · DuckDB database</b></div></section>
+
+    <section class="two-column section-pad"><article class="panel compact-panel" id="sql-base"><div class="section-heading"><div><span class="eyebrow">07 · ANALYTICAL LAYER</span><h2>SQL Analytical Base</h2></div><p>Reconcile rows before adding features or model outputs.</p></div><pre class="sql-code"><span class="sql-key">CREATE OR REPLACE TABLE</span> analytics.transaction_base <span class="sql-key">AS</span>
+<span class="sql-key">SELECT</span>
+  transaction_id, user_id, card_id,
+  merchant_id, transaction_timestamp,
+  amount, fraud_label
+<span class="sql-key">FROM</span> raw.transactions;
+
+<span class="sql-key">SELECT COUNT(*)</span> <span class="sql-key">FROM</span> analytics.transaction_base;</pre><div class="code-caption">Implemented in <code>sql/04_transaction_base.sql</code></div></article>
+      <article class="panel compact-panel" id="pit-correctness"><div class="section-heading"><div><span class="eyebrow">08 · TEMPORAL CONTROL</span><h2>Point-in-Time Correctness</h2></div><p>Historical features use only records strictly earlier than T0.</p></div><div class="pit-timeline"><div><span>T−30d</span><b>Prior history</b><small>eligible</small></div><i></i><div class="t0"><span>T0</span><b>Transaction</b><small>decision point</small></div><i class="muted"></i><div class="future"><span>T+1</span><b>Outcome</b><small>not eligible</small></div></div><div class="rule-strip">feature_timestamp ≤ transaction_timestamp</div></article></section>
+
+    <section class="panel section-pad" id="splits"><div class="section-heading"><div><span class="eyebrow">09 · VALIDATION DESIGN</span><h2>Development · Validation · OOT</h2></div><p>Use chronological splits so future behavior never informs the past. Exact dates are generated only after date coverage is known.</p></div><div class="split-timeline"><div class="split dev"><b>DEVELOPMENT</b><span>Train and build features</span><small>Dates: pending audit</small></div><div class="split val"><b>VALIDATION</b><span>Threshold and policy tuning</span><small>Dates: pending audit</small></div><div class="split oot"><b>OUT-OF-TIME</b><span>Final temporal check</span><small>Dates: pending audit</small></div></div><div class="split-note">No random split is used for the fraud decisioning evaluation.</div></section>
+
+    <section class="deliver-section section-pad"><div class="deliver-copy"><span class="eyebrow">10 · DELIVERABLES</span><h2>Ready for the next analytical layer</h2><p>The reproducible foundation is in place. Add the source data locally, run the audit, review open issues, then promote the validated analytical base into Part 3.</p><a class="next-button" href="part-3.html" data-target-part="3">Next: Part 3 — Fraud Portfolio Analytics <span>→</span></a></div><div class="deliver-list"><div><img src="assets/icons/part-document.svg" alt=""><span>Inventory, dictionary and entity audit</span><b>reports/</b></div><div><img src="assets/icons/decision-framework-workflow.svg" alt=""><span>Ingest, audit, Parquet and DuckDB scripts</span><b>src/</b></div><div><img src="assets/icons/governance-claim-boundary.svg" alt=""><span>Feature policy, leakage register and SQL base</span><b>config/ · sql/</b></div></div></section>
+    <footer class="chapter-footer"><a href="part-1.html" data-target-part="1">← Part 1 · Scope &amp; Governance</a><span>Part 2 of 9 · Data &amp; SQL Foundation</span><a href="part-3.html" data-target-part="3">Part 3 · Portfolio Analytics →</a></footer>
+  </div></main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="js/app.js"></script><script src="js/page-transitions.js"></script><script src="js/part-2.js"></script>
+</body>
+</html>
