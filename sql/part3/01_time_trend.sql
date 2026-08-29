@@ -12,7 +12,8 @@ SELECT
   SUM(amount) FILTER (WHERE fraud_label=1) / NULLIF(SUM(amount), 0) AS fraud_amount_share,
   AVG(fraud_label) / NULLIF((SELECT AVG(fraud_label) FROM analytics.part3_development), 0) AS fraud_lift_vs_development_baseline
 FROM analytics.part3_development
-GROUP BY 2;
+GROUP BY 2
+ORDER BY month;
 
 CREATE OR REPLACE TABLE analytics.part3_yearly_fraud_trend AS
 SELECT
@@ -25,4 +26,5 @@ SELECT
   SUM(amount) FILTER (WHERE fraud_label=1) AS fraud_amount,
   SUM(amount) FILTER (WHERE fraud_label=1) / NULLIF(SUM(amount), 0) AS fraud_amount_share
 FROM analytics.part3_development
-GROUP BY 2;
+GROUP BY 2
+ORDER BY year;

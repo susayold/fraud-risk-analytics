@@ -21,3 +21,7 @@ The only cross-split output is the predefined `SPLIT_STABILITY` summary: transac
 ## Claim boundary
 
 Findings are associations in IBM synthetic transaction data. They do not state that a channel, MCC, geography or entity causes fraud. Signed fraud amount is not realized economic loss.
+
+## Downstream channel handoff
+
+Chip Transaction is absent from Development but appears later in the frozen Validation/OOT channel-mix summary. Part 4 and Part 5 must use unknown-safe categorical preprocessing and monitor channel-mix drift. This is a preprocessing requirement, not permission to mine OOT Chip subsegments for feature design.

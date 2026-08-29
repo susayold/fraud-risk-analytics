@@ -5,7 +5,8 @@
   const valid = value => value !== null && value !== undefined && value !== '' && Number.isFinite(num(value));
   const number = value => valid(value) ? nf.format(num(value)) : '—';
   const currency = value => valid(value) ? money.format(num(value)) : '—';
-  const rate = value => valid(value) ? `${(num(value) * 100).toFixed(2)}%` : '—';
+  const rate = value => { if (!valid(value)) return '—'; const pct = num(value) * 100; return `${pct.toFixed(pct < 1 ? 3 : 2)}%`; };
+  const smallRate = value => valid(value) ? `${(num(value) * 100).toFixed(3)}%` : '—';
   const share = value => valid(value) ? `${(num(value) * 100).toFixed(1)}%` : '—';
   const lift = value => valid(value) ? `${num(value).toFixed(2)}x` : '—';
   const safe = value => String(value ?? '—').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
@@ -53,10 +54,11 @@
 
   function renderMcc(rows) {
     const top = [...rows].sort((a, b) => num(b.fraud_lift) - num(a.fraud_lift)).slice(0, 10).reverse();
+    if (rows.some(row => !row.priority_class)) { console.error('MCC priority contract error', rows); return; }
     const chart = initChart('mcc-chart');
-    if (chart) chart.setOption({ animationDuration: 700, grid: { left: 48, right: 25, top: 10, bottom: 30 }, tooltip: tooltip(params => { const row = top[params[0]?.dataIndex] || {}; return `<b>MCC ${safe(row.segment_value)}</b><br>Lift: ${lift(row.fraud_lift)}<br>Fraud rate: ${rate(row.fraud_rate)}<br>Fraud txns: ${number(row.fraud_transactions)}`; }), xAxis: { ...axis, type: 'value', axisLabel: { ...axis.axisLabel, formatter: value => `${value}x` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, yAxis: { ...axis, type: 'category', data: top.map(row => row.segment_value), inverse: false }, series: [{ type: 'bar', barMaxWidth: 18, itemStyle: { color: chartTheme.blue, borderRadius: [0, 5, 5, 0] }, data: top.map(row => num(row.fraud_lift)) }] });
+    if (chart) chart.setOption({ animationDuration: 700, grid: { left: 48, right: 25, top: 10, bottom: 30 }, tooltip: tooltip(params => { const row = top[params[0]?.dataIndex] || {}; return `<b>MCC ${safe(row.segment_value)}</b><br>Lift: ${lift(row.fraud_lift)}<br>Fraud rate: ${rate(row.fraud_rate)}<br>Fraud txns: ${number(row.fraud_transactions)}<br>Priority class: ${safe(row.priority_class)}`; }), xAxis: { ...axis, type: 'value', axisLabel: { ...axis.axisLabel, formatter: value => `${value}x` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, yAxis: { ...axis, type: 'category', data: top.map(row => row.segment_value), inverse: false }, series: [{ type: 'bar', barMaxWidth: 18, itemStyle: { color: chartTheme.blue, borderRadius: [0, 5, 5, 0] }, data: top.map(row => num(row.fraud_lift)) }] });
     const table = document.getElementById('mcc-table');
-    if (table) table.innerHTML = [...rows].sort((a, b) => num(b.fraud_lift) - num(a.fraud_lift)).slice(0, 8).map(row => `<tr>${cell(row.segment_value)}${cell(number(row.transactions))}${cell(number(row.fraud_transactions))}<td class="emphasis">${lift(row.fraud_lift)}</td><td><span class="priority ${row.priority_class || 'MONITOR'}">${safe(row.priority_class || 'MONITOR')}</span></td></tr>`).join('');
+    if (table) table.innerHTML = [...rows].sort((a, b) => num(b.fraud_lift) - num(a.fraud_lift)).slice(0, 8).map(row => `<tr>${cell(row.segment_value)}${cell(number(row.transactions))}${cell(number(row.fraud_transactions))}<td class="emphasis">${lift(row.fraud_lift)}</td><td><span class="priority ${row.priority_class}">${safe(row.priority_class)}</span></td></tr>`).join('');
   }
 
   function renderGeography(rows) {
@@ -79,8 +81,10 @@
   function renderPriority(rows) {
     const chartRows = [...rows].slice(0, 12);
     const colors = { PRIORITY_1: chartTheme.red, PRIORITY_2: chartTheme.amber, MONITOR: chartTheme.blue, LOW_PRIORITY: '#87918b' };
+    const invalidRows = chartRows.filter(row => !valid(row.transaction_share) || !valid(row.fraud_lift) || !valid(row.fraud_transactions));
+    if (invalidRows.length) { console.error('Priority matrix schema error', invalidRows); return; }
     const chart = initChart('priority-chart');
-    if (chart) chart.setOption({ animationDuration: 700, grid: { left: 52, right: 24, top: 30, bottom: 50 }, legend: { top: 0, textStyle: { color: chartTheme.text, fontSize: 10 } }, tooltip: tooltip(params => { const row = chartRows[params[0]?.dataIndex] || {}; return `<b>${safe(row.segment_type)} · ${safe(row.segment_value)}</b><br>Transaction share: ${share(row.transaction_share)}<br>Lift: ${lift(row.fraud_lift)}<br>Fraud capture: ${share(row.fraud_capture_share)}<br>Class: ${safe(row.priority_class)}`; }, { trigger: 'item' }), xAxis: { ...axis, type: 'value', name: 'Transaction share', nameTextStyle: { color: chartTheme.text, fontSize: 10 }, axisLabel: { ...axis.axisLabel, formatter: value => `${value}%` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, yAxis: { ...axis, type: 'value', name: 'Fraud lift', nameTextStyle: { color: chartTheme.text, fontSize: 10 }, axisLabel: { ...axis.axisLabel, formatter: value => `${value}x` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, series: Object.keys(colors).map(priority => ({ name: priority, type: 'scatter', symbolSize: value => Math.max(10, Math.min(34, Math.sqrt(value[2]) * .75)), itemStyle: { color: colors[priority], opacity: .82 }, data: chartRows.filter(row => row.priority_class === priority).map(row => ({ value: [num(row.transaction_share) * 100, num(row.fraud_lift), num(row.fraud_transactions)], name: `${row.segment_type} · ${row.segment_value}` })) })) });
+    if (chart) chart.setOption({ animationDuration: 700, grid: { left: 52, right: 24, top: 30, bottom: 50 }, legend: { top: 0, textStyle: { color: chartTheme.text, fontSize: 10 } }, tooltip: tooltip(params => { const row = params[0]?.data?.raw || {}; return `<b>${safe(row.segment_type)} · ${safe(row.segment_value)}</b><br>Transaction share: ${share(row.transaction_share)}<br>Fraud transactions: ${number(row.fraud_transactions)}<br>Fraud lift: ${lift(row.fraud_lift)}<br>Fraud capture: ${share(row.fraud_capture_share)}<br>Fraud amount capture: ${share(row.fraud_amount_capture_share)}<br>Priority class: ${safe(row.priority_class)}`; }, { trigger: 'item' }), xAxis: { ...axis, type: 'value', name: 'Transaction share', nameTextStyle: { color: chartTheme.text, fontSize: 10 }, axisLabel: { ...axis.axisLabel, formatter: value => `${value}%` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, yAxis: { ...axis, type: 'value', name: 'Fraud lift', nameTextStyle: { color: chartTheme.text, fontSize: 10 }, axisLabel: { ...axis.axisLabel, formatter: value => `${value}x` }, splitLine: { lineStyle: { color: '#edf1ed' } } }, series: Object.keys(colors).map(priority => ({ name: priority, type: 'scatter', symbolSize: value => Math.max(10, Math.min(34, Math.sqrt(value[2]) * .75)), itemStyle: { color: colors[priority], opacity: .82 }, data: chartRows.filter(row => row.priority_class === priority).map(row => ({ value: [num(row.transaction_share) * 100, num(row.fraud_lift), num(row.fraud_transactions)], name: `${row.segment_type} · ${row.segment_value}`, raw: row })) })) });
     const list = document.getElementById('priority-list');
     if (list) list.innerHTML = chartRows.slice(0, 10).map(row => `<div class="priority-row"><span class="class ${row.priority_class === 'PRIORITY_1' ? 'p1' : row.priority_class === 'PRIORITY_2' ? 'p2' : 'monitor'}">${safe(row.priority_class)}</span><b title="${safe(row.segment_type)} · ${safe(row.segment_value)}">${safe(row.segment_type)} · ${safe(row.segment_value)}</b><small>${lift(row.fraud_lift)}<br>${share(row.fraud_capture_share)} capture</small></div>`).join('');
   }
@@ -89,7 +93,7 @@
     const holder = document.getElementById('stability-grid');
     if (!holder) return;
     const order = { DEVELOPMENT: 'dev', VALIDATION: 'val', OUT_OF_TIME_OOT: 'oot' };
-    holder.innerHTML = [...rows].sort((a, b) => ({ DEVELOPMENT: 0, VALIDATION: 1, OUT_OF_TIME_OOT: 2 }[a.split_name] ?? 9) - ({ DEVELOPMENT: 0, VALIDATION: 1, OUT_OF_TIME_OOT: 2 }[b.split_name] ?? 9)).map(row => `<div class="stability-row ${order[row.split_name] || ''}"><b>${safe(row.split_name.replace('_', ' '))}</b><span>${rate(row.fraud_rate)}</span><small>${number(row.transactions)} transactions · ${number(row.fraud_transactions)} fraud-labeled · ${share(row.fraud_amount_share)} signed amount share</small></div>`).join('');
+    holder.innerHTML = [...rows].sort((a, b) => ({ DEVELOPMENT: 0, VALIDATION: 1, OUT_OF_TIME_OOT: 2 }[a.split_name] ?? 9) - ({ DEVELOPMENT: 0, VALIDATION: 1, OUT_OF_TIME_OOT: 2 }[b.split_name] ?? 9)).map(row => `<div class="stability-row ${order[row.split_name] || ''}"><b>${safe(row.split_name.replace('_', ' '))}</b><span>${rate(row.fraud_rate)}</span><small>${number(row.transactions)} transactions · ${number(row.fraud_transactions)} fraud-labeled · ${smallRate(row.fraud_amount_share)} signed amount share</small></div>`).join('');
   }
 
   function renderFindings(rows) {
@@ -101,8 +105,9 @@
   fetch('assets/data/part3_summary.json').then(response => response.ok ? response.json() : Promise.reject(new Error('summary unavailable'))).then(data => {
     const dev = data.development || {};
     setText('statusLabel', data.status === 'PORTFOLIO_READY' ? 'PORTFOLIO READY' : 'PORTFOLIO PENDING');
-    setText('transactions', number(dev.transactions)); setText('fraudTransactions', number(dev.fraud_transactions)); setText('fraudRate', rate(dev.fraud_rate)); setText('fraudAmountShare', share(dev.fraud_amount_share));
+    setText('transactions', number(dev.transactions)); setText('fraudTransactions', number(dev.fraud_transactions)); setText('fraudRate', rate(dev.fraud_rate));
     setText('totalAmount', currency(dev.total_amount)); setText('fraudAmount', currency(dev.fraud_amount)); setText('avgFraudAmount', currency(dev.avg_fraud_amount)); setText('medianFraudAmount', currency(dev.median_fraud_amount));
+    setText('fraudAmountShare', smallRate(dev.fraud_amount_share));
     document.querySelectorAll('[data-status]').forEach(el => { el.dataset.status = data.status === 'PORTFOLIO_READY' ? 'pass' : 'review'; });
     renderTrend(data); renderChannels(data.channel || []); renderAmount(data.amount_bands || []); renderMcc(data.mcc || []); renderGeography(data.geography || []); renderConcentration(data.concentration || {}); renderPriority(data.priority_segments || []); renderStability(data.stability || []); renderFindings(data.findings || []);
   }).catch(() => { setText('statusLabel', 'PORTFOLIO PENDING'); });

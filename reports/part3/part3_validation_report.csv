@@ -15,3 +15,9 @@ P3T09,PASS,aggregate reports contain no row-level identifiers
 P3T10,PASS,detailed scopes=['DEVELOPMENT_DISCOVERY']
 P3T11,PASS,website summary matches baseline/channel reports
 P3T12,PASS,website avoids causal or loss-prevention claims
+P3T13_PRIORITY_SCHEMA,PASS,priority summary rows=12 with required finite fields
+P3T14_MCC_PRIORITY,PASS,public MCC rows=10 map to segment_priority.csv
+P3T15_SUMMARY_SCHEMA,PASS,summary keys present=17
+P3T16_RENDER_CONTRACT,PASS,all JS renderer fields are represented
+P3T17_PRIORITY_RULE,PASS,priority rows checked=316 against the locked rule
+P3T18_TREND_ORDER,PASS,monthly and yearly reports are monotonically ordered
