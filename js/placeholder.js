@@ -1,1 +1,1 @@
-document.querySelectorAll('.part-nav a').forEach(a=>a.addEventListener('click',()=>document.body.classList.add('is-leaving')));
+(() => { const current=Number(document.body.dataset.currentPart||1); document.querySelectorAll('.part-nav a[data-part]').forEach(a=>{if(Number(a.dataset.part)===current)a.classList.add('active')}); })();
