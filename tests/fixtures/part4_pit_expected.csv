@@ -1,0 +1,11 @@
+check_name,expected_value
+same_timestamp_row_3_prior_m1_count,2
+same_timestamp_row_4_prior_m1_count,2
+row_6_exact_1h_user_velocity_1h,3
+row_7_one_second_after_user_velocity_1h,2
+first_event_cold_start,1
+new_merchant_row_4_is_new,1
+unseen_channel_row_4_count,0
+negative_amount_row_5_positive_sum_contribution,0
+zero_amount_row_4_current_positive,0
+same_timestamp_rows_do_not_see_each_other,1

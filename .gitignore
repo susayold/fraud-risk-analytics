@@ -3,6 +3,13 @@ data/interim/*
 data/processed/*
 database/*.duckdb
 *.parquet
+*.duckdb
+*.db
+runtime/
+data/raw/
+data/processed/
+features/private/
+outputs/private/
 
 __pycache__/
 *.pyc

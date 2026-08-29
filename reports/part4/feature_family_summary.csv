@@ -1,0 +1,6 @@
+feature_family,feature_count,scope
+amount,12,"Positive amount velocity, historical baselines and deviations"
+entity_history,9,"User/card/merchant prior counts, cold start and recency"
+geography,0,Extended-only dependency audit; no geography primary feature
+relationship_familiarity,14,"Merchant, MCC and channel familiarity"
+velocity,8,User/card/merchant 1h/24h/7d windows; merchant 7d remains extended-only

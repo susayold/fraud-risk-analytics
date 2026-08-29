@@ -1,0 +1,5 @@
+metric,value,status,notes
+minimum_positive_delta_microseconds,60000000.0,PASS,Microsecond interval is used only as an exclusion guard; logical policy remains timestamp < T0.
+rows_checked,100000.0,PASS,Part 4 behavior source rows audited.
+same_timestamp_adjacent_rows,1014.0,PASS,Same timestamp peers remain excluded by strict upper frame bound.
+timestamp_nulls,0.0,PASS,Canonical event timestamp must be present.
