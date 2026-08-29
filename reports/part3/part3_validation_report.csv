@@ -1,0 +1,17 @@
+test_id,status,evidence
+P3T01,PASS,Development rows=9673486
+P3T02,PASS,Development fraud rows=13661
+P3T03,PASS,channel_risk.csv transaction shares sum to 1.000000000
+P3T04,PASS,amount_band_risk.csv transaction shares sum to 1.000000000
+P3T05,PASS,mcc_risk.csv transaction shares sum to 1.000000000
+P3T06,PASS,state_risk.csv transaction shares sum to 1.000000000
+P3T07,PASS,merchant_city_risk.csv transaction shares sum to 1.000000000
+P3T05_BANDS,PASS,"amount bands=8, rows=9673486"
+P3T07_UNKNOWN,PASS,missing geography is retained as <UNKNOWN>
+P3T08_USER,PASS,user_concentration.csv denominator=13661
+P3T08_CARD,PASS,card_concentration.csv denominator=13661
+P3T08_MERCHANT,PASS,merchant_concentration.csv denominator=13661
+P3T09,PASS,aggregate reports contain no row-level identifiers
+P3T10,PASS,detailed scopes=['DEVELOPMENT_DISCOVERY']
+P3T11,PASS,website summary matches baseline/channel reports
+P3T12,PASS,website avoids causal or loss-prevention claims

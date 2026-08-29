@@ -1,0 +1,2 @@
+analysis_scope,entity_type,total_entities,fraud_affected_entities,repeat_fraud_entities,entity_fraud_transactions,top_10_fraud_share,top_100_fraud_share,top_1pct_fraud_share,top_5pct_fraud_share,hhi_fraud_count
+DEVELOPMENT_DISCOVERY,CARD,3688,1361,1287,13661,0.029134031183661518,0.19991215869994877,0.08959812605226557,0.31754629968523534,0.0010949083794482017

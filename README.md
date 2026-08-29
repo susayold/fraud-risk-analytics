@@ -23,7 +23,7 @@ https://susayold.github.io/fraud-risk-analytics/
 |---|---|---|
 | 1 | Business Scope & Project Governance | ✅ Complete |
 | 2 | Data & SQL Foundation | ✅ Locked |
-| 3 | Fraud Portfolio Analytics | ⬜ Planned |
+| 3 | Fraud Portfolio Analytics | ✅ Locked |
 | 4 | Behavioral Fraud Analytics | ⬜ Planned |
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
 | 6 | Network & Graph Fraud Analytics | ⬜ Planned |
@@ -49,7 +49,7 @@ HTML / CSS / JavaScript · GSAP / ScrollTrigger / Lenis · Python / SQL / DuckDB
 
 ## Current Deliverable
 
-Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, streaming audit, executed Parquet/DuckDB and SQL-foundation pipeline. Observed metrics are sourced from the IBM TabFormer transaction archive stored on Google Drive; the raw archive is not committed to GitHub.
+Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, streaming audit, executed Parquet/DuckDB and SQL-foundation pipeline. Part 3 adds Development-only portfolio discovery: time trends, channel/amount/MCC/geography risk, aggregate entity concentration, materiality-based segment priority and split-stability boundaries. Observed metrics are sourced from the IBM TabFormer transaction archive stored on Google Drive; the raw archive is not committed to GitHub.
 
 ## Part 2 — Data & SQL Foundation
 
@@ -64,4 +64,4 @@ The Part 2 experience documents the transaction grain, entity keys, quality gate
 
 ## Repository Structure
 
-`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the Data & SQL Foundation chapter; `part-3.html` through `part-9.html` provide the standardized chapter shell for subsequent work. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, and supplied artwork lives in `assets/`.
+`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter and `part-3.html` contains the locked Fraud Portfolio Analytics chapter. `part-4.html` through `part-9.html` provide the standardized chapter shell for subsequent work. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, executed Part 3 aggregate reports live in `reports/part3/`, and supplied artwork lives in `assets/`.
