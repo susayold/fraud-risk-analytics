@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FraudRisk Analytics — Business Scope and Project Governance" />
-  <title>FraudRisk Analytics · Part 1</title>
+  <meta name="description" content="Interactive financial fraud risk case study using IBM synthetic credit card transaction data. Part 1 defines business objectives, KPIs, governance and decision scope." />
+  <title>Financial Fraud Risk Analytics | Part 1 — Business Scope</title>
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/navigation.css" />
@@ -19,7 +19,7 @@
       <span class="brand-copy"><strong>FraudRisk</strong><span>Analytics</span></span>
     </a>
     <nav class="part-nav" aria-label="Case study parts">
-      <a class="active" href="#hero" data-part="1">01 Scope</a>
+      <a class="active" href="part-1.html" data-part="1">01 Scope</a>
       <a href="part-2.html" data-part="2">02 Data</a>
       <a href="part-3.html" data-part="3">03 Portfolio</a>
       <a href="part-4.html" data-part="4">04 Behavior</a>
@@ -31,7 +31,8 @@
     </nav>
   </header>
 
-  <main class="page-shell page-transition-wrapper">
+  <main class="page-transition-wrapper">
+    <div class="page-shell js-page">
     <section id="hero" class="hero js-reveal" data-reveal="up">
       <div class="hero-copy">
         <span class="part-pill">PART 1</span>
@@ -39,7 +40,7 @@
         <p class="hero-summary">Define the problem, objectives, KPIs and analytical approach for the Financial Fraud Risk Analytics &amp; Transaction Decisioning project.</p>
         <div class="dataset-card">
           <img src="assets/icons/dataset-database.svg" alt="" />
-          <div><span>Dataset</span><div class="dataset-name"><img src="assets/logos/ibm-wordmark.svg" alt="IBM" /><strong>IBM Synthetic Credit Card Transactions</strong></div></div>
+          <div><span>Dataset</span><div class="dataset-name"><img src="assets/logos/ibm-wordmark.svg" alt="IBM" /><strong>IBM Synthetic Credit Card Transactions</strong></div><em class="synthetic-badge">Synthetic Financial Data</em></div>
         </div>
         <div class="transaction-stat js-count-wrapper">
           <img src="assets/icons/transactions-trend.svg" alt="" />
@@ -53,7 +54,7 @@
       </div>
     </section>
 
-    <div class="two-column-story">
+    <div class="validation-story">
       <section class="content-section js-reveal" data-reveal="left">
         <div class="section-heading"><img src="assets/icons/business-objective-target.svg" alt="" /><h2>Business Objective</h2></div>
         <div class="objective-grid js-stagger">
@@ -80,23 +81,27 @@
     <section class="content-section decision-framework js-reveal" data-reveal="up">
       <div class="section-heading"><img src="assets/icons/decision-framework-workflow.svg" alt="" /><div><h2>Decision Framework</h2><p>End-to-end decisioning pipeline that translates data and analytics into consistent, explainable actions.</p></div></div>
       <div class="decision-flow js-flow">
-        <article class="flow-node"><img src="assets/icons/flow-transaction.svg" alt="" /><strong>Transaction</strong><small>Real-time data &amp; attributes</small></article><span class="flow-arrow">→</span>
+        <article class="flow-node"><img src="assets/icons/flow-transaction.svg" alt="" /><strong>Transaction</strong><small>Transaction context &amp; available attributes</small></article><span class="flow-arrow">→</span>
         <article class="flow-node"><img src="assets/icons/flow-rules.svg" alt="" /><strong>Rules</strong><small>Business &amp; risk rules</small></article><span class="flow-arrow">→</span>
         <article class="flow-node"><img src="assets/icons/flow-ml-model.svg" alt="" /><strong>ML Model</strong><small>Machine learning scoring</small></article><span class="flow-arrow">→</span>
-        <article class="flow-node"><img src="assets/icons/flow-risk-score.svg" alt="" /><strong>Risk Score</strong><small>Normalized score 0–1000</small></article><span class="flow-arrow">→</span>
+        <article class="flow-node"><img src="assets/icons/flow-risk-score.svg" alt="" /><strong>Risk Score</strong><small>Calibrated fraud risk score</small></article><span class="flow-arrow">→</span>
         <article class="flow-node"><img src="assets/icons/flow-decision-engine.svg" alt="" /><strong>Decision Engine</strong><small>Policy &amp; thresholds</small></article>
       </div>
-      <div class="action-grid"><div class="action allow"><img src="assets/icons/action-allow.svg" alt="" /><div><strong>Approve Transaction</strong><span>Low risk — auto approve</span></div></div><div class="action review"><img src="assets/icons/action-review.svg" alt="" /><div><strong>Manual Review</strong><span>Medium risk — analyst review</span></div></div><div class="action block"><img src="assets/icons/action-block.svg" alt="" /><div><strong>Decline Transaction</strong><span>High risk — auto decline</span></div></div></div>
+      <div class="action-grid"><div class="action allow"><img src="assets/icons/action-allow.svg" alt="" /><div><strong>ALLOW</strong><span>Transaction proceeds</span></div></div><div class="action review"><img src="assets/icons/action-review.svg" alt="" /><div><strong>REVIEW</strong><span>Route for analyst investigation</span></div></div><div class="action block"><img src="assets/icons/action-block.svg" alt="" /><div><strong>BLOCK</strong><span>Transaction declined</span></div></div></div>
     </section>
 
     <div class="two-column-story">
-      <section class="content-section js-reveal" data-reveal="left"><div class="section-heading"><img src="assets/icons/hypothesis-lightbulb.svg" alt="" /><h2>Key Hypotheses</h2></div><div class="hypothesis-list js-stagger"><div><b>H1</b><img src="assets/icons/h1-behavior.svg" alt="" /><span>Behavioral features add incremental value</span></div><div><b>H2</b><img src="assets/icons/h2-network.svg" alt="" /><span>Network features add incremental value</span></div><div><b>H3</b><img src="assets/icons/h3-cost-threshold.svg" alt="" /><span>Cost-optimized thresholds outperform</span></div><div><b>H4</b><img src="assets/icons/h4-review-capacity.svg" alt="" /><span>Review capacity changes optimal strategy</span></div><div><b>H5</b><img src="assets/icons/h5-drift-clock.svg" alt="" /><span>Performance varies over time (drift)</span></div></div></section>
-      <section class="content-section js-reveal" data-reveal="right"><div class="section-heading"><img src="assets/icons/scope-shield.svg" alt="" /><h2>Scope Boundary</h2></div><div class="scope-grid"><div class="scope-column in"><h3>In Scope</h3><ul><li>Card transaction fraud</li><li>Behavioral analytics</li><li>Rules &amp; Machine learning</li><li>Network &amp; Graph analytics</li><li>Decision optimization</li><li>Monitoring &amp; Governance</li></ul></div><div class="scope-column out"><h3>Out of Scope</h3><ul><li>AML / KYC</li><li>SME issue / Device fraud</li><li>Real-time infrastructure</li><li>Production deployment</li><li>Full MLOps platform</li></ul></div></div></section>
+      <section class="content-section js-reveal" data-reveal="left"><div class="section-heading"><img src="assets/icons/hypothesis-lightbulb.svg" alt="" /><h2>Validation Questions</h2></div><div class="validation-list js-stagger"><div class="validation-row"><b>Q1</b><img src="assets/icons/h1-behavior.svg" alt="" /><div><strong>Behavioral Value</strong><span>Do behavioral signals add incremental detection value?</span></div></div><div class="validation-row"><b>Q2</b><img src="assets/icons/h2-network.svg" alt="" /><div><strong>Network Value</strong><span>Do relational signals add incremental value?</span></div></div><div class="validation-row"><b>Q3</b><img src="assets/icons/h3-cost-threshold.svg" alt="" /><div><strong>Threshold Strategy</strong><span>Can cost-aware thresholds improve outcomes?</span></div></div><div class="validation-row"><b>Q4</b><img src="assets/icons/h4-review-capacity.svg" alt="" /><div><strong>Review Capacity</strong><span>How does capacity change the optimal policy?</span></div></div><div class="validation-row"><b>Q5</b><img src="assets/icons/h5-drift-clock.svg" alt="" /><div><strong>Performance Stability</strong><span>Does detection remain stable over time?</span></div></div></div></section>
     </div>
+
+    <section class="content-section governance-section js-reveal" data-reveal="up"><div class="section-heading"><img src="assets/icons/governance-claim-boundary.svg" alt="" /><div><h2>Governance &amp; Claim Boundary</h2><p>Separate observed evidence, analytical outputs and simulated business outcomes to keep project claims defensible.</p></div></div><div class="evidence-grid js-stagger"><article class="evidence-card observed"><span class="evidence-label">OBSERVED</span><h3>Dataset Evidence</h3><p>Directly calculated from IBM synthetic transaction data.</p><ul><li>Transaction volume</li><li>Fraud labels</li><li>Segment distributions</li></ul></article><article class="evidence-card derived"><span class="evidence-label">DERIVED</span><h3>Analytical Output</h3><p>Generated through analysis, feature engineering and modeling.</p><ul><li>Behavioral features</li><li>Risk scores</li><li>Out-of-Time performance</li></ul></article><article class="evidence-card simulated"><span class="evidence-label">SIMULATED</span><h3>Business Scenario</h3><p>Depends on explicit operational assumptions.</p><ul><li>Fraud loss prevented</li><li>Review cost</li><li>Capacity scenarios</li></ul></article></div><div class="claim-boundary-grid"><div class="claim-card allowed"><h3>Defensible Claims</h3><ul><li>Observed patterns within IBM synthetic data</li><li>Out-of-time validation results</li><li>Incremental feature/model value</li><li>Simulated strategy outcomes</li></ul></div><div class="claim-card restricted"><h3>Claims We Will Not Make</h3><ul><li>Actual bank losses prevented</li><li>Real customer impact</li><li>Production fraud performance</li><li>Regulatory validation</li></ul></div></div></section>
+
+    <section class="content-section js-reveal" data-reveal="right"><div class="section-heading"><img src="assets/icons/scope-shield.svg" alt="" /><h2>Scope Boundary</h2></div><div class="scope-grid"><div class="scope-column in"><h3>In Scope</h3><ul><li>Card transaction fraud</li><li>Fraud portfolio analytics</li><li>Behavioral analytics</li><li>Rule-based controls</li><li>Machine learning</li><li>Network / graph analytics</li><li>Decision optimization</li><li>Explainability</li><li>Monitoring &amp; governance</li></ul></div><div class="scope-column out"><h3>Out of Scope</h3><ul><li>AML / money laundering</li><li>KYC onboarding</li><li>Synthetic identity fraud</li><li>SIM swap / device fingerprinting</li><li>Real-time streaming infrastructure</li><li>Production deployment</li><li>Full enterprise MLOps platform</li></ul></div></div></section>
 
     <section class="content-section tech-section js-reveal" data-reveal="up"><div class="section-heading"><img src="assets/icons/dataset-database.svg" alt="" /><h2>Tech Stack</h2></div><div class="tech-grid js-stagger"><div class="tool" data-tooltip="Enterprise dataset and risk context"><img src="assets/logos/ibm-wordmark.svg" alt="IBM" /><span>IBM</span></div><div class="tool" data-tooltip="SQL data preparation"><img src="assets/logos/sql-database.svg" alt="SQL" /><span>SQL</span></div><div class="tool" data-tooltip="Analysis and modeling"><img src="assets/logos/python.svg" alt="Python" /><span>Python</span></div><div class="tool" data-tooltip="Tabular data manipulation"><img src="assets/logos/pandas.svg" alt="pandas" /><span>pandas</span></div><div class="tool" data-tooltip="Analytical SQL engine"><img src="assets/logos/duckdb.svg" alt="DuckDB" /><span>DuckDB</span></div><div class="tool" data-tooltip="Gradient boosted tree model"><img src="assets/logos/xgboost-wordmark.svg" alt="XGBoost" /><span>XGBoost</span></div><div class="tool" data-tooltip="Model explainability"><img src="assets/logos/shap-mark.svg" alt="SHAP" /><span>SHAP</span></div><div class="tool" data-tooltip="Graph feature engineering"><img src="assets/logos/networkx-mark.svg" alt="NetworkX" /><span>NetworkX</span></div><div class="tool" data-tooltip="Interactive analytical charts"><img src="assets/logos/plotly.svg" alt="Plotly" /><span>Plotly</span></div><div class="tool" data-tooltip="Version control and delivery"><img src="assets/logos/github.svg" alt="GitHub" /><span>GitHub</span></div></div></section>
 
     <footer class="part-footer js-reveal" data-reveal="up"><div class="part-status"><img src="assets/icons/part-document.svg" alt="" /><div><strong>Part 1 of 9</strong><span>Business Scope &amp; Project Governance</span></div></div><a class="next-part" href="part-2.html" data-target-part="2"><span>Next: Part 2 — Data &amp; SQL Foundation</span><img src="assets/icons/next-arrow.svg" alt="" /></a></footer>
+    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
