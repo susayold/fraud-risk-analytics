@@ -17,6 +17,7 @@ from report_queries import (
     channel_dependency_query,
     cold_start_query,
     distribution_profile_query,
+    feature_cardinality_query,
     null_profile_query,
     numeric_signal_query,
     recency_resolution_query,
@@ -248,6 +249,7 @@ def artifact_consistency_checks(db: duckdb.DuckDBPyConnection, run_id: str, writ
     rows += _compare_report(db, "development_binary_feature_signal.csv", binary_signal_query(BINARY_SIGNAL_FEATURES), ["feature_name", "bin_order", "bin", "feature_value"], {"transactions": 0.0, "fraud_transactions": 0.0, "fraud_rate": 1e-12, "support_threshold": 0.0}, run_id)
     rows += _compare_report(db, "development_numeric_feature_signal.csv", numeric_signal_query(NUMERIC_SIGNAL_FEATURES, bin_case, bin_label), ["feature_name", "bin_order", "bin", "feature_value"], {"transactions": 0.0, "fraud_transactions": 0.0, "fraud_rate": 1e-12, "support_threshold": 0.0}, run_id)
     rows += _compare_report(db, "channel_state_dependency.csv", channel_dependency_query(), ["channel", "state_status"], {"transactions": 0.0, "fraud_transactions": 0.0, "share": 1e-12}, run_id)
+    rows += _compare_report(db, "feature_cardinality_profile.csv", feature_cardinality_query(), ["field_name"], {"distinct_values": 0.0, "null_rows": 0.0}, run_id)
     if write_artifacts:
         _write_csv(REPORT_DIR / "artifact_consistency_report.csv", ["artifact", "metric", "live_db_value", "artifact_value", "difference", "tolerance", "status", "run_id"], rows)
     failures = sum(1 for row in rows if row["status"] != "PASS")
