@@ -1,9 +1,9 @@
 check_name,rows_checked,violations,status,notes
-P4T01_registry_file_exists,,0,PASS,C:\Users\sangk\Documents\Codex\2026-08-29\ta\outputs\fraud-risk-website\docs\PART4_FEATURE_REGISTRY.csv
+P4T01_registry_file_exists,,0,PASS,docs/PART4_FEATURE_REGISTRY.csv
 P4T02_registry_primary_feature_count,43,0,PASS,Registry rows=43; expected 43.
 P4T03_registry_required_columns,,0,PASS,Required registry columns are present.
 P4T04_family_sql_target_exclusion,,0,PASS,Outcome tokens are excluded from source and family SQL.
-P4T29_publication_boundary,230,0,PASS,"No raw, row-level or private runtime artifact is tracked."
+P4T29_publication_boundary,232,0,PASS,"No raw, row-level or private runtime artifact is tracked."
 P4T26_summary_execution_scope,,0,PASS,"Summary declares scope, population and validation status."
 P4T12_sql_backed_pit_fixture,10,0,PASS,Fixture expected values match the production SQL output.
 P4T09_source_row_reconciliation,100000,0,PASS,"rows=100000, distinct_source_row_id=100000."
@@ -34,7 +34,23 @@ P4T11_user_merchant_new_consistency,100000,0,PASS,new relationship implies zero 
 P4T21_timestamp_nulls,100000,0,PASS,Canonical timestamp null audit.
 P4T22_strict_pit_sql_present,,0,PASS,All window families use a strict upper-bound exclusion guard.
 P4T25_low_support_flag_integrity,,0,PASS,"Every signal row is classified against support threshold 1,000."
+P4T31_artifact_consistency,906,0,PASS,"Compared live mart values with public aggregate reports; rows=906, mismatches=0."
+P4T32_relationship_new_recency_null_equivalence,8,0,PASS,New relationship counts equal NULL recency counts for user×merchant and card×merchant.
+P4T33_recency_resolution_consistency,5,0,PASS,Checked 5 recency features against the observed timestamp resolution of 60 seconds.
+P4T34_feature_partition_diversity,0,0,PASS,Flags exact equality across five or more unrelated feature partitions.
+P4T38_validation_sees_development_history,,0,PASS,Validation truth audit compares prior user history restricted to Development.
+P4T39_oot_sees_pre_oot_history,,0,PASS,OOT truth audit compares prior user history from Development and Validation.
+P4T40_entity_complete_qa_pass,4,0,PASS,Entity-complete checks=4; failures=0.
 P4T23_development_only_signal_mining,,0,PASS,Signal queries explicitly filter Development.
 P4T24_validation_oot_not_mined,,0,PASS,Validation and OOT are excluded from signal discovery.
-P4T30_readme_status_sync,,0,PASS,README reflects the current hardened status.
-
+P4T30_readme_status_sync,,0,PASS,README reflects the final locked Part 4 status.
+P4T35_code_commit_resolves,,0,PASS,code_commit is a 40-character public Git commit reference; public resolution is verified after publish.
+P4T36_working_tree_clean_at_run,,0,PASS,working_tree_clean=True at run start.
+P4T37_run_id_consistent_across_artifacts,25,0,PASS,run_id=P4-20260830T075031Z; summary_match=True; manifest_rows=25.
+P4T35_artifact_commit_reference,,0,PASS,artifact_commit is a resolvable public Git commit reference.
+P4T41_no_local_absolute_paths,41,0,PASS,Public reports and docs contain no local absolute paths.
+P4T42_frontend_version_sync,,0,PASS,HTML=True; JS=True; summary=True.
+P4T43_headline_findings_interpretable_only,51,0,PASS,Headline rows checked=51; low-support rows=[].
+P4T44_report_manifest_complete,25,0,PASS,Rows=25; missing=[]; provenance_mismatches=[].
+P4T45_report_hash_match,25,0,PASS,SHA256 mismatches=[].
+P4T46_artifact_set_complete,27,0,PASS,Expected=27; actual=27; missing=[]; extra=[].

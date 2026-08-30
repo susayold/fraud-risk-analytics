@@ -1,0 +1,907 @@
+artifact,metric,live_db_value,artifact_value,difference,tolerance,status,run_id
+feature_null_profile.csv,card_channel_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_channel_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_channel_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_channel_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_channel_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_channel_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_cold_start::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_cold_start::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_cold_start::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_mcc_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_seconds_since_prev_txn::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_seconds_since_prev_txn::null_rows,5098,5098,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_merchant_seconds_since_prev_txn::null_rate,0.05098,0.05098,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_24h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_24h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_24h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_7d::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_7d::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_positive_amount_sum_7d::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_mean::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_mean::null_rows,21,21,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_mean::null_rate,0.00021,0.00021,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_std::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_std::null_rows,42,42,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_positive_amount_std::null_rate,0.00042,0.00042,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_seconds_since_prev_txn::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_seconds_since_prev_txn::null_rows,21,21,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_seconds_since_prev_txn::null_rate,0.00021,0.00021,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_1h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_1h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_1h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_24h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_24h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_24h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_7d::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_7d::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,card_txn_count_7d::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_card_z::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_card_z::null_rows,2686,2686,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_card_z::null_rate,0.02686,0.02686,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_user_z::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_user_z::null_rows,2611,2611,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_user_z::null_rate,0.02611,0.02611,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_card_mean::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_card_mean::null_rows,2602,2602,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_card_mean::null_rate,0.02602,0.02602,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_user_mean::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_user_mean::null_rows,2587,2587,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,current_positive_amount_vs_user_mean::null_rate,0.02587,0.02587,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_cold_start::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_cold_start::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_cold_start::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_seconds_since_prev_txn::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_seconds_since_prev_txn::null_rows,2172,2172,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_seconds_since_prev_txn::null_rate,0.02172,0.02172,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_1h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_1h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_1h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_24h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_24h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,merchant_txn_count_24h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_channel_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_cold_start::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_cold_start::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_cold_start::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_mcc_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_is_new::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_is_new::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_is_new::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_seconds_since_prev_txn::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_seconds_since_prev_txn::null_rows,2947,2947,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_merchant_seconds_since_prev_txn::null_rate,0.02947,0.02947,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_24h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_24h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_24h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_7d::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_7d::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_positive_amount_sum_7d::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_mean::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_mean::null_rows,6,6,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_mean::null_rate,6e-05,6e-05,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_std::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_std::null_rows,12,12,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_positive_amount_std::null_rate,0.00012,0.00012,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_txn_count::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_txn_count::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_prior_txn_count::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_seconds_since_prev_txn::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_seconds_since_prev_txn::null_rows,6,6,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_seconds_since_prev_txn::null_rate,6e-05,6e-05,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_1h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_1h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_1h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_24h::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_24h::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_24h::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_7d::row_count,100000,100000,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_7d::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_null_profile.csv,user_txn_count_7d::null_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_is_new::mean_value,0.00058,0.00058,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_prior_txn_count::mean_value,3110.31966,3110.31966,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_prior_txn_count::median_value,1693.0,1693.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_channel_prior_txn_count::max_value,14142.0,14142.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_cold_start::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_cold_start::mean_value,0.00021,0.00021,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_cold_start::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_cold_start::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_is_new::mean_value,0.01278,0.01278,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_prior_txn_count::mean_value,695.84336,695.84336,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_prior_txn_count::median_value,234.0,234.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_mcc_prior_txn_count::max_value,7700.0,7700.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_is_new::mean_value,0.05098,0.05098,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_prior_txn_count::mean_value,549.74997,549.74997,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_prior_txn_count::median_value,111.0,111.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_prior_txn_count::max_value,7700.0,7700.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_seconds_since_prev_txn::min_value,60.0,60.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_seconds_since_prev_txn::mean_value,5960322.609850161,5960322.609850161,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_seconds_since_prev_txn::median_value,623400.0,623400.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_merchant_seconds_since_prev_txn::max_value,574646220.0,574646220.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_24h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_24h::mean_value,140.8887163000001,140.8887163000001,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_24h::median_value,87.93,87.93,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_24h::max_value,6820.2,6820.2,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_7d::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_7d::mean_value,976.0698641999879,976.0698641999879,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_7d::median_value,765.465,765.465,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_positive_amount_sum_7d::max_value,9666.970000000001,9666.970000000001,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_mean::min_value,8.61,8.61,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_mean::mean_value,75.96487467550905,75.96487467550905,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_mean::median_value,71.26713347921226,71.26713347921226,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_mean::max_value,1300.73,1300.73,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_std::min_value,0.20506096654410005,0.20506096654410005,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_std::mean_value,95.23635453600126,95.23635453600126,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_std::median_value,61.35380401528526,61.35380401528526,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_positive_amount_std::max_value,844.3703495504801,844.3703495504801,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_txn_count::mean_value,5813.11837,5813.11837,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_txn_count::median_value,3725.0,3725.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_prior_txn_count::max_value,22319.0,22319.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_seconds_since_prev_txn::min_value,60.0,60.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_seconds_since_prev_txn::mean_value,66795.68369357564,66795.68369357564,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_seconds_since_prev_txn::median_value,30480.0,30480.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_seconds_since_prev_txn::max_value,9041100.0,9041100.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_1h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_1h::mean_value,0.20392,0.20392,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_1h::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_1h::max_value,6.0,6.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_24h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_24h::mean_value,2.19597,2.19597,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_24h::median_value,2.0,2.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_24h::max_value,16.0,16.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_7d::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_7d::mean_value,15.23018,15.23018,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_7d::median_value,13.0,13.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,card_txn_count_7d::max_value,61.0,61.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_card_z::min_value,-1.9927106749744745,-1.9927106749744745,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_card_z::mean_value,-0.015025010070150146,-0.015025010070150146,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_card_z::median_value,-0.13930876462424135,-0.13930876462424135,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_card_z::max_value,111.1185434326402,111.1185434326402,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_user_z::min_value,-1.9927106749744745,-1.9927106749744745,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_user_z::mean_value,-0.02001260551548816,-0.02001260551548816,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_user_z::median_value,-0.1486423253577842,-0.1486423253577842,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_user_z::max_value,39.86976213406738,39.86976213406738,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_card_mean::min_value,0.000832820463202792,0.000832820463202792,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_card_mean::mean_value,0.9797055351192472,0.9797055351192472,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_card_mean::median_value,0.8293031468272714,0.8293031468272714,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_card_mean::max_value,72.12365956291572,72.12365956291572,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_user_mean::min_value,0.0007883800249378303,0.0007883800249378303,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_user_mean::mean_value,0.9822053339168658,0.9822053339168658,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_user_mean::median_value,0.8105463770286141,0.8105463770286141,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,current_positive_amount_vs_user_mean::max_value,73.25987341078465,73.25987341078465,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_cold_start::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_cold_start::mean_value,0.02172,0.02172,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_cold_start::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_cold_start::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_prior_txn_count::mean_value,1902.48699,1902.48699,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_prior_txn_count::median_value,458.0,458.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_prior_txn_count::max_value,16311.0,16311.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_seconds_since_prev_txn::min_value,60.0,60.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_seconds_since_prev_txn::mean_value,2450964.324937646,2450964.324937646,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_seconds_since_prev_txn::median_value,198240.0,198240.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_seconds_since_prev_txn::max_value,530351340.0,530351340.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_1h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_1h::mean_value,0.11336,0.11336,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_1h::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_1h::max_value,5.0,5.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_24h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_24h::mean_value,0.65191,0.65191,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_24h::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,merchant_txn_count_24h::max_value,10.0,10.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_is_new::mean_value,0.00017,0.00017,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_prior_txn_count::mean_value,6143.13829,6143.13829,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_prior_txn_count::median_value,4453.0,4453.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_channel_prior_txn_count::max_value,20315.0,20315.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_cold_start::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_cold_start::mean_value,6e-05,6e-05,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_cold_start::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_cold_start::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_is_new::mean_value,0.00499,0.00499,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_prior_txn_count::mean_value,1873.64839,1873.64839,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_prior_txn_count::median_value,577.5,577.5,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_mcc_prior_txn_count::max_value,15488.0,15488.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_is_new::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_is_new::mean_value,0.02947,0.02947,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_is_new::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_is_new::max_value,1.0,1.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_prior_txn_count::mean_value,1539.06928,1539.06928,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_prior_txn_count::median_value,279.0,279.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_prior_txn_count::max_value,15488.0,15488.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_seconds_since_prev_txn::min_value,60.0,60.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_seconds_since_prev_txn::mean_value,4031382.315848042,4031382.315848042,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_seconds_since_prev_txn::median_value,344340.0,344340.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_merchant_seconds_since_prev_txn::max_value,574646220.0,574646220.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_24h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_24h::mean_value,244.81386989999774,244.81386989999774,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_24h::median_value,196.20999999999998,196.20999999999998,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_24h::max_value,6866.59,6866.59,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_7d::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_7d::mean_value,1717.6254521000276,1717.6254521000276,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_7d::median_value,1638.8049999999998,1638.8049999999998,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_positive_amount_sum_7d::max_value,10259.380000000001,10259.380000000001,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_mean::min_value,12.280000000000001,12.280000000000001,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_mean::mean_value,74.85801445822835,74.85801445822835,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_mean::median_value,89.38132507632717,89.38132507632717,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_mean::max_value,1300.73,1300.73,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_std::min_value,1.2798632739476508,1.2798632739476508,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_std::mean_value,98.96976729777323,98.96976729777323,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_std::median_value,84.31854747287113,84.31854747287113,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_positive_amount_std::max_value,844.3703495504801,844.3703495504801,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_txn_count::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_txn_count::mean_value,13432.56176,13432.56176,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_txn_count::median_value,10160.5,10160.5,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_prior_txn_count::max_value,41977.0,41977.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_seconds_since_prev_txn::min_value,60.0,60.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_seconds_since_prev_txn::mean_value,27218.026681600895,27218.026681600895,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_seconds_since_prev_txn::median_value,14220.0,14220.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_seconds_since_prev_txn::max_value,621720.0,621720.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_1h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_1h::mean_value,0.33655,0.33655,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_1h::median_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_1h::max_value,6.0,6.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_24h::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_24h::mean_value,4.19051,4.19051,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_24h::median_value,4.0,4.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_24h::max_value,20.0,20.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_7d::min_value,0.0,0.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_7d::mean_value,29.46624,29.46624,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_7d::median_value,24.0,24.0,,1e-09,PASS,P4-20260830T075031Z
+feature_distribution_profile.csv,user_txn_count_7d::max_value,80.0,80.0,,1e-09,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|0::transactions,99979,99979,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|0::fraud_transactions,126,126,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|0::fraud_rate,0.0012602646555776712,0.0012602646555776712,,1e-12,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|1::transactions,21,21,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,card|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|0::transactions,97828,97828,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|0::fraud_transactions,108,108,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|0::fraud_rate,0.0011039784110888498,0.0011039784110888498,,1e-12,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|1::transactions,2172,2172,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|1::fraud_transactions,18,18,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,merchant|1::fraud_rate,0.008287292817679558,0.008287292817679558,,1e-12,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|0::transactions,99994,99994,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|0::fraud_transactions,126,126,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|0::fraud_rate,0.0012600756045362722,0.0012600756045362722,,1e-12,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|1::transactions,6,6,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+cold_start_profile.csv,user|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|0|0|0::transactions,45847,45847,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|0|0|0::fraud_transactions,43,43,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|0|0|0::fraud_rate,0.0009379021528126159,0.0009379021528126159,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|1|1|1::transactions,36,36,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|1|1|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|1|1|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_channel_is_new|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|0|0|0::transactions,45865,45865,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|0|0|0::fraud_transactions,43,43,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|0|0|0::fraud_rate,0.0009375340673716342,0.0009375340673716342,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|1|1|1::transactions,18,18,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|1|1|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|1|1|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_cold_start|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|0|0|0::transactions,45027,45027,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|0|0|0::fraud_transactions,33,33,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|0|0|0::fraud_rate,0.0007328935971750283,0.0007328935971750283,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|1|1|1::transactions,856,856,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|1|1|1::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|1|1|1::fraud_rate,0.011682242990654205,0.011682242990654205,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_mcc_is_new|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|0|0|0::transactions,43239,43239,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|0|0|0::fraud_transactions,18,18,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|0|0|0::fraud_rate,0.00041629084853951295,0.00041629084853951295,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|1|1|1::transactions,2644,2644,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|1|1|1::fraud_transactions,25,25,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|1|1|1::fraud_rate,0.009455370650529501,0.009455370650529501,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,card_merchant_is_new|1|1|1::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|0|false|false::transactions,1144,1144,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|0|false|false::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|0|false|false::fraud_rate,0.0008741258741258741,0.0008741258741258741,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|0|false|false::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|0|false|false::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|1|true|true::transactions,44739,44739,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|1|true|true::fraud_transactions,42,42,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|1|true|true::fraud_rate,0.0009387782471669013,0.0009387782471669013,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|1|true|true::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,current_positive_amount|1|true|true::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|0|0|0::transactions,44612,44612,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|0|0|0::fraud_transactions,34,34,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|0|0|0::fraud_rate,0.0007621267820317404,0.0007621267820317404,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|1|1|1::transactions,1271,1271,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|1|1|1::fraud_transactions,9,9,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|1|1|1::fraud_rate,0.007081038552321007,0.007081038552321007,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,merchant_cold_start|1|1|1::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|0|0|0::transactions,37239,37239,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|0|0|0::fraud_transactions,20,20,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|0|0|0::fraud_rate,0.000537071349928838,0.000537071349928838,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|1|1|1::transactions,8644,8644,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|1|1|1::fraud_transactions,23,23,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|1|1|1::fraud_rate,0.0026608051827857475,0.0026608051827857475,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,state_missing_flag|1|1|1::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|0|0|0::transactions,45871,45871,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|0|0|0::fraud_transactions,43,43,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|0|0|0::fraud_rate,0.0009374114364195243,0.0009374114364195243,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|1|1|1::transactions,12,12,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|1|1|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|1|1|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_channel_is_new|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|0|0|0::transactions,45877,45877,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|0|0|0::fraud_transactions,43,43,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|0|0|0::fraud_rate,0.0009372888375438673,0.0009372888375438673,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|1|1|1::transactions,6,6,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|1|1|1::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|1|1|1::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_cold_start|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|0|0|0::transactions,45435,45435,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|0|0|0::fraud_transactions,36,36,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|0|0|0::fraud_rate,0.0007923407065037966,0.0007923407065037966,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|1|1|1::transactions,448,448,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|1|1|1::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|1|1|1::fraud_rate,0.015625,0.015625,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_mcc_is_new|1|1|1::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|0|0|0::transactions,44069,44069,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|0|0|0::fraud_transactions,22,22,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|0|0|0::fraud_rate,0.0004992171367628038,0.0004992171367628038,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|0|0|0::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|0|0|0::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|1|1|1::transactions,1814,1814,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|1|1|1::fraud_transactions,21,21,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|1|1|1::fraud_rate,0.011576626240352812,0.011576626240352812,,1e-12,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|1|1|1::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_binary_feature_signal.csv,user_merchant_is_new|1|1|1::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|0|NULL|::transactions,18,18,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|0|NULL|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|0|NULL|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|0|NULL|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|2|1–5 minutes|::transactions,1209,1209,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|2|1–5 minutes|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|2|1–5 minutes|::fraud_rate,0.0041356492969396195,0.0041356492969396195,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|2|1–5 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|2|1–5 minutes|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|3|5–30 minutes|::transactions,4627,4627,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|3|5–30 minutes|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|3|5–30 minutes|::fraud_rate,0.002161227577263886,0.002161227577263886,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|3|5–30 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|3|5–30 minutes|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|4|30 minutes–6 hours|::transactions,17114,17114,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_transactions,22,22,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_rate,0.0012854972537104125,0.0012854972537104125,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|4|30 minutes–6 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|4|30 minutes–6 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|5|6–24 hours|::transactions,15799,15799,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|5|6–24 hours|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|5|6–24 hours|::fraud_rate,6.329514526235837e-05,6.329514526235837e-05,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|5|6–24 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|5|6–24 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|6|1–7 days|::transactions,7003,7003,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|6|1–7 days|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|6|1–7 days|::fraud_rate,0.0007139797229758674,0.0007139797229758674,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|6|1–7 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|6|1–7 days|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|7|7–30 days|::transactions,110,110,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|7|7–30 days|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|7|7–30 days|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|7|7–30 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|7|7–30 days|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|8|30+ days|::transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|8|30+ days|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|8|30+ days|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|8|30+ days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_seconds_since_prev_txn|8|30+ days|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|0|0|::transactions,36611,36611,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|0|0|::fraud_transactions,21,21,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|0|0|::fraud_rate,0.000573598098932015,0.000573598098932015,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|1|1|::transactions,7430,7430,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|1|1|::fraud_transactions,19,19,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|1|1|::fraud_rate,0.0025572005383580083,0.0025572005383580083,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|2|2–4|::transactions,1834,1834,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|2|2–4|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|2|2–4|::fraud_rate,0.0016357688113413304,0.0016357688113413304,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|3|5–9|::transactions,8,8,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|3|5–9|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|3|5–9|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_1h|3|5–9|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|0|0|::transactions,7075,7075,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|0|0|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|0|0|::fraud_rate,0.0007067137809187279,0.0007067137809187279,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|1|1|::transactions,8885,8885,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|1|1|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|1|1|::fraud_rate,0.0004501969611705121,0.0004501969611705121,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|2|2–4|::transactions,19465,19465,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|2|2–4|::fraud_transactions,15,15,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|2|2–4|::fraud_rate,0.0007706139224248652,0.0007706139224248652,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|3|5–9|::transactions,9964,9964,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|3|5–9|::fraud_transactions,14,14,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|3|5–9|::fraud_rate,0.0014050582095543958,0.0014050582095543958,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|3|5–9|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|4|10–19|::transactions,494,494,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|4|10–19|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|4|10–19|::fraud_rate,0.010121457489878543,0.010121457489878543,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|4|10–19|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_24h|4|10–19|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|0|0|::transactions,131,131,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|0|0|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|0|0|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|0|0|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|1|1|::transactions,376,376,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|1|1|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|1|1|::fraud_rate,0.0026595744680851063,0.0026595744680851063,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|1|1|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|2|2–4|::transactions,3267,3267,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|2|2–4|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|2|2–4|::fraud_rate,0.0009182736455463728,0.0009182736455463728,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|3|5–9|::transactions,8019,8019,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|3|5–9|::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|3|5–9|::fraud_rate,0.0008729267988527247,0.0008729267988527247,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|3|5–9|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|4|10–19|::transactions,15424,15424,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|4|10–19|::fraud_transactions,25,25,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|4|10–19|::fraud_rate,0.001620850622406639,0.001620850622406639,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|4|10–19|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|4|10–19|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|5|20+|::transactions,18666,18666,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|5|20+|::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|5|20+|::fraud_rate,0.0003750133933354763,0.0003750133933354763,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|5|20+|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,card_txn_count_7d|5|20+|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|0|NULL|::transactions,1234,1234,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|0|NULL|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|0|NULL|::fraud_rate,0.0008103727714748784,0.0008103727714748784,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|0|NULL|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|2|-2 ≤ z < -1|::transactions,1187,1187,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|2|-2 ≤ z < -1|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|2|-2 ≤ z < -1|::fraud_rate,0.0008424599831508003,0.0008424599831508003,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|2|-2 ≤ z < -1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|2|-2 ≤ z < -1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|3|-1 ≤ z < 1|::transactions,40075,40075,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|3|-1 ≤ z < 1|::fraud_transactions,33,33,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|3|-1 ≤ z < 1|::fraud_rate,0.0008234560199625702,0.0008234560199625702,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|3|-1 ≤ z < 1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|3|-1 ≤ z < 1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|4|1 ≤ z < 2|::transactions,2309,2309,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|4|1 ≤ z < 2|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|4|1 ≤ z < 2|::fraud_rate,0.0021654395842356,0.0021654395842356,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|4|1 ≤ z < 2|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|4|1 ≤ z < 2|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|5|2 ≤ z < 3|::transactions,511,511,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|5|2 ≤ z < 3|::fraud_transactions,2,2,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|5|2 ≤ z < 3|::fraud_rate,0.003913894324853229,0.003913894324853229,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|5|2 ≤ z < 3|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|5|2 ≤ z < 3|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|6|3 ≤ z < 5|::transactions,270,270,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|6|3 ≤ z < 5|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|6|3 ≤ z < 5|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|6|3 ≤ z < 5|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|6|3 ≤ z < 5|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|7|z ≥ 5|::transactions,297,297,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|7|z ≥ 5|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|7|z ≥ 5|::fraud_rate,0.003367003367003367,0.003367003367003367,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|7|z ≥ 5|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_card_z|7|z ≥ 5|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|0|NULL|::transactions,1174,1174,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|0|NULL|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|0|NULL|::fraud_rate,0.0008517887563884157,0.0008517887563884157,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|0|NULL|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|2|-2 ≤ z < -1|::transactions,515,515,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|2|-2 ≤ z < -1|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|2|-2 ≤ z < -1|::fraud_rate,0.001941747572815534,0.001941747572815534,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|2|-2 ≤ z < -1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|2|-2 ≤ z < -1|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|3|-1 ≤ z < 1|::transactions,41253,41253,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|3|-1 ≤ z < 1|::fraud_transactions,34,34,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|3|-1 ≤ z < 1|::fraud_rate,0.0008241824836981553,0.0008241824836981553,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|3|-1 ≤ z < 1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|3|-1 ≤ z < 1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|4|1 ≤ z < 2|::transactions,1797,1797,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|4|1 ≤ z < 2|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|4|1 ≤ z < 2|::fraud_rate,0.0022259321090706734,0.0022259321090706734,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|4|1 ≤ z < 2|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|4|1 ≤ z < 2|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|5|2 ≤ z < 3|::transactions,500,500,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|5|2 ≤ z < 3|::fraud_transactions,2,2,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|5|2 ≤ z < 3|::fraud_rate,0.004,0.004,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|5|2 ≤ z < 3|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|5|2 ≤ z < 3|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|6|3 ≤ z < 5|::transactions,306,306,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|6|3 ≤ z < 5|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|6|3 ≤ z < 5|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|6|3 ≤ z < 5|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|6|3 ≤ z < 5|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|7|z ≥ 5|::transactions,338,338,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|7|z ≥ 5|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|7|z ≥ 5|::fraud_rate,0.0029585798816568047,0.0029585798816568047,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|7|z ≥ 5|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_user_z|7|z ≥ 5|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|0|NULL|::transactions,1162,1162,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|0|NULL|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|0|NULL|::fraud_rate,0.0008605851979345956,0.0008605851979345956,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|0|NULL|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|1|<0.25x|::transactions,7703,7703,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|1|<0.25x|::fraud_transactions,9,9,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|1|<0.25x|::fraud_rate,0.0011683759574191873,0.0011683759574191873,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|1|<0.25x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|1|<0.25x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|2|0.25–0.5x|::transactions,6863,6863,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|2|0.25–0.5x|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|2|0.25–0.5x|::fraud_rate,0.0005828354946816261,0.0005828354946816261,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|2|0.25–0.5x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|2|0.25–0.5x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|3|0.5–1x|::transactions,13734,13734,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|3|0.5–1x|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|3|0.5–1x|::fraud_rate,0.0007281199941750401,0.0007281199941750401,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|3|0.5–1x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|3|0.5–1x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|4|1–2x|::transactions,13221,13221,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|4|1–2x|::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|4|1–2x|::fraud_rate,0.0005294607064518569,0.0005294607064518569,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|4|1–2x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|4|1–2x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|5|2–5x|::transactions,2732,2732,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|5|2–5x|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|5|2–5x|::fraud_rate,0.0036603221083455345,0.0036603221083455345,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|5|2–5x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|5|2–5x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|6|5–10x|::transactions,313,313,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|6|5–10x|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|6|5–10x|::fraud_rate,0.003194888178913738,0.003194888178913738,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|6|5–10x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|6|5–10x|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|7|10x+|::transactions,155,155,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|7|10x+|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|7|10x+|::fraud_rate,0.0064516129032258064,0.0064516129032258064,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|7|10x+|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_card_mean|7|10x+|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|0|NULL|::transactions,1150,1150,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|0|NULL|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|0|NULL|::fraud_rate,0.0008695652173913044,0.0008695652173913044,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|0|NULL|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|1|<0.25x|::transactions,7743,7743,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|1|<0.25x|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|1|<0.25x|::fraud_rate,0.0012914890869172154,0.0012914890869172154,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|1|<0.25x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|1|<0.25x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|2|0.25–0.5x|::transactions,7075,7075,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|2|0.25–0.5x|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|2|0.25–0.5x|::fraud_rate,0.0005653710247349824,0.0005653710247349824,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|2|0.25–0.5x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|2|0.25–0.5x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|3|0.5–1x|::transactions,13694,13694,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|3|0.5–1x|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|3|0.5–1x|::fraud_rate,0.0007302468234263181,0.0007302468234263181,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|3|0.5–1x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|3|0.5–1x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|4|1–2x|::transactions,12972,12972,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|4|1–2x|::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|4|1–2x|::fraud_rate,0.0005396238051187173,0.0005396238051187173,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|4|1–2x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|4|1–2x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|5|2–5x|::transactions,2682,2682,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|5|2–5x|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|5|2–5x|::fraud_rate,0.0037285607755406414,0.0037285607755406414,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|5|2–5x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|5|2–5x|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|6|5–10x|::transactions,371,371,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|6|5–10x|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|6|5–10x|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|6|5–10x|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|6|5–10x|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|7|10x+|::transactions,196,196,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|7|10x+|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|7|10x+|::fraud_rate,0.00510204081632653,0.00510204081632653,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|7|10x+|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,current_positive_amount_vs_user_mean|7|10x+|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|0|NULL|::transactions,1271,1271,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|0|NULL|::fraud_transactions,9,9,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|0|NULL|::fraud_rate,0.007081038552321007,0.007081038552321007,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|0|NULL|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|2|1–5 minutes|::transactions,809,809,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|2|1–5 minutes|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|2|1–5 minutes|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|2|1–5 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|2|1–5 minutes|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|3|5–30 minutes|::transactions,2303,2303,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|3|5–30 minutes|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|3|5–30 minutes|::fraud_rate,0.0013026487190620929,0.0013026487190620929,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|3|5–30 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|3|5–30 minutes|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|4|30 minutes–6 hours|::transactions,3793,3793,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|4|30 minutes–6 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|4|30 minutes–6 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|5|6–24 hours|::transactions,6761,6761,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|5|6–24 hours|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|5|6–24 hours|::fraud_rate,0.00014790711433219938,0.00014790711433219938,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|5|6–24 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|5|6–24 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|6|1–7 days|::transactions,16135,16135,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|6|1–7 days|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|6|1–7 days|::fraud_rate,0.0002479082739386427,0.0002479082739386427,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|6|1–7 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|6|1–7 days|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|7|7–30 days|::transactions,9336,9336,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|7|7–30 days|::fraud_transactions,10,10,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|7|7–30 days|::fraud_rate,0.0010711225364181663,0.0010711225364181663,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|7|7–30 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|7|7–30 days|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|8|30+ days|::transactions,5475,5475,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|8|30+ days|::fraud_transactions,16,16,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|8|30+ days|::fraud_rate,0.0029223744292237444,0.0029223744292237444,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|8|30+ days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_seconds_since_prev_txn|8|30+ days|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|0|0|::transactions,41992,41992,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|0|0|::fraud_transactions,40,40,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|0|0|::fraud_rate,0.0009525623928367308,0.0009525623928367308,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|1|1|::transactions,3071,3071,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|1|1|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|1|1|::fraud_rate,0.0009768804949527841,0.0009768804949527841,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|2|2–4|::transactions,814,814,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|2|2–4|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|2|2–4|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|2|2–4|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|3|5–9|::transactions,6,6,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|3|5–9|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|3|5–9|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_1h|3|5–9|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|0|0|::transactions,32132,32132,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|0|0|::fraud_transactions,39,39,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|0|0|::fraud_rate,0.0012137433088509897,0.0012137433088509897,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|1|1|::transactions,8107,8107,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|1|1|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|1|1|::fraud_rate,0.00037005057357838907,0.00037005057357838907,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|2|2–4|::transactions,5428,5428,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|2|2–4|::fraud_transactions,1,1,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|2|2–4|::fraud_rate,0.00018422991893883567,0.00018422991893883567,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|3|5–9|::transactions,216,216,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|3|5–9|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|3|5–9|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,merchant_txn_count_24h|3|5–9|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|0|NULL|::transactions,6,6,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|0|NULL|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|0|NULL|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|0|NULL|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|0|NULL|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|2|1–5 minutes|::transactions,1405,1405,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|2|1–5 minutes|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|2|1–5 minutes|::fraud_rate,0.0035587188612099642,0.0035587188612099642,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|2|1–5 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|2|1–5 minutes|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|3|5–30 minutes|::transactions,5821,5821,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|3|5–30 minutes|::fraud_transactions,12,12,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|3|5–30 minutes|::fraud_rate,0.002061501460230201,0.002061501460230201,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|3|5–30 minutes|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|3|5–30 minutes|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|4|30 minutes–6 hours|::transactions,20116,20116,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_transactions,21,21,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|4|30 minutes–6 hours|::fraud_rate,0.0010439451183137801,0.0010439451183137801,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|4|30 minutes–6 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|4|30 minutes–6 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|5|6–24 hours|::transactions,15727,15727,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|5|6–24 hours|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|5|6–24 hours|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|5|6–24 hours|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|5|6–24 hours|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|6|1–7 days|::transactions,2806,2806,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|6|1–7 days|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|6|1–7 days|::fraud_rate,0.001781895937277263,0.001781895937277263,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|6|1–7 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|6|1–7 days|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|7|7–30 days|::transactions,2,2,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|7|7–30 days|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|7|7–30 days|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|7|7–30 days|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_seconds_since_prev_txn|7|7–30 days|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|0|0|::transactions,34246,34246,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|0|0|::fraud_transactions,20,20,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|0|0|::fraud_rate,0.0005840098113648309,0.0005840098113648309,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|1|1|::transactions,9099,9099,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|1|1|::fraud_transactions,19,19,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|1|1|::fraud_rate,0.0020881415540169247,0.0020881415540169247,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|2|2–4|::transactions,2524,2524,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|2|2–4|::fraud_transactions,4,4,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|2|2–4|::fraud_rate,0.001584786053882726,0.001584786053882726,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|3|5–9|::transactions,14,14,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|3|5–9|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|3|5–9|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_1h|3|5–9|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|0|0|::transactions,2774,2774,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|0|0|::fraud_transactions,5,5,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|0|0|::fraud_rate,0.001802451333813987,0.001802451333813987,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|0|0|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|1|1|::transactions,5993,5993,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|1|1|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|1|1|::fraud_rate,0.0005005840146837978,0.0005005840146837978,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|1|1|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|2|2–4|::transactions,21685,21685,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|2|2–4|::fraud_transactions,7,7,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|2|2–4|::fraud_rate,0.0003228037814157252,0.0003228037814157252,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|2|2–4|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|3|5–9|::transactions,14481,14481,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|3|5–9|::fraud_transactions,16,16,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|3|5–9|::fraud_rate,0.0011048960707133485,0.0011048960707133485,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|3|5–9|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|4|10–19|::transactions,950,950,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|4|10–19|::fraud_transactions,12,12,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|4|10–19|::fraud_rate,0.01263157894736842,0.01263157894736842,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|4|10–19|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_24h|4|10–19|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|0|0|::transactions,8,8,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|0|0|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|0|0|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|0|0|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|0|0|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|1|1|::transactions,22,22,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|1|1|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|1|1|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|1|1|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|1|1|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|2|2–4|::transactions,398,398,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|2|2–4|::fraud_transactions,0,0,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|2|2–4|::fraud_rate,0.0,0.0,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|2|2–4|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|2|2–4|::support_status,LOW_SUPPORT,LOW_SUPPORT,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|3|5–9|::transactions,2817,2817,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|3|5–9|::fraud_transactions,3,3,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|3|5–9|::fraud_rate,0.0010649627263045794,0.0010649627263045794,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|3|5–9|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|3|5–9|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|4|10–19|::transactions,13859,13859,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|4|10–19|::fraud_transactions,15,15,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|4|10–19|::fraud_rate,0.0010823291723789596,0.0010823291723789596,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|4|10–19|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|4|10–19|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|5|20+|::transactions,28779,28779,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|5|20+|::fraud_transactions,25,25,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|5|20+|::fraud_rate,0.0008686889745995344,0.0008686889745995344,,1e-12,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|5|20+|::support_threshold,1000,1000,,0.0,PASS,P4-20260830T075031Z
+development_numeric_feature_signal.csv,user_txn_count_7d|5|20+|::support_status,INTERPRETABLE,INTERPRETABLE,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<MISSING>::transactions,40,40,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<MISSING>::fraud_transactions,,,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<MISSING>::share,0.0004,0.0004,,1e-12,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<PRESENT>::transactions,18383,18383,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<PRESENT>::fraud_transactions,,,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Chip Transaction|<PRESENT>::share,0.18383,0.18383,,1e-12,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Online Transaction|<MISSING>::transactions,21595,21595,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Online Transaction|<MISSING>::fraud_transactions,,,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Online Transaction|<MISSING>::share,0.21595,0.21595,,1e-12,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Swipe Transaction|<PRESENT>::transactions,59982,59982,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Swipe Transaction|<PRESENT>::fraud_transactions,,,,0.0,PASS,P4-20260830T075031Z
+channel_state_dependency.csv,Swipe Transaction|<PRESENT>::share,0.59982,0.59982,,1e-12,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,card_key::distinct_values,21,21,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,card_key::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,merchant_category_code::distinct_values,108,108,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,merchant_category_code::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,merchant_id_raw::distinct_values,2172,2172,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,merchant_id_raw::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,use_chip::distinct_values,3,3,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,use_chip::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,user_id::distinct_values,6,6,,0.0,PASS,P4-20260830T075031Z
+feature_cardinality_profile.csv,user_id::null_rows,0,0,,0.0,PASS,P4-20260830T075031Z

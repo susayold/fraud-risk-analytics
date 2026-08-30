@@ -1,3 +1,3 @@
-entity_type,selected_rows,rows_with_prior_history_outside_slice,share_with_external_prior_history,status
-source_global_temporal_order,100000,100000,1.0,TRUNCATION_POSSIBLE
-
+entity_type,rows_sampled,rows_with_external_prior_history,share,scope,status,notes
+source_global_temporal_order,100000,,,SOURCE_ROW_ID_PREFIX_1_TO_100000,TRUNCATION_POSSIBLE,prefix_max_timestamp=2020-02-28 23:49:00; tail_min_timestamp=1991-01-02 07:10:00; non-closure is not an affected-row count.
+user,100,0,0.0,DETERMINISTIC_100_TARGET_ROWS,PASS,Actual user-level external prior history measured against rows outside the prefix.

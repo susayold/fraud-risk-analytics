@@ -6,13 +6,13 @@ card_mcc_is_new,100000,0,0.0
 card_mcc_prior_txn_count,100000,0,0.0
 card_merchant_is_new,100000,0,0.0
 card_merchant_prior_txn_count,100000,0,0.0
-card_merchant_seconds_since_prev_txn,100000,0,0.0
+card_merchant_seconds_since_prev_txn,100000,5098,0.05098
 card_positive_amount_sum_24h,100000,0,0.0
 card_positive_amount_sum_7d,100000,0,0.0
 card_prior_positive_amount_mean,100000,21,0.00021
 card_prior_positive_amount_std,100000,42,0.00042
 card_prior_txn_count,100000,0,0.0
-card_seconds_since_prev_txn,100000,6,6e-05
+card_seconds_since_prev_txn,100000,21,0.00021
 card_txn_count_1h,100000,0,0.0
 card_txn_count_24h,100000,0,0.0
 card_txn_count_7d,100000,0,0.0
@@ -32,7 +32,7 @@ user_mcc_is_new,100000,0,0.0
 user_mcc_prior_txn_count,100000,0,0.0
 user_merchant_is_new,100000,0,0.0
 user_merchant_prior_txn_count,100000,0,0.0
-user_merchant_seconds_since_prev_txn,100000,0,0.0
+user_merchant_seconds_since_prev_txn,100000,2947,0.02947
 user_positive_amount_sum_24h,100000,0,0.0
 user_positive_amount_sum_7d,100000,0,0.0
 user_prior_positive_amount_mean,100000,6,6e-05
@@ -42,4 +42,3 @@ user_seconds_since_prev_txn,100000,6,6e-05
 user_txn_count_1h,100000,0,0.0
 user_txn_count_24h,100000,0,0.0
 user_txn_count_7d,100000,0,0.0
-

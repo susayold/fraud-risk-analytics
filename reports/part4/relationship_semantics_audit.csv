@@ -1,0 +1,9 @@
+metric,metric_value
+user_merchant_is_new_count,2947
+user_merchant_recency_null_count,2947
+card_merchant_is_new_count,5098
+card_merchant_recency_null_count,5098
+user_mcc_is_new_count,499
+card_mcc_is_new_count,1278
+user_channel_is_new_count,17
+card_channel_is_new_count,58

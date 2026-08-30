@@ -1,0 +1,6 @@
+feature_name,min_non_null_recency_seconds,negative_rows,zero_rows,observed_min_positive_delta_seconds,status,notes
+user_seconds_since_prev_txn,60,0,0,60.0,PASS,Recency is seconds between strictly earlier timestamps; zero and sub-resolution values are invalid.
+card_seconds_since_prev_txn,60,0,0,60.0,PASS,Recency is seconds between strictly earlier timestamps; zero and sub-resolution values are invalid.
+merchant_seconds_since_prev_txn,60,0,0,60.0,PASS,Recency is seconds between strictly earlier timestamps; zero and sub-resolution values are invalid.
+user_merchant_seconds_since_prev_txn,60,0,0,60.0,PASS,Recency is seconds between strictly earlier timestamps; zero and sub-resolution values are invalid.
+card_merchant_seconds_since_prev_txn,60,0,0,60.0,PASS,Recency is seconds between strictly earlier timestamps; zero and sub-resolution values are invalid.
