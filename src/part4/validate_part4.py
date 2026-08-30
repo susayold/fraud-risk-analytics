@@ -220,10 +220,11 @@ def _compare_report(db: duckdb.DuckDBPyConnection, filename: str, query: str, ke
     path = REPORT_DIR / filename
     if not path.exists():
         return [{"artifact": filename, "metric": "file_presence", "live_db_value": "PRESENT", "artifact_value": "MISSING", "difference": "", "tolerance": "exact", "status": "FAIL", "run_id": run_id}]
-    live = {tuple(str(row.get(key, "")) for key in keys): row for row in _rows(db, query)}
+    key_value = lambda value: "" if value is None else str(value)
+    live = {tuple(key_value(row.get(key, "")) for key in keys): row for row in _rows(db, query)}
     with path.open(encoding="utf-8", newline="") as handle:
         artifact_rows = list(csv.DictReader(handle))
-    artifact = {tuple(str(row.get(key, "")) for key in keys): row for row in artifact_rows}
+    artifact = {tuple(key_value(row.get(key, "")) for key in keys): row for row in artifact_rows}
     output = []
     for key in sorted(set(live) | set(artifact)):
         lrow, arow = live.get(key), artifact.get(key)
