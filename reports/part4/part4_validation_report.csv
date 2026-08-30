@@ -3,9 +3,37 @@ P4T01_registry_file_exists,,0,PASS,C:\Users\sangk\Documents\Codex\2026-08-29\ta\
 P4T02_registry_primary_feature_count,43,0,PASS,Registry rows=43; expected 43.
 P4T03_registry_required_columns,,0,PASS,Required registry columns are present.
 P4T04_family_sql_target_exclusion,,0,PASS,Outcome tokens are excluded from source and family SQL.
-P4T29_publication_boundary,223,0,PASS,"No raw, row-level or private runtime artifact is tracked."
+P4T29_publication_boundary,230,0,PASS,"No raw, row-level or private runtime artifact is tracked."
 P4T26_summary_execution_scope,,0,PASS,"Summary declares scope, population and validation status."
 P4T12_sql_backed_pit_fixture,10,0,PASS,Fixture expected values match the production SQL output.
+P4T09_source_row_reconciliation,100000,0,PASS,"rows=100000, distinct_source_row_id=100000."
+P4T06_registry_mart_exact_43,43,0,PASS,registry=43; missing=[].
+P4T10_behavior_source_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_user_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_card_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_merchant_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_amount_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_user_merchant_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_card_merchant_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_user_mcc_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_card_mcc_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_channel_features_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_behavioral_features_v1_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T10_evaluation_view_no_join_explosion,100000,0,PASS,"rows=100000, distinct_source_row_id=100000, duplicates=0."
+P4T11_amount_ratio_semantics,100000,0,PASS,ratios require a positive current amount and positive prior mean
+P4T11_amount_z_semantics,100000,0,PASS,z-scores require positive current amount and positive prior standard deviation
+P4T11_card_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+P4T11_card_merchant_new_consistency,100000,0,PASS,new relationship implies zero prior count and NULL recency
+P4T11_current_positive_amount_semantics,100000,0,PASS,positive flag agrees with source amount
+P4T11_merchant_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+P4T11_non_negative_recency,100000,0,PASS,recency is NULL or non-negative
+P4T11_relationship_count_hierarchy,100000,0,PASS,relationship history cannot exceed entity history
+P4T11_state_missing_not_new,100000,0,PASS,"missing state is an availability flag, not a familiarity flag"
+P4T11_user_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+P4T11_user_merchant_new_consistency,100000,0,PASS,new relationship implies zero prior count and NULL recency
+P4T21_timestamp_nulls,100000,0,PASS,Canonical timestamp null audit.
+P4T22_strict_pit_sql_present,,0,PASS,All window families use a strict upper-bound exclusion guard.
+P4T25_low_support_flag_integrity,,0,PASS,"Every signal row is classified against support threshold 1,000."
 P4T23_development_only_signal_mining,,0,PASS,Signal queries explicitly filter Development.
 P4T24_validation_oot_not_mined,,0,PASS,Validation and OOT are excluded from signal discovery.
 P4T30_readme_status_sync,,0,PASS,README reflects the current hardened status.
