@@ -1,58 +1,93 @@
-feature_name,bin,transactions,fraud_transactions,fraud_rate
-card_seconds_since_prev_txn,10+,45877,43,0.0009372888375438673
-card_seconds_since_prev_txn,NULL,6,0,0.0
-card_txn_count_1h,0,34246,20,0.0005840098113648309
-card_txn_count_1h,1–<2,9099,19,0.0020881415540169247
-card_txn_count_1h,2–<5,2524,4,0.001584786053882726
-card_txn_count_1h,5–<10,14,0,0.0
-card_txn_count_24h,0,2774,5,0.001802451333813987
-card_txn_count_24h,10+,950,12,0.01263157894736842
-card_txn_count_24h,1–<2,5993,3,0.0005005840146837978
-card_txn_count_24h,2–<5,21685,7,0.0003228037814157252
-card_txn_count_24h,5–<10,14481,16,0.0011048960707133485
-card_txn_count_7d,0,8,0,0.0
-card_txn_count_7d,10+,42638,40,0.000938130306299545
-card_txn_count_7d,1–<2,22,0,0.0
-card_txn_count_7d,2–<5,398,0,0.0
-card_txn_count_7d,5–<10,2817,3,0.0010649627263045794
-current_positive_amount_card_z,10+,65,1,0.015384615384615385
-current_positive_amount_card_z,1–<2,3496,6,0.0017162471395881006
-current_positive_amount_card_z,2–<5,781,2,0.002560819462227913
-current_positive_amount_card_z,5–<10,232,0,0.0
-current_positive_amount_card_z,<1,40075,33,0.0008234560199625702
-current_positive_amount_card_z,NULL,1234,1,0.0008103727714748784
-current_positive_amount_user_z,10+,87,1,0.011494252873563218
-current_positive_amount_user_z,1–<2,2312,5,0.0021626297577854673
-current_positive_amount_user_z,2–<5,806,2,0.0024813895781637717
-current_positive_amount_user_z,5–<10,251,0,0.0
-current_positive_amount_user_z,<1,41253,34,0.0008241824836981553
-current_positive_amount_user_z,NULL,1174,1,0.0008517887563884157
-current_positive_amount_vs_card_mean,10+,155,1,0.0064516129032258064
-current_positive_amount_vs_card_mean,1–<2,13221,7,0.0005294607064518569
-current_positive_amount_vs_card_mean,2–<5,2732,10,0.0036603221083455345
-current_positive_amount_vs_card_mean,5–<10,313,1,0.003194888178913738
-current_positive_amount_vs_card_mean,<1,28300,23,0.0008127208480565371
-current_positive_amount_vs_card_mean,NULL,1162,1,0.0008605851979345956
-current_positive_amount_vs_user_mean,10+,196,1,0.00510204081632653
-current_positive_amount_vs_user_mean,1–<2,12972,7,0.0005396238051187173
-current_positive_amount_vs_user_mean,2–<5,2682,10,0.0037285607755406414
-current_positive_amount_vs_user_mean,5–<10,371,0,0.0
-current_positive_amount_vs_user_mean,<1,28512,24,0.0008417508417508417
-current_positive_amount_vs_user_mean,NULL,1150,1,0.0008695652173913044
-user_seconds_since_prev_txn,10+,45877,43,0.0009372888375438673
-user_seconds_since_prev_txn,NULL,6,0,0.0
-user_txn_count_1h,0,34246,20,0.0005840098113648309
-user_txn_count_1h,1–<2,9099,19,0.0020881415540169247
-user_txn_count_1h,2–<5,2524,4,0.001584786053882726
-user_txn_count_1h,5–<10,14,0,0.0
-user_txn_count_24h,0,2774,5,0.001802451333813987
-user_txn_count_24h,10+,950,12,0.01263157894736842
-user_txn_count_24h,1–<2,5993,3,0.0005005840146837978
-user_txn_count_24h,2–<5,21685,7,0.0003228037814157252
-user_txn_count_24h,5–<10,14481,16,0.0011048960707133485
-user_txn_count_7d,0,8,0,0.0
-user_txn_count_7d,10+,42638,40,0.000938130306299545
-user_txn_count_7d,1–<2,22,0,0.0
-user_txn_count_7d,2–<5,398,0,0.0
-user_txn_count_7d,5–<10,2817,3,0.0010649627263045794
+feature_name,bin_order,bin,feature_value,transactions,fraud_transactions,fraud_rate,support_threshold,support_status
+card_seconds_since_prev_txn,0,NULL,,6,0,0.0,1000,LOW_SUPPORT
+card_seconds_since_prev_txn,2,1–5 minutes,,1405,5,0.0035587188612099642,1000,INTERPRETABLE
+card_seconds_since_prev_txn,3,5–30 minutes,,5821,12,0.002061501460230201,1000,INTERPRETABLE
+card_seconds_since_prev_txn,4,30 minutes–6 hours,,20116,21,0.0010439451183137801,1000,INTERPRETABLE
+card_seconds_since_prev_txn,5,6–24 hours,,15727,0,0.0,1000,INTERPRETABLE
+card_seconds_since_prev_txn,6,1–7 days,,2806,5,0.001781895937277263,1000,INTERPRETABLE
+card_seconds_since_prev_txn,7,7–30 days,,2,0,0.0,1000,LOW_SUPPORT
+card_txn_count_1h,0,0,,34246,20,0.0005840098113648309,1000,INTERPRETABLE
+card_txn_count_1h,1,1,,9099,19,0.0020881415540169247,1000,INTERPRETABLE
+card_txn_count_1h,2,2–4,,2524,4,0.001584786053882726,1000,INTERPRETABLE
+card_txn_count_1h,3,5–9,,14,0,0.0,1000,LOW_SUPPORT
+card_txn_count_24h,0,0,,2774,5,0.001802451333813987,1000,INTERPRETABLE
+card_txn_count_24h,1,1,,5993,3,0.0005005840146837978,1000,INTERPRETABLE
+card_txn_count_24h,2,2–4,,21685,7,0.0003228037814157252,1000,INTERPRETABLE
+card_txn_count_24h,3,5–9,,14481,16,0.0011048960707133485,1000,INTERPRETABLE
+card_txn_count_24h,4,10–19,,950,12,0.01263157894736842,1000,LOW_SUPPORT
+card_txn_count_7d,0,0,,8,0,0.0,1000,LOW_SUPPORT
+card_txn_count_7d,1,1,,22,0,0.0,1000,LOW_SUPPORT
+card_txn_count_7d,2,2–4,,398,0,0.0,1000,LOW_SUPPORT
+card_txn_count_7d,3,5–9,,2817,3,0.0010649627263045794,1000,INTERPRETABLE
+card_txn_count_7d,4,10–19,,13859,15,0.0010823291723789596,1000,INTERPRETABLE
+card_txn_count_7d,5,20+,,28779,25,0.0008686889745995344,1000,INTERPRETABLE
+current_positive_amount_card_z,0,NULL,,1234,1,0.0008103727714748784,1000,INTERPRETABLE
+current_positive_amount_card_z,2,-2 ≤ z < -1,,1187,1,0.0008424599831508003,1000,INTERPRETABLE
+current_positive_amount_card_z,3,-1 ≤ z < 1,,40075,33,0.0008234560199625702,1000,INTERPRETABLE
+current_positive_amount_card_z,4,1 ≤ z < 2,,2309,5,0.0021654395842356,1000,INTERPRETABLE
+current_positive_amount_card_z,5,2 ≤ z < 3,,511,2,0.003913894324853229,1000,LOW_SUPPORT
+current_positive_amount_card_z,6,3 ≤ z < 5,,270,0,0.0,1000,LOW_SUPPORT
+current_positive_amount_card_z,7,z ≥ 5,,297,1,0.003367003367003367,1000,LOW_SUPPORT
+current_positive_amount_user_z,0,NULL,,1174,1,0.0008517887563884157,1000,INTERPRETABLE
+current_positive_amount_user_z,2,-2 ≤ z < -1,,515,1,0.001941747572815534,1000,LOW_SUPPORT
+current_positive_amount_user_z,3,-1 ≤ z < 1,,41253,34,0.0008241824836981553,1000,INTERPRETABLE
+current_positive_amount_user_z,4,1 ≤ z < 2,,1797,4,0.0022259321090706734,1000,INTERPRETABLE
+current_positive_amount_user_z,5,2 ≤ z < 3,,500,2,0.004,1000,LOW_SUPPORT
+current_positive_amount_user_z,6,3 ≤ z < 5,,306,0,0.0,1000,LOW_SUPPORT
+current_positive_amount_user_z,7,z ≥ 5,,338,1,0.0029585798816568047,1000,LOW_SUPPORT
+current_positive_amount_vs_card_mean,0,NULL,,1162,1,0.0008605851979345956,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,1,<0.25x,,7703,9,0.0011683759574191873,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,2,0.25–0.5x,,6863,4,0.0005828354946816261,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,3,0.5–1x,,13734,10,0.0007281199941750401,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,4,1–2x,,13221,7,0.0005294607064518569,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,5,2–5x,,2732,10,0.0036603221083455345,1000,INTERPRETABLE
+current_positive_amount_vs_card_mean,6,5–10x,,313,1,0.003194888178913738,1000,LOW_SUPPORT
+current_positive_amount_vs_card_mean,7,10x+,,155,1,0.0064516129032258064,1000,LOW_SUPPORT
+current_positive_amount_vs_user_mean,0,NULL,,1150,1,0.0008695652173913044,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,1,<0.25x,,7743,10,0.0012914890869172154,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,2,0.25–0.5x,,7075,4,0.0005653710247349824,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,3,0.5–1x,,13694,10,0.0007302468234263181,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,4,1–2x,,12972,7,0.0005396238051187173,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,5,2–5x,,2682,10,0.0037285607755406414,1000,INTERPRETABLE
+current_positive_amount_vs_user_mean,6,5–10x,,371,0,0.0,1000,LOW_SUPPORT
+current_positive_amount_vs_user_mean,7,10x+,,196,1,0.00510204081632653,1000,LOW_SUPPORT
+merchant_seconds_since_prev_txn,0,NULL,,1271,9,0.007081038552321007,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,2,1–5 minutes,,809,0,0.0,1000,LOW_SUPPORT
+merchant_seconds_since_prev_txn,3,5–30 minutes,,2303,3,0.0013026487190620929,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,4,30 minutes–6 hours,,3793,0,0.0,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,5,6–24 hours,,6761,1,0.00014790711433219938,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,6,1–7 days,,16135,4,0.0002479082739386427,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,7,7–30 days,,9336,10,0.0010711225364181663,1000,INTERPRETABLE
+merchant_seconds_since_prev_txn,8,30+ days,,5475,16,0.0029223744292237444,1000,INTERPRETABLE
+merchant_txn_count_1h,0,0,,34246,20,0.0005840098113648309,1000,INTERPRETABLE
+merchant_txn_count_1h,1,1,,9099,19,0.0020881415540169247,1000,INTERPRETABLE
+merchant_txn_count_1h,2,2–4,,2524,4,0.001584786053882726,1000,INTERPRETABLE
+merchant_txn_count_1h,3,5–9,,14,0,0.0,1000,LOW_SUPPORT
+merchant_txn_count_24h,0,0,,2774,5,0.001802451333813987,1000,INTERPRETABLE
+merchant_txn_count_24h,1,1,,5993,3,0.0005005840146837978,1000,INTERPRETABLE
+merchant_txn_count_24h,2,2–4,,21685,7,0.0003228037814157252,1000,INTERPRETABLE
+merchant_txn_count_24h,3,5–9,,14481,16,0.0011048960707133485,1000,INTERPRETABLE
+merchant_txn_count_24h,4,10–19,,950,12,0.01263157894736842,1000,LOW_SUPPORT
+user_seconds_since_prev_txn,0,NULL,,6,0,0.0,1000,LOW_SUPPORT
+user_seconds_since_prev_txn,2,1–5 minutes,,1405,5,0.0035587188612099642,1000,INTERPRETABLE
+user_seconds_since_prev_txn,3,5–30 minutes,,5821,12,0.002061501460230201,1000,INTERPRETABLE
+user_seconds_since_prev_txn,4,30 minutes–6 hours,,20116,21,0.0010439451183137801,1000,INTERPRETABLE
+user_seconds_since_prev_txn,5,6–24 hours,,15727,0,0.0,1000,INTERPRETABLE
+user_seconds_since_prev_txn,6,1–7 days,,2806,5,0.001781895937277263,1000,INTERPRETABLE
+user_seconds_since_prev_txn,7,7–30 days,,2,0,0.0,1000,LOW_SUPPORT
+user_txn_count_1h,0,0,,34246,20,0.0005840098113648309,1000,INTERPRETABLE
+user_txn_count_1h,1,1,,9099,19,0.0020881415540169247,1000,INTERPRETABLE
+user_txn_count_1h,2,2–4,,2524,4,0.001584786053882726,1000,INTERPRETABLE
+user_txn_count_1h,3,5–9,,14,0,0.0,1000,LOW_SUPPORT
+user_txn_count_24h,0,0,,2774,5,0.001802451333813987,1000,INTERPRETABLE
+user_txn_count_24h,1,1,,5993,3,0.0005005840146837978,1000,INTERPRETABLE
+user_txn_count_24h,2,2–4,,21685,7,0.0003228037814157252,1000,INTERPRETABLE
+user_txn_count_24h,3,5–9,,14481,16,0.0011048960707133485,1000,INTERPRETABLE
+user_txn_count_24h,4,10–19,,950,12,0.01263157894736842,1000,LOW_SUPPORT
+user_txn_count_7d,0,0,,8,0,0.0,1000,LOW_SUPPORT
+user_txn_count_7d,1,1,,22,0,0.0,1000,LOW_SUPPORT
+user_txn_count_7d,2,2–4,,398,0,0.0,1000,LOW_SUPPORT
+user_txn_count_7d,3,5–9,,2817,3,0.0010649627263045794,1000,INTERPRETABLE
+user_txn_count_7d,4,10–19,,13859,15,0.0010823291723789596,1000,INTERPRETABLE
+user_txn_count_7d,5,20+,,28779,25,0.0008686889745995344,1000,INTERPRETABLE
 

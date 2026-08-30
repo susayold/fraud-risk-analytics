@@ -1,0 +1,13 @@
+check_name,rows_checked,violations,status,notes
+amount_ratio_semantics,100000,0,PASS,ratios require a positive current amount and positive prior mean
+amount_z_semantics,100000,0,PASS,z-scores require positive current amount and positive prior standard deviation
+card_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+card_merchant_new_consistency,100000,0,PASS,new relationship implies zero prior count and NULL recency
+current_positive_amount_semantics,100000,0,PASS,positive flag agrees with source amount
+merchant_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+non_negative_recency,100000,0,PASS,recency is NULL or non-negative
+relationship_count_hierarchy,100000,0,PASS,relationship history cannot exceed entity history
+state_missing_not_new,100000,0,PASS,"missing state is an availability flag, not a familiarity flag"
+user_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
+user_merchant_new_consistency,100000,0,PASS,new relationship implies zero prior count and NULL recency
+

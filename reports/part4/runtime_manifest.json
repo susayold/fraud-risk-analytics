@@ -1,12 +1,20 @@
 {
-  "status": "BEHAVIOR_READY_SAMPLE_QA",
-  "feature_contract_version": "PART4_v1.0",
-  "pit_rule": "history_timestamp < current_timestamp",
-  "python_version": "3.14.2",
-  "threads": 4,
+  "run_id": "P4-20260830T064422Z",
+  "git_commit": "d82baeeaab0536dac4381ee2062136288bd2bd01",
+  "run_timestamp_utc": "2026-08-30T06:44:22.529772+00:00",
+  "feature_contract_version": "PART4_v1.1",
+  "pit_contract_version": "P4_PIT_v1.0",
+  "signal_bin_contract_version": "P4_BINS_v1.0",
+  "validation_contract_version": "P4_VALIDATION_v1.1",
+  "frontend_contract_version": "P4_FRONTEND_v1.1",
+  "database_source": "temporary offline database (not published)",
+  "threads": 1,
   "memory_limit": "2GB",
-  "elapsed_seconds": 12.364,
+  "sample_row_limit": 100000,
+  "status": "BEHAVIOR_READY_SAMPLE_QA",
+  "validation_status": "PASS",
+  "pipeline_elapsed_seconds": 19.685,
   "row_level_mart_retained": false,
   "raw_publication": false,
-  "sample_row_limit": 100000
+  "execution_scope": "DETERMINISTIC_QA_EXECUTION_SLICE"
 }

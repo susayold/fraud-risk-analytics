@@ -1,0 +1,14 @@
+layer,rows,distinct_source_row_id,duplicate_source_row_id,missing_feature_rows,status
+behavior_source,100000,100000,0,0,PASS
+user_features,100000,100000,0,0,PASS
+card_features,100000,100000,0,0,PASS
+merchant_features,100000,100000,0,0,PASS
+amount_features,100000,100000,0,0,PASS
+user_merchant_features,100000,100000,0,0,PASS
+card_merchant_features,100000,100000,0,0,PASS
+user_mcc_features,100000,100000,0,0,PASS
+card_mcc_features,100000,100000,0,0,PASS
+channel_features,100000,100000,0,0,PASS
+behavioral_features_v1,100000,100000,0,0,PASS
+evaluation_view,100000,100000,0,0,PASS
+

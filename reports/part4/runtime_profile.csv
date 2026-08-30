@@ -1,0 +1,15 @@
+stage,rows,elapsed_seconds,peak_temp_storage_mb,memory_limit,threads,status
+00_behavior_source.sql,100000,0.054,0.0,2GB,1,PASS
+01_user.sql,100000,0.782,0.0,2GB,1,PASS
+02_card.sql,100000,0.649,0.0,2GB,1,PASS
+03_merchant.sql,100000,0.381,0.0,2GB,1,PASS
+04_amount.sql,100000,3.382,0.0,2GB,1,PASS
+05_user_merchant.sql,100000,0.208,0.0,2GB,1,PASS
+06_card_merchant.sql,100000,0.214,0.0,2GB,1,PASS
+07_user_mcc.sql,100000,0.095,0.0,2GB,1,PASS
+08_card_mcc.sql,100000,0.091,0.0,2GB,1,PASS
+09_channel.sql,100000,0.241,0.0,2GB,1,PASS
+10_geography_dependency.sql,100000,0.01,0.0,2GB,1,PASS
+11_behavioral_mart.sql,100000,0.003,0.0,2GB,1,PASS
+12_development_feature_analysis.sql,100000,0.004,0.0,2GB,1,PASS
+

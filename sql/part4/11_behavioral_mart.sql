@@ -14,7 +14,7 @@ SELECT b.source_row_id, b.transaction_timestamp, b.split_name,
        umcc.user_mcc_prior_txn_count, umcc.user_mcc_is_new, cmcc.card_mcc_prior_txn_count, cmcc.card_mcc_is_new,
        ch.user_channel_prior_txn_count, ch.user_channel_is_new, ch.card_channel_prior_txn_count, ch.card_channel_is_new,
        CASE WHEN b.merchant_state IS NULL THEN 1 ELSE 0 END::INTEGER AS state_missing_flag,
-       'PART4_v1.0' AS feature_contract_version,
+       'PART4_v1.1' AS feature_contract_version,
        'history_timestamp < current_timestamp' AS pit_policy_version,
        CURRENT_TIMESTAMP AS feature_build_ts
 FROM analytics.part4_behavior_source b

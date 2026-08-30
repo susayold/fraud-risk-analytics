@@ -1,0 +1,3 @@
+entity_type,selected_rows,rows_with_prior_history_outside_slice,share_with_external_prior_history,status
+source_global_temporal_order,100000,100000,1.0,TRUNCATION_POSSIBLE
+

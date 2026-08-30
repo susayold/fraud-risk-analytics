@@ -1,0 +1,12 @@
+check_name,rows_checked,violations,status,notes
+row_3_user_prior_txn_count,10,0,PASS,Production SQL output=2; expected=2.
+row_4_user_prior_txn_count,10,0,PASS,Production SQL output=2; expected=2.
+row_6_exact_1h_user_velocity_1h,10,0,PASS,Production SQL output=3; expected=3.
+row_7_one_second_after_user_velocity_1h,10,0,PASS,Production SQL output=2; expected=2.
+first_event_cold_start,10,0,PASS,Production SQL output=1; expected=1.
+row_4_unseen_merchant_is_new,10,0,PASS,Production SQL output=1; expected=1.
+unseen_channel_row_4_count,10,0,PASS,Production SQL output=0; expected=0.
+negative_amount_row_5_current_positive,10,0,PASS,Production SQL output=False; expected=0.
+zero_amount_row_4_current_positive,10,0,PASS,Production SQL output=False; expected=0.
+same_timestamp_rows_do_not_see_each_other,10,0,PASS,Production SQL output=1; expected=1.
+
