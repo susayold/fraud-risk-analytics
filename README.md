@@ -24,7 +24,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | 1 | Business Scope & Project Governance | ✅ Complete |
 | 2 | Data & SQL Foundation | ✅ Locked |
 | 3 | Fraud Portfolio Analytics | ✅ Locked |
-| 4 | Behavioral Fraud Analytics | 🟡 QA Hardened — PIT contract validated; full-population signal not claimed |
+| 4 | Behavioral Fraud Analytics | ✅ Locked — PIT + entity-complete QA validated; full-population signal not claimed |
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
 | 6 | Network & Graph Fraud Analytics | ⬜ Planned |
 | 7 | Fraud Risk Decision Engine | ⬜ Planned |
@@ -53,7 +53,7 @@ Part 1 defines business context, fraud use case, KPI framework, validation quest
 
 ## Part 4 — Behavioral Fraud Analytics
 
-Part 4 implements a governed point-in-time behavioral feature layer with 43 primary behavioral features across entity history, velocity, amount deviation and relationship familiarity. Historical labels are excluded from feature construction. Public evidence is aggregate-only. The implementation is validated through SQL-backed PIT fixtures, semantic invariants, family reconciliation and a deterministic QA execution slice. The full 24.4M-row feature mart is not retained or published because of local resource constraints, so full-population behavioral signal statistics are not claimed.
+Part 4 implements a governed point-in-time behavioral feature layer with 43 primary behavioral features across entity history, velocity, amount deviation and relationship familiarity. Historical labels are excluded from feature construction. Public evidence is aggregate-only. The implementation is locked after SQL-backed PIT fixtures, semantic invariants, live-mart artifact reconciliation, true cross-split truth audits, provenance checks, report hashes and entity-complete QA. The full 24.4M-row feature mart is not retained or published because of local resource constraints, so full-population behavioral signal statistics are not claimed.
 
 ## Part 2 — Data & SQL Foundation
 
@@ -68,5 +68,4 @@ The Part 2 experience documents the transaction grain, entity keys, quality gate
 
 ## Repository Structure
 
-`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter and `part-3.html` contains the locked Fraud Portfolio Analytics chapter. `part-4.html` through `part-9.html` provide the standardized chapter shell for subsequent work. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, executed Part 3 aggregate reports live in `reports/part3/`, and supplied artwork lives in `assets/`.
-
+`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter, `part-3.html` contains the locked Fraud Portfolio Analytics chapter, and `part-4.html` contains the locked Behavioral Fraud Analytics chapter. `part-5.html` through `part-9.html` remain future chapter shells. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, executed Part 3 aggregate reports live in `reports/part3/`, and supplied artwork lives in `assets/`.

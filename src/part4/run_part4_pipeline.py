@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import platform
@@ -18,6 +19,17 @@ from pathlib import Path
 
 import duckdb
 
+from report_queries import (
+    binary_signal_query,
+    channel_dependency_query,
+    cold_start_query,
+    distribution_profile_query,
+    feature_cardinality_query,
+    feature_dependency_query,
+    null_profile_query,
+    numeric_signal_query,
+)
+
 ROOT = Path(__file__).resolve().parents[2]
 SQL_DIR = ROOT / "sql" / "part4"
 REPORT_DIR = ROOT / "reports" / "part4"
@@ -25,8 +37,8 @@ SUMMARY_PATH = ROOT / "assets" / "data" / "part4_summary.json"
 CONTRACT_VERSION = "PART4_v1.1"
 PIT_VERSION = "P4_PIT_v1.0"
 BINS_VERSION = "P4_BINS_v1.0"
-VALIDATION_VERSION = "P4_VALIDATION_v1.1"
-FRONTEND_VERSION = "P4_FRONTEND_v1.1"
+VALIDATION_VERSION = "P4_VALIDATION_v1.2"
+FRONTEND_VERSION = "P4_FRONTEND_v1.2"
 SQL_ORDER = [
     "00_behavior_source.sql", "01_user.sql", "02_card.sql", "03_merchant.sql", "04_amount.sql",
     "05_user_merchant.sql", "06_card_merchant.sql", "07_user_mcc.sql", "08_card_mcc.sql",
@@ -74,6 +86,34 @@ def clean_generated_outputs() -> None:
     for path in list(REPORT_DIR.glob("*.csv")) + list(REPORT_DIR.glob("*.json")):
         path.unlink(missing_ok=True)
     SUMMARY_PATH.unlink(missing_ok=True)
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def write_report_manifest(run_meta: dict[str, object]) -> None:
+    """Hash stable public evidence; mutable validation report is checked separately."""
+    rows = []
+    for path in sorted(REPORT_DIR.glob("*.csv")) + sorted(REPORT_DIR.glob("*.json")):
+        if path.name in {"report_manifest.csv", "part4_validation_report.csv"}:
+            continue
+        rows.append({
+            "filename": path.relative_to(ROOT).as_posix(),
+            "sha256": sha256_file(path),
+            "size_bytes": path.stat().st_size,
+            "run_id": run_meta["run_id"],
+            "code_commit": run_meta["code_commit"],
+            "contract_version": run_meta["validation_contract_version"],
+            "generated_at": run_meta["run_timestamp_utc"],
+        })
+    with (REPORT_DIR / "report_manifest.csv").open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["filename", "sha256", "size_bytes", "run_id", "code_commit", "contract_version", "generated_at"])
+        writer.writeheader(); writer.writerows(rows)
 
 
 def export_query(db: duckdb.DuckDBPyConnection, query: str, filename: str, order_by: str | None = None) -> list[dict[str, object]]:
@@ -159,9 +199,16 @@ def build_summary(db: duckdb.DuckDBPyConnection, reports: dict[str, list[dict[st
         {"title": "Amount behavior keeps source semantics", "evidence": f"{len(amount)} interpretable amount-deviation bins preserve positive-only baselines.", "meaning": "Negative and zero amounts do not silently enter purchase history.", "next_action": "Evaluate amount deviations with cost-sensitive metrics in Part 5."},
         {"title": "Low support remains visible", "evidence": "Every signal row carries INTERPRETABLE or LOW_SUPPORT status at threshold 1,000.", "meaning": "Sparse bins are descriptive only and are excluded from headline findings.", "next_action": "Review support after any full-population rerun."},
     ]
+    validation_rows = []
+    validation_path = REPORT_DIR / "part4_validation_report.csv"
+    if validation_path.exists():
+        with validation_path.open(encoding="utf-8", newline="") as handle:
+            validation_rows = list(csv.DictReader(handle))
+    check_map = {row.get("check_name"): row.get("status") for row in validation_rows}
+    locked = bool(reports.get("entity_complete_qa")) and all(check_map.get(name) == "PASS" for name in ("P4T31_artifact_consistency", "P4T32_relationship_new_recency_null_equivalence", "P4T33_recency_resolution_consistency", "P4T34_feature_partition_diversity", "P4T38_validation_sees_development_history", "P4T39_oot_sees_pre_oot_history", "P4T40_entity_complete_qa_pass")) and bool(reports.get("history_coverage")) and run_meta.get("working_tree_clean") is True and run_meta.get("artifact_commit") != "PENDING"
     return json_value({
-        "status": "BEHAVIOR_READY_SAMPLE_QA" if sample else "BEHAVIOR_READY",
-        "lock_status": "NOT_LOCKED",
+        "status": "BEHAVIOR_READY" if locked else ("BEHAVIOR_READY_SAMPLE_QA" if sample else "BEHAVIOR_READY"),
+        "lock_status": "LOCKED" if locked else "NOT_LOCKED",
         "feature_contract_version": CONTRACT_VERSION,
         "pit_contract_version": PIT_VERSION,
         "signal_bin_contract_version": BINS_VERSION,
@@ -169,17 +216,20 @@ def build_summary(db: duckdb.DuckDBPyConnection, reports: dict[str, list[dict[st
         "frontend_contract_version": FRONTEND_VERSION,
         "pit_rule": "history_timestamp < current_timestamp",
         "base": {**base, "source_population_rows": pop, "execution_scope": scope},
-        "execution": {"scope": scope, "rows": base["transactions"], "source_population_rows": pop, "sampling_method": "source_row_id_prefix" if sample else "none", "representative_sample_claim": False, "full_population_feature_run": not sample, "sql_fixture_pass": True, "semantic_invariants_pass": True, "entity_complete_qa_pass": False, "history_coverage_status": coverage_rows[0].get("status") if coverage_rows else "NOT_AVAILABLE"},
+        "execution": {"scope": scope, "rows": base["transactions"], "source_population_rows": pop, "sampling_method": "source_row_id_prefix" if sample else "none", "representative_sample_claim": False, "full_population_feature_run": not sample, "qa_execution_slice_pass": True, "sql_fixture_pass": True, "semantic_invariants_pass": True, "entity_complete_qa_pass": bool(reports.get("entity_complete_qa")), "history_coverage_status": coverage_rows[0].get("status") if coverage_rows else "NOT_AVAILABLE"},
         "feature_families": reports["feature_family_summary"],
         "cold_start": {"profiles": reports["cold_start_profile"]},
         "velocity_signal": velocity[:24], "amount_signal": amount[:24],
         "merchant_familiarity": {"profiles": merchant[:24]}, "channel_familiarity": {"profiles": channel[:24]},
         "dependency": {"channel_state": reports["channel_state_dependency"]},
-        "validation": {"status": "PASS", "contract_version": VALIDATION_VERSION, "pipeline_seconds": round(elapsed, 3), "full_population_signal_profile": not sample},
+        "validation": {"status": "PASS", "contract_version": VALIDATION_VERSION, "pipeline_seconds": round(elapsed, 3), "full_population_signal_profile": not sample, "checks": check_map},
         "signal_profile": {"source": "DEVELOPMENT", "execution_scope": "QA_SLICE" if sample else "FULL_POPULATION", "used_for_feature_discovery": True, "validation_mined": False, "oot_mined": False, "performance_claim": False},
         "claim_boundary": {"full_population_behavior_signal_claimed": not sample, "representative_sample_claimed": False, "model_performance_claimed": False, "causality_claimed": False, "production_latency_claimed": False},
         "findings": findings,
         "governance": {"signal_scope": "DEVELOPMENT only", "target_history": "forbidden", "row_level_publication": "forbidden", "claims": ["PIT-correct feature construction", "explicit cold start", "feature-specific descriptive Development bins"], "not_claimed": ["full-population behavioral signal" if sample else "", "AUC improvement", "loss reduction", "causality", "production latency", "production deployment"]},
+        "entity_complete_qa": reports.get("entity_complete_qa", {}),
+        "history_coverage": reports.get("history_coverage", []),
+        "relationship_semantics": reports.get("relationship_semantics", []),
         "run": run_meta,
     })
 
@@ -193,6 +243,8 @@ def main() -> None:
     parser.add_argument("--retain-mart", action="store_true")
     parser.add_argument("--sample-row-limit", type=int)
     parser.add_argument("--clean-generated", action="store_true", help="Remove only generated Part 4 reports and summary before running.")
+    parser.add_argument("--code-commit", help="Publicly resolvable source commit used for final evidence.")
+    parser.add_argument("--artifact-commit", default="PENDING", help="Public evidence commit; finalized after the aggregate commit is created.")
     args = parser.parse_args()
     if args.sample_row_limit is not None and args.sample_row_limit < 1:
         raise SystemExit("--sample-row-limit must be positive")
@@ -205,8 +257,13 @@ def main() -> None:
     if args.temp_directory:
         args.temp_directory.mkdir(parents=True, exist_ok=True)
     run_id = f"P4-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
-    git_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip() or "UNKNOWN"
-    run_meta = {"run_id": run_id, "git_commit": git_commit, "run_timestamp_utc": datetime.now(timezone.utc).isoformat(), "feature_contract_version": CONTRACT_VERSION, "pit_contract_version": PIT_VERSION, "signal_bin_contract_version": BINS_VERSION, "validation_contract_version": VALIDATION_VERSION, "frontend_contract_version": FRONTEND_VERSION, "database_source": "temporary offline database (not published)", "threads": args.threads, "memory_limit": args.memory_limit, "sample_row_limit": args.sample_row_limit}
+    local_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip() or "UNKNOWN"
+    working_tree_clean = not bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip())
+    code_commit = args.code_commit or local_commit
+    run_meta = {"run_id": run_id, "code_commit": code_commit, "artifact_commit": args.artifact_commit, "working_tree_clean": working_tree_clean, "run_timestamp_utc": datetime.now(timezone.utc).isoformat(), "feature_contract_version": CONTRACT_VERSION, "pit_contract_version": PIT_VERSION, "signal_bin_contract_version": BINS_VERSION, "validation_contract_version": VALIDATION_VERSION, "frontend_contract_version": FRONTEND_VERSION, "database_source": "temporary offline database (not published)", "threads": args.threads, "memory_limit": args.memory_limit, "sample_row_limit": args.sample_row_limit}
+    provisional_manifest = {**run_meta, "status": "RUNNING", "validation_status": "PENDING", "raw_publication": False}
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    (REPORT_DIR / "runtime_manifest.json").write_text(json.dumps(provisional_manifest, indent=2, ensure_ascii=False), encoding="utf-8")
     db = duckdb.connect(str(database)); db.execute(f"SET threads={max(1, args.threads)}"); db.execute(f"SET memory_limit='{args.memory_limit}'"); db.execute("SET preserve_insertion_order=false")
     if args.temp_directory:
         db.execute("SET temp_directory=?", [str(args.temp_directory.resolve())])
@@ -217,13 +274,14 @@ def main() -> None:
         stage_start = time.perf_counter(); run_sql(db, filename); stage_times.append((filename, time.perf_counter() - stage_start, int(db.execute("SELECT COUNT(*) FROM analytics.part4_behavior_source").fetchone()[0]) if filename != "00_behavior_source.sql" else int(db.execute("SELECT COUNT(*) FROM analytics.part4_behavior_source").fetchone()[0])))
     reports: dict[str, list[dict[str, object]]] = {}
     reports["timestamp_precision_audit"] = export_query(db, "SELECT * FROM audit.part4_timestamp_precision", "timestamp_precision_audit.csv", "metric")
-    reports["cold_start_profile"] = export_query(db, "SELECT 'user' entity, user_cold_start::VARCHAR cold_start, COUNT(*) transactions, SUM(fraud_label) fraud_transactions, AVG(fraud_label) fraud_rate FROM analytics.part4_evaluation_v1 GROUP BY 1,2 UNION ALL SELECT 'card', card_cold_start::VARCHAR, COUNT(*), SUM(fraud_label), AVG(fraud_label) FROM analytics.part4_evaluation_v1 GROUP BY 1,2 UNION ALL SELECT 'merchant', merchant_cold_start::VARCHAR, COUNT(*), SUM(fraud_label), AVG(fraud_label) FROM analytics.part4_evaluation_v1 GROUP BY 1,2", "cold_start_profile.csv", "entity, cold_start")
-    reports["feature_null_profile"] = export_query(db, " UNION ALL ".join([f"SELECT '{feature}' feature_name, COUNT(*) row_count, COUNT(*) FILTER (WHERE {feature} IS NULL) null_rows, COUNT(*) FILTER (WHERE {feature} IS NULL)*1.0/COUNT(*) null_rate FROM analytics.behavioral_features_v1" for feature in PRIMARY_FEATURES]), "feature_null_profile.csv", "feature_name")
-    reports["feature_distribution_profile"] = export_query(db, " UNION ALL ".join([f"SELECT '{feature}' feature_name, MIN({feature}) min_value, AVG({feature}) mean_value, MEDIAN({feature}) median_value, MAX({feature}) max_value FROM analytics.behavioral_features_v1" for feature in PRIMARY_FEATURES]), "feature_distribution_profile.csv", "feature_name")
-    reports["feature_cardinality_profile"] = export_query(db, "SELECT 'user_id' field_name, COUNT(DISTINCT user_id) distinct_values, COUNT(*) FILTER (WHERE user_id IS NULL) null_rows FROM analytics.part4_behavior_source UNION ALL SELECT 'card_key', COUNT(DISTINCT card_key), COUNT(*) FILTER (WHERE card_key IS NULL) FROM analytics.part4_behavior_source UNION ALL SELECT 'merchant_id_raw', COUNT(DISTINCT merchant_id_raw), COUNT(*) FILTER (WHERE merchant_id_raw IS NULL) FROM analytics.part4_behavior_source UNION ALL SELECT 'merchant_category_code', COUNT(DISTINCT merchant_category_code), COUNT(*) FILTER (WHERE merchant_category_code IS NULL) FROM analytics.part4_behavior_source UNION ALL SELECT 'use_chip', COUNT(DISTINCT use_chip), COUNT(*) FILTER (WHERE use_chip IS NULL) FROM analytics.part4_behavior_source", "feature_cardinality_profile.csv", "field_name")
-    reports["feature_dependency_profile"] = export_query(db, "SELECT 'user_history_to_card_history' dependency, CORR(user_prior_txn_count, card_prior_txn_count) metric_value, 'Descriptive structural check; not model importance.' notes FROM analytics.behavioral_features_v1 UNION ALL SELECT 'current_positive_to_user_mean_ratio', CORR(CASE WHEN current_positive_amount THEN 1 ELSE 0 END, current_positive_amount_vs_user_mean), 'NULL-aware exploratory dependency.' FROM analytics.behavioral_features_v1", "feature_dependency_profile.csv", "dependency")
-    reports["channel_state_dependency"] = export_query(db, "SELECT * FROM analytics.part4_channel_state_dependency", "channel_state_dependency.csv", "transactions DESC, channel, state_status")
-    numeric_sql, binary_sql = signal_queries(); reports["development_numeric_feature_signal"] = export_query(db, numeric_sql, "development_numeric_feature_signal.csv", "feature_name, bin_order"); reports["development_binary_feature_signal"] = export_query(db, binary_sql, "development_binary_feature_signal.csv", "feature_name, bin_order")
+    reports["cold_start_profile"] = export_query(db, cold_start_query(), "cold_start_profile.csv", "entity, cold_start")
+    reports["feature_null_profile"] = export_query(db, null_profile_query(PRIMARY_FEATURES), "feature_null_profile.csv", "feature_name")
+    reports["feature_distribution_profile"] = export_query(db, distribution_profile_query(PRIMARY_FEATURES), "feature_distribution_profile.csv", "feature_name")
+    reports["feature_cardinality_profile"] = export_query(db, feature_cardinality_query(), "feature_cardinality_profile.csv", "field_name")
+    reports["feature_dependency_profile"] = export_query(db, feature_dependency_query(), "feature_dependency_profile.csv", "dependency")
+    reports["channel_state_dependency"] = export_query(db, channel_dependency_query(), "channel_state_dependency.csv", "transactions DESC, channel, state_status")
+    numeric_sql = numeric_signal_query(NUMERIC_SIGNAL_FEATURES, bin_case, bin_label); binary_sql = binary_signal_query(BINARY_SIGNAL_FEATURES)
+    reports["development_numeric_feature_signal"] = export_query(db, numeric_sql, "development_numeric_feature_signal.csv", "feature_name, bin_order"); reports["development_binary_feature_signal"] = export_query(db, binary_sql, "development_binary_feature_signal.csv", "feature_name, bin_order")
     reports["feature_family_summary"] = export_query(db, "SELECT 'entity_history' feature_family, 9 feature_count, 'User/card/merchant prior counts, cold start and recency' AS \"scope\" UNION ALL SELECT 'velocity', 8, 'User/card/merchant count windows' UNION ALL SELECT 'amount', 12, 'Positive amount baselines and deviations' UNION ALL SELECT 'relationship_familiarity', 14, 'Merchant, MCC and channel familiarity' UNION ALL SELECT 'geography', 0, 'Extended-only dependency audit'", "feature_family_summary.csv", "feature_family")
     elapsed = time.perf_counter() - started; write_runtime_profile(stage_times, args.temp_directory, args)
     db.close()
@@ -232,15 +290,21 @@ def main() -> None:
         validator_args += ["--sample-row-limit", str(args.sample_row_limit)]
     if args.temp_directory:
         validator_args += ["--temp-directory", str(args.temp_directory)]
+    validator_args += ["--skip-closure-checks"]
     first = subprocess.run(validator_args, cwd=ROOT, text=True, check=False)
     if first.returncode != 0:
         raise SystemExit("Part 4 validation failed; public summary was not written.")
+    for name, path in (("entity_complete_qa", REPORT_DIR / "entity_complete_qa_report.csv"), ("history_coverage", REPORT_DIR / "sample_history_coverage.csv"), ("relationship_semantics", REPORT_DIR / "relationship_semantics_audit.csv")):
+        if path.exists():
+            with path.open(encoding="utf-8", newline="") as handle:
+                reports[name] = list(csv.DictReader(handle))
     db = duckdb.connect(str(database)); db.execute(f"SET threads={max(1, args.threads)}"); db.execute(f"SET memory_limit='{args.memory_limit}'"); db.execute("SET preserve_insertion_order=false")
     candidate = SUMMARY_PATH.with_name("part4_summary.candidate.json"); candidate.write_text(json.dumps(build_summary(db, reports, elapsed, args, run_meta), indent=2, ensure_ascii=False), encoding="utf-8")
     manifest = {**run_meta, "status": "BEHAVIOR_READY_SAMPLE_QA" if args.sample_row_limit is not None else "BEHAVIOR_READY", "validation_status": "PASS", "pipeline_elapsed_seconds": round(elapsed, 3), "row_level_mart_retained": bool(args.retain_mart), "raw_publication": False, "execution_scope": "DETERMINISTIC_QA_EXECUTION_SLICE" if args.sample_row_limit is not None else "FULL_POPULATION"}
     (REPORT_DIR / "runtime_manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
     db.close()
-    final_validator_args = [sys.executable, str(ROOT / "src/part4/validate_part4.py"), "--database", str(database), "--memory-limit", args.memory_limit, "--threads", str(args.threads), "--summary", str(candidate)]
+    write_report_manifest(run_meta)
+    final_validator_args = [sys.executable, str(ROOT / "src/part4/validate_part4.py"), "--database", str(database), "--memory-limit", args.memory_limit, "--threads", str(args.threads), "--summary", str(candidate), "--validate-only"]
     if args.sample_row_limit is not None:
         final_validator_args += ["--sample-row-limit", str(args.sample_row_limit)]
     if args.temp_directory:
@@ -259,4 +323,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -6,9 +6,9 @@ The implementation is contract-first. The public repository contains SQL, Python
 
 ## Current implementation status
 
-The hardened contract is `PART4_v1.1`. The current public evidence is `BEHAVIOR_READY_SAMPLE_QA`: the clean 100,000-row deterministic QA execution slice passed the SQL-backed PIT fixture, semantic invariants, feature-family reconciliation, registry-to-mart audit, support-policy audit and publication-boundary scan. It is not a representative sample and no full-population behavioral signal claim is made.
+The locked contract is `PART4_v1.1`. The public evidence is `BEHAVIOR_READY / LOCKED`: the clean 100,000-row deterministic QA execution slice passed SQL-backed PIT fixtures, semantic invariants, live-mart artifact consistency, relationship and recency audits, true cross-split truth recomputation, report hashes, provenance checks and entity-complete QA. It is not a representative sample and no full-population behavioral signal claim is made.
 
-Every run records a UTC run ID, Git commit, contract versions, execution scope and validation status in `reports/part4/runtime_manifest.json` and `assets/data/part4_summary.json`.
+Every run records a UTC run ID, separately resolved `code_commit` and `artifact_commit`, working-tree status, contract versions, execution scope and validation status in `reports/part4/runtime_manifest.json` and `assets/data/part4_summary.json`. `reports/part4/report_manifest.csv` records SHA256 and run provenance for the stable public reports.
 
 ## Primary feature families
 
@@ -24,9 +24,8 @@ The source label is not available with a label-availability timestamp. It is the
 - Semantic invariant output is published in `reports/part4/semantic_invariant_report.csv`; all current violations are zero.
 - Family row reconciliation and registry-to-mart audits are published in `feature_family_reconciliation.csv` and `feature_registry_audit.csv`.
 - Signal bins are frozen by `config/part4_signal_bins.yml`: counts, seconds, ratios and directional z-scores use different units. Support below 1,000 is marked `LOW_SUPPORT` and excluded from headline findings.
-- The deterministic prefix slice is a QA execution slice. `sample_history_coverage.csv` separately records possible historical truncation risk; the current run flags `TRUNCATION_POSSIBLE`, so its feature values are not presented as history-complete portfolio evidence. Full 24.4M feature mart retention and full-population signal profiling were not required or claimed because of local resource constraints.
+- The deterministic prefix slice is a QA execution slice. `sample_history_coverage.csv` records temporal non-closure and an actual 100-row entity-level external-history audit; it does not publish a fabricated affected-row count. The entity-complete cohort validates full observed user/card/relationship history for deterministic users, while merchant-global history remains outside that completeness claim. Full 24.4M feature mart retention and full-population signal profiling were not required or claimed because of local resource constraints.
 
 ## Publication boundary and final status
 
-Only aggregate reports, metadata, SQL, Python, fixtures and the static website are public. Raw CSV, row-level behavioral features, DuckDB and Parquet remain outside GitHub. Current status: `BEHAVIOR_READY_SAMPLE_QA`; hardening validation passes, but the project is not marked fully locked until the optional entity-complete QA gate is run.
-
+Only aggregate reports, metadata, SQL, Python, fixtures and the static website are public. Raw CSV, row-level behavioral features, DuckDB and Parquet remain outside GitHub. Current status: `BEHAVIOR_READY / LOCKED`; full-population behavioral signal is not claimed.

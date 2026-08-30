@@ -26,5 +26,4 @@ The source contains `fraud_label`, but it has no `label_available_timestamp`. Th
 - missing current state: geography familiarity is `NULL`, not `is_new = 1`;
 - unseen categorical value: prior count `0`, `is_new = 1`, no pipeline failure.
 
-This is an offline analytical contract. It is not a production latency or deployment claim. The 100,000-row deterministic QA execution slice is computational QA, not a representative sample; historical coverage is audited separately.
-
+This is an offline analytical contract. It is not a production latency or deployment claim. The 100,000-row deterministic QA execution slice plus entity-complete cohort are computational QA, not representative portfolio evidence; historical coverage and merchant-global completeness are audited separately.
