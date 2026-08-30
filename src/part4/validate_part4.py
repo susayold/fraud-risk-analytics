@@ -256,8 +256,8 @@ def artifact_consistency_checks(db: duckdb.DuckDBPyConnection, run_id: str, writ
 
 def relationship_checks(db: duckdb.DuckDBPyConnection, write_artifacts: bool = True) -> list[dict[str, object]]:
     rows = _rows(db, relationship_semantics_query()) if write_artifacts else list(csv.DictReader((REPORT_DIR / "relationship_semantics_audit.csv").open(encoding="utf-8", newline="")))
-    _write_csv(REPORT_DIR / "relationship_semantics_audit.csv", ["metric", "value"], rows) if write_artifacts else None
-    values = {row["metric"]: int(row["value"]) for row in rows}
+    _write_csv(REPORT_DIR / "relationship_semantics_audit.csv", ["metric", "metric_value"], rows) if write_artifacts else None
+    values = {row["metric"]: int(row["metric_value"]) for row in rows}
     checks = [check("P4T32_relationship_new_recency_null_equivalence", "PASS" if values.get("user_merchant_is_new_count") == values.get("user_merchant_recency_null_count") and values.get("card_merchant_is_new_count") == values.get("card_merchant_recency_null_count") else "FAIL", "New relationship counts equal NULL recency counts for user×merchant and card×merchant.", len(rows), 0 if values.get("user_merchant_is_new_count") == values.get("user_merchant_recency_null_count") and values.get("card_merchant_is_new_count") == values.get("card_merchant_recency_null_count") else 1)]
     resolution = _rows(db, recency_resolution_query([name for name in PRIMARY_FEATURES if "seconds_since" in name])) if write_artifacts else list(csv.DictReader((REPORT_DIR / "recency_resolution_audit.csv").open(encoding="utf-8", newline="")))
     if write_artifacts:
