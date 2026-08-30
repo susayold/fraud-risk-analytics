@@ -89,7 +89,7 @@ def channel_dependency_query(view: str = "analytics.part4_channel_state_dependen
 
 def relationship_semantics_query(mart: str = "analytics.behavioral_features_v1") -> str:
     return f"""
-SELECT 'user_merchant_is_new_count' metric, COUNT(*) FILTER (WHERE user_merchant_is_new = 1)::BIGINT value FROM {mart}
+SELECT 'user_merchant_is_new_count' metric, COUNT(*) FILTER (WHERE user_merchant_is_new = 1)::BIGINT metric_value FROM {mart}
 UNION ALL SELECT 'user_merchant_recency_null_count', COUNT(*) FILTER (WHERE user_merchant_seconds_since_prev_txn IS NULL)::BIGINT FROM {mart}
 UNION ALL SELECT 'card_merchant_is_new_count', COUNT(*) FILTER (WHERE card_merchant_is_new = 1)::BIGINT FROM {mart}
 UNION ALL SELECT 'card_merchant_recency_null_count', COUNT(*) FILTER (WHERE card_merchant_seconds_since_prev_txn IS NULL)::BIGINT FROM {mart}
