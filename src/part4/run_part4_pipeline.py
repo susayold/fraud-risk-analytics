@@ -258,7 +258,9 @@ def main() -> None:
         args.temp_directory.mkdir(parents=True, exist_ok=True)
     run_id = f"P4-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     local_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip() or "UNKNOWN"
-    working_tree_clean = not bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip())
+    status_lines = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.splitlines()
+    generated_paths = ("reports/part4/", "assets/data/part4_summary.json")
+    working_tree_clean = not any(not line[3:].replace("\\", "/").startswith(generated_paths) for line in status_lines if len(line) >= 4)
     code_commit = args.code_commit or local_commit
     run_meta = {"run_id": run_id, "code_commit": code_commit, "artifact_commit": args.artifact_commit, "working_tree_clean": working_tree_clean, "run_timestamp_utc": datetime.now(timezone.utc).isoformat(), "feature_contract_version": CONTRACT_VERSION, "pit_contract_version": PIT_VERSION, "signal_bin_contract_version": BINS_VERSION, "validation_contract_version": VALIDATION_VERSION, "frontend_contract_version": FRONTEND_VERSION, "database_source": "temporary offline database (not published)", "threads": args.threads, "memory_limit": args.memory_limit, "sample_row_limit": args.sample_row_limit}
     provisional_manifest = {**run_meta, "status": "RUNNING", "validation_status": "PENDING", "raw_publication": False}

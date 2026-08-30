@@ -1,4 +1,5 @@
 (() => {
+  const FRONTEND_CONTRACT_VERSION = 'P4_FRONTEND_v1.2';
   const nf = new Intl.NumberFormat('en-US');
   const number = v => Number.isFinite(Number(v)) ? nf.format(Number(v)) : '—';
   const pct = v => Number.isFinite(Number(v)) ? `${(Number(v) * 100).toFixed(Number(v) < .01 ? 3 : 1)}%` : '—';
