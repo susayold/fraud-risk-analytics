@@ -914,7 +914,7 @@
   "run": {
     "run_id": "P4-20260830T075031Z",
     "code_commit": "7a7a62790b8b0893e4e8989e1dd46481b89251c4",
-    "artifact_commit": "7a7a62790b8b0893e4e8989e1dd46481b89251c4",
+    "artifact_commit": "5b3072fdf27168c7325490ae1b3a6408b33bdbee",
     "working_tree_clean": true,
     "run_timestamp_utc": "2026-08-30T07:50:31.853989+00:00",
     "feature_contract_version": "PART4_v1.1",
