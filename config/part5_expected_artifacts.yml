@@ -1,0 +1,22 @@
+# Aggregate Part 5 artifact set. Private matrices, IDs, predictions and models are excluded.
+- modeling_scope.csv
+- development_cv_boundaries.csv
+- feature_registry_audit.csv
+- rule_baseline_metrics.csv
+- cv_model_results.csv
+- validation_model_metrics.csv
+- calibration_metrics.csv
+- calibration_bins.csv
+- validation_topk_capture.csv
+- model_selection_report.csv
+- oot_model_metrics.csv
+- oot_topk_capture.csv
+- oot_bootstrap_ci.csv
+- oot_access_log.csv
+- subgroup_performance.csv
+- feature_importance.csv
+- shap_summary.csv
+- runtime_profile.csv
+- runtime_manifest.json
+- report_manifest.csv
+- part5_validation_report.csv

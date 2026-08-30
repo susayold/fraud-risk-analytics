@@ -55,6 +55,10 @@ Part 1 defines business context, fraud use case, KPI framework, validation quest
 
 Part 4 implements a governed point-in-time behavioral feature layer with 43 primary behavioral features across entity history, velocity, amount deviation and relationship familiarity. Historical labels are excluded from feature construction. Public evidence is aggregate-only. The implementation is locked after SQL-backed PIT fixtures, semantic invariants, live-mart artifact reconciliation, true cross-split truth audits, provenance checks, report hashes and entity-complete QA. The full 24.4M-row feature mart is not retained or published because of local resource constraints, so full-population behavioral signal statistics are not claimed.
 
+## Part 5 — Fraud Rules & Machine Learning
+
+Part 5 P5.1 implements the resource-safe modeling contract: Development-only deterministic negative sampling, three expanding temporal CV folds, current-context F0 versus Part 4 behavioral F1/F2 feature sets, Development-fit preprocessing with unknown-category handling, Logistic Regression, Validation calibration/selection windows and aggregate-only reporting. The page remains `MODELING_IN_PROGRESS` until a real offline run supplies metrics; OOT is deliberately not accessed in P5.1. Part 5 ends at predictive ranking and diagnostic curves, while final ALLOW / REVIEW / BLOCK policy belongs to Part 7.
+
 ## Part 2 — Data & SQL Foundation
 
 The Part 2 experience documents the transaction grain, entity keys, quality gates, fraud-label audit, leakage policy, Drive-only storage boundary, point-in-time feature rule, row reconciliation and chronological development/validation/OOT split. The verified source archive is stored in Google Drive. To reproduce the complete foundation without committing raw data, stage the extracted CSV in a temporary directory and run `python src/run_part2_pipeline.py --source-file <temporary-source.csv> --work-dir <temporary-work-dir>`, then run `python src/validate_outputs.py`. Raw data, processed Parquet, and the local DuckDB database are ignored by Git and should be deleted after the run.
@@ -68,4 +72,4 @@ The Part 2 experience documents the transaction grain, entity keys, quality gate
 
 ## Repository Structure
 
-`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter, `part-3.html` contains the locked Fraud Portfolio Analytics chapter, and `part-4.html` contains the locked Behavioral Fraud Analytics chapter. `part-5.html` through `part-9.html` remain future chapter shells. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, executed Part 3 aggregate reports live in `reports/part3/`, and supplied artwork lives in `assets/`.
+`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter, `part-3.html` contains the locked Fraud Portfolio Analytics chapter, `part-4.html` contains the locked Behavioral Fraud Analytics chapter, and `part-5.html` contains the governed P5.1 modeling sprint. Parts 6–9 remain future chapter shells. Shared motion lives in `js/`, visual tokens and responsive styling live in `css/`, executed Part 3 aggregate reports live in `reports/part3/`, and supplied artwork lives in `assets/`.

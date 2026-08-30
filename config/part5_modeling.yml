@@ -1,0 +1,47 @@
+version: PART5_v1.0
+execution_mode: resource_safe_temporal_windows
+history_source: analytics.part4_evaluation_v1
+feature_contract_version: PART4_v1.1
+pit_policy: history_timestamp < current_timestamp
+
+training:
+  negative_ratio: 20
+  negative_sampling: deterministic_hash_by_calendar_quarter
+  temporal_cv_folds: 3
+  seed: 20260830
+  weighting: full_development_legitimate_count / sampled_development_legitimate_count
+  smote_or_adasyn: false
+
+evaluation:
+  primary_metric: pr_auc
+  validation_window_days: 365
+  oot_window_days: 365
+  top_k: [0.005, 0.01, 0.02, 0.05, 0.10]
+  natural_prevalence_required: true
+
+calibration:
+  candidates: [uncalibrated, sigmoid, isotonic]
+  fit_scope: validation_calibration_period_only
+
+models:
+  logistic_regression:
+    enabled: true
+    solver: liblinear
+    penalty: l2
+    c_grid: [0.1, 1.0]
+    max_iter: 1000
+  random_forest:
+    enabled: false
+    reason: deferred_until_logistic_pipeline_passes
+  xgboost:
+    enabled: false
+    reason: deferred_until_logistic_pipeline_passes
+  lightgbm:
+    enabled: false
+    reason: deferred_until_logistic_pipeline_passes
+
+governance:
+  random_split: false
+  oot_tuning_allowed: false
+  final_decision_threshold_allowed: false
+  public_row_level_predictions: false

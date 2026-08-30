@@ -1,0 +1,52 @@
+{
+  "status": "MODELING_IN_PROGRESS",
+  "lock_status": "NOT_LOCKED",
+  "model_contract_version": "PART5_v1.0",
+  "calibration_contract_version": "P5_CALIBRATION_v1.0",
+  "frontend_contract_version": "P5_FRONTEND_v1.0",
+  "execution": {
+    "scope": "P5.1_LOGISTIC_VALIDATION_WINDOW_ONLY",
+    "history_population_rows": 24386900,
+    "target_rows": null,
+    "development_training_rows": null,
+    "validation_calibration_rows": null,
+    "validation_selection_rows": null,
+    "oot_rows_manifested": null,
+    "representative_sample_claim": false,
+    "full_population_model_run": false,
+    "raw_publication": false
+  },
+  "splits": {
+    "development": {"role": "training plus temporal CV", "date_start": "1999-11-26", "date_end": "2011-06-15"},
+    "validation": {"role": "calibration plus model selection", "date_start": "2011-06-16", "date_end": "2015-10-22", "window_days": 365},
+    "oot": {"role": "final frozen evaluation", "date_start": "2015-10-23", "date_end": "2020-02-28", "window_days": 365, "accessed": false}
+  },
+  "feature_sets": [
+    {"name": "F0", "label": "Current Context", "feature_count": 4, "status": "CONTRACT_DEFINED"},
+    {"name": "F1", "label": "Behavioral", "feature_count": 43, "status": "CONTRACT_DEFINED"},
+    {"name": "F2", "label": "Current + Behavioral", "feature_count": 47, "status": "CONTRACT_DEFINED"}
+  ],
+  "rules": {"status": "NOT_RUN", "count": 0},
+  "models": [{"name": "Logistic Regression", "version": "PART5_LOGISTIC_v1.0", "feature_sets": ["F0", "F2"], "status": "PENDING"}],
+  "validation_metrics": [],
+  "calibration": {"fit_scope": "VALIDATION_CALIBRATION", "methods": ["uncalibrated", "sigmoid", "isotonic"], "metrics": []},
+  "topk": [],
+  "incremental_value": {"status": "PENDING", "comparison": "F0 vs F2"},
+  "oot_metrics": [],
+  "subgroups": [],
+  "feature_importance": [],
+  "champion": {"status": "PENDING", "model_name": null, "feature_set": null},
+  "validation": {"status": "PENDING", "stage": "P5.1_LOGISTIC_BASELINE", "oot_final_evaluation": "NOT_RUN", "checks": {}},
+  "governance": {
+    "primary_metric": "PR-AUC",
+    "negative_sampling": "all Development fraud plus deterministic quarter-stratified legitimate sample up to 20:1",
+    "preprocessing_fit_scope": "Development only",
+    "natural_prevalence_evaluation": true,
+    "no_random_split": true,
+    "no_oot_tuning": true,
+    "no_final_decision_policy": true,
+    "not_claimed": ["full-population model performance", "causality", "loss prevented", "production performance", "ALLOW/REVIEW/BLOCK threshold"]
+  },
+  "findings": [],
+  "run": null
+}
