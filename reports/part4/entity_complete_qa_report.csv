@@ -1,0 +1,5 @@
+check_name,entity_scope,rows_checked,violations,status,notes
+selected_users_deterministic,user,100,0,PASS,Selected by stable hash order; no fraud label or target used.
+complete_observed_user_history_loaded,user,1190585,0,PASS,Cohort is materialized from every source row for the selected users across the full observed period.
+complete_observed_card_history,card,1190585,0,PASS,Selected cards have no rows belonging to users outside the selected cohort.
+relationship_history_complete,user_card_relationships,1190585,0,PASS,User and relationship histories are complete for the selected user cohort; merchant-global history is excluded from this claim.

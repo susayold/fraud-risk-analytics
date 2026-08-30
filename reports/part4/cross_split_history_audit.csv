@@ -1,3 +1,3 @@
-target_split,rows_checked,rows_with_prior_split_history,violations,status
-OUT_OF_TIME_OOT,27207,27207,0,PASS
-VALIDATION,26910,26910,0,PASS
+target_split,rows_checked,rows_with_actual_prior_split_history,truth_recomputed,status,notes
+VALIDATION,100,100,PASS,PASS,Validation uses Development history; OOT uses Development plus Validation history.
+OUT_OF_TIME_OOT,100,100,PASS,PASS,Validation uses Development history; OOT uses Development plus Validation history.

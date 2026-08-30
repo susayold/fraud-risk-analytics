@@ -1,11 +1,11 @@
 {
-  "status": "BEHAVIOR_READY_SAMPLE_QA",
-  "lock_status": "NOT_LOCKED",
+  "status": "BEHAVIOR_READY",
+  "lock_status": "LOCKED",
   "feature_contract_version": "PART4_v1.1",
   "pit_contract_version": "P4_PIT_v1.0",
   "signal_bin_contract_version": "P4_BINS_v1.0",
-  "validation_contract_version": "P4_VALIDATION_v1.1",
-  "frontend_contract_version": "P4_FRONTEND_v1.1",
+  "validation_contract_version": "P4_VALIDATION_v1.2",
+  "frontend_contract_version": "P4_FRONTEND_v1.2",
   "pit_rule": "history_timestamp < current_timestamp",
   "base": {
     "transactions": 100000,
@@ -26,9 +26,10 @@
     "sampling_method": "source_row_id_prefix",
     "representative_sample_claim": false,
     "full_population_feature_run": false,
+    "qa_execution_slice_pass": true,
     "sql_fixture_pass": true,
     "semantic_invariants_pass": true,
-    "entity_complete_qa_pass": false,
+    "entity_complete_qa_pass": true,
     "history_coverage_status": "TRUNCATION_POSSIBLE"
   },
   "feature_families": [
@@ -63,14 +64,14 @@
       {
         "entity": "card",
         "cold_start": "0",
-        "transactions": 99994,
+        "transactions": 99979,
         "fraud_transactions": 126,
-        "fraud_rate": 0.0012600756045362722
+        "fraud_rate": 0.0012602646555776712
       },
       {
         "entity": "card",
         "cold_start": "1",
-        "transactions": 6,
+        "transactions": 21,
         "fraud_transactions": 0,
         "fraud_rate": 0.0
       },
@@ -110,9 +111,9 @@
       "bin_order": 0,
       "bin": "0",
       "feature_value": null,
-      "transactions": 34246,
-      "fraud_transactions": 20,
-      "fraud_rate": 0.0005840098113648309,
+      "transactions": 36611,
+      "fraud_transactions": 21,
+      "fraud_rate": 0.000573598098932015,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -121,9 +122,9 @@
       "bin_order": 1,
       "bin": "1",
       "feature_value": null,
-      "transactions": 9099,
+      "transactions": 7430,
       "fraud_transactions": 19,
-      "fraud_rate": 0.0020881415540169247,
+      "fraud_rate": 0.0025572005383580083,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -132,9 +133,9 @@
       "bin_order": 2,
       "bin": "2–4",
       "feature_value": null,
-      "transactions": 2524,
-      "fraud_transactions": 4,
-      "fraud_rate": 0.001584786053882726,
+      "transactions": 1834,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0016357688113413304,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -143,9 +144,9 @@
       "bin_order": 0,
       "bin": "0",
       "feature_value": null,
-      "transactions": 2774,
+      "transactions": 7075,
       "fraud_transactions": 5,
-      "fraud_rate": 0.001802451333813987,
+      "fraud_rate": 0.0007067137809187279,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -154,9 +155,9 @@
       "bin_order": 1,
       "bin": "1",
       "feature_value": null,
-      "transactions": 5993,
-      "fraud_transactions": 3,
-      "fraud_rate": 0.0005005840146837978,
+      "transactions": 8885,
+      "fraud_transactions": 4,
+      "fraud_rate": 0.0004501969611705121,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -165,9 +166,9 @@
       "bin_order": 2,
       "bin": "2–4",
       "feature_value": null,
-      "transactions": 21685,
-      "fraud_transactions": 7,
-      "fraud_rate": 0.0003228037814157252,
+      "transactions": 19465,
+      "fraud_transactions": 15,
+      "fraud_rate": 0.0007706139224248652,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -176,9 +177,20 @@
       "bin_order": 3,
       "bin": "5–9",
       "feature_value": null,
-      "transactions": 14481,
-      "fraud_transactions": 16,
-      "fraud_rate": 0.0011048960707133485,
+      "transactions": 9964,
+      "fraud_transactions": 14,
+      "fraud_rate": 0.0014050582095543958,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "card_txn_count_7d",
+      "bin_order": 2,
+      "bin": "2–4",
+      "feature_value": null,
+      "transactions": 3267,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0009182736455463728,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -187,9 +199,9 @@
       "bin_order": 3,
       "bin": "5–9",
       "feature_value": null,
-      "transactions": 2817,
-      "fraud_transactions": 3,
-      "fraud_rate": 0.0010649627263045794,
+      "transactions": 8019,
+      "fraud_transactions": 7,
+      "fraud_rate": 0.0008729267988527247,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -198,9 +210,9 @@
       "bin_order": 4,
       "bin": "10–19",
       "feature_value": null,
-      "transactions": 13859,
-      "fraud_transactions": 15,
-      "fraud_rate": 0.0010823291723789596,
+      "transactions": 15424,
+      "fraud_transactions": 25,
+      "fraud_rate": 0.001620850622406639,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -209,86 +221,64 @@
       "bin_order": 5,
       "bin": "20+",
       "feature_value": null,
-      "transactions": 28779,
-      "fraud_transactions": 25,
-      "fraud_rate": 0.0008686889745995344,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_1h",
-      "bin_order": 0,
-      "bin": "0",
-      "feature_value": null,
-      "transactions": 34246,
-      "fraud_transactions": 20,
-      "fraud_rate": 0.0005840098113648309,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_1h",
-      "bin_order": 1,
-      "bin": "1",
-      "feature_value": null,
-      "transactions": 9099,
-      "fraud_transactions": 19,
-      "fraud_rate": 0.0020881415540169247,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_1h",
-      "bin_order": 2,
-      "bin": "2–4",
-      "feature_value": null,
-      "transactions": 2524,
-      "fraud_transactions": 4,
-      "fraud_rate": 0.001584786053882726,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_24h",
-      "bin_order": 0,
-      "bin": "0",
-      "feature_value": null,
-      "transactions": 2774,
-      "fraud_transactions": 5,
-      "fraud_rate": 0.001802451333813987,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_24h",
-      "bin_order": 1,
-      "bin": "1",
-      "feature_value": null,
-      "transactions": 5993,
-      "fraud_transactions": 3,
-      "fraud_rate": 0.0005005840146837978,
-      "support_threshold": 1000,
-      "support_status": "INTERPRETABLE"
-    },
-    {
-      "feature_name": "merchant_txn_count_24h",
-      "bin_order": 2,
-      "bin": "2–4",
-      "feature_value": null,
-      "transactions": 21685,
+      "transactions": 18666,
       "fraud_transactions": 7,
-      "fraud_rate": 0.0003228037814157252,
+      "fraud_rate": 0.0003750133933354763,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "merchant_txn_count_1h",
+      "bin_order": 0,
+      "bin": "0",
+      "feature_value": null,
+      "transactions": 41992,
+      "fraud_transactions": 40,
+      "fraud_rate": 0.0009525623928367308,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "merchant_txn_count_1h",
+      "bin_order": 1,
+      "bin": "1",
+      "feature_value": null,
+      "transactions": 3071,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0009768804949527841,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
     {
       "feature_name": "merchant_txn_count_24h",
-      "bin_order": 3,
-      "bin": "5–9",
+      "bin_order": 0,
+      "bin": "0",
       "feature_value": null,
-      "transactions": 14481,
-      "fraud_transactions": 16,
-      "fraud_rate": 0.0011048960707133485,
+      "transactions": 32132,
+      "fraud_transactions": 39,
+      "fraud_rate": 0.0012137433088509897,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "merchant_txn_count_24h",
+      "bin_order": 1,
+      "bin": "1",
+      "feature_value": null,
+      "transactions": 8107,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.00037005057357838907,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "merchant_txn_count_24h",
+      "bin_order": 2,
+      "bin": "2–4",
+      "feature_value": null,
+      "transactions": 5428,
+      "fraud_transactions": 1,
+      "fraud_rate": 0.00018422991893883567,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     },
@@ -366,6 +356,17 @@
       "transactions": 14481,
       "fraud_transactions": 16,
       "fraud_rate": 0.0011048960707133485,
+      "support_threshold": 1000,
+      "support_status": "INTERPRETABLE"
+    },
+    {
+      "feature_name": "user_txn_count_7d",
+      "bin_order": 3,
+      "bin": "5–9",
+      "feature_value": null,
+      "transactions": 2817,
+      "fraud_transactions": 3,
+      "fraud_rate": 0.0010649627263045794,
       "support_threshold": 1000,
       "support_status": "INTERPRETABLE"
     }
@@ -588,9 +589,9 @@
         "bin_order": 0,
         "bin": "0",
         "feature_value": "0",
-        "transactions": 44069,
-        "fraud_transactions": 22,
-        "fraud_rate": 0.0004992171367628038,
+        "transactions": 43239,
+        "fraud_transactions": 18,
+        "fraud_rate": 0.00041629084853951295,
         "support_threshold": 1000,
         "support_status": "INTERPRETABLE"
       },
@@ -599,9 +600,9 @@
         "bin_order": 1,
         "bin": "1",
         "feature_value": "1",
-        "transactions": 1814,
-        "fraud_transactions": 21,
-        "fraud_rate": 0.011576626240352812,
+        "transactions": 2644,
+        "fraud_transactions": 25,
+        "fraud_rate": 0.009455370650529501,
         "support_threshold": 1000,
         "support_status": "INTERPRETABLE"
       },
@@ -707,9 +708,55 @@
   },
   "validation": {
     "status": "PASS",
-    "contract_version": "P4_VALIDATION_v1.1",
-    "pipeline_seconds": 17.661,
-    "full_population_signal_profile": false
+    "contract_version": "P4_VALIDATION_v1.2",
+    "pipeline_seconds": 7.418,
+    "full_population_signal_profile": false,
+    "checks": {
+      "P4T01_registry_file_exists": "PASS",
+      "P4T02_registry_primary_feature_count": "PASS",
+      "P4T03_registry_required_columns": "PASS",
+      "P4T04_family_sql_target_exclusion": "PASS",
+      "P4T29_publication_boundary": "PASS",
+      "P4T12_sql_backed_pit_fixture": "PASS",
+      "P4T09_source_row_reconciliation": "PASS",
+      "P4T06_registry_mart_exact_43": "PASS",
+      "P4T10_behavior_source_no_join_explosion": "PASS",
+      "P4T10_user_features_no_join_explosion": "PASS",
+      "P4T10_card_features_no_join_explosion": "PASS",
+      "P4T10_merchant_features_no_join_explosion": "PASS",
+      "P4T10_amount_features_no_join_explosion": "PASS",
+      "P4T10_user_merchant_features_no_join_explosion": "PASS",
+      "P4T10_card_merchant_features_no_join_explosion": "PASS",
+      "P4T10_user_mcc_features_no_join_explosion": "PASS",
+      "P4T10_card_mcc_features_no_join_explosion": "PASS",
+      "P4T10_channel_features_no_join_explosion": "PASS",
+      "P4T10_behavioral_features_v1_no_join_explosion": "PASS",
+      "P4T10_evaluation_view_no_join_explosion": "PASS",
+      "P4T11_amount_ratio_semantics": "PASS",
+      "P4T11_amount_z_semantics": "PASS",
+      "P4T11_card_cold_start_consistency": "PASS",
+      "P4T11_card_merchant_new_consistency": "PASS",
+      "P4T11_current_positive_amount_semantics": "PASS",
+      "P4T11_merchant_cold_start_consistency": "PASS",
+      "P4T11_non_negative_recency": "PASS",
+      "P4T11_relationship_count_hierarchy": "PASS",
+      "P4T11_state_missing_not_new": "PASS",
+      "P4T11_user_cold_start_consistency": "PASS",
+      "P4T11_user_merchant_new_consistency": "PASS",
+      "P4T21_timestamp_nulls": "PASS",
+      "P4T22_strict_pit_sql_present": "PASS",
+      "P4T25_low_support_flag_integrity": "PASS",
+      "P4T31_artifact_consistency": "PASS",
+      "P4T32_relationship_new_recency_null_equivalence": "PASS",
+      "P4T33_recency_resolution_consistency": "PASS",
+      "P4T34_feature_partition_diversity": "PASS",
+      "P4T40_entity_complete_qa_pass": "PASS",
+      "P4T38_validation_sees_development_history": "PASS",
+      "P4T39_oot_sees_pre_oot_history": "PASS",
+      "P4T23_development_only_signal_mining": "PASS",
+      "P4T24_validation_oot_not_mined": "PASS",
+      "P4T30_readme_status_sync": "PASS"
+    }
   },
   "signal_profile": {
     "source": "DEVELOPMENT",
@@ -741,7 +788,7 @@
     },
     {
       "title": "Signal bins are feature-specific",
-      "evidence": "46 interpretable Development bins are available in this execution scope.",
+      "evidence": "45 interpretable Development bins are available in this execution scope.",
       "meaning": "Counts, seconds, ratios and signed z-scores use separate units and bins.",
       "next_action": "Freeze candidate features before Validation/OOT evaluation."
     },
@@ -776,15 +823,105 @@
       "production deployment"
     ]
   },
+  "entity_complete_qa": [
+    {
+      "check_name": "selected_users_deterministic",
+      "entity_scope": "user",
+      "rows_checked": "100",
+      "violations": "0",
+      "status": "PASS",
+      "notes": "Selected by stable hash order; no fraud label or target used."
+    },
+    {
+      "check_name": "complete_observed_user_history_loaded",
+      "entity_scope": "user",
+      "rows_checked": "1190585",
+      "violations": "0",
+      "status": "PASS",
+      "notes": "Cohort is materialized from every source row for the selected users across the full observed period."
+    },
+    {
+      "check_name": "complete_observed_card_history",
+      "entity_scope": "card",
+      "rows_checked": "1190585",
+      "violations": "0",
+      "status": "PASS",
+      "notes": "Selected cards have no rows belonging to users outside the selected cohort."
+    },
+    {
+      "check_name": "relationship_history_complete",
+      "entity_scope": "user_card_relationships",
+      "rows_checked": "1190585",
+      "violations": "0",
+      "status": "PASS",
+      "notes": "User and relationship histories are complete for the selected user cohort; merchant-global history is excluded from this claim."
+    }
+  ],
+  "history_coverage": [
+    {
+      "entity_type": "source_global_temporal_order",
+      "rows_sampled": "100000",
+      "rows_with_external_prior_history": "",
+      "share": "",
+      "scope": "SOURCE_ROW_ID_PREFIX_1_TO_100000",
+      "status": "TRUNCATION_POSSIBLE",
+      "notes": "prefix_max_timestamp=2020-02-28 23:49:00; tail_min_timestamp=1991-01-02 07:10:00; non-closure is not an affected-row count."
+    },
+    {
+      "entity_type": "user",
+      "rows_sampled": "100",
+      "rows_with_external_prior_history": "0",
+      "share": "0.0",
+      "scope": "DETERMINISTIC_100_TARGET_ROWS",
+      "status": "PASS",
+      "notes": "Actual user-level external prior history measured against rows outside the prefix."
+    }
+  ],
+  "relationship_semantics": [
+    {
+      "metric": "user_merchant_is_new_count",
+      "metric_value": "2947"
+    },
+    {
+      "metric": "user_merchant_recency_null_count",
+      "metric_value": "2947"
+    },
+    {
+      "metric": "card_merchant_is_new_count",
+      "metric_value": "5098"
+    },
+    {
+      "metric": "card_merchant_recency_null_count",
+      "metric_value": "5098"
+    },
+    {
+      "metric": "user_mcc_is_new_count",
+      "metric_value": "499"
+    },
+    {
+      "metric": "card_mcc_is_new_count",
+      "metric_value": "1278"
+    },
+    {
+      "metric": "user_channel_is_new_count",
+      "metric_value": "17"
+    },
+    {
+      "metric": "card_channel_is_new_count",
+      "metric_value": "58"
+    }
+  ],
   "run": {
-    "run_id": "P4-20260830T065129Z",
-    "git_commit": "a488321be6db807c4e54e079d0f3f32751901771",
-    "run_timestamp_utc": "2026-08-30T06:51:29.738420+00:00",
+    "run_id": "P4-20260830T075031Z",
+    "code_commit": "7a7a62790b8b0893e4e8989e1dd46481b89251c4",
+    "artifact_commit": "7a7a62790b8b0893e4e8989e1dd46481b89251c4",
+    "working_tree_clean": true,
+    "run_timestamp_utc": "2026-08-30T07:50:31.853989+00:00",
     "feature_contract_version": "PART4_v1.1",
     "pit_contract_version": "P4_PIT_v1.0",
     "signal_bin_contract_version": "P4_BINS_v1.0",
-    "validation_contract_version": "P4_VALIDATION_v1.1",
-    "frontend_contract_version": "P4_FRONTEND_v1.1",
+    "validation_contract_version": "P4_VALIDATION_v1.2",
+    "frontend_contract_version": "P4_FRONTEND_v1.2",
     "database_source": "temporary offline database (not published)",
     "threads": 1,
     "memory_limit": "2GB",
