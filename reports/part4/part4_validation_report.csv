@@ -1,5 +1,11 @@
-check_name,status,notes
-P4T01_feature_mart_reconciliation,PASS,Source and feature evaluation rows reconcile.
-P4T05_target_exclusion,PASS,Behavior source and family SQL contain no fraud_label.
-P4T06_strict_pit,PASS,All family windows end at one microsecond before T0; logical policy is timestamp < T0.
-P4T30_summary_contract,PASS,Aggregate-only summary contract written.
+check_name,rows_checked,violations,status,notes
+P4T01_registry_file_exists,,0,PASS,C:\Users\sangk\Documents\Codex\2026-08-29\ta\outputs\fraud-risk-website\docs\PART4_FEATURE_REGISTRY.csv
+P4T02_registry_primary_feature_count,43,0,PASS,Registry rows=43; expected 43.
+P4T03_registry_required_columns,,0,PASS,Required registry columns are present.
+P4T04_family_sql_target_exclusion,,0,PASS,Outcome tokens are excluded from source and family SQL.
+P4T29_publication_boundary,223,0,PASS,"No raw, row-level or private runtime artifact is tracked."
+P4T26_summary_execution_scope,,0,PASS,"Summary declares scope, population and validation status."
+P4T12_sql_backed_pit_fixture,10,0,PASS,Fixture expected values match the production SQL output.
+P4T23_development_only_signal_mining,,0,PASS,Signal queries explicitly filter Development.
+P4T24_validation_oot_not_mined,,0,PASS,Validation and OOT are excluded from signal discovery.
+P4T30_readme_status_sync,,0,PASS,README reflects the current hardened status.

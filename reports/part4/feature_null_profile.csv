@@ -1,4 +1,4 @@
-feature_name,rows,null_rows,null_rate
+feature_name,row_count,null_rows,null_rate
 card_channel_is_new,100000,0,0.0
 card_channel_prior_txn_count,100000,0,0.0
 card_cold_start,100000,0,0.0

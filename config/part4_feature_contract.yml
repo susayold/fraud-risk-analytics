@@ -1,4 +1,4 @@
-version: PART4_v1.0
+version: PART4_v1.1
 description: Point-in-time behavioral feature contract for Part 4
 pit:
   rule: history_timestamp < current_timestamp

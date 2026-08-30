@@ -1,0 +1,39 @@
+version: P4_BINS_v1.0
+frozen_on_split: DEVELOPMENT
+support_threshold: 1000
+bins:
+  velocity_count:
+    - {order: 0, label: "0"}
+    - {order: 1, label: "1"}
+    - {order: 2, label: "2–4"}
+    - {order: 3, label: "5–9"}
+    - {order: 4, label: "10–19"}
+    - {order: 5, label: "20+"}
+  recency_seconds:
+    - {order: 0, label: "NULL"}
+    - {order: 1, label: "<1 minute"}
+    - {order: 2, label: "1–5 minutes"}
+    - {order: 3, label: "5–30 minutes"}
+    - {order: 4, label: "30 minutes–6 hours"}
+    - {order: 5, label: "6–24 hours"}
+    - {order: 6, label: "1–7 days"}
+    - {order: 7, label: "7–30 days"}
+    - {order: 8, label: "30+ days"}
+  amount_ratio:
+    - {order: 0, label: "NULL"}
+    - {order: 1, label: "<0.25x"}
+    - {order: 2, label: "0.25–0.5x"}
+    - {order: 3, label: "0.5–1x"}
+    - {order: 4, label: "1–2x"}
+    - {order: 5, label: "2–5x"}
+    - {order: 6, label: "5–10x"}
+    - {order: 7, label: "10x+"}
+  z_score:
+    - {order: 0, label: "NULL"}
+    - {order: 1, label: "z < -2"}
+    - {order: 2, label: "-2 ≤ z < -1"}
+    - {order: 3, label: "-1 ≤ z < 1"}
+    - {order: 4, label: "1 ≤ z < 2"}
+    - {order: 5, label: "2 ≤ z < 3"}
+    - {order: 6, label: "3 ≤ z < 5"}
+    - {order: 7, label: "z ≥ 5"}

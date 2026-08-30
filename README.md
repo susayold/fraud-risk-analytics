@@ -24,7 +24,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | 1 | Business Scope & Project Governance | ✅ Complete |
 | 2 | Data & SQL Foundation | ✅ Locked |
 | 3 | Fraud Portfolio Analytics | ✅ Locked |
-| 4 | Behavioral Fraud Analytics | ⬜ Planned |
+| 4 | Behavioral Fraud Analytics | 🟡 QA Hardened — PIT contract validated; full-population signal not claimed |
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
 | 6 | Network & Graph Fraud Analytics | ⬜ Planned |
 | 7 | Fraud Risk Decision Engine | ⬜ Planned |
@@ -50,6 +50,10 @@ HTML / CSS / JavaScript · GSAP / ScrollTrigger / Lenis · Python / SQL / DuckDB
 ## Current Deliverable
 
 Part 1 defines business context, fraud use case, KPI framework, validation questions, decision architecture, scope boundary, claim boundary, and governance principles. Part 2 adds the reproducible data inventory, streaming audit, executed Parquet/DuckDB and SQL-foundation pipeline. Part 3 adds Development-only portfolio discovery: time trends, channel/amount/MCC/geography risk, aggregate entity concentration, materiality-based segment priority and split-stability boundaries. Observed metrics are sourced from the IBM TabFormer transaction archive stored on Google Drive; the raw archive is not committed to GitHub.
+
+## Part 4 — Behavioral Fraud Analytics
+
+Part 4 implements a governed point-in-time behavioral feature layer with 43 primary behavioral features across entity history, velocity, amount deviation and relationship familiarity. Historical labels are excluded from feature construction. Public evidence is aggregate-only. The implementation is validated through SQL-backed PIT fixtures, semantic invariants, family reconciliation and a deterministic QA execution slice. The full 24.4M-row feature mart is not retained or published because of local resource constraints, so full-population behavioral signal statistics are not claimed.
 
 ## Part 2 — Data & SQL Foundation
 
