@@ -1,0 +1,36 @@
+check_name,rows_checked,violations,status,notes
+P5T01_model_feature_registry_exists,47,0,PASS,rows=47; expected=47.
+P5T02_no_forbidden_inputs,0,0,PASS,forbidden=[].
+P5T03_part4_feature_contract_match,43,0,PASS,F1 references the locked Part 4 registry.
+P5T04_preprocessing_fit_development_only,0,0,PASS,Preprocessing contract is Development-fit and Validation/OOT-transform-only.
+P5T05_unknown_category_policy,0,0,PASS,One-hot encoder ignores unseen categories.
+P5T06_chip_scoring_policy_present,0,0,PASS,Chip generalization is explicitly governed.
+P5T07_deterministic_sampling,0,0,PASS,Seed and quarter-hash sampling are frozen.
+P5T08_no_smote_primary_strategy,0,0,PASS,
+P5T09_temporal_cv_policy,0,0,PASS,
+P5T10_no_oot_during_tuning,0,0,PASS,P5.1 does not access OOT scores.
+P5T11_calibration_scope,0,0,PASS,
+P5T12_natural_prevalence_evaluation,0,0,PASS,
+P5T13_prediction_completeness,0,1,PENDING,P5.1 aggregate metrics are present when a real run has completed.
+P5T14_probability_range,0,1,PENDING,Probability range is checked from private predictions during execution.
+P5T15_rule_determinism,0,1,PENDING,Rule baseline is a later sprint.
+P5T16_pr_auc_recompute,0,1,PENDING,PR-AUC is computed from the natural-prevalence Validation selection window.
+P5T17_roc_auc_recompute,0,1,PENDING,
+P5T18_ks_recompute,0,1,PENDING,
+P5T19_topk_reconciliation,0,1,PENDING,
+P5T20_calibration_reconciliation,0,1,PENDING,
+P5T21_champion_pre_oot,0,1,PENDING,
+P5T22_oot_access_governance,0,1,PENDING,No OOT access is recorded in P5.1.
+P5T23_oot_frozen_evaluation,0,1,PENDING,OOT final evaluation is intentionally deferred.
+P5T24_confidence_interval_integrity,0,1,PENDING,Date-block bootstrap is a later sprint.
+P5T25_subgroup_support,0,1,PENDING,Predefined OOT subgroups are a later sprint.
+P5T26_shap_sample_deterministic,0,1,PENDING,SHAP is a later sprint.
+P5T27_shap_feature_set_match,0,1,PENDING,SHAP is a later sprint.
+P5T28_no_causal_language,0,0,PASS,prohibited=[].
+P5T29_no_final_decision_policy_claim,0,0,PASS,
+P5T30_publication_boundary,0,0,PASS,private_files=[].
+P5T31_summary_contract,0,0,PASS,
+P5T32_model_card_version_sync,0,0,PASS,
+P5T33_champion_name_sync,0,0,PASS,
+P5T34_no_nan_public_metrics,0,0,PASS,
+P5T35_lock_gate_not_bypassed,0,0,PASS,
