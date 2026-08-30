@@ -48,8 +48,10 @@ def numeric_signal_query(
 ) -> str:
     parts = []
     for feature in features:
+        case_expr = bin_case(feature).replace(feature, "feature_value")
+        label_expr = bin_label(feature).replace(feature, "feature_value")
         parts.append(
-            f"SELECT '{feature}' feature_name, {bin_case(feature)} bin_order, {bin_label(feature)} bin, "
+            f"SELECT '{feature}' feature_name, {case_expr} bin_order, {label_expr} bin, "
             f"NULL::VARCHAR feature_value, COUNT(*) transactions, SUM(fraud_label) fraud_transactions, "
             f"AVG(fraud_label) fraud_rate, 1000 support_threshold, "
             f"CASE WHEN COUNT(*) >= 1000 THEN 'INTERPRETABLE' ELSE 'LOW_SUPPORT' END support_status "
