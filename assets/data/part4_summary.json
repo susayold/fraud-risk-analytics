@@ -708,7 +708,7 @@
   "validation": {
     "status": "PASS",
     "contract_version": "P4_VALIDATION_v1.1",
-    "pipeline_seconds": 19.685,
+    "pipeline_seconds": 17.661,
     "full_population_signal_profile": false
   },
   "signal_profile": {
@@ -777,9 +777,9 @@
     ]
   },
   "run": {
-    "run_id": "P4-20260830T064422Z",
-    "git_commit": "d82baeeaab0536dac4381ee2062136288bd2bd01",
-    "run_timestamp_utc": "2026-08-30T06:44:22.529772+00:00",
+    "run_id": "P4-20260830T065129Z",
+    "git_commit": "a488321be6db807c4e54e079d0f3f32751901771",
+    "run_timestamp_utc": "2026-08-30T06:51:29.738420+00:00",
     "feature_contract_version": "PART4_v1.1",
     "pit_contract_version": "P4_PIT_v1.0",
     "signal_bin_contract_version": "P4_BINS_v1.0",
