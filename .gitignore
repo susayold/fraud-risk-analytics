@@ -10,6 +10,12 @@ data/raw/
 data/processed/
 features/private/
 outputs/private/
+models/private/
+data/modeling/
+*.joblib
+*.pkl
+predictions/
+shap/private/
 
 __pycache__/
 *.pyc
@@ -18,4 +24,3 @@ __pycache__/
 !data/interim/.gitkeep
 !data/processed/.gitkeep
 !database/.gitkeep
-
