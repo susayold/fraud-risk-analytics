@@ -320,7 +320,7 @@ def main() -> None:
         db.execute("DROP VIEW IF EXISTS analytics.behavioral_features_v1")
         for table in ("part4_user_features", "part4_card_features", "part4_merchant_features", "part4_amount_features", "part4_user_merchant_features", "part4_card_merchant_features", "part4_user_mcc_features", "part4_card_mcc_features", "part4_channel_features"):
             db.execute(f"DROP TABLE IF EXISTS analytics.{table}")
-    db.close(); print("BEHAVIOR_READY_SAMPLE_QA" if args.sample_row_limit is not None else "BEHAVIOR_READY")
+    db.close(); print("BEHAVIOR_READY" if json.loads(SUMMARY_PATH.read_text(encoding="utf-8")).get("lock_status") == "LOCKED" else ("BEHAVIOR_READY_SAMPLE_QA" if args.sample_row_limit is not None else "BEHAVIOR_READY"))
 
 
 if __name__ == "__main__":
