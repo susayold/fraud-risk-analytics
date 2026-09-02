@@ -8,7 +8,7 @@ from .economics import EconomicAssumptions, evaluate_economics
 from .evaluation_runtime import evaluate_decisions
 
 
-def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6, queue_config: dict | None = None) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6, queue_config: dict | None = None, precedence_config: dict | None = None) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
     rows: list[dict] = []
     actions: dict[str, pd.DataFrame] = {}
     pairs = [(review, block) for review in thresholds for block in thresholds if review < block < 1]
@@ -28,8 +28,16 @@ def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: 
                         else:
                             config = PolicyConfig(f"PART7_{variant}_{review_threshold:.6f}_{block_threshold:.6f}_{capacity:.4f}_{method}", review_threshold, block_threshold, task_capacity, method)
                         decision_frame = frame.drop(columns=["fraud_label"], errors="ignore")
-                        action_frame = decide(decision_frame, config, calibrated_probability, high_amount_cutoff=high_amount_cutoff, emit_reason_codes=False, queue_config=queue_config)
+                        action_frame = decide(decision_frame, config, calibrated_probability, high_amount_cutoff=high_amount_cutoff, emit_reason_codes=False, queue_config=queue_config, precedence_config=precedence_config)
                         metrics = evaluate_decisions(action_frame, frame[["source_row_id", "fraud_label"]], assumptions)
+                        metrics.update({
+                            "policy_version": config.policy_version,
+                            "priority_method": config.priority_method,
+                            "review_threshold": config.review_threshold,
+                            "block_threshold": config.block_threshold,
+                            "review_capacity": config.review_capacity,
+                            "feasible": True,
+                        })
                         metrics["variant"] = variant
                         metrics["high_amount_cutoff"] = high_amount_cutoff
                         key = config.policy_version
@@ -42,7 +50,15 @@ def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: 
     p0_metrics = evaluate_economics(p0, assumptions)
     p0_metrics.update({"policy_version": "PART7_P0_ALLOW_ALL", "priority_method": "SCORE_ONLY", "review_threshold": None, "block_threshold": None, "review_capacity": 0.0, "variant": "P0", "feasible": True, "high_amount_cutoff": high_amount_cutoff})
     rows.insert(0, p0_metrics); actions["PART7_P0_ALLOW_ALL"] = p0
-    return pd.DataFrame(rows), actions
+    result = pd.DataFrame(rows)
+    required_metadata = {"policy_version", "priority_method", "review_threshold", "block_threshold", "review_capacity", "variant", "feasible"}
+    missing_metadata = sorted(required_metadata - set(result.columns))
+    if missing_metadata:
+        raise RuntimeError(f"Policy candidate metadata missing: {missing_metadata}")
+    candidate_rows = result[result.variant.astype(str).isin({"P2", "P3", "P4", "P5"})]
+    if not candidate_rows.empty and candidate_rows[["policy_version", "priority_method", "review_threshold", "block_threshold", "review_capacity"]].isna().any().any():
+        raise RuntimeError("P2-P5 candidate metadata contains null values")
+    return result, actions
 
 
 def select_policy(candidates: pd.DataFrame, profile: dict, objective: str) -> pd.Series | None:

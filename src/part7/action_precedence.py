@@ -17,7 +17,23 @@ DEFAULT_PRECEDENCE = [
 ]
 
 
-def candidate_actions(frame: pd.DataFrame, review_threshold: float, block_threshold: float, *, hard_block_enabled: bool = False) -> pd.Series:
-    if hard_block_enabled:
+def load_precedence_config(path) -> dict:
+    try:
+        import yaml
+    except ImportError as exc:
+        raise RuntimeError("PyYAML is required to load action precedence") from exc
+    config = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    steps = config.get("ordered_steps", [])
+    unknown = sorted(set(steps) - set(DEFAULT_PRECEDENCE))
+    if unknown or steps != DEFAULT_PRECEDENCE:
+        raise ValueError(f"Unsupported or incomplete action precedence: {unknown or steps}")
+    return config
+
+
+def candidate_actions(frame: pd.DataFrame, review_threshold: float, block_threshold: float, *, precedence_config: dict | None = None) -> pd.Series:
+    config = precedence_config or {"hard_block": {"enabled": False}, "allow_override": {"enabled": False}}
+    if config.get("allow_override", {}).get("enabled", False):
+        raise ValueError("Allow override is declared but no governed override predicate is configured")
+    if config.get("hard_block", {}).get("enabled", False):
         raise ValueError("Hard block is disabled in the default research boundary")
     return pd.Series(np.select([frame.risk_score >= block_threshold, frame.risk_score >= review_threshold], ["BLOCK", "REVIEW"], default="ALLOW"), index=frame.index)

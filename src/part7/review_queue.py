@@ -74,6 +74,7 @@ def apply_policy(
     high_amount_cutoff: float | None = None,
     emit_reason_codes: bool = True,
     queue_config: dict | None = None,
+    precedence_config: dict | None = None,
 ) -> pd.DataFrame:
     """Generate actions without reading a label/outcome column."""
     required = {"source_row_id", "risk_score", "positive_exposure"}
@@ -93,7 +94,7 @@ def apply_policy(
     # bucket; the governed Part 7 input contract still requires timestamps.
     result["capacity_bucket"] = time_bucket(result["transaction_timestamp"], config["bucket"].get("type", "DAY"), config["bucket"].get("timezone", "UTC")) if "transaction_timestamp" in result else "LEGACY_SINGLE_BUCKET"
     result["high_amount_cutoff"] = float(high_amount_cutoff) if high_amount_cutoff is not None else float("inf")
-    result["candidate_action"] = candidate_actions(result, review_threshold, block_threshold).to_numpy()
+    result["candidate_action"] = candidate_actions(result, review_threshold, block_threshold, precedence_config=precedence_config).to_numpy()
     result["action"] = result["candidate_action"]
     eligible = result["candidate_action"].eq("REVIEW")
     priority = _priority(result.loc[eligible], priority_method, calibrated_probability)

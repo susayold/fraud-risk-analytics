@@ -8,9 +8,9 @@ from .decision_runtime import decide
 from .evaluation_runtime import evaluate_decisions
 
 
-def run_policy(frame: pd.DataFrame, config: PolicyConfig, assumptions: EconomicAssumptions, calibrated_probability: bool, label_column: str = "fraud_label", emit_reason_codes: bool = True, evaluation_labels: pd.DataFrame | None = None, queue_config: dict | None = None) -> tuple[pd.DataFrame, dict]:
+def run_policy(frame: pd.DataFrame, config: PolicyConfig, assumptions: EconomicAssumptions, calibrated_probability: bool, label_column: str = "fraud_label", emit_reason_codes: bool = True, evaluation_labels: pd.DataFrame | None = None, queue_config: dict | None = None, precedence_config: dict | None = None) -> tuple[pd.DataFrame, dict]:
     """Compatibility facade; labels must be passed in a separate frame."""
-    actions = decide(frame, config, calibrated_probability, emit_reason_codes=emit_reason_codes, queue_config=queue_config)
+    actions = decide(frame, config, calibrated_probability, emit_reason_codes=emit_reason_codes, queue_config=queue_config, precedence_config=precedence_config)
     if evaluation_labels is None:
         return actions, {}
     metrics = evaluate_decisions(actions, evaluation_labels, assumptions, label_column=label_column)

@@ -31,10 +31,10 @@ This is intentional. Policy search, freeze, final OOT replay and `DECISION_POLIC
 
 ```text
 13 Part 7 tests: PASS
-64 evidence gates: 29 PASS / 35 BLOCKED / 0 FAIL while upstream input is missing
+64 evidence gates: 27 PASS / 37 BLOCKED / 0 FAIL while upstream input is missing
 ```
 
-The 29 passing gates cover code/config governance that can be verified without row-level data. The blocked gates require the frozen score, evaluation artifacts, freeze record or final replay outputs.
+The 27 passing gates cover code/config governance that can be verified without row-level data. The blocked gates require the frozen score, execution artifacts, freeze record or final replay outputs.
 
 ## Data boundary
 

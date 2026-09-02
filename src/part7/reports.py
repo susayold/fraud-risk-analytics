@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from .io import REPORT_DIR, public_manifest, utc_now, write_csv, write_json
+from .io import REPORT_DIR, ROOT, git_metadata, public_manifest, utc_now, write_csv, write_json
 
 
 def write_summary(status: str, score_version: str = "", policy_version: str = "", profile: str = "", policy: dict | None = None, evidence: dict | None = None, gates_pass: int = 0, gates_fail: int = 0, score_status: str | None = None) -> None:
@@ -17,3 +17,25 @@ def write_summary(status: str, score_version: str = "", policy_version: str = ""
 def write_input_audit(status: str, notes: str, checks: list[dict]) -> None:
     write_json(REPORT_DIR / "part7_input_audit.json", {"status": status, "notes": notes, "checks": checks, "generated_at_utc": utc_now()})
     write_csv(REPORT_DIR / "decision_input_reconciliation.csv", pd.DataFrame(checks))
+
+
+def refresh_public_summary(validation: pd.DataFrame) -> None:
+    """Make summary, asset mirror and reconciliation report one snapshot."""
+    summary_path = REPORT_DIR / "PART7_FINAL_SUMMARY.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
+    pass_count = int((validation.status == "PASS").sum())
+    blocked_count = int((validation.status == "BLOCKED").sum())
+    fail_count = int((validation.status == "FAIL").sum())
+    summary["validation"] = {"mandatory_gates": 64, "pass": pass_count, "blocked": blocked_count, "fail": fail_count,
+                              "status": summary.get("status", "INPUT_BLOCKED"), "final_lock_eligible": pass_count == 64 and blocked_count == 0 and fail_count == 0}
+    commit, _ = git_metadata()
+    summary["source_commit"] = commit
+    summary["validator_version"] = "PART7_EVIDENCE_VALIDATOR_v2.0"
+    write_json(summary_path, summary)
+    asset_path = ROOT / "assets" / "data" / "part7_summary.json"
+    write_json(asset_path, summary)
+    reconciliation = {"generated_at_utc": utc_now(), "source_commit": commit, "validator_version": summary["validator_version"],
+                      "validation_csv": {"pass": pass_count, "blocked": blocked_count, "fail": fail_count},
+                      "summary_json": summary["validation"], "assets_summary_json": json.loads(asset_path.read_text(encoding="utf-8"))["validation"],
+                      "status": "PASS" if summary["validation"]["pass"] == pass_count and summary["validation"]["blocked"] == blocked_count and summary["validation"]["fail"] == fail_count else "FAIL"}
+    write_json(REPORT_DIR / "P7_PUBLIC_EVIDENCE_RECONCILIATION.json", reconciliation)

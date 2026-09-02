@@ -1,0 +1,39 @@
+{
+  "generated_at_utc": "2026-09-02T22:19:23.600740+00:00",
+  "machine": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.2",
+    "pandas": "2.3.3",
+    "numpy": "2.4.4"
+  },
+  "results": [
+    {
+      "rows": 100000,
+      "runtime_seconds": 3.4969,
+      "rows_per_second": 28596.72,
+      "peak_python_memory_mb": 29.6,
+      "review_candidates": 9169,
+      "review_selected": 992,
+      "claim": "offline single-policy benchmark; not a production latency SLA"
+    },
+    {
+      "rows": 500000,
+      "runtime_seconds": 16.3884,
+      "rows_per_second": 30509.38,
+      "peak_python_memory_mb": 149.19,
+      "review_candidates": 44966,
+      "review_selected": 4992,
+      "claim": "offline single-policy benchmark; not a production latency SLA"
+    },
+    {
+      "rows": 1000000,
+      "runtime_seconds": 32.2397,
+      "rows_per_second": 31017.62,
+      "peak_python_memory_mb": 290.2,
+      "review_candidates": 89466,
+      "review_selected": 9993,
+      "claim": "offline single-policy benchmark; not a production latency SLA"
+    }
+  ],
+  "candidate_search_estimate": "Current full Tune+Confirm grid is approximately 504 policy evaluations; multiply single-policy measurements cautiously because cache/memory effects differ."
+}

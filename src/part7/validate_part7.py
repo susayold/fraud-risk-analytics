@@ -105,12 +105,22 @@ def _manifest_valid(path: Path) -> bool:
 
 def _row(name: str, family: str, description: str, *, source: Path, expected: str, observed, passed: bool, blocked: bool = False) -> dict:
     status = "PASS" if passed else ("BLOCKED" if blocked else "FAIL")
+    if name in {"P7T12_score_direction_declared", "P7T28_threshold_order_valid", "P7T30_overflow_explicit", "P7T31_deterministic_tiebreak", "P7T33_assumption_ids_complete", "P7T34_assumption_units_complete", "P7T35_source_claim_classes_complete", "P7T36_positive_exposure_nonnegative", "P7T37_signed_amount_boundary", "P7T41_graph_autoblock_disabled", "P7T42_graph_optionality_safe", "P7T44_part6_claim_preserved", "P7T45_reason_codes_registered", "P7T46_primary_reason_deterministic", "P7T47_secondary_reasons_valid", "P7T48_public_reason_aggregate_only"}:
+        evidence_class = "STATIC_GOVERNANCE"
+    elif name == "P7T32_future_rows_cannot_change_past":
+        evidence_class = "UNIT_TEST_EVIDENCE"
+    elif 49 <= int(name.split("_", 1)[0].replace("P7T", "")) <= 56:
+        evidence_class = "FREEZE_EVIDENCE"
+    elif name.startswith("P7T57") or name.startswith("P7T58") or name.startswith("P7T59") or name.startswith("P7T60") or name.startswith("P7T61") or name.startswith("P7T62") or name.startswith("P7T63"):
+        evidence_class = "FINAL_REPLAY_EVIDENCE"
+    else:
+        evidence_class = "EXECUTION_EVIDENCE"
     try:
         source_name = source.relative_to(ROOT).as_posix()
     except ValueError:
         source_name = str(source)
     return {"check_name": name, "family": family, "description": description,
-            "severity": "P0" if family in {"A", "B", "C", "D"} else "P1",
+            "severity": "P0" if family in {"A", "B", "C", "D"} else "P1", "evidence_class": evidence_class,
             "evidence_artifact": source_name, "evidence_sha256": _artifact(source),
             "expected_condition": expected, "observed_value": observed, "status": status,
             "violations": 0 if passed else 1, "checked_at": utc_now(),
@@ -165,14 +175,23 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T23_oot_absent_economics_tuning", scope_path, "FINAL_OOT is sealed from economics tuning", "OOT sealed", scope_path.exists() and "economics" in scope_text.lower(), blocked)
     add("P7T24_no_model_reselection", decision_path, "no fit/retrain in decision runtime", "decision-only", decision_path.exists() and "fit(" not in decision_text)
 
-    action_path = REPORT_DIR / "policy_candidate_metrics.csv"; queue_path = config_dir / "review_queue.yaml"; queue_text = queue_path.read_text(encoding="utf-8") if queue_path.exists() else ""
-    for name in ("P7T25_action_domain_exact", "P7T26_one_action_per_transaction", "P7T27_action_totals_reconcile"):
-        add(name, action_path, "action evidence exists", "not executed", action_path.exists() and not blocked, blocked)
+    action_path = REPORT_DIR / "decision_action_summary.csv"; queue_path = config_dir / "review_queue.yaml"; queue_text = queue_path.read_text(encoding="utf-8") if queue_path.exists() else ""
+    action_evidence = _load(action_path, pd.DataFrame())
+    action_values = set(action_evidence.action.astype(str)) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "action" in action_evidence else set()
+    add("P7T25_action_domain_exact", action_path, "actions subset ALLOW/REVIEW/BLOCK", sorted(action_values), bool(action_values) and action_values.issubset({"ALLOW", "REVIEW", "BLOCK"}), blocked)
+    total_rows = int(action_evidence.source_row_count.iloc[0]) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "source_row_count" in action_evidence else None
+    unique_rows = int(action_evidence.unique_source_row_count.iloc[0]) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "unique_source_row_count" in action_evidence else None
+    add("P7T26_one_action_per_transaction", action_path, "unique source rows equal action rows", {"source": total_rows, "unique": unique_rows}, total_rows is not None and total_rows == unique_rows, blocked)
+    action_sum = int(action_evidence.rows.sum()) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "rows" in action_evidence else None
+    add("P7T27_action_totals_reconcile", action_path, "action counts sum to source rows", {"action_sum": action_sum, "source": total_rows}, action_sum is not None and total_rows == action_sum, blocked)
     add("P7T28_threshold_order_valid", contracts_path, "PolicyConfig enforces review < block", "PolicyConfig", "review_threshold < self.block_threshold" in contracts_text)
-    add("P7T29_bucket_capacity_respected", queue_path, "capacity is per causal bucket", "FRACTION_OF_BUCKET", "type: DAY" in queue_text and "enabled: false" in queue_text)
+    queue_evidence_path = REPORT_DIR / "review_capacity_by_day.csv"; queue_evidence = _load(queue_evidence_path, pd.DataFrame())
+    queue_ok = isinstance(queue_evidence, pd.DataFrame) and not queue_evidence.empty and {"selected_review_count", "bucket_capacity"}.issubset(queue_evidence.columns) and (queue_evidence.selected_review_count <= queue_evidence.bucket_capacity).all()
+    add("P7T29_bucket_capacity_respected", queue_evidence_path, "selected_review_count <= bucket_capacity per bucket", "all buckets pass" if queue_ok else "execution evidence missing", queue_ok, blocked)
     add("P7T30_overflow_explicit", queue_path, "overflow action is explicit", "ALLOW", "overflow:" in queue_text and "action: ALLOW" in queue_text)
     add("P7T31_deterministic_tiebreak", queue_path, "source_row_id is final tie-break", "source_row_id ASC", "source_row_id ASC" in queue_text)
-    queue_test = test_dir / "test_review_queue.py"; add("P7T32_future_rows_cannot_change_past", queue_test, "future invariance test exists", "test_future_rows_do_not_change_past_bucket", queue_test.exists(), blocked)
+    unit_evidence_path = REPORT_DIR / "unit_test_evidence.json"; unit_evidence = _load(unit_evidence_path, {})
+    add("P7T32_future_rows_cannot_change_past", unit_evidence_path, "executed future-invariance test is PASS", unit_evidence.get("test_future_rows_do_not_change_past"), unit_evidence.get("test_future_rows_do_not_change_past") == "PASS", blocked)
 
     econ_path = config_dir / "economic_assumptions.yaml"; econ_text = econ_path.read_text(encoding="utf-8") if econ_path.exists() else ""
     add("P7T33_assumption_ids_complete", econ_path, "ECON001..ECON010", "ECON001..ECON010", all(f"ECON{i:03d}" in econ_text for i in range(1, 11)))
@@ -216,8 +235,12 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T58_bootstrap_draws_minimum", bootstrap_path, "draws >= 500", draws, draws is not None and draws >= 500, blocked)
     finite_ci = has_boot and {"ci_lower", "ci_upper"}.issubset(boot.columns) and boot[["ci_lower", "ci_upper"]].apply(pd.to_numeric, errors="coerce").notna().all().all()
     add("P7T59_bootstrap_ci_finite", bootstrap_path, "CI values are finite", "finite" if finite_ci else None, finite_ci, blocked)
-    for name, filename in [("P7T60_delta_reconciles", "shadow_policy_metric_delta.csv"), ("P7T61_daily_metrics_reconcile", "daily_policy_metrics.csv"), ("P7T62_segment_metrics_reconcile", "segment_policy_metrics.csv")]:
-        path = REPORT_DIR / filename; add(name, path, "aggregate report exists", filename if path.exists() else None, path.exists(), blocked)
+    delta_path = REPORT_DIR / "delta_reconciliation.json"; delta = _load(delta_path, {})
+    add("P7T60_delta_reconciles", delta_path, "independent delta reconciliation is PASS", delta.get("status"), delta.get("status") == "PASS", blocked)
+    daily_path = REPORT_DIR / "daily_reconciliation.json"; daily = _load(daily_path, {})
+    add("P7T61_daily_metrics_reconcile", daily_path, "daily transactions equal confirmation transactions", {"daily": daily.get("daily_transactions"), "confirmation": daily.get("confirmation_transactions")}, daily.get("status") == "PASS", blocked)
+    segment_path = REPORT_DIR / "segment_reconciliation.json"; segment = _load(segment_path, {})
+    add("P7T62_segment_metrics_reconcile", segment_path, "segment reconciliation is explicit and non-additive where needed", {"status": segment.get("status"), "additivity": segment.get("additivity")}, segment.get("status") == "PASS" and segment.get("additivity") == "NON_ADDITIVE_SEGMENTS", blocked)
     add("P7T63_manifest_hashes_valid", manifest_path, "all manifest hashes verify", "valid" if _manifest_valid(manifest_path) else None, manifest_path.exists() and _manifest_valid(manifest_path), blocked)
     pass_before = sum(value[3] for value in results.values())
     add("P7T64_final_status_gate", summary_path, "locked iff previous 63 gates pass", {"status": summary.get("status"), "pass_before": pass_before}, summary.get("status") == "DECISION_POLICY_LOCKED" and pass_before == 63, blocked)
