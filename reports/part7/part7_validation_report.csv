@@ -1,65 +1,65 @@
-check_name,status,violations,notes
-P7T01_input_source_resolved,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T02_source_row_id_unique,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T03_timestamp_parse_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T04_score_non_null,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T05_score_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T06_score_declared_range,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T07_amount_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T08_split_values_valid,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T09_population_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T10_fraud_label_absent_from_decision_api,PASS,0,DecisionContext has no fraud_label field.
-P7T11_no_target_policy_feature,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T12_no_future_outcome_input,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T13_tune_precedes_confirm,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T14_oot_absent_threshold_search,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T15_oot_absent_assumption_fit,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T16_no_oot_model_reselection,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T17_oot_claim_registered,PASS,0,Claim boundary is explicit.
-P7T18_calibration_metrics_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T19_probability_status_explicit,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T20_ranking_expected_value_disabled,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T21_calibrator_scope_allowed,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T22_action_domain_exact,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T23_one_action_per_row,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T24_action_totals_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T25_threshold_order,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T26_review_capacity,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T27_block_constraint,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T28_overflow_explicit,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T29_deterministic_tiebreak,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T30_assumption_ids,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T31_assumption_units,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T32_assumption_source_type,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T33_simulated_claim_class,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T34_no_technical_only_recommendation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T35_cost_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T36_positive_exposure_nonnegative,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T37_signed_amount_boundary,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T38_sensitivity_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T39_graph_autoblock_disabled,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T40_graph_absence_safe,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T41_graph_hash_recorded,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T42_part6_claim_unchanged,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T43_policy_freeze_exists,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T44_freeze_precedes_replay,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T45_policy_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T46_assumption_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T47_reason_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T48_graph_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T49_no_post_freeze_change,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T50_weekly_bootstrap,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T51_paired_blocks,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T52_bootstrap_ci_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T53_delta_reconciles,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T54_daily_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T55_segment_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T56_reason_codes_registered,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T57_manifest_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T58_manifest_sha256,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T59_private_files_untracked,PASS,0,Governance gate passed; execution is blocked upstream.
-P7T60_summary_csv_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T61_card_json_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T62_policy_feasible,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T63_policy_non_dominated,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
-P7T64_final_status_gate,PASS,0,Governance gate passed; execution is blocked upstream.
+check_name,family,description,severity,evidence_artifact,evidence_sha256,expected_condition,observed_value,status,violations,checked_at,checker_version
+P7T01_input_source_resolved,A,Frozen score input exists,P0,reports/part7/part7_input_audit.json,8302cdadd31f712420bace9023d03ed06732efa0e049026105319683d8f1e19d,input audit is not INPUT_BLOCKED,INPUT_BLOCKED,BLOCKED,1,2026-09-02T21:52:53.351260+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T02_file_hash_recorded,A,Input file hash is recorded,P0,private/part7/input_lineage.json,,non-empty score_file_sha256,,BLOCKED,1,2026-09-02T21:52:53.351343+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T03_row_id_unique,A,source_row_id is unique,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,unique rows equal source rows,,BLOCKED,1,2026-09-02T21:52:53.351939+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T04_timestamps_parse,A,Transaction timestamps parse,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,timestamp_parse is PASS,,BLOCKED,1,2026-09-02T21:52:53.352445+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T05_amounts_finite,A,Amounts are finite,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,amount_finite is PASS,,BLOCKED,1,2026-09-02T21:52:53.352988+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T06_split_values_valid,A,Split values are governed,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,split_values is PASS,,BLOCKED,1,2026-09-02T21:52:53.353487+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T07_source_reconciliation,A,Source row reconciliation passes,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,source rows reconcile,,BLOCKED,1,2026-09-02T21:52:53.353994+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T08_upstream_lineage_complete,A,Upstream version lineage is complete,P0,private/part7/input_lineage.json,,score and model lineage present,"{'score_version': None, 'model_version': None, 'calibration_version': None}",BLOCKED,1,2026-09-02T21:52:53.354057+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T09_score_non_null,B,Risk score is non-null,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,score_non_null is PASS,,BLOCKED,1,2026-09-02T21:52:53.354549+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T10_score_finite,B,Risk score is finite,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,score_finite is PASS,,BLOCKED,1,2026-09-02T21:52:53.355043+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T11_score_range_valid,B,Risk score range is valid,P0,reports/part7/decision_input_reconciliation.csv,ed2ef146ba7c56506d2429dc2c3102faa07b8129217b37466d7bd7667b9bfbc9,score_range is PASS,,BLOCKED,1,2026-09-02T21:52:53.355516+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T12_score_direction_declared,B,Score direction is declared,P0,config/part7/score_contract.yaml,b96de41e0d496b0f2a24f4cbca1ba09a7372ea01bbb5d7d3692b515cedd4d9d1,score alias and range declared,score contract,PASS,0,2026-09-02T21:52:53.355989+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T13_score_status_explicit,B,Probability/ranking status is explicit,P0,reports/part7/PART7_FINAL_SUMMARY.json,b65c8fed3c1751ec684ccc46c30b467f72b041fd290e08960c4ad9adf8a4bb78,explicit score status,,BLOCKED,1,2026-09-02T21:52:53.356466+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T14_calibration_version_resolved,B,Calibration version is resolved when required,P0,reports/part7/score_calibration_audit.csv,,version present for probability score,,BLOCKED,1,2026-09-02T21:52:53.356532+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T15_probability_audit_complete,B,Validation-only calibration evidence exists,P0,reports/part7/score_calibration_audit.csv,,calibrator_fitted_in_part7 is false,,BLOCKED,1,2026-09-02T21:52:53.356581+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T16_ranking_expected_value_disabled,B,Ranking-only scores disable expected-value routing,P0,reports/part7/score_calibration_audit.csv,,expected-value disabled for ranking-only,,PASS,0,2026-09-02T21:52:53.356626+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T17_label_absent_decision_dto,C,Decision DTO rejects labels,P0,src/part7/contracts.py,bf6e8ed5cc32e72960e639d26deba1b227af311c1e1da688cca3bded84c862a3,DecisionContext rejects forbidden fields,firewall code present,PASS,0,2026-09-02T21:52:53.357190+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T18_label_absent_policy_frame,C,Decision runtime rejects label columns,P0,src/part7/contracts.py,bf6e8ed5cc32e72960e639d26deba1b227af311c1e1da688cca3bded84c862a3,decision runtime asserts policy columns,firewall code present,PASS,0,2026-09-02T21:52:53.357735+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T19_no_target_policy_feature,C,Target fields are not decision features,P0,src/part7/contracts.py,bf6e8ed5cc32e72960e639d26deba1b227af311c1e1da688cca3bded84c862a3,target is forbidden,firewall code present,PASS,0,2026-09-02T21:52:53.358227+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T20_no_future_outcome_input,C,Future outcome fields are blocked,P0,src/part7/contracts.py,bf6e8ed5cc32e72960e639d26deba1b227af311c1e1da688cca3bded84c862a3,future_outcome is forbidden,firewall code present,PASS,0,2026-09-02T21:52:53.358747+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T21_tune_precedes_confirm,C,Tune scope precedes confirm scope,P0,config/part7/temporal_scopes.yaml,b259a2ee4bc1e61de3d37eb98d5f6e612c5ee5a11ac5795f69c6ba8b22439ef2,scope order is declared,P7_POLICY_TUNE before P7_POLICY_CONFIRM,PASS,0,2026-09-02T21:52:53.359621+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T22_oot_absent_threshold_search,C,OOT is sealed from threshold search,P0,config/part7/temporal_scopes.yaml,b259a2ee4bc1e61de3d37eb98d5f6e612c5ee5a11ac5795f69c6ba8b22439ef2,FINAL_OOT is sealed from search,OOT sealed,PASS,0,2026-09-02T21:52:53.361793+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T23_oot_absent_economics_tuning,C,OOT is sealed from economic tuning,P0,config/part7/temporal_scopes.yaml,b259a2ee4bc1e61de3d37eb98d5f6e612c5ee5a11ac5795f69c6ba8b22439ef2,FINAL_OOT is sealed from economics tuning,OOT sealed,BLOCKED,1,2026-09-02T21:52:53.362549+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T24_no_model_reselection,C,Part 7 does not retrain/reselect the model,P0,src/part7/decision_runtime.py,3b2afea1c13ae3453ee8647abac87744c3470ea0e447ca4bdec1aada9d5c354d,no fit/retrain in decision runtime,decision-only,PASS,0,2026-09-02T21:52:53.363202+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T25_action_domain_exact,D,Actions are ALLOW/REVIEW/BLOCK only,P0,reports/part7/policy_candidate_metrics.csv,,action evidence exists,not executed,BLOCKED,1,2026-09-02T21:52:53.363275+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T26_one_action_per_transaction,D,One action exists per source row,P0,reports/part7/policy_candidate_metrics.csv,,action evidence exists,not executed,BLOCKED,1,2026-09-02T21:52:53.363326+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T27_action_totals_reconcile,D,Action totals reconcile,P0,reports/part7/policy_candidate_metrics.csv,,action evidence exists,not executed,BLOCKED,1,2026-09-02T21:52:53.363373+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T28_threshold_order_valid,D,Review threshold is below block threshold,P0,src/part7/contracts.py,bf6e8ed5cc32e72960e639d26deba1b227af311c1e1da688cca3bded84c862a3,PolicyConfig enforces review < block,PolicyConfig,PASS,0,2026-09-02T21:52:53.363909+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T29_bucket_capacity_respected,D,Causal bucket capacity is respected,P0,config/part7/review_queue.yaml,52143a6a603b0ebc11cb428f5be2427bcf2d43115f2e3e0a350bb2acbe105232,capacity is per causal bucket,FRACTION_OF_BUCKET,PASS,0,2026-09-02T21:52:53.364412+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T30_overflow_explicit,D,Overflow action is explicit,P0,config/part7/review_queue.yaml,52143a6a603b0ebc11cb428f5be2427bcf2d43115f2e3e0a350bb2acbe105232,overflow action is explicit,ALLOW,PASS,0,2026-09-02T21:52:53.364888+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T31_deterministic_tiebreak,D,Queue tie-break is deterministic,P0,config/part7/review_queue.yaml,52143a6a603b0ebc11cb428f5be2427bcf2d43115f2e3e0a350bb2acbe105232,source_row_id is final tie-break,source_row_id ASC,PASS,0,2026-09-02T21:52:53.365349+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T32_future_rows_cannot_change_past,D,Future-invariance evidence exists,P0,tests/part7/test_review_queue.py,f6c861fca2b7916db6ca85fea82ad189346affbfc0d0f9bfd6456b8096fdb112,future invariance test exists,test_future_rows_do_not_change_past_bucket,PASS,0,2026-09-02T21:52:53.365863+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T33_assumption_ids_complete,E,Economic assumption IDs are complete,P1,config/part7/economic_assumptions.yaml,241a02f09da7bfc910b8b90e4e346f3f4fd32e67d84cb5fa26239ebb622f0918,ECON001..ECON010,ECON001..ECON010,PASS,0,2026-09-02T21:52:53.366351+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T34_assumption_units_complete,E,Economic assumption units are complete,P1,config/part7/economic_assumptions.yaml,241a02f09da7bfc910b8b90e4e346f3f4fd32e67d84cb5fa26239ebb622f0918,at least 10 unit fields,10,PASS,0,2026-09-02T21:52:53.366835+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T35_source_claim_classes_complete,E,Economic source and claim classes are explicit,P1,config/part7/economic_assumptions.yaml,241a02f09da7bfc910b8b90e4e346f3f4fd32e67d84cb5fa26239ebb622f0918,source and claim fields present,"{'source_type': 10, 'claim_type': 10}",PASS,0,2026-09-02T21:52:53.367351+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T36_positive_exposure_nonnegative,E,Primary exposure is nonnegative,P1,src/part7/exposure.py,ded0521333b0b75437031dc562967cd7ff15377a97f30d498f2b794d13905e69,"positive_exposure=max(amount,0)","np.maximum(amount, 0.0)",PASS,0,2026-09-02T21:52:53.367955+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T37_signed_amount_boundary,E,Signed amount is reconciliation-only,P1,src/part7/exposure.py,ded0521333b0b75437031dc562967cd7ff15377a97f30d498f2b794d13905e69,positive exposure is primary basis,economic_exposure_proxy,PASS,0,2026-09-02T21:52:53.368475+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T38_cost_decomposition_reconciles,E,Cost components reconcile,P1,src/part7/economics.py,ee6fdf8668a37c77351ee88532c55518ed4d207994ec4bd969d5751d83e88095,total is component sum,allow+block+review,PASS,0,2026-09-02T21:52:53.369036+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T39_sensitivity_complete,E,Sensitivity output exists,P1,reports/part7/sensitivity_summary.csv,,sensitivity report exists,,BLOCKED,1,2026-09-02T21:52:53.369110+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T40_selected_profile_constraints,E,Selected policy satisfies profile constraints,P1,config/part7/policy_profiles.yaml,29da610b60f11c589fc1625fbfa3a82a11a6e697ed231ecd7b2c8690529cc8ce,all profiles have operational semantics,growth/balanced/conservative,PASS,0,2026-09-02T21:52:53.369675+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T41_graph_autoblock_disabled,F,Graph cannot autoblock,P1,config/part7/graph_routing_policy.yaml,88c405cdd96c1e6db3aa2b32364170a354c53d7b7a9a6f21661e7cc8a7f9bac9,automatic_block_override.enabled=false,false,PASS,0,2026-09-02T21:52:53.370243+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T42_graph_optionality_safe,F,Graph is optional routing evidence,P1,src/part7/graph_routing.py,2af2f9f80e098426a7720f3e3e59ec265c4be3d58d3c0d3722c67cc6889d9308,graph only changes review priority,review priority only,PASS,0,2026-09-02T21:52:53.370753+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T43_graph_hash_recorded,F,Graph version/hash is recorded,P1,config/part7/graph_routing_policy.yaml,88c405cdd96c1e6db3aa2b32364170a354c53d7b7a9a6f21661e7cc8a7f9bac9,graph config has version,version,PASS,0,2026-09-02T21:52:53.371246+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T44_part6_claim_preserved,F,Part 6 claim boundary is preserved,P1,config/part7/graph_routing_policy.yaml,88c405cdd96c1e6db3aa2b32364170a354c53d7b7a9a6f21661e7cc8a7f9bac9,Part 6 global uplift not claimed,claim boundary,PASS,0,2026-09-02T21:52:53.371713+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T45_reason_codes_registered,F,Reason codes are registered,P1,config/part7/reason_codes.yaml,8925a56585945e6aa10f971066e25d949c1455bc0897248bfcdf13adaba864fd,reason registry includes RC001,RC001,PASS,0,2026-09-02T21:52:53.372190+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T46_primary_reason_deterministic,F,Primary reason is deterministic,P1,src/part7/reason_codes.py,bf4e09edcd20bcfe29bd37fb63f3d67414f4d330a89d6c70003be72ca677b294,reason order is deterministic,dict.fromkeys,PASS,0,2026-09-02T21:52:53.372680+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T47_secondary_reasons_valid,F,Secondary reasons use the registry,P1,config/part7/reason_codes.yaml,8925a56585945e6aa10f971066e25d949c1455bc0897248bfcdf13adaba864fd,registry exists,reason registry,PASS,0,2026-09-02T21:52:53.373163+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T48_public_reason_aggregate_only,F,Public reasons are aggregate-only,P1,src/part7/io.py,baa127496b728ff92b13c4ad571554e50b197c5710c42d56974c218d1f83a246,public output is report directory only,REPORT_DIR,PASS,0,2026-09-02T21:52:53.373686+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T49_freeze_exists,G,Policy freeze exists,P1,reports/part7/PART7_POLICY_FREEZE.json,,freeze JSON exists,,BLOCKED,1,2026-09-02T21:52:53.373756+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T50_clean_worktree,G,Freeze was created on a clean worktree,P1,reports/part7/PART7_POLICY_FREEZE.json,,working_tree_clean=true,,BLOCKED,1,2026-09-02T21:52:53.373806+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T51_full_config_hash,G,Decision-defining config bundle is hashed,P1,reports/part7/PART7_POLICY_FREEZE.json,,config bundle hash exists,,BLOCKED,1,2026-09-02T21:52:53.373854+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T52_code_commit_hash,G,Code commit is recorded,P1,reports/part7/PART7_POLICY_FREEZE.json,,code commit exists,,BLOCKED,1,2026-09-02T21:52:53.373901+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T53_score_hash_version,G,Score hash and version are recorded,P1,reports/part7/PART7_POLICY_FREEZE.json,,score hash/version exist,"{'score_file_sha256': None, 'score_version': None}",BLOCKED,1,2026-09-02T21:52:53.373944+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T54_graph_hash_version,G,Graph hash and version are recorded,P1,reports/part7/PART7_POLICY_FREEZE.json,,graph hash/version exist,"{'graph_routing_sha256': None, 'graph_version': None}",BLOCKED,1,2026-09-02T21:52:53.373988+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T55_freeze_precedes_replay,G,Freeze precedes final replay,P1,reports/part7/PART7_POLICY_FREEZE.json,,freeze timestamp exists,,BLOCKED,1,2026-09-02T21:52:53.374030+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T56_no_post_freeze_mutation,G,No decision mutation follows freeze,P1,reports/part7/PART7_POLICY_FREEZE.json,,post_freeze_mutation is false,,BLOCKED,1,2026-09-02T21:52:53.374073+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T57_weekly_paired_block_bootstrap,H,Weekly paired bootstrap is present,P1,reports/part7/bootstrap_policy_ci.csv,,weekly paired block method,method,BLOCKED,1,2026-09-02T21:52:53.374118+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T58_bootstrap_draws_minimum,H,Bootstrap draws are at least 500,P1,reports/part7/bootstrap_policy_ci.csv,,draws >= 500,,BLOCKED,1,2026-09-02T21:52:53.374162+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T59_bootstrap_ci_finite,H,Bootstrap confidence intervals are finite,P1,reports/part7/bootstrap_policy_ci.csv,,CI values are finite,,BLOCKED,1,2026-09-02T21:52:53.374205+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T60_delta_reconciles,H,Challenger deltas reconcile,P1,reports/part7/shadow_policy_metric_delta.csv,,aggregate report exists,,BLOCKED,1,2026-09-02T21:52:53.374252+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T61_daily_metrics_reconcile,H,Daily metrics reconcile,P1,reports/part7/daily_policy_metrics.csv,,aggregate report exists,,BLOCKED,1,2026-09-02T21:52:53.374298+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T62_segment_metrics_reconcile,H,Segment metrics reconcile,P1,reports/part7/segment_policy_metrics.csv,,aggregate report exists,,BLOCKED,1,2026-09-02T21:52:53.374342+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T63_manifest_hashes_valid,H,Manifest hashes are valid,P1,reports/part7/report_manifest.csv,b49511aef24aa46d3518c4901a3ef4728831129b3af9d63fb4679ab5cff43c77,all manifest hashes verify,valid,PASS,0,2026-09-02T21:52:53.374829+00:00,PART7_EVIDENCE_VALIDATOR_v2.0
+P7T64_final_status_gate,H,Final status is locked only at 64/64 PASS,P1,reports/part7/PART7_FINAL_SUMMARY.json,b65c8fed3c1751ec684ccc46c30b467f72b041fd290e08960c4ad9adf8a4bb78,locked iff previous 63 gates pass,"{'status': 'INPUT_BLOCKED', 'pass_before': 30}",BLOCKED,1,2026-09-02T21:52:53.375340+00:00,PART7_EVIDENCE_VALIDATOR_v2.0

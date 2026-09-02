@@ -1,0 +1,25 @@
+version: PART7_REVIEW_QUEUE_v2.0
+claim_type: SIMULATED
+bucket:
+  type: DAY
+  timezone: UTC
+capacity:
+  mode: FRACTION
+  fraction: 0.01
+  fixed_cases: null
+priority:
+  deterministic: true
+  tie_break:
+    - review_priority DESC
+    - risk_score DESC
+    - positive_exposure DESC
+    - transaction_timestamp ASC
+    - source_row_id ASC
+overflow:
+  action: ALLOW
+  reason_code: RC011
+carryover:
+  enabled: false
+claim_boundary:
+  simulated_staffing: true
+  not_real_operational_capacity: true

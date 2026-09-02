@@ -4,6 +4,7 @@
   "name": "Fraud Risk Decision Engine",
   "status": "INPUT_BLOCKED",
   "score_version": "",
+  "score_status": null,
   "policy_version": "",
   "policy_profile": "",
   "claim_boundary": {
@@ -32,5 +33,5 @@
     "fail": 0,
     "status": "REVIEW"
   },
-  "generated_at_utc": "2026-09-02T20:32:28.297704+00:00"
+  "generated_at_utc": "2026-09-02T21:50:03.703538+00:00"
 }

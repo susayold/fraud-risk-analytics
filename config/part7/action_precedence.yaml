@@ -1,0 +1,18 @@
+version: PART7_ACTION_PRECEDENCE_v2.0
+ordered_steps:
+  - INPUT_CONTRACT_FAILURE
+  - GOVERNED_ALLOW_OVERRIDE
+  - GOVERNED_HARD_BLOCK
+  - FROZEN_SCORE_BLOCK_BAND
+  - REVIEW_ELIGIBILITY_BAND
+  - REVIEW_QUEUE_CAPACITY
+  - REVIEW_OVERFLOW
+  - DEFAULT_ALLOW
+allow_override:
+  enabled: false
+hard_block:
+  enabled: false
+overflow:
+  action: ALLOW
+  reason_code: RC011
+claim_boundary: Graph evidence cannot change BLOCK eligibility.

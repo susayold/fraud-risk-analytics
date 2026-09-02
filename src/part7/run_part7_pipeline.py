@@ -10,13 +10,17 @@ import pandas as pd
 
 from .backtest import evaluate_variants, select_policy
 from .bootstrap import weekly_paired_bootstrap
+from .calibration import audit_calibration
 from .contracts import PolicyConfig
 from .economics import EconomicAssumptions, evaluate_economics
 from .exposure import add_exposure_bases
 from .final_replay import load_and_verify_freeze, replay
 from .freeze_policy import freeze_policy
 from .io import REPORT_DIR, ROOT, load_frame, normalise_input, public_manifest, write_csv, write_json
+from .lineage import write_input_lineage
 from .policy_engine import run_policy
+from .queue_diagnostics import queue_diagnostics
+from .decision_trace import build_trace
 from .reports import write_input_audit, write_summary
 from .score_gate import REQUIRED, audit_score_frame, discover_primary_score_artifact
 from .sensitivity import run_sensitivity
@@ -38,7 +42,7 @@ def _assumptions(root: Path) -> EconomicAssumptions:
 
 def _blocked(reason: str, checks: list[dict]) -> int:
     write_input_audit("INPUT_BLOCKED", reason, checks)
-    write_summary("INPUT_BLOCKED")
+    write_summary("INPUT_BLOCKED", score_status=None)
     from .validate_part7 import validate
     validation = validate(REPORT_DIR / "PART7_FINAL_SUMMARY.json")
     write_csv(REPORT_DIR / "part7_validation_report.csv", validation)
@@ -89,27 +93,37 @@ def execute(args: argparse.Namespace) -> int:
     if "fraud_label" not in frame:
         return _blocked("Evaluation label is required outside the policy API for retrospective metrics.", list(gate.checks) + [{"check_name": "evaluation_label_available", "status": "FAIL", "notes": "No fraud_label column."}])
     frame = add_exposure_bases(frame)
+    evaluation_labels = frame[["source_row_id", "fraud_label"]].copy()
     private_input = frame[[column for column in ("source_row_id", "transaction_timestamp", "risk_score", "amount", "split_name", "pair_new", "cold_card", "new_merchant", "cross_community", "channel") if column in frame.columns]].copy()
     (ROOT / "private" / "part7").mkdir(parents=True, exist_ok=True)
     private_input.to_parquet(ROOT / "private" / "part7" / "decision_input.parquet", index=False)
+    evaluation_labels.to_parquet(ROOT / "private" / "part7" / "evaluation_labels.parquet", index=False)
+    write_input_lineage(ROOT / "private" / "part7" / "input_lineage.json", score_path=input_path, frame=private_input, score_version=args.score_version, model_version=args.model_version, calibration_version=args.calibration_version)
     tune, confirm, oot = _scope(frame)
     if tune.empty or confirm.empty:
         return _blocked("Chronological P7_POLICY_TUNE and P7_POLICY_CONFIRM scopes are required.", [{"check_name": "P7T13_tune_confirm_scopes", "status": "FAIL", "notes": f"tune={len(tune)}, confirm={len(confirm)}"}])
     assumptions = _assumptions(ROOT)
     config = _yaml(ROOT / "config" / "part7" / "decision_engine.yaml")
+    queue_config = _yaml(ROOT / "config" / "part7" / "review_queue.yaml")
     thresholds = quantile_thresholds(tune.risk_score, config["threshold_search"]["quantiles"])
     cutoff = high_amount_cutoff(tune)
     write_csv(REPORT_DIR / "decision_input_reconciliation.csv", pd.DataFrame([
         {"check_name": "source_rows", "value": len(frame), "status": "PASS"},
         {"check_name": "unique_source_row_id", "value": frame.source_row_id.nunique(), "status": "PASS" if frame.source_row_id.is_unique else "FAIL"},
+        {"check_name": "timestamp_parse", "value": "PASS" if pd.to_datetime(frame.transaction_timestamp, errors="coerce", utc=True).notna().all() else "FAIL", "status": "PASS"},
+        {"check_name": "amount_finite", "value": "PASS" if pd.to_numeric(frame.amount, errors="coerce").notna().all() else "FAIL", "status": "PASS"},
+        {"check_name": "split_values", "value": "PASS" if frame.split_name.notna().all() else "FAIL", "status": "PASS"},
+        {"check_name": "score_non_null", "value": "PASS" if frame.risk_score.notna().all() else "FAIL", "status": "PASS"},
+        {"check_name": "score_finite", "value": "PASS" if np.isfinite(pd.to_numeric(frame.risk_score, errors="coerce")).all() else "FAIL", "status": "PASS"},
+        {"check_name": "score_range", "value": "PASS" if frame.risk_score.between(0, 1).all() else "FAIL", "status": "PASS"},
         {"check_name": "tune_rows", "value": len(tune), "status": "PASS"},
         {"check_name": "confirm_rows", "value": len(confirm), "status": "PASS"},
         {"check_name": "final_oot_rows", "value": len(oot), "status": "PASS" if len(oot) else "REVIEW"},
         {"check_name": "oot_not_globally_unseen", "value": True, "status": "PASS"},
     ]))
     max_pairs = int(config["threshold_search"].get("max_threshold_pairs", 6))
-    tune_metrics, _ = evaluate_variants(tune, thresholds, config["capacities"], assumptions, args.score_status == "PROBABILITY_USABLE", cutoff, max_pairs)
-    confirm_metrics, action_map = evaluate_variants(confirm, thresholds, config["capacities"], assumptions, args.score_status == "PROBABILITY_USABLE", cutoff, max_pairs)
+    tune_metrics, _ = evaluate_variants(tune, thresholds, config["capacities"], assumptions, args.score_status == "PROBABILITY_USABLE", cutoff, max_pairs, queue_config=queue_config)
+    confirm_metrics, action_map = evaluate_variants(confirm, thresholds, config["capacities"], assumptions, args.score_status == "PROBABILITY_USABLE", cutoff, max_pairs, queue_config=queue_config)
     tune_metrics["scope"] = "P7_POLICY_TUNE"; confirm_metrics["scope"] = "P7_POLICY_CONFIRM"
     write_csv(REPORT_DIR / "policy_candidate_metrics.csv", pd.concat([tune_metrics, confirm_metrics], ignore_index=True))
     p1_threshold = max(thresholds) if thresholds else 1.0
@@ -144,9 +158,12 @@ def execute(args: argparse.Namespace) -> int:
         selected_actions = action_map[selected_key]
     else:
         selected_config = PolicyConfig(selected_key, float(selected["review_threshold"]), float(selected["block_threshold"]), float(selected["review_capacity"]), str(selected["priority_method"]))
-        selected_actions, _ = run_policy(confirm, selected_config, assumptions, args.score_status == "PROBABILITY_USABLE", emit_reason_codes=True)
+        selected_actions, _ = run_policy(confirm.drop(columns=["fraud_label"], errors="ignore"), selected_config, assumptions, args.score_status == "PROBABILITY_USABLE", emit_reason_codes=True, queue_config=queue_config)
     selected_config = PolicyConfig(selected_key, float(selected.get("review_threshold") if pd.notna(selected.get("review_threshold")) else 0.0), float(selected.get("block_threshold") if pd.notna(selected.get("block_threshold")) else 1.0), float(selected.get("review_capacity") if pd.notna(selected.get("review_capacity")) else 0.0), str(selected.get("priority_method", "SCORE_ONLY")))
-    write_csv(REPORT_DIR / "sensitivity_summary.csv", run_sensitivity(confirm, selected_config, assumptions, args.score_status == "PROBABILITY_USABLE"))
+    write_csv(REPORT_DIR / "sensitivity_summary.csv", run_sensitivity(confirm, selected_config, assumptions, args.score_status == "PROBABILITY_USABLE", queue_config=queue_config))
+    diagnostics = queue_diagnostics(selected_actions)
+    for filename, diagnostic in diagnostics.items():
+        write_csv(REPORT_DIR / f"{filename}.csv", diagnostic)
     write_csv(REPORT_DIR / "daily_policy_metrics.csv", _daily_metrics(selected_actions.assign(fraud_label=confirm.fraud_label.to_numpy()), assumptions))
     segment_frames = []
     for col, label in (("channel", "channel"), ("pair_new", "pair_seen"), ("cold_card", "cold_start"), ("new_merchant", "merchant_novelty")):
@@ -156,15 +173,24 @@ def execute(args: argparse.Namespace) -> int:
     reason = selected_actions.assign(fraud_label=confirm.fraud_label.to_numpy()).assign(reason_code=selected_actions.reason_codes.fillna("").str.split(";" )).explode("reason_code")
     reason = reason[reason.reason_code.ne("")].groupby("reason_code", as_index=False).size().rename(columns={"size": "rows"})
     write_csv(REPORT_DIR / "reason_code_summary.csv", reason)
-    write_csv(REPORT_DIR / "score_calibration_audit.csv", pd.DataFrame([{"status": args.score_status, "score_version": args.score_version, "calibration_version": args.calibration_version, "expected_value_enabled": args.score_status == "PROBABILITY_USABLE"}]))
-    write_csv(REPORT_DIR / "score_calibration_bins.csv", pd.DataFrame(columns=["bin", "rows", "mean_predicted_probability", "observed_fraud_rate", "scope"]))
+    if args.emit_private_trace:
+        from .io import git_metadata
+        commit, _ = git_metadata()
+        trace = build_trace(selected_actions, score_version=args.score_version, calibration_version=args.calibration_version,
+                            policy_version=selected_key, policy_profile=args.profile, model_version=args.model_version,
+                            graph_version="UNSPECIFIED", economics_version="PART7_ECONOMICS_v1.0",
+                            freeze_id="PRE_FREEZE", config_bundle_hash="PRE_FREEZE", code_commit=commit)
+        trace.to_parquet(ROOT / "private" / "part7" / "decision_trace.parquet", index=False)
+    calibration_audit, calibration_bins = audit_calibration(confirm.drop(columns=["fraud_label"], errors="ignore"), confirm[["source_row_id", "fraud_label"]], score_version=args.score_version, calibration_version=args.calibration_version, score_status=args.score_status, scope="P7_POLICY_CONFIRM")
+    write_csv(REPORT_DIR / "score_calibration_audit.csv", pd.DataFrame([calibration_audit]))
+    write_csv(REPORT_DIR / "score_calibration_bins.csv", calibration_bins)
     write_csv(REPORT_DIR / "policy_development_split.csv", pd.DataFrame([{"scope": "P7_POLICY_TUNE", "rows": len(tune), "start": str(pd.to_datetime(tune.transaction_timestamp).min()), "end": str(pd.to_datetime(tune.transaction_timestamp).max())}, {"scope": "P7_POLICY_CONFIRM", "rows": len(confirm), "start": str(pd.to_datetime(confirm.transaction_timestamp).min()), "end": str(pd.to_datetime(confirm.transaction_timestamp).max())}, {"scope": "FINAL_OOT", "rows": len(oot), "oot_not_globally_unseen": True}]))
     p0_actions = action_map.get("PART7_P0_ALLOW_ALL", confirm.assign(action="ALLOW", candidate_action="ALLOW", review_priority=0.0, reason_codes=""))
     transitions = pd.DataFrame({"baseline_action": p0_actions.action.astype(str), "challenger_action": selected_actions.action.astype(str)})
     transition_rows = transitions.assign(transition=transitions.baseline_action + " → " + transitions.challenger_action).groupby("transition", as_index=False).size().rename(columns={"size": "rows"})
     write_csv(REPORT_DIR / "shadow_policy_transition_matrix.csv", transition_rows)
     write_csv(REPORT_DIR / "shadow_policy_metric_delta.csv", pd.DataFrame([{"baseline_policy": "PART7_P0_ALLOW_ALL", "challenger_policy": selected_key, "delta_cost": selected["simulated_total_cost"] - confirm_metrics.loc[confirm_metrics.variant == "P0", "simulated_total_cost"].iloc[0], "delta_fraud_capture": selected["fraud_capture"] - confirm_metrics.loc[confirm_metrics.variant == "P0", "fraud_capture"].iloc[0], "delta_exposure_capture": selected["fraud_exposure_capture"] - confirm_metrics.loc[confirm_metrics.variant == "P0", "fraud_exposure_capture"].iloc[0]}]))
-    write_csv(REPORT_DIR / "bootstrap_policy_ci.csv", weekly_paired_bootstrap(confirm, selected_actions, p0_actions, assumptions, draws=100))
+    write_csv(REPORT_DIR / "bootstrap_policy_ci.csv", weekly_paired_bootstrap(confirm, selected_actions, p0_actions, assumptions, draws=1000))
     stability = confirm_metrics.copy()
     stability["scenario_id"] = "BASE_P7_POLICY_CONFIRM"
     stability["assumption_hash"] = "PART7_ECONOMICS_v1.0"
@@ -173,7 +199,7 @@ def execute(args: argparse.Namespace) -> int:
         if column == "cold_start_segment":
             selected_actions[column] = np.select([selected_actions.get("cold_card", False) & selected_actions.get("new_merchant", False), selected_actions.get("cold_card", False), selected_actions.get("new_merchant", False), selected_actions.get("pair_new", False)], ["BOTH_NODES_UNSEEN", "NEW_CARD_ONLY", "NEW_MERCHANT_ONLY", "WARM_PAIR_NEW"], default="WARM_PAIR_SEEN")
         write_csv(REPORT_DIR / name, _segments(selected_actions, assumptions, column, column) if column in selected_actions else pd.DataFrame())
-    write_summary("POLICY_SELECTED", args.score_version, selected_key, args.profile, {key: selected.get(key) for key in ("review_threshold", "block_threshold", "review_capacity")}, {key: selected.get(key) for key in ("allow_rate", "review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_block_rate", "simulated_total_cost")})
+    write_summary("POLICY_SELECTED", args.score_version, selected_key, args.profile, {key: selected.get(key) for key in ("review_threshold", "block_threshold", "review_capacity")}, {key: selected.get(key) for key in ("allow_rate", "review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_block_rate", "simulated_total_cost")}, score_status=args.score_status)
     card = f"""# Block E / Part 7 — Final decision card\n\n## Status\n\n`POLICY_SELECTED` — pre-freeze evidence on `P7_POLICY_CONFIRM`.\n\n## Selected profile\n\n`{args.profile.upper()}` with policy candidate `{selected_key}`. Thresholds and action rates are available in the aggregate reports. No final OOT claim is made before a verified freeze.\n\n## Claim boundary\n\nIBM TabFormer is synthetic. Economics, reviewer performance, capacity, savings, and loss outcomes are simulated. `oot_not_globally_unseen=true` because Parts 5–6 already evaluated the upstream OOT period.\n\n## Next gate\n\nFreeze the approved policy on a clean commit, verify config hashes, then run the final replay exactly once.\n"""
     (REPORT_DIR / "PART7_FINAL_DECISION_CARD.md").write_text(card, encoding="utf-8")
     if args.freeze:
@@ -183,9 +209,9 @@ def execute(args: argparse.Namespace) -> int:
             if oot.empty:
                 return _blocked("Freeze exists but final OOT rows are absent; replay was not run.", [{"check_name": "P7T44_freeze_precedes_replay", "status": "FAIL", "notes": "No OOT rows."}])
             loaded = load_and_verify_freeze(freeze, [ROOT / "config" / "part7" / "economic_assumptions.yaml", ROOT / "config" / "part7" / "graph_routing_policy.yaml", ROOT / "config" / "part7" / "reason_codes.yaml"])
-            replay_actions, final_metrics = replay(add_exposure_bases(oot), loaded, assumptions, args.score_status == "PROBABILITY_USABLE")
+            replay_actions, final_metrics = replay(add_exposure_bases(oot), loaded, assumptions, args.score_status == "PROBABILITY_USABLE", queue_config=queue_config)
             write_csv(REPORT_DIR / "final_oot_policy_metrics.csv", pd.DataFrame([final_metrics]))
-            write_summary("DECISION_POLICY_LOCKED", args.score_version, selected_key, args.profile, {key: selected.get(key) for key in ("review_threshold", "block_threshold", "review_capacity")}, {key: final_metrics.get(key) for key in ("allow_rate", "review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_block_rate", "simulated_total_cost")})
+            write_summary("DECISION_POLICY_LOCKED", args.score_version, selected_key, args.profile, {key: selected.get(key) for key in ("review_threshold", "block_threshold", "review_capacity")}, {key: final_metrics.get(key) for key in ("allow_rate", "review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_block_rate", "simulated_total_cost")}, score_status=args.score_status)
     write_csv(REPORT_DIR / "report_manifest.csv", public_manifest(selected_key))
     from .validate_part7 import validate
     validation = validate(REPORT_DIR / "PART7_FINAL_SUMMARY.json")
@@ -205,6 +231,7 @@ def main() -> int:
     parser.add_argument("--profile", choices=["growth", "balanced", "conservative"], default="balanced")
     parser.add_argument("--freeze", action="store_true")
     parser.add_argument("--replay", action="store_true")
+    parser.add_argument("--emit-private-trace", action="store_true", help="Materialise the git-ignored row-level trace; off by default for large populations")
     args = parser.parse_args()
     try:
         return execute(args)

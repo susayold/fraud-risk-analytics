@@ -12,8 +12,8 @@ class Part7ActionTests(unittest.TestCase):
     def setUp(self):
         self.frame = add_exposure_bases(pd.DataFrame([
             {"source_row_id": 1, "transaction_timestamp": "2026-01-01T00:00:00+00:00", "risk_score": .99, "amount": 100, "pair_new": True},
-            {"source_row_id": 2, "transaction_timestamp": "2026-01-02T00:00:00+00:00", "risk_score": .80, "amount": 50},
-            {"source_row_id": 3, "transaction_timestamp": "2026-01-03T00:00:00+00:00", "risk_score": .10, "amount": -20},
+            {"source_row_id": 2, "transaction_timestamp": "2026-01-01T01:00:00+00:00", "risk_score": .80, "amount": 50},
+            {"source_row_id": 3, "transaction_timestamp": "2026-01-01T02:00:00+00:00", "risk_score": .10, "amount": -20},
         ]))
 
     def test_exact_action_domain_and_capacity(self):

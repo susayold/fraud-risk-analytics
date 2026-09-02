@@ -1,18 +1,33 @@
-version: PART7_PROFILES_v1.0
+version: PART7_PROFILES_v2.0
 claim_type: SIMULATED
+operating_contract:
+  queue_bucket: DAY
+  queue_timezone: UTC
+  overflow_action: ALLOW
+  graph_can_autoblock: false
+  deterministic_tie_break: [review_priority DESC, risk_score DESC, positive_exposure DESC, transaction_timestamp ASC, source_row_id ASC]
 profiles:
   growth:
     objective: minimize_friction
+    allowed_priority_methods: [SCORE_ONLY, EXPOSURE_WEIGHTED_RANK, GRAPH_NOVELTY]
+    amount_priority_enabled: false
+    graph_routing_enabled: true
     max_review_rate: 0.005
     max_block_rate: 0.0025
     max_legitimate_block_rate: 0.0005
   balanced:
     objective: minimize_total_simulated_cost
+    allowed_priority_methods: [SCORE_ONLY, EXPOSURE_WEIGHTED_RANK, EXPOSURE_WEIGHTED_PROBABILITY, GRAPH_NOVELTY, AMOUNT_GRAPH]
+    amount_priority_enabled: true
+    graph_routing_enabled: true
     max_review_rate: 0.01
     max_block_rate: 0.01
     max_legitimate_block_rate: 0.002
   conservative:
     objective: maximize_protection_subject_to_constraints
+    allowed_priority_methods: [SCORE_ONLY, EXPOSURE_WEIGHTED_RANK, EXPOSURE_WEIGHTED_PROBABILITY, GRAPH_NOVELTY, AMOUNT_GRAPH]
+    amount_priority_enabled: true
+    graph_routing_enabled: true
     max_review_rate: 0.05
     max_block_rate: 0.02
     max_legitimate_block_rate: 0.005

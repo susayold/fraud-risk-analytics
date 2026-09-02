@@ -1,10 +1,14 @@
-version: PART7_DECISION_ENGINE_v1.0
+version: PART7_DECISION_ENGINE_v2.0
 decision_unit: transaction
 actions: [ALLOW, REVIEW, BLOCK]
 policy_mode_default: BACKTEST
 oot_not_globally_unseen: true
 primary_objective: MINIMIZE_TOTAL_SIMULATED_COST
 review_overflow_action: ALLOW
+action_precedence_config: action_precedence.yaml
+review_queue_config: review_queue.yaml
+temporal_scope_config: temporal_scopes.yaml
+graph_autoblock_allowed: false
 hard_block:
   enabled: false
 threshold_search:

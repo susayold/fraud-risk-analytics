@@ -5,7 +5,8 @@ from dataclasses import replace
 import pandas as pd
 
 from .economics import EconomicAssumptions, evaluate_economics
-from .policy_engine import run_policy
+from .decision_runtime import decide
+from .evaluation_runtime import evaluate_decisions
 
 
 def scenarios(base: EconomicAssumptions) -> list[tuple[str, EconomicAssumptions]]:
@@ -19,18 +20,23 @@ def scenarios(base: EconomicAssumptions) -> list[tuple[str, EconomicAssumptions]
     ]
 
 
-def run_sensitivity(frame: pd.DataFrame, config, base: EconomicAssumptions, calibrated_probability: bool) -> pd.DataFrame:
+def run_sensitivity(frame: pd.DataFrame, config, base: EconomicAssumptions, calibrated_probability: bool, queue_config: dict | None = None) -> pd.DataFrame:
     rows = []
+    decision_frame = frame.drop(columns=["fraud_label"], errors="ignore")
+    labels = frame[["source_row_id", "fraud_label"]]
     for scenario_id, assumption in scenarios(base):
-        _, metrics = run_policy(frame, config, assumption, calibrated_probability)
+        actions = decide(decision_frame, config, calibrated_probability, queue_config=queue_config)
+        metrics = evaluate_decisions(actions, labels, assumption)
         rows.append({"scenario_id": scenario_id, "assumption_version": "PART7_ECONOMICS_v1.0", **{key: metrics[key] for key in ("review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_blocked", "legitimate_intervention_rate", "simulated_total_cost")}})
     for capacity in (0.001, 0.0025, 0.005, 0.01, 0.02, 0.05):
-        _, metrics = run_policy(frame, replace(config, review_capacity=capacity), base, calibrated_probability)
+        actions = decide(decision_frame, replace(config, review_capacity=capacity), calibrated_probability, queue_config=queue_config)
+        metrics = evaluate_decisions(actions, labels, base)
         rows.append({"scenario_id": f"CAPACITY_{capacity:.4f}", "assumption_version": "PART7_ECONOMICS_v1.0", "review_capacity": capacity, **{key: metrics[key] for key in ("review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_blocked", "legitimate_intervention_rate", "simulated_total_cost")}})
     for multiplier in (0.5, 1.0, 1.5, 2.0):
         # Prevalence stress is explicitly a retrospective reweighting diagnostic;
         # it never changes score thresholds or the decision API.
-        stressed_actions, _ = run_policy(frame, config, base, calibrated_probability)
-        metrics = evaluate_economics(stressed_actions, base, prevalence_weight=multiplier)
+        stressed_actions = decide(decision_frame, config, calibrated_probability, queue_config=queue_config)
+        evaluated = stressed_actions.merge(labels, on="source_row_id", how="left", validate="one_to_one")
+        metrics = evaluate_economics(evaluated, base, prevalence_weight=multiplier)
         rows.append({"scenario_id": f"SIMULATED_PREVALENCE_STRESS_{multiplier:.1f}X", "assumption_version": "PART7_ECONOMICS_v1.0", "prevalence_multiplier": multiplier, **{key: metrics[key] for key in ("review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_blocked", "legitimate_intervention_rate", "simulated_total_cost")}})
     return pd.DataFrame(rows)

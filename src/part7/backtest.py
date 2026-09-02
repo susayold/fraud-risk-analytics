@@ -3,11 +3,12 @@ from __future__ import annotations
 import pandas as pd
 
 from .contracts import PolicyConfig
+from .decision_runtime import decide
 from .economics import EconomicAssumptions, evaluate_economics
-from .policy_engine import run_policy
+from .evaluation_runtime import evaluate_decisions
 
 
-def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6, queue_config: dict | None = None) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
     rows: list[dict] = []
     actions: dict[str, pd.DataFrame] = {}
     pairs = [(review, block) for review in thresholds for block in thresholds if review < block < 1]
@@ -26,7 +27,9 @@ def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: 
                             config = PolicyConfig(f"PART7_{variant}_{review_threshold:.6f}_{block_threshold:.6f}_{capacity:.4f}_{method}", review_threshold, block_threshold, task_capacity, method)
                         else:
                             config = PolicyConfig(f"PART7_{variant}_{review_threshold:.6f}_{block_threshold:.6f}_{capacity:.4f}_{method}", review_threshold, block_threshold, task_capacity, method)
-                        action_frame, metrics = run_policy(frame, config, assumptions, calibrated_probability, emit_reason_codes=False)
+                        decision_frame = frame.drop(columns=["fraud_label"], errors="ignore")
+                        action_frame = decide(decision_frame, config, calibrated_probability, high_amount_cutoff=high_amount_cutoff, emit_reason_codes=False, queue_config=queue_config)
+                        metrics = evaluate_decisions(action_frame, frame[["source_row_id", "fraud_label"]], assumptions)
                         metrics["variant"] = variant
                         metrics["high_amount_cutoff"] = high_amount_cutoff
                         key = config.policy_version
@@ -46,6 +49,11 @@ def select_policy(candidates: pd.DataFrame, profile: dict, objective: str) -> pd
     if candidates.empty:
         return None
     frame = candidates.copy()
+    allowed = set(profile.get("allowed_priority_methods", []))
+    if allowed:
+        frame = frame[frame.priority_method.astype(str).isin(allowed)]
+    if profile.get("amount_priority_enabled") is False:
+        frame = frame[~frame.priority_method.astype(str).isin({"EXPOSURE_WEIGHTED_PROBABILITY", "EXPOSURE_WEIGHTED_RANK", "AMOUNT_GRAPH"})]
     frame["feasible"] = (frame.review_rate <= float(profile["max_review_rate"])) & (frame.block_rate <= float(profile["max_block_rate"])) & (frame.legitimate_block_rate <= float(profile["max_legitimate_block_rate"]))
     frame = frame[frame.feasible]
     if frame.empty:

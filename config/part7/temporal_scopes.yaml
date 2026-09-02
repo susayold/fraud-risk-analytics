@@ -1,0 +1,15 @@
+version: PART7_TEMPORAL_SCOPES_v2.0
+scopes:
+  P7_POLICY_TUNE:
+    purpose: threshold_search_only
+    may_open_final_oot: false
+  P7_POLICY_CONFIRM:
+    purpose: predetermined_policy_confirmation
+    may_open_final_oot: false
+  FINAL_OOT:
+    purpose: frozen_replay_only
+    may_change_decision_config: false
+seal:
+  oot_absent_from_threshold_search: true
+  oot_absent_from_economic_assumption_tuning: true
+  no_model_reselection_in_part7: true
