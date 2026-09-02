@@ -10,3 +10,4 @@ FROM analytics.part4_behavior_source
 WINDOW w_all AS (PARTITION BY merchant_id_raw ORDER BY transaction_timestamp RANGE BETWEEN UNBOUNDED PRECEDING AND INTERVAL '1 microsecond' PRECEDING),
        w_1h AS (PARTITION BY merchant_id_raw ORDER BY transaction_timestamp RANGE BETWEEN INTERVAL '1 hour' PRECEDING AND INTERVAL '1 microsecond' PRECEDING),
        w_24h AS (PARTITION BY merchant_id_raw ORDER BY transaction_timestamp RANGE BETWEEN INTERVAL '24 hours' PRECEDING AND INTERVAL '1 microsecond' PRECEDING);
+

@@ -5,3 +5,4 @@ SELECT source_row_id,
        CASE WHEN COUNT(*) OVER w = 0 THEN 1 ELSE 0 END::INTEGER AS user_mcc_is_new
 FROM analytics.part4_behavior_source
 WINDOW w AS (PARTITION BY user_id, merchant_category_code ORDER BY transaction_timestamp RANGE BETWEEN UNBOUNDED PRECEDING AND INTERVAL '1 microsecond' PRECEDING);
+

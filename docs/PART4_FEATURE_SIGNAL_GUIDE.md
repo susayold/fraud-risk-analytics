@@ -7,3 +7,4 @@ Public interpretation requires support of at least 1,000 transactions. Lower-sup
 Bins are feature-specific: velocity counts use `0, 1, 2–4, 5–9, 10–19, 20+`; recency uses time units; amount ratios use multiplicative bands; z-scores preserve direction instead of using `ABS(z)`.
 
 The primary contract is intentionally narrow: 1-hour, 24-hour and 7-day history windows; prior counts and recency; positive-purchase amount baselines and deviations; merchant/MCC/channel familiarity; and explicit cold-start flags.
+

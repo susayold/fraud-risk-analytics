@@ -12,3 +12,4 @@ WINDOW w_all AS (PARTITION BY card_key ORDER BY transaction_timestamp RANGE BETW
        w_1h AS (PARTITION BY card_key ORDER BY transaction_timestamp RANGE BETWEEN INTERVAL '1 hour' PRECEDING AND INTERVAL '1 microsecond' PRECEDING),
        w_24h AS (PARTITION BY card_key ORDER BY transaction_timestamp RANGE BETWEEN INTERVAL '24 hours' PRECEDING AND INTERVAL '1 microsecond' PRECEDING),
        w_7d AS (PARTITION BY card_key ORDER BY transaction_timestamp RANGE BETWEEN INTERVAL '7 days' PRECEDING AND INTERVAL '1 microsecond' PRECEDING);
+

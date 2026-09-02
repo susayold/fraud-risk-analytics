@@ -8,3 +8,4 @@ SELECT source_row_id,
 FROM analytics.part4_behavior_source
 WINDOW u AS (PARTITION BY user_id, use_chip ORDER BY transaction_timestamp RANGE BETWEEN UNBOUNDED PRECEDING AND INTERVAL '1 microsecond' PRECEDING),
        c AS (PARTITION BY card_key, use_chip ORDER BY transaction_timestamp RANGE BETWEEN UNBOUNDED PRECEDING AND INTERVAL '1 microsecond' PRECEDING);
+

@@ -37,3 +37,4 @@ bins:
     - {order: 5, label: "2 ≤ z < 3"}
     - {order: 6, label: "3 ≤ z < 5"}
     - {order: 7, label: "z ≥ 5"}
+

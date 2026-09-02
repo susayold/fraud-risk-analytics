@@ -6,3 +6,4 @@ WITH cells AS (
 ), totals AS (SELECT SUM(transactions) AS total_transactions FROM cells)
 SELECT channel, state_status, transactions, transactions * 1.0 / NULLIF(total_transactions, 0) AS share
 FROM cells CROSS JOIN totals ORDER BY transactions DESC, channel, state_status;
+

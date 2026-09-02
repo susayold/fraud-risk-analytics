@@ -18,3 +18,4 @@ WITH checks AS (
 SELECT check_name, rows_checked, violations, CASE WHEN violations = 0 THEN 'PASS' ELSE 'FAIL' END AS status, notes
 FROM checks
 ORDER BY check_name;
+

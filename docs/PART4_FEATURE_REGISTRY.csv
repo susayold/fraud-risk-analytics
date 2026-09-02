@@ -42,3 +42,4 @@ user_channel_prior_txn_count,channel_familiarity,Prior transactions for user-cha
 user_channel_is_new,channel_familiarity,1 when user has no prior channel pair,user_id|use_chip,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Use Chip|timestamp,unseen channel safe
 card_channel_prior_txn_count,channel_familiarity,Prior transactions for card-channel pair,card_key|use_chip,unbounded,false,true,true,0,0 when none,new=1,primary,User|Card|Use Chip|timestamp,unseen channel safe
 card_channel_is_new,channel_familiarity,1 when card has no prior channel pair,card_key|use_chip,unbounded,false,true,true,0,0/1 flag,new=1,primary,User|Card|Use Chip|timestamp,unseen channel safe
+

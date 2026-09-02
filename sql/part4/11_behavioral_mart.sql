@@ -27,3 +27,4 @@ JOIN analytics.part4_card_merchant_features cm USING (source_row_id)
 JOIN analytics.part4_user_mcc_features umcc USING (source_row_id)
 JOIN analytics.part4_card_mcc_features cmcc USING (source_row_id)
 JOIN analytics.part4_channel_features ch USING (source_row_id);
+

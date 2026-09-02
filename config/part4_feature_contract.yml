@@ -25,3 +25,4 @@ signal_analysis:
 storage:
   row_level_feature_mart_publication: forbidden
   raw_data_publication: forbidden
+

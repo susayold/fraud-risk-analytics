@@ -9,3 +9,4 @@ unseen_channel_row_4_count,10,0,PASS,Production SQL output=0; expected=0.
 negative_amount_row_5_current_positive,10,0,PASS,Production SQL output=False; expected=0.
 zero_amount_row_4_current_positive,10,0,PASS,Production SQL output=False; expected=0.
 same_timestamp_rows_do_not_see_each_other,10,0,PASS,Production SQL output=1; expected=1.
+

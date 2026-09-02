@@ -6,3 +6,4 @@ SELECT source_row_id,
        date_diff('second', MAX(transaction_timestamp) OVER w, transaction_timestamp)::BIGINT AS user_merchant_seconds_since_prev_txn
 FROM analytics.part4_behavior_source
 WINDOW w AS (PARTITION BY user_id, merchant_id_raw ORDER BY transaction_timestamp RANGE BETWEEN UNBOUNDED PRECEDING AND INTERVAL '1 microsecond' PRECEDING);
+

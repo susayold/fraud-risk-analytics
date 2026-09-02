@@ -42,3 +42,4 @@ user_channel_prior_txn_count,True,True,PASS
 user_channel_is_new,True,True,PASS
 card_channel_prior_txn_count,True,True,PASS
 card_channel_is_new,True,True,PASS
+

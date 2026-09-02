@@ -31,3 +31,4 @@ SELECT source_row_id,
        CASE WHEN amount > 0 AND user_prior_positive_amount_count >= 5 AND user_prior_positive_amount_std > 0 THEN (amount - user_prior_positive_amount_mean) / user_prior_positive_amount_std ELSE NULL END AS current_positive_amount_user_z,
        CASE WHEN amount > 0 AND card_prior_positive_amount_count >= 5 AND card_prior_positive_amount_std > 0 THEN (amount - card_prior_positive_amount_mean) / card_prior_positive_amount_std ELSE NULL END AS current_positive_amount_card_z
 FROM prior;
+

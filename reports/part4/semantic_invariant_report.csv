@@ -10,3 +10,4 @@ relationship_count_hierarchy,100000,0,PASS,relationship history cannot exceed en
 state_missing_not_new,100000,0,PASS,"missing state is an availability flag, not a familiarity flag"
 user_cold_start_consistency,100000,0,PASS,cold start implies zero prior count and NULL recency
 user_merchant_new_consistency,100000,0,PASS,new relationship implies zero prior count and NULL recency
+

@@ -19,3 +19,4 @@ SELECT 'timestamp_nulls' AS metric, null_timestamp_rows::DOUBLE AS value, CASE W
 UNION ALL SELECT 'rows_checked', rows_checked, 'PASS', 'Part 4 behavior source rows audited.' FROM stats
 UNION ALL SELECT 'same_timestamp_adjacent_rows', same_timestamp_adjacent_rows, 'PASS', 'Same timestamp peers remain excluded by strict upper frame bound.' FROM stats
 UNION ALL SELECT 'minimum_positive_delta_microseconds', COALESCE(minimum_positive_delta_microseconds, 0), 'PASS', 'Microsecond interval is used only as an exclusion guard; logical policy remains timestamp < T0.' FROM stats;
+
