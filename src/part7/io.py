@@ -28,9 +28,9 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def git_metadata() -> tuple[str, bool]:
-    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip() or "UNKNOWN"
-    dirty = bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip())
+def git_metadata(repo_root: Path = ROOT) -> tuple[str, bool]:
+    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root, text=True, capture_output=True, check=False).stdout.strip() or "UNKNOWN"
+    dirty = bool(subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, text=True, capture_output=True, check=False).stdout.strip())
     return commit, dirty
 
 

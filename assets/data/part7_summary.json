@@ -29,13 +29,18 @@
   },
   "validation": {
     "mandatory_gates": 64,
-    "pass": 27,
-    "blocked": 37,
+    "pass": 28,
+    "blocked": 36,
     "fail": 0,
     "status": "INPUT_BLOCKED",
     "final_lock_eligible": false
   },
   "generated_at_utc": "2026-09-02T22:22:03.123274+00:00",
-  "source_commit": "73e99d8ef8a5daf486c17cf84c132f02f12c70b5",
-  "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0"
+  "source_commit": "343c7a77d6f5c1cc9ed0536c0e79139836ecf9d5",
+  "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0",
+  "lifecycle": {
+    "status": "INPUT_BLOCKED",
+    "final_replay_required_before_lock": true,
+    "final_evidence_available": false
+  }
 }

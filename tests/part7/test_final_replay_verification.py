@@ -6,27 +6,34 @@ from unittest.mock import patch
 
 from src.part7.final_replay import load_and_verify_freeze
 from src.part7.freeze_policy import freeze_policy
+from src.part7.io import write_json
 
 
 class ReplayVerificationTests(unittest.TestCase):
     def setUp(self):
         self.freeze_path = Path("reports/part7/PART7_POLICY_FREEZE.json")
         self.replay_report = Path("reports/part7/PART7_REPLAY_VERIFICATION.json")
+        self.selected_path = Path("reports/part7/PART7_SELECTED_POLICY.json")
+        self.manifest_path = Path("reports/part7/P7_CONFIRMATION_SCOPE_MANIFEST.json")
         self.configs = [Path("config/part7/economic_assumptions.yaml"), Path("config/part7/graph_routing_policy.yaml"), Path("config/part7/reason_codes.yaml")]
 
     def tearDown(self):
-        for path in (self.freeze_path, self.replay_report):
+        for path in (self.freeze_path, self.replay_report, self.selected_path, self.manifest_path):
             if path.exists(): path.unlink()
 
-    def _make_freeze(self):
+    def _make_freeze(self, priority_method="SCORE_ONLY"):
         descriptor, filename = tempfile.mkstemp(suffix=".csv")
         import os
         os.close(descriptor)
         score = Path(filename); score.write_text("source_row_id,risk_score\n1,0.9\n", encoding="utf-8")
         self.addCleanup(lambda: score.unlink(missing_ok=True))
-        selected = {"policy_version": "TEST_POLICY", "profile": "balanced", "priority_method": "SCORE_ONLY", "review_threshold": .5, "block_threshold": .9, "review_capacity": .01}
+        selected = {"policy_version": "TEST_POLICY", "profile": "balanced", "priority_method": priority_method, "review_threshold": .5, "block_threshold": .9, "review_capacity": .01}
+        write_json(self.selected_path, selected)
+        write_json(self.manifest_path, {"scope": "P7_POLICY_CONFIRM", "confirmation_scope_hash": "CONFIRM_HASH"})
+        self.addCleanup(lambda: self.selected_path.unlink(missing_ok=True))
+        self.addCleanup(lambda: self.manifest_path.unlink(missing_ok=True))
         with patch("src.part7.freeze_policy.git_metadata", return_value=("TESTCOMMIT", False)):
-            return freeze_policy(selected, self.configs, "TEST_SCORE", "TEST_MODEL", "TEST_CAL", score_path=score, confirmation_scope_hash="CONFIRM_HASH"), score
+            return freeze_policy(selected, self.configs, "TEST_SCORE", "TEST_MODEL", "TEST_CAL", score_status="PROBABILITY_USABLE", score_path=score, confirmation_scope_hash="CONFIRM_HASH", selected_policy_path=self.selected_path, confirmation_manifest_path=self.manifest_path), score
 
     def test_replay_finds_config_in_config_part7(self):
         freeze, score = self._make_freeze()
@@ -51,6 +58,49 @@ class ReplayVerificationTests(unittest.TestCase):
         other = score.with_name("other_score.csv"); other.write_text("different", encoding="utf-8"); self.addCleanup(lambda: other.unlink(missing_ok=True))
         with patch("src.part7.replay_contract.git_metadata", return_value=("TESTCOMMIT", False)), self.assertRaises(RuntimeError):
             load_and_verify_freeze(freeze, score_path=other)
+
+    def test_replay_rejects_confirmation_manifest_mutation(self):
+        freeze, score = self._make_freeze()
+        self.manifest_path.write_text('{"scope":"P7_POLICY_CONFIRM","confirmation_scope_hash":"CONFIRM_HASH","tampered":true}\n', encoding="utf-8")
+        with patch("src.part7.replay_contract.git_metadata", return_value=("TESTCOMMIT", False)), self.assertRaises(RuntimeError):
+            load_and_verify_freeze(freeze, score_path=score)
+
+    def test_replay_rejects_confirmation_scope_hash_mismatch(self):
+        freeze, score = self._make_freeze()
+        self.manifest_path.write_text('{"scope":"P7_POLICY_CONFIRM","confirmation_scope_hash":"OTHER_HASH"}\n', encoding="utf-8")
+        with patch("src.part7.replay_contract.git_metadata", return_value=("TESTCOMMIT", False)), self.assertRaises(RuntimeError):
+            load_and_verify_freeze(freeze, score_path=score)
+
+    def test_ranking_only_freeze_allows_null_calibration(self):
+        freeze, score = self._make_freeze_ranking("SCORE_ONLY")
+        with patch("src.part7.replay_contract.git_metadata", return_value=("TESTCOMMIT", False)):
+            loaded = load_and_verify_freeze(freeze, score_path=score)
+        self.assertEqual(loaded["score_status"], "RANKING_ONLY")
+        self.assertIsNone(loaded["calibration_version"])
+
+    def test_probability_score_allows_expected_value_priority(self):
+        freeze, score = self._make_freeze("EXPOSURE_WEIGHTED_PROBABILITY")
+        with patch("src.part7.replay_contract.git_metadata", return_value=("TESTCOMMIT", False)):
+            loaded = load_and_verify_freeze(freeze, score_path=score)
+        self.assertEqual(loaded["priority_method"], "EXPOSURE_WEIGHTED_PROBABILITY")
+
+    def test_ranking_only_rejects_probability_priority(self):
+        with self.assertRaises(ValueError):
+            self._make_freeze_ranking("EXPOSURE_WEIGHTED_PROBABILITY")
+
+    def _make_freeze_ranking(self, priority_method):
+        descriptor, filename = tempfile.mkstemp(suffix=".csv")
+        import os
+        os.close(descriptor)
+        score = Path(filename); score.write_text("source_row_id,risk_score\n1,0.9\n", encoding="utf-8")
+        self.addCleanup(lambda: score.unlink(missing_ok=True))
+        selected = {"policy_version": "TEST_RANKING", "profile": "balanced", "priority_method": priority_method, "review_threshold": .5, "block_threshold": .9, "review_capacity": .01}
+        write_json(self.selected_path, selected)
+        write_json(self.manifest_path, {"scope": "P7_POLICY_CONFIRM", "confirmation_scope_hash": "CONFIRM_HASH"})
+        self.addCleanup(lambda: self.selected_path.unlink(missing_ok=True))
+        self.addCleanup(lambda: self.manifest_path.unlink(missing_ok=True))
+        with patch("src.part7.freeze_policy.git_metadata", return_value=("TESTCOMMIT", False)):
+            return freeze_policy(selected, self.configs, "TEST_RANKING_SCORE", "TEST_MODEL", None, score_status="RANKING_ONLY", score_path=score, confirmation_scope_hash="CONFIRM_HASH", selected_policy_path=self.selected_path, confirmation_manifest_path=self.manifest_path), score
 
 
 if __name__ == "__main__":

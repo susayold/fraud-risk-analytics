@@ -11,7 +11,7 @@ def weekly_paired_bootstrap(frame: pd.DataFrame, champion: pd.DataFrame, challen
         raise ValueError("Final weekly paired bootstrap requires at least 500 draws")
     if len(frame) == 0:
         return pd.DataFrame()
-    dates = pd.to_datetime(frame.transaction_timestamp).dt.to_period("W").astype(str)
+    dates = pd.to_datetime(frame.transaction_timestamp, utc=True).dt.tz_convert(None).dt.to_period("W").astype(str)
     blocks = sorted(dates.unique())
     rng = np.random.default_rng(seed)
     values = []

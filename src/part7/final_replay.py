@@ -11,9 +11,9 @@ from .decision_runtime import decide
 from .evaluation_runtime import evaluate_decisions
 
 
-def load_and_verify_freeze(path: Path, config_paths: list[Path] | None = None, *, score_path: Path | None = None, part6_artifact_path: Path | None = None) -> dict:
+def load_and_verify_freeze(path: Path, config_paths: list[Path] | None = None, *, score_path: Path | None = None, part6_artifact_path: Path | None = None, selected_policy_path: Path | None = None, confirmation_manifest_path: Path | None = None) -> dict:
     """Verify explicit config paths from config/part7, never reports/part7."""
-    freeze, _ = verify_freeze(path, score_path=score_path, part6_artifact_path=part6_artifact_path)
+    freeze, _ = verify_freeze(path, score_path=score_path, part6_artifact_path=part6_artifact_path, selected_policy_path=selected_policy_path, confirmation_manifest_path=confirmation_manifest_path)
     return freeze
 
 

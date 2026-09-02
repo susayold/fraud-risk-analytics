@@ -32,7 +32,7 @@ def code_tree_hash() -> str:
     return bundle_hash([p for p in (ROOT / "src" / "part7").rglob("*.py") if "__pycache__" not in p.parts])
 
 
-def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_path: Path | None = None, write_report: bool = True) -> tuple[dict, dict]:
+def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_path: Path | None = None, selected_policy_path: Path | None = None, confirmation_manifest_path: Path | None = None, write_report: bool = True) -> tuple[dict, dict]:
     freeze = json.loads(path.read_text(encoding="utf-8"))
     checks: dict[str, object] = {"freeze_id": freeze.get("freeze_id"), "post_freeze_mutation": freeze.get("post_freeze_mutation")}
     for key, expected_path in config_map().items():
@@ -52,14 +52,25 @@ def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_
     if freeze.get("code_commit") not in {current_commit, "UNKNOWN"}:
         raise RuntimeError("Final replay code commit does not match the policy freeze")
     checks["commit_match"] = True
-    if not freeze.get("score_version") or not freeze.get("model_version") or not freeze.get("calibration_version"):
+    score_status = freeze.get("score_status")
+    if not freeze.get("score_version") or not freeze.get("model_version") or score_status not in {"PROBABILITY_USABLE", "RANKING_ONLY"}:
         raise RuntimeError("Frozen score/model/calibration versions are incomplete")
+    if score_status == "PROBABILITY_USABLE" and not freeze.get("calibration_version"):
+        raise RuntimeError("Probability-usable scores require calibration_version")
+    if score_status == "RANKING_ONLY" and freeze.get("priority_method") == "EXPOSURE_WEIGHTED_PROBABILITY":
+        raise RuntimeError("Ranking-only scores cannot use expected-value priority")
+    checks["score_status_valid"] = True
+    checks["calibration_requirement_pass"] = True
     if score_path is not None:
         if not freeze.get("score_file_sha256") or sha256_file(score_path) != freeze["score_file_sha256"]:
             raise RuntimeError("Frozen score hash mismatch")
         checks["score_hash_match"] = True
     else:
         checks["score_hash_match"] = False
+    selected_path = selected_policy_path or (REPORT_DIR / "PART7_SELECTED_POLICY.json")
+    if not freeze.get("selected_policy_sha256") or not selected_path.exists() or sha256_file(selected_path) != freeze["selected_policy_sha256"]:
+        raise RuntimeError("Frozen selected-policy artifact hash mismatch or missing")
+    checks["selected_policy_hash_match"] = True
     if freeze.get("part6_artifact_sha256"):
         if part6_artifact_path is None or sha256_file(part6_artifact_path) != freeze["part6_artifact_sha256"]:
             raise RuntimeError("Frozen Part 6 graph artifact hash mismatch")
@@ -68,6 +79,12 @@ def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_
         checks["graph_artifact_hash_match"] = None
     if not freeze.get("confirmation_scope_hash"):
         raise RuntimeError("Frozen confirmation_scope_hash is missing")
+    manifest_path = confirmation_manifest_path or (REPORT_DIR / "P7_CONFIRMATION_SCOPE_MANIFEST.json")
+    if not manifest_path.exists() or sha256_file(manifest_path) != freeze.get("confirmation_manifest_sha256"):
+        raise RuntimeError("Confirmation manifest hash mismatch or missing")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("confirmation_scope_hash") != freeze.get("confirmation_scope_hash"):
+        raise RuntimeError("Confirmation scope hash does not match committed manifest")
     checks["confirmation_scope_hash_match"] = True
     if freeze.get("working_tree_clean") is not True:
         raise RuntimeError("Freeze was not created from a clean worktree")

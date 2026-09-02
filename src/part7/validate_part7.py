@@ -145,7 +145,7 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
         found = recon.loc[recon.check_name.astype(str).eq(key), "value"]
         return found.iloc[0] if len(found) else None
 
-    lineage_path = ROOT / "private" / "part7" / "input_lineage.json"; lineage = _load(lineage_path, {})
+    lineage_path = REPORT_DIR / "input_lineage.json"; lineage = _load(lineage_path, {})
     add("P7T01_input_source_resolved", audit_path, "input audit is not INPUT_BLOCKED", audit.get("status"), bool(audit.get("status")) and not blocked, blocked)
     add("P7T02_file_hash_recorded", lineage_path, "non-empty score_file_sha256", lineage.get("score_file_sha256"), bool(lineage.get("score_file_sha256")), blocked)
     add("P7T03_row_id_unique", recon_path, "unique rows equal source rows", recon_value("unique_source_row_id"), recon_value("source_rows") is not None and recon_value("unique_source_row_id") == recon_value("source_rows"), blocked)
@@ -191,7 +191,8 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T30_overflow_explicit", queue_path, "overflow action is explicit", "ALLOW", "overflow:" in queue_text and "action: ALLOW" in queue_text)
     add("P7T31_deterministic_tiebreak", queue_path, "source_row_id is final tie-break", "source_row_id ASC", "source_row_id ASC" in queue_text)
     unit_evidence_path = REPORT_DIR / "unit_test_evidence.json"; unit_evidence = _load(unit_evidence_path, {})
-    add("P7T32_future_rows_cannot_change_past", unit_evidence_path, "executed future-invariance test is PASS", unit_evidence.get("test_future_rows_do_not_change_past"), unit_evidence.get("test_future_rows_do_not_change_past") == "PASS", blocked)
+    future_test = unit_evidence.get("test_future_rows_do_not_change_past") or unit_evidence.get("test_future_rows_do_not_change_past_bucket")
+    add("P7T32_future_rows_cannot_change_past", unit_evidence_path, "executed future-invariance test is PASS", future_test, future_test == "PASS", blocked)
 
     econ_path = config_dir / "economic_assumptions.yaml"; econ_text = econ_path.read_text(encoding="utf-8") if econ_path.exists() else ""
     add("P7T33_assumption_ids_complete", econ_path, "ECON001..ECON010", "ECON001..ECON010", all(f"ECON{i:03d}" in econ_text for i in range(1, 11)))
@@ -220,14 +221,30 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T48_public_reason_aggregate_only", src_dir / "io.py", "public output is report directory only", "REPORT_DIR", "REPORT_DIR" in (src_dir / "io.py").read_text(encoding="utf-8"))
 
     freeze = _load(freeze_path, {})
-    add("P7T49_freeze_exists", freeze_path, "freeze JSON exists", freeze.get("policy_version"), bool(freeze), blocked)
-    add("P7T50_clean_worktree", freeze_path, "working_tree_clean=true", freeze.get("working_tree_clean"), freeze.get("working_tree_clean") is True, blocked)
-    add("P7T51_full_config_hash", freeze_path, "config bundle hash exists", freeze.get("config_bundle_sha256"), bool(freeze.get("config_bundle_sha256")), blocked)
-    add("P7T52_code_commit_hash", freeze_path, "code commit exists", freeze.get("code_commit"), bool(freeze.get("code_commit")), blocked)
-    add("P7T53_score_hash_version", freeze_path, "score hash/version exist", {k: freeze.get(k) for k in ("score_file_sha256", "score_version")}, bool(freeze.get("score_file_sha256")) and bool(freeze.get("score_version")), blocked)
-    add("P7T54_graph_hash_version", freeze_path, "graph hash/version exist", {k: freeze.get(k) for k in ("graph_routing_sha256", "graph_version")}, bool(freeze.get("graph_routing_sha256")) and bool(freeze.get("graph_version")), blocked)
-    add("P7T55_freeze_precedes_replay", freeze_path, "freeze timestamp exists", freeze.get("freeze_created_at_utc"), bool(freeze.get("freeze_created_at_utc")), blocked)
-    add("P7T56_no_post_freeze_mutation", freeze_path, "post_freeze_mutation is false", freeze.get("post_freeze_mutation"), freeze.get("post_freeze_mutation") is False, blocked)
+    pointer_path = REPORT_DIR / "part7_stage_pointer.json"
+    pointer = _load(pointer_path, {})
+    replay_meta_path = REPORT_DIR / "final_replay_metadata.json"
+    replay_meta = _load(replay_meta_path, {})
+    freeze_verification_path = REPORT_DIR / "PART7_FREEZE_VERIFICATION.json"
+    freeze_verification = _load(freeze_verification_path, {})
+    lifecycle_status = pointer.get("status", summary.get("status", "INPUT_BLOCKED"))
+    replay_ready = (
+        lifecycle_status in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"}
+        and replay_meta.get("status") == "PASS"
+        and bool(replay_meta.get("replay_started_at"))
+        and bool(replay_meta.get("replay_finished_at"))
+        and freeze.get("freeze_created_at_utc") is not None
+        and replay_meta.get("freeze_id") == freeze.get("freeze_id")
+    )
+    freeze_ready = lifecycle_status in {"POLICY_FROZEN", "FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"} and freeze_verification.get("status") == "PASS"
+    add("P7T49_freeze_exists", freeze_path, "freeze JSON exists at POLICY_FROZEN or later", {"lifecycle_status": lifecycle_status, "policy_version": freeze.get("policy_version")}, bool(freeze) and freeze_ready, blocked)
+    add("P7T50_clean_worktree", freeze_path, "working_tree_clean=true", freeze.get("working_tree_clean"), freeze.get("working_tree_clean") is True and freeze_ready, blocked)
+    add("P7T51_full_config_hash", freeze_path, "config bundle hash exists", freeze.get("config_bundle_sha256"), bool(freeze.get("config_bundle_sha256")) and freeze_ready, blocked)
+    add("P7T52_code_commit_hash", freeze_path, "code commit exists", freeze.get("code_commit"), bool(freeze.get("code_commit")) and freeze.get("code_commit") != "UNKNOWN" and freeze_ready, blocked)
+    add("P7T53_score_hash_version", freeze_path, "score hash/version exist", {k: freeze.get(k) for k in ("score_file_sha256", "score_version")}, bool(freeze.get("score_file_sha256")) and bool(freeze.get("score_version")) and freeze_ready, blocked)
+    add("P7T54_graph_hash_version", freeze_path, "graph hash/version exist", {k: freeze.get(k) for k in ("graph_routing_sha256", "graph_version")}, bool(freeze.get("graph_routing_sha256")) and bool(freeze.get("graph_version")) and freeze_ready, blocked)
+    add("P7T55_freeze_precedes_replay", replay_meta_path, "verified replay completed after freeze", {"lifecycle_status": lifecycle_status, "freeze_created_at_utc": freeze.get("freeze_created_at_utc"), "replay_started_at": replay_meta.get("replay_started_at"), "replay_finished_at": replay_meta.get("replay_finished_at")}, replay_ready and str(freeze.get("freeze_created_at_utc")) <= str(replay_meta.get("replay_started_at")) <= str(replay_meta.get("replay_finished_at")), blocked or not replay_ready)
+    add("P7T56_no_post_freeze_mutation", freeze_verification_path, "freeze verification passed and post_freeze_mutation is false", {"status": freeze_verification.get("status"), "post_freeze_mutation": freeze.get("post_freeze_mutation")}, freeze_ready and freeze.get("post_freeze_mutation") is False, blocked or not freeze_ready)
 
     boot = _load(bootstrap_path, pd.DataFrame()); has_boot = isinstance(boot, pd.DataFrame) and not boot.empty
     draws = int(boot.draws.max()) if has_boot and "draws" in boot else None

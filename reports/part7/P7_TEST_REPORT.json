@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-02T22:22:02.200252+00:00",
-  "test_count": 21,
+  "generated_at_utc": "2026-09-02T22:52:14.479982+00:00",
+  "test_count": 33,
   "failures": 0,
   "errors": 0,
   "status": "PASS",
@@ -15,16 +15,28 @@
     "test_each_candidate_variant_has_metadata": "PASS",
     "test_positive_exposure_never_negative_and_costs_reconcile": "PASS",
     "test_fixture_runs_without_using_oot_for_selection": "PASS",
+    "test_probability_score_allows_expected_value_priority": "PASS",
+    "test_ranking_only_freeze_allows_null_calibration": "PASS",
+    "test_ranking_only_rejects_probability_priority": "PASS",
     "test_replay_finds_config_in_config_part7": "PASS",
+    "test_replay_rejects_confirmation_manifest_mutation": "PASS",
+    "test_replay_rejects_confirmation_scope_hash_mismatch": "PASS",
     "test_replay_rejects_each_mutated_freeze_hash": "PASS",
     "test_replay_rejects_score_hash_change": "PASS",
     "test_graph_does_not_change_block_eligibility": "PASS",
+    "test_freeze_policy_rejects_real_dirty_worktree": "PASS",
+    "test_freeze_policy_succeeds_after_real_commit": "PASS",
+    "test_lock_requires_complete_replay_evidence": "PASS",
+    "test_only_sequential_transitions_are_allowed": "PASS",
+    "test_real_temporary_git_clean_then_dirty": "PASS",
     "test_csv_summary_and_asset_counts_match": "PASS",
     "test_capacity_is_bucket_local": "PASS",
     "test_capacity_reconciles_per_bucket": "PASS",
     "test_future_rows_do_not_change_past_bucket": "PASS",
     "test_ties_are_deterministic_and_order_invariant": "PASS",
     "test_decision_runtime_rejects_label": "PASS",
-    "test_evaluation_is_post_decision_join": "PASS"
+    "test_evaluation_is_post_decision_join": "PASS",
+    "test_probability_score_requires_calibration_version": "PASS",
+    "test_ranking_score_allows_null_calibration_version": "PASS"
   }
 }
