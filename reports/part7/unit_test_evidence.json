@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-02T22:20:43.814147+00:00",
+  "generated_at_utc": "2026-09-02T22:22:02.200252+00:00",
   "status": "PASS",
   "test_exactly_64_evidence_gates": "PASS",
   "test_decision_context_rejects_label": "PASS",
