@@ -1,0 +1,18 @@
+version: PART7_DECISION_ENGINE_v1.0
+decision_unit: transaction
+actions: [ALLOW, REVIEW, BLOCK]
+policy_mode_default: BACKTEST
+oot_not_globally_unseen: true
+primary_objective: MINIMIZE_TOTAL_SIMULATED_COST
+review_overflow_action: ALLOW
+hard_block:
+  enabled: false
+threshold_search:
+  method: score_quantiles
+  quantiles: [0.90, 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 0.995, 0.999]
+  max_threshold_pairs: 6
+capacities: [0.001, 0.0025, 0.005, 0.01, 0.02, 0.05, 0.10]
+selection:
+  scope: P7_POLICY_CONFIRM
+  primary_metric: simulated_total_cost
+  tie_break: [lower_legitimate_block_rate, lower_review_rate, higher_fraud_exposure_capture, simpler_policy]

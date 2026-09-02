@@ -1,0 +1,65 @@
+check_name,status,violations,notes
+P7T01_input_source_resolved,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T02_source_row_id_unique,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T03_timestamp_parse_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T04_score_non_null,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T05_score_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T06_score_declared_range,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T07_amount_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T08_split_values_valid,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T09_population_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T10_fraud_label_absent_from_decision_api,PASS,0,DecisionContext has no fraud_label field.
+P7T11_no_target_policy_feature,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T12_no_future_outcome_input,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T13_tune_precedes_confirm,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T14_oot_absent_threshold_search,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T15_oot_absent_assumption_fit,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T16_no_oot_model_reselection,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T17_oot_claim_registered,PASS,0,Claim boundary is explicit.
+P7T18_calibration_metrics_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T19_probability_status_explicit,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T20_ranking_expected_value_disabled,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T21_calibrator_scope_allowed,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T22_action_domain_exact,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T23_one_action_per_row,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T24_action_totals_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T25_threshold_order,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T26_review_capacity,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T27_block_constraint,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T28_overflow_explicit,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T29_deterministic_tiebreak,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T30_assumption_ids,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T31_assumption_units,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T32_assumption_source_type,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T33_simulated_claim_class,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T34_no_technical_only_recommendation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T35_cost_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T36_positive_exposure_nonnegative,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T37_signed_amount_boundary,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T38_sensitivity_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T39_graph_autoblock_disabled,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T40_graph_absence_safe,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T41_graph_hash_recorded,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T42_part6_claim_unchanged,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T43_policy_freeze_exists,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T44_freeze_precedes_replay,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T45_policy_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T46_assumption_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T47_reason_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T48_graph_hash_stable,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T49_no_post_freeze_change,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T50_weekly_bootstrap,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T51_paired_blocks,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T52_bootstrap_ci_finite,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T53_delta_reconciles,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T54_daily_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T55_segment_reconciliation,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T56_reason_codes_registered,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T57_manifest_complete,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T58_manifest_sha256,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T59_private_files_untracked,PASS,0,Governance gate passed; execution is blocked upstream.
+P7T60_summary_csv_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T61_card_json_reconcile,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T62_policy_feasible,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T63_policy_non_dominated,BLOCKED,1,Cannot pass before the frozen Part 5 row-level score is supplied.
+P7T64_final_status_gate,PASS,0,Governance gate passed; execution is blocked upstream.

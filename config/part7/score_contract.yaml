@@ -1,0 +1,17 @@
+version: PART7_SCORE_INPUT_v1.0
+primary_score_alias: PRIMARY_FRAUD_SCORE
+required_columns:
+  - source_row_id
+  - transaction_timestamp
+  - risk_score
+  - amount
+  - split_name
+score_range: [0.0, 1.0]
+score_status: DISCOVER_FROM_ARTIFACT
+calibration_required_for_expected_value: true
+allowed_split_values: [DEVELOPMENT, VALIDATION, OUT_OF_TIME_OOT, P7_POLICY_TUNE, P7_POLICY_CONFIRM]
+oot_claim:
+  oot_not_globally_unseen: true
+  statement: Block E policy is frozen before its final replay; upstream Parts 5-6 already evaluated the same OOT period.
+label_firewall:
+  decision_api_forbidden: [fraud_label, target, chargeback, investigation_outcome, future_outcome]

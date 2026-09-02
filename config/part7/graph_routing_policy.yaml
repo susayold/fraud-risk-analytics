@@ -1,0 +1,13 @@
+version: PART7_GRAPH_ROUTING_v1.0
+enabled: true
+automatic_block_override:
+  enabled: false
+review_priority:
+  pair_new: {enabled: true, weight: 1.10}
+  cold_card: {enabled: true, weight: 1.08}
+  new_merchant: {enabled: true, weight: 1.08}
+  cross_community: {enabled: true, weight: 1.06}
+claim_boundary:
+  - graph is complementary review-routing evidence
+  - graph does not automatically change BLOCK eligibility
+  - Part 6 did not establish a robust global Test uplift over the tabular baseline

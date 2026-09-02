@@ -16,6 +16,7 @@ data/modeling/
 *.pkl
 predictions/
 shap/private/
+private/part7/
 
 __pycache__/
 *.pyc

@@ -1,0 +1,114 @@
+version: PART7_ECONOMICS_v1.0
+claim_class: SIMULATED
+source_type_default: PROJECT_ASSUMPTION
+assumptions:
+  ECON001:
+    name: fraud_loss_fraction
+    description: Fraction of positive exposure treated as simulated missed-fraud cost.
+    unit: fraction
+    base: 0.70
+    low: 0.50
+    high: 0.90
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON002:
+    name: block_effectiveness
+    description: Simulated fraction of fraud exposure avoided when a fraud row is blocked.
+    unit: fraction
+    base: 0.95
+    low: 0.80
+    high: 0.99
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON003:
+    name: review_cost_per_case
+    description: Simulated analyst handling cost per review case in normalized cost units.
+    unit: normalized_cost
+    base: 1.0
+    low: 0.5
+    high: 2.0
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON004:
+    name: review_fraud_detection_rate
+    description: Fraction of reviewed fraud rows detected by an imperfect reviewer.
+    unit: fraction
+    base: 0.80
+    low: 0.70
+    high: 0.95
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON005:
+    name: review_legitimate_false_reject_rate
+    description: Fraction of reviewed legitimate rows that incur simulated false-reject friction.
+    unit: fraction
+    base: 0.01
+    low: 0.005
+    high: 0.05
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON006:
+    name: false_block_fixed_friction_cost
+    description: Fixed simulated friction cost for a legitimate blocked transaction.
+    unit: normalized_cost
+    base: 0.50
+    low: 0.25
+    high: 1.00
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON007:
+    name: false_block_amount_friction_rate
+    description: Simulated amount-proportional friction for a legitimate blocked transaction.
+    unit: fraction
+    base: 0.02
+    low: 0.01
+    high: 0.04
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON008:
+    name: review_delay_cost
+    description: Optional normalized cost per reviewed transaction for review delay.
+    unit: normalized_cost
+    base: 0.05
+    low: 0.0
+    high: 0.10
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON009:
+    name: economic_exposure_basis
+    description: Primary exposure definition used by the simulation.
+    unit: enum
+    base: positive_exposure
+    low: signed_amount
+    high: absolute_exposure
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY
+  ECON010:
+    name: review_capacity
+    description: Simulated maximum fraction of population that can be reviewed.
+    unit: fraction_of_population
+    base: 0.01
+    low: 0.001
+    high: 0.05
+    source_type: PROJECT_ASSUMPTION
+    claim_type: SIMULATED
+    sensitivity_required: true
+    status: ASSUMPTION_ONLY

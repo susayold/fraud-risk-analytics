@@ -1,0 +1,15 @@
+version: PART7_REASON_CODES_v1.0
+codes:
+  RC001: {name: SCORE_BLOCK_THRESHOLD, description: Score is in the configured block band.}
+  RC002: {name: SCORE_REVIEW_THRESHOLD, description: Score is eligible for review.}
+  RC003: {name: HIGH_EXPOSURE_PRIORITY, description: Exposure-aware priority was applied.}
+  RC004: {name: NEW_CARD_MERCHANT_PAIR, description: Card–merchant pair is new at decision time.}
+  RC005: {name: COLD_CARD, description: Card is unseen in the historical context.}
+  RC006: {name: NEW_MERCHANT, description: Merchant is unseen in the historical context.}
+  RC007: {name: CROSS_COMMUNITY_RELATIONSHIP, description: Relationship crosses graph communities.}
+  RC008: {name: ONLINE_CHANNEL_CONTEXT, description: Online channel context is present.}
+  RC009: {name: HIGH_AMOUNT_BAND, description: Transaction is in the configured high amount band.}
+  RC010: {name: REVIEW_CAPACITY_PRIORITY, description: Candidate was selected within review capacity.}
+  RC011: {name: REVIEW_CAPACITY_OVERFLOW, description: Candidate overflowed capacity and used explicit fallback.}
+  RC012: {name: GRAPH_REVIEW_OVERLAY, description: Graph novelty overlay affected review priority only.}
+  RC013: {name: POLICY_HARD_CONSTRAINT, description: Explicit policy hard constraint was applied.}

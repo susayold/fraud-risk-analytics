@@ -1,0 +1,24 @@
+version: PART7_EXPECTED_ARTIFACTS_v1.0
+public_reports:
+  - reports/part7/decision_input_reconciliation.csv
+  - reports/part7/score_calibration_audit.csv
+  - reports/part7/policy_development_split.csv
+  - reports/part7/baseline_policy_metrics.csv
+  - reports/part7/policy_candidate_metrics.csv
+  - reports/part7/policy_frontier.csv
+  - reports/part7/review_capacity_frontier.csv
+  - reports/part7/marginal_review_value.csv
+  - reports/part7/amount_aware_comparison.csv
+  - reports/part7/graph_review_comparison.csv
+  - reports/part7/policy_profile_comparison.csv
+  - reports/part7/policy_stability_matrix.csv
+  - reports/part7/sensitivity_summary.csv
+  - reports/part7/daily_policy_metrics.csv
+  - reports/part7/reason_code_summary.csv
+  - reports/part7/shadow_policy_transition_matrix.csv
+  - reports/part7/shadow_policy_metric_delta.csv
+  - reports/part7/bootstrap_policy_ci.csv
+  - reports/part7/PART7_POLICY_FREEZE.json
+  - reports/part7/PART7_FINAL_SUMMARY.json
+  - reports/part7/report_manifest.csv
+  - reports/part7/part7_validation_report.csv

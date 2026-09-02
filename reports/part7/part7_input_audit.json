@@ -1,0 +1,12 @@
+{
+  "status": "INPUT_BLOCKED",
+  "notes": "No frozen Part 5 row-level score artifact was discovered; pass --input explicitly.",
+  "checks": [
+    {
+      "check_name": "P7T01_input_source_resolved",
+      "status": "FAIL",
+      "notes": "candidates=0"
+    }
+  ],
+  "generated_at_utc": "2026-09-02T20:32:28.291442+00:00"
+}

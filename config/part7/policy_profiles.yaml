@@ -1,0 +1,18 @@
+version: PART7_PROFILES_v1.0
+claim_type: SIMULATED
+profiles:
+  growth:
+    objective: minimize_friction
+    max_review_rate: 0.005
+    max_block_rate: 0.0025
+    max_legitimate_block_rate: 0.0005
+  balanced:
+    objective: minimize_total_simulated_cost
+    max_review_rate: 0.01
+    max_block_rate: 0.01
+    max_legitimate_block_rate: 0.002
+  conservative:
+    objective: maximize_protection_subject_to_constraints
+    max_review_rate: 0.05
+    max_block_rate: 0.02
+    max_legitimate_block_rate: 0.005

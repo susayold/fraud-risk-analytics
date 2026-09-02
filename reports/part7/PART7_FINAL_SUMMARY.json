@@ -1,0 +1,36 @@
+{
+  "block": "E",
+  "part": 7,
+  "name": "Fraud Risk Decision Engine",
+  "status": "INPUT_BLOCKED",
+  "score_version": "",
+  "policy_version": "",
+  "policy_profile": "",
+  "claim_boundary": {
+    "synthetic_data": true,
+    "simulated_costs": true,
+    "not_production_deployment": true,
+    "oot_not_globally_unseen": true
+  },
+  "policy": {
+    "review_threshold": null,
+    "block_threshold": null,
+    "review_capacity": null
+  },
+  "final_evidence": {
+    "allow_rate": null,
+    "review_rate": null,
+    "block_rate": null,
+    "fraud_capture": null,
+    "fraud_exposure_capture": null,
+    "legitimate_block_rate": null,
+    "simulated_total_cost": null
+  },
+  "validation": {
+    "mandatory_gates": 64,
+    "pass": 0,
+    "fail": 0,
+    "status": "REVIEW"
+  },
+  "generated_at_utc": "2026-09-02T20:32:28.297704+00:00"
+}
