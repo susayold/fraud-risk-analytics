@@ -1,0 +1,5 @@
+version: PART8_POLICY_MONITORING_v1
+action_domain: [ALLOW, REVIEW, BLOCK]
+graph_can_change_block: false
+metrics: [allow_rate, review_rate, block_rate, review_candidate_rate, capacity_utilization, overflow_rate, reason_code_mix]
+

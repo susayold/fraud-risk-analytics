@@ -1,0 +1,7 @@
+version: PART8_PERFORMANCE_MONITORING_v1
+primary_metric: PR_AUC
+secondary_metrics: [ROC_AUC, KS, TOP_K_CAPTURE]
+min_fraud_support: 30
+uncertainty: DATE_BLOCK_BOOTSTRAP
+low_support_status: INSUFFICIENT_SUPPORT
+

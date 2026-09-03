@@ -1,0 +1,5 @@
+version: PART8_ALERT_PERSISTENCE_v1
+soft_drift: {rule: 2_of_3}
+score_drift: {rule: 2_consecutive}
+critical_contract: {rule: immediate}
+

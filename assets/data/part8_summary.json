@@ -1,0 +1,34 @@
+{
+  "block": "F",
+  "part": 8,
+  "name": "Monitoring, Drift & Governance",
+  "status": "INPUT_BLOCKED",
+  "technical_status": "MONITORING_FRAMEWORK_READY",
+  "validation": {
+    "mandatory_gates": 72,
+    "pass": 16,
+    "blocked": 56,
+    "fail": 0,
+    "status": "INPUT_BLOCKED",
+    "final_lock_eligible": false
+  },
+  "claim_boundary": {
+    "offline_retrospective_monitoring": true,
+    "not_production_monitoring": true,
+    "synthetic_fixture_not_real_evidence": true,
+    "raw_row_level_public_data": false,
+    "label_latency_observed": false
+  },
+  "two_clock": {
+    "operational": "OPERATIONS_NOW",
+    "matured": "OUTCOMES_MATURED"
+  },
+  "lifecycle": {
+    "status": "INPUT_BLOCKED",
+    "final_oot_threshold_tuning": false,
+    "matured_outcomes_available": false
+  },
+  "generated_at_utc": "2026-09-03T01:06:57.497167+00:00",
+  "source_commit": "64c054ab042fed7110451431d85d7b424c0cd3fc",
+  "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0"
+}

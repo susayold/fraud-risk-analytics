@@ -1,0 +1,14 @@
+{
+  "run_id": "P8_FRAMEWORK_SNAPSHOT",
+  "mode": "framework",
+  "code_commit": "",
+  "working_tree_clean": false,
+  "input_hash": null,
+  "baseline_id": null,
+  "label_mode": "OPERATIONS_NOW",
+  "rows": 0,
+  "window_count": 0,
+  "status": "INPUT_BLOCKED",
+  "started_at": null,
+  "completed_at": null
+}

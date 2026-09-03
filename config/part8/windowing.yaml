@@ -1,0 +1,5 @@
+version: PART8_WINDOWING_v1
+operational: {frequency: DAY, timezone: UTC}
+drift: {frequency: WEEK, timezone: UTC}
+performance: {frequency: MONTH, timezone: UTC}
+

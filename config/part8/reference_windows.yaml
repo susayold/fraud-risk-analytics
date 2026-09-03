@@ -1,0 +1,8 @@
+version: PART8_REFERENCE_WINDOWS_v1
+data_quality_reference: {scope: VALIDATION_SELECTION}
+feature_reference: {scope: VALIDATION_SELECTION}
+score_reference: {scope: VALIDATION_SELECTION}
+model_performance_reference: {scope: VALIDATION_SELECTION}
+policy_reference: {scope: P7_POLICY_CONFIRM}
+final_monitoring_replay: {scope: FINAL_OOT, may_tune_thresholds: false}
+

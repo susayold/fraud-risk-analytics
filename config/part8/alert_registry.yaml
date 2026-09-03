@@ -1,0 +1,7 @@
+version: PART8_ALERT_REGISTRY_v1
+alerts:
+  - {alert_id: P8_DATA_QUALITY, signal: S1, owner_role: Data Owner, recommended_investigation: inspect_contract_and_lineage, claim_class: DATA_INCIDENT}
+  - {alert_id: P8_SCORE_SHIFT, signal: S3, owner_role: Model Owner, recommended_investigation: inspect_feature_and_segment_shift, claim_class: PREDICTION_SHIFT}
+  - {alert_id: P8_POLICY_QUEUE, signal: S6, owner_role: Policy Owner, recommended_investigation: inspect_capacity_and_overflow, claim_class: POLICY_OPERATION_SHIFT}
+  - {alert_id: P8_GRAPH_NOVELTY, signal: S7, owner_role: Fraud Risk Owner, recommended_investigation: inspect_new_relationship_context, claim_class: CATEGORY_NOVELTY}
+

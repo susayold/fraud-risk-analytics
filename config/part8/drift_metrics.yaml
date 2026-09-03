@@ -1,0 +1,6 @@
+version: PART8_DRIFT_METRICS_v1
+numerical: {headline: [jensen_shannon, wasserstein], diagnostic: [psi, ks], bins: 10, smoothing_epsilon: 1.0e-12}
+categorical: {headline: [jensen_shannon, total_variation, new_category_rate], diagnostic: [psi, chi_squared]}
+threshold_policy: empirical_pre_oot_baseline
+p_value_not_sufficient_alone: true
+

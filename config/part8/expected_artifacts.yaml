@@ -1,0 +1,4 @@
+version: PART8_EXPECTED_ARTIFACTS_v1
+framework: [P8_MONITORING_CHARTER.md, P8_SOURCE_AUDIT.md, P8_RESEARCH_EVIDENCE_REGISTER.md, P8_LIMITATIONS.md, PART8_FINAL_SUMMARY.json]
+baseline: [reference_window_summary.csv, reference_data_quality.csv, reference_feature_distributions.json, reference_feature_distributions.csv, reference_score_distribution.csv, reference_performance.csv, alert_threshold_calibration.csv, alert_threshold_calibration.json]
+replay: [monitoring_window_summary.csv, data_quality_monitor.csv, feature_drift_monitor.csv, category_novelty_monitor.csv, score_drift_monitor.csv, policy_monitor.csv, review_capacity_monitor.csv, graph_monitor.csv, segment_monitor.csv, matured_model_performance.csv, matured_calibration_monitor.csv, matured_policy_performance.csv, alert_log.csv, alert_summary.csv, governance_recommendations.csv, root_cause_bundle.json, monitoring_reconciliation.json]

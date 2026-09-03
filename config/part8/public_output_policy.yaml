@@ -1,0 +1,5 @@
+version: PART8_PUBLIC_OUTPUT_POLICY_v1
+aggregate_only: true
+forbidden_fields: [source_row_id, fraud_label, risk_score, PRIMARY_FRAUD_SCORE, action, reason_codes, amount, transaction_timestamp, raw_features]
+allowed_outputs: [window_aggregates, feature_drift, score_bins, action_aggregates, segment_aggregates, alerts, hashes, versions, manifests]
+

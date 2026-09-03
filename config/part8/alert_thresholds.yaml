@@ -1,0 +1,8 @@
+version: PART8_ALERT_THRESHOLDS_v1
+threshold_source: EMPIRICAL_PRE_OOT_BASELINE
+final_numbers_frozen: false
+signals:
+  score_js: {amber: null, red: null, min_support: 1, persistence: 2_consecutive}
+  score_psi: {amber: null, red: null, min_support: 1, persistence: 2_consecutive}
+  channel_share: {amber: null, red: null, min_support: 1, persistence: 2_of_3}
+

@@ -1,0 +1,5 @@
+version: PART8_GRAPH_MONITORING_v1
+signals: [pair_new, cold_card, new_merchant, cross_community]
+graph_can_auto_block: false
+allowed_role: context_and_review_priority_only
+

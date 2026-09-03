@@ -1,0 +1,6 @@
+{
+  "status": "INPUT_BLOCKED",
+  "label_mode": "OPERATIONS_NOW",
+  "events": [],
+  "claim_boundary": "No final OOT monitoring replay has been run."
+}

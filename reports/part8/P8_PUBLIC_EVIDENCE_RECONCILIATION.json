@@ -1,0 +1,13 @@
+{
+  "source_commit": "64c054ab042fed7110451431d85d7b424c0cd3fc",
+  "validation": {
+    "mandatory_gates": 72,
+    "pass": 16,
+    "blocked": 56,
+    "fail": 0,
+    "status": "INPUT_BLOCKED",
+    "final_lock_eligible": false
+  },
+  "status": "PASS",
+  "public_row_level_data": false
+}

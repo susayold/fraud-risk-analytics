@@ -1,0 +1,31 @@
+name: Part 8 Tests
+
+on:
+  push:
+    paths:
+      - "src/part8/**"
+      - "config/part8/**"
+      - "tests/part8/**"
+      - "scripts/run_part8_tests.py"
+      - "requirements-part8.txt"
+      - ".github/workflows/part8-tests.yml"
+  pull_request:
+    paths:
+      - "src/part8/**"
+      - "config/part8/**"
+      - "tests/part8/**"
+      - "scripts/run_part8_tests.py"
+      - "requirements-part8.txt"
+      - ".github/workflows/part8-tests.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements-part8.txt
+      - run: python scripts/run_part8_tests.py
+      - run: python -m src.part8.validate_part8

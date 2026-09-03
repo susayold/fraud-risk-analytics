@@ -1,0 +1,4 @@
+version: PART8_SEGMENT_REGISTRY_v1
+segments: [channel, amount_band, MCC, cold_start, new_card_merchant_pair, new_merchant, established_merchant, policy_action, risk_band]
+pre_registered_before_final_replay: true
+

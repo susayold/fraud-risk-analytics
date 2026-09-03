@@ -1,0 +1,10 @@
+version: PART8_MONITORING_CONTRACT_v1
+required_columns: [source_row_id, transaction_timestamp, amount, risk_score, split_name]
+optional_columns: [fraud_label, score_status, score_version, model_version, calibration_version, policy_version, action, candidate_action, review_selected, review_overflow, positive_exposure, channel, MCC, state_missing_flag, pair_new, cold_card, new_merchant, cross_community, graph_version]
+forbidden_operational_columns: [fraud_label, future_outcome, future_dispute, review_case_id]
+action_domain: [ALLOW, REVIEW, BLOCK]
+score_range: [0.0, 1.0]
+timestamp_timezone: UTC
+label_separation: true
+supported_modes: [baseline, freeze, replay]
+

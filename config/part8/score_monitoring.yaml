@@ -1,0 +1,5 @@
+version: PART8_SCORE_MONITORING_v1
+score_column: risk_score
+metrics: [mean, median, std, p50, p75, p90, p95, p99, score_js, score_psi, score_wasserstein]
+probability_claim_requires_status: PROBABILITY_USABLE
+

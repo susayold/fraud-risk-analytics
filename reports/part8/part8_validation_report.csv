@@ -1,0 +1,73 @@
+gate_id,family,description,status,reason,evidence_artifact,claim_class
+P8T01,A,input source resolved,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T02,A,input hash recorded,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T03,A,source_row_id unique,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T04,A,timestamps parse,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T05,A,monitored schema matches contract,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T06,A,upstream model lineage complete,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T07,A,upstream policy lineage complete,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T08,A,public/private data boundary passes,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T09,B,operational windows deterministic,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T10,B,drift windows deterministic,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T11,B,performance windows deterministic,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T12,B,one row assigned correctly,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T13,B,future rows cannot alter closed prior window,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T14,B,operational runtime excludes fraud_label,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T15,B,label mode explicit,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T16,B,label latency limitation published,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T17,C,critical columns present,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T18,C,critical null policy passes,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T19,C,score range valid,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T20,C,amount values finite,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T21,C,action domain valid when available,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T22,C,duplicate rate reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T23,C,structural missingness baseline recorded,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T24,C,category novelty explicitly measured,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T25,D,reference window frozen,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T26,D,numerical drift metrics validated,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T27,D,categorical drift metrics validated,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T28,D,frozen reference bins used,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T29,D,score drift measured,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T30,D,channel-mix drift measured,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T31,D,low-support handling explicit,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T32,D,final OOT absent from threshold calibration,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T33,E,PR-AUC evaluated only with matured labels,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T34,E,ROC-AUC evaluated only with matured labels,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T35,E,KS evaluated only with matured labels,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T36,E,prevalence reported alongside performance,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T37,E,calibration conditional on score status,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T38,E,Brier/log-loss/ECE reconcile,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T39,E,Top-K capture reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T40,E,uncertainty/support gate passes,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T41,F,one policy action per transaction,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T42,F,ALLOW/REVIEW/BLOCK rates reconcile,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T43,F,review candidate count recorded,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T44,F,capacity utilization reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T45,F,overflow reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T46,F,reason-code mix recorded,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T47,F,matured fraud/exposure capture reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T48,F,simulated economics claim boundary preserved,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T49,G,graph version recorded,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T50,G,graph auto-BLOCK remains disabled,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T51,G,pair_new monitored,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T52,G,cold_card monitored,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T53,G,new_merchant monitored,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T54,G,cross_community monitored,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T55,G,predefined segment registry used,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T56,G,no post-hoc OOT headline segment mining,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T57,H,alert thresholds frozen pre-OOT,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T58,H,persistence rules deterministic,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T59,H,hard vs soft breach separated,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T60,H,alert severity domain valid,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T61,H,governance action domain valid,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T62,H,monitor cannot mutate Part 5,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T63,H,monitor cannot mutate Part 7,PASS,framework contract/static boundary verified,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T64,H,incident/change record generated,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T65,I,baseline freeze exists,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T66,I,clean worktree at baseline freeze,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T67,I,config bundle hash valid,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T68,I,code tree hash valid,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T69,I,report manifest valid,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T70,I,public summary reconciles,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T71,I,final replay uses frozen monitor,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE
+P8T72,I,final status locks only at 72/72 PASS,BLOCKED,No genuine private monitoring mart was supplied,reports/part8/PART8_FINAL_SUMMARY.json,FRAMEWORK_OR_EXECUTION_EVIDENCE

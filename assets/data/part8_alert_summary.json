@@ -1,0 +1,5 @@
+{
+  "status": "INPUT_BLOCKED",
+  "alerts": [],
+  "note": "Alert thresholds are candidates only until pre-OOT baseline backtesting and freeze."
+}

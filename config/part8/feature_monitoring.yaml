@@ -1,0 +1,6 @@
+version: PART8_FEATURE_MONITORING_v1
+tier_0: [amount, channel, MCC, state_missing_flag]
+tier_1: []
+tier_2: []
+reference_bins_frozen: true
+

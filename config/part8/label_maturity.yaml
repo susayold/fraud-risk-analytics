@@ -1,0 +1,7 @@
+version: PART8_LABEL_MATURITY_v1
+observed_operational_latency_available: false
+default_mode: RETROSPECTIVE_MATURED
+allowed_modes: [RETROSPECTIVE_MATURED, SIMULATED_DELAY]
+simulated_delay_days: null
+claim_class: RETROSPECTIVE_MATURED_ONLY
+

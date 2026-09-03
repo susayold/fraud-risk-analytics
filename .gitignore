@@ -25,3 +25,6 @@ __pycache__/
 !data/interim/.gitkeep
 !data/processed/.gitkeep
 !database/.gitkeep
+private/part8/
+reports/part8/*.tmp
+reports/part8/window_cache/

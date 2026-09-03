@@ -1,0 +1,7 @@
+{
+  "status": "INPUT_BLOCKED",
+  "reason": "No genuine private monitoring mart was supplied",
+  "input_path_name": "__PART8_PRIVATE_MART_NOT_SUPPLIED__.csv",
+  "input_hash": null,
+  "raw_rows_persisted": false
+}

@@ -28,7 +28,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | 5 | Fraud Rules & Machine Learning | ⬜ Planned |
 | 6 | Network & Graph Fraud Analytics | ⬜ Planned |
 | 7 | Fraud Risk Decision Engine | 🟠 Implemented — INPUT_BLOCKED pending frozen Part 5 row-level score |
-| 8 | Monitoring, Drift & Governance | ⬜ Planned |
+| 8 | Monitoring, Drift & Governance | 🟢 Framework ready — INPUT_BLOCKED pending genuine upstream score/policy mart |
 | 9 | Final Product & Portfolio | ⬜ Planned |
 
 ## Business Problem
@@ -63,6 +63,10 @@ Part 5 P5.1 implements the resource-safe modeling contract: Development-only det
 
 Block E is implemented as a separate, config-first policy layer. It consumes the exact frozen Part 5 champion score, keeps the Part 6 graph evidence as review-routing context, enforces `ALLOW / REVIEW / BLOCK`, deterministic review capacity, explicit positive-exposure economics, reason codes, sensitivity, shadow replay, freeze, final replay and 64 mandatory gates. The current public snapshot is intentionally `INPUT_BLOCKED` because the approved frozen Part 5 row-level score artifact is not in this repository; no thresholds or policy metrics are invented.
 
+## Part 8 — Monitoring, Drift & Governance
+
+Block F is implemented as an offline, research-grounded monitoring framework. It uses two clocks: label-free operational early warning (`OPERATIONS_NOW`) and retrospective matured-outcome validation (`OUTCOMES_MATURED`). The implementation covers UTC windows, structural-missingness and category-novelty checks, frozen-bin drift metrics, score/policy/review/graph/segment monitoring, alert persistence, governance recommendations, 72 evidence gates, CI and an aggregate-only website chapter. The public snapshot is intentionally `MONITORING_FRAMEWORK_READY / INPUT_BLOCKED`; no production monitoring, raw row-level data or synthetic monitoring metrics are claimed.
+
 ## Part 2 — Data & SQL Foundation
 
 The Part 2 experience documents the transaction grain, entity keys, quality gates, fraud-label audit, leakage policy, Drive-only storage boundary, point-in-time feature rule, row reconciliation and chronological development/validation/OOT split. The verified source archive is stored in Google Drive. To reproduce the complete foundation without committing raw data, stage the extracted CSV in a temporary directory and run `python src/run_part2_pipeline.py --source-file <temporary-source.csv> --work-dir <temporary-work-dir>`, then run `python src/validate_outputs.py`. Raw data, processed Parquet, and the local DuckDB database are ignored by Git and should be deleted after the run.
@@ -76,4 +80,4 @@ The Part 2 experience documents the transaction grain, entity keys, quality gate
 
 ## Repository Structure
 
-`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter, `part-3.html` contains the locked Fraud Portfolio Analytics chapter, `part-4.html` contains the locked Behavioral Fraud Analytics chapter, `part-5.html` contains the governed P5.1 modeling sprint, and `part-7.html` contains the Block E decision-engine experience. Part 7 code lives in `src/part7/`, its config in `config/part7/`, SQL in `sql/part7/`, docs in `docs/PART7_*.md`, and public-safe audit outputs in `reports/part7/`. Row-level source data and decisions are never copied into this repository; only public-safe aggregate evidence and lineage hashes are retained.
+`index.html` and `part-1.html` contain the locked Part 1 experience. `part-2.html` contains the locked Data & SQL Foundation chapter, `part-3.html` contains the locked Fraud Portfolio Analytics chapter, `part-4.html` contains the locked Behavioral Fraud Analytics chapter, `part-5.html` contains the governed P5.1 modeling sprint, `part-7.html` contains the Block E decision-engine experience, and `part-8.html` contains the Block F monitoring chapter. Part 7 code lives in `src/part7/`; Part 8 code lives in `src/part8/`, with config in `config/part8/`, SQL in `sql/part8/`, docs in `docs/PART8_*.md`, and public-safe outputs in `reports/part8/`. Row-level source data, scores, labels and decisions are never copied into this repository; only public-safe aggregate evidence and lineage hashes are retained.

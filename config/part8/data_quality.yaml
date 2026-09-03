@@ -1,0 +1,6 @@
+version: PART8_DATA_QUALITY_v1
+critical_columns: [source_row_id, transaction_timestamp, amount, risk_score, split_name]
+critical_missing_policy: FAIL
+structural_missingness: record_delta_do_not_alert_alone
+score_range: [0.0, 1.0]
+
