@@ -1,9 +1,9 @@
 {
-  "source_commit": "f7497a09e760cf0ec029a8b211078f23c4f8d596",
+  "source_commit": "5476f027f152f08c15d788717636b87f4c60fa7b",
   "validation": {
     "mandatory_gates": 72,
-    "pass": 16,
-    "blocked": 56,
+    "pass": 20,
+    "blocked": 52,
     "fail": 0,
     "status": "INPUT_BLOCKED",
     "final_lock_eligible": false
