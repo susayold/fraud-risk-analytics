@@ -177,7 +177,7 @@
       "metric_ids": "",
       "chart_ids": "DE1;DE2;DE3;DE4",
       "status": "AVAILABLE",
-      "sha256": "f1af313632df73cee03e16d412e291b083269c18c506a3b6ee756c4d4281eb56",
+      "sha256": "6b5aa969f96f3295117584974ea6d40fb84dcae819515f1597066dd6e3192b73",
       "bytes": 1312
     },
     {
@@ -189,7 +189,7 @@
       "metric_ids": "monitoring_gate_count",
       "chart_ids": "MON1;MON2;MON3",
       "status": "AVAILABLE",
-      "sha256": "994579001fea39f8b0cc7542248d1730cf6a56ded3d02573fdf5885519b2dd34",
+      "sha256": "786aac14dd8ef0ac01c43aad5d5109f077d991566081c5d29ee9f8bebb38eacb",
       "bytes": 996
     }
   ],

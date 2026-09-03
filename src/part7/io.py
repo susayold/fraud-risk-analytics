@@ -21,6 +21,12 @@ def utc_now() -> str:
 
 
 def sha256_file(path: Path) -> str:
+    # Text artifacts must hash identically on Windows and Linux; binary
+    # artifacts retain their byte-level hash.
+    text_suffixes = {".csv", ".css", ".html", ".js", ".json", ".md", ".py", ".txt", ".yaml", ".yml"}
+    if path.suffix.lower() in text_suffixes:
+        canonical = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
     digest = hashlib.sha256()
     with path.open("rb") as handle:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
