@@ -1,0 +1,10 @@
+{
+  "part": 7,
+  "block": "E",
+  "status": "INPUT_BLOCKED",
+  "technical_status": "TECHNICALLY_COMPLETE_100",
+  "required_private_inputs": ["private/part7/PART5_TO_PART7_FROZEN_SCORE_MART.parquet", "private/part7/PART5_TO_PART7_LINEAGE.json"],
+  "missing_evidence": ["real score mart", "policy tune/confirmation", "policy freeze", "final OOT decision mart", "aggregate decision evidence"],
+  "public_boundary": ["no source_row_id", "no row-level score", "no row-level action", "no private decision mart"],
+  "lock_rule": "DECISION_POLICY_LOCKED only at evidence-backed 64/64 PASS"
+}

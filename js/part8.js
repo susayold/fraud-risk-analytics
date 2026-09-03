@@ -1,14 +1,1 @@
-(function(){
-  fetch('assets/data/part8_summary.json').then(function(r){return r.json();}).then(function(s){
-    var status=document.querySelector('[data-p8-status]'); if(status) status.textContent=s.status||'INPUT_BLOCKED';
-    var technical=document.querySelector('[data-p8-technical]'); if(technical) technical.textContent=s.technical_status||'MONITORING_FRAMEWORK_READY';
-    var validation=s.validation||{};
-    document.querySelectorAll('[data-p8-pass]').forEach(function(x){x.textContent=validation.pass==null?'—':validation.pass;});
-    document.querySelectorAll('[data-p8-blocked]').forEach(function(x){x.textContent=validation.blocked==null?'—':validation.blocked;});
-    document.querySelectorAll('[data-p8-fail]').forEach(function(x){x.textContent=validation.fail==null?'—':validation.fail;});
-  }).catch(function(){
-    var status=document.querySelector('[data-p8-status]'); if(status){status.textContent='EVIDENCE LOAD ERROR';status.classList.remove('blocked');status.classList.add('error');}
-    var technical=document.querySelector('[data-p8-technical]'); if(technical) technical.textContent='STATUS UNAVAILABLE';
-    document.querySelectorAll('[data-p8-pass],[data-p8-blocked],[data-p8-fail]').forEach(function(x){x.textContent='—';});
-  });
-})();
+(()=>{fetch('assets/data/part8_summary.json').then(r=>r.ok?r.json():Promise.reject()).then(s=>{const v=s.validation||{};document.querySelectorAll('[data-p8-status]').forEach(e=>e.textContent=s.status||'INPUT_BLOCKED');document.querySelectorAll('[data-p8-technical]').forEach(e=>e.textContent=s.technical_status||'MONITORING_FRAMEWORK_READY');document.querySelectorAll('[data-p8-pass]').forEach(e=>e.textContent=v.pass??'—');document.querySelectorAll('[data-p8-blocked]').forEach(e=>e.textContent=v.blocked??'—');document.querySelectorAll('[data-p8-fail]').forEach(e=>e.textContent=v.fail??'—')}).catch(()=>{document.querySelectorAll('[data-p8-status]').forEach(e=>e.textContent='EVIDENCE LOAD ERROR');document.querySelectorAll('[data-p8-technical]').forEach(e=>e.textContent='STATUS UNAVAILABLE');document.querySelectorAll('[data-p8-pass],[data-p8-blocked],[data-p8-fail]').forEach(e=>e.textContent='—')});if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches)gsap.from('.p8x-hero>*,.p8x-kpis article,.p8x-panel,.p8x-final',{y:16,opacity:0,duration:.5,stagger:.04,ease:'power2.out'});})();

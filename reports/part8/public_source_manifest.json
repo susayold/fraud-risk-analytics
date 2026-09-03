@@ -1,0 +1,10 @@
+{
+  "part": 8,
+  "block": "F",
+  "status": "INPUT_BLOCKED",
+  "technical_status": "MONITORING_FRAMEWORK_READY",
+  "required_private_inputs": ["private/part8/PART7_TO_PART8_DECISION_MART.parquet", "reports/part8/PART8_MONITORING_BASELINE_FREEZE.json"],
+  "missing_evidence": ["frozen Part 7 policy", "pre-OOT baseline", "real operations_now replay", "matured outcomes replay", "real alert history"],
+  "public_boundary": ["aggregate metrics only", "no row-level score/action/label", "offline retrospective only", "no automatic retraining or policy mutation"],
+  "lock_rule": "MONITORING_GOVERNANCE_LOCKED only at evidence-backed 72/72 PASS"
+}
