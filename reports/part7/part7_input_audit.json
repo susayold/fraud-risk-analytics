@@ -1,12 +1,12 @@
 {
   "status": "INPUT_BLOCKED",
-  "notes": "No frozen Part 5 row-level score artifact was discovered; pass --input explicitly.",
+  "notes": "Input could not be loaded: C:\\Users\\sangk\\Downloads\\__BLOCKED_INPUT_DOES_NOT_EXIST__.csv",
   "checks": [
     {
       "check_name": "P7T01_input_source_resolved",
       "status": "FAIL",
-      "notes": "candidates=0"
+      "notes": "C:\\Users\\sangk\\Downloads\\__BLOCKED_INPUT_DOES_NOT_EXIST__.csv"
     }
   ],
-  "generated_at_utc": "2026-09-02T22:22:03.117704+00:00"
+  "generated_at_utc": "2026-09-03T00:33:59.626542+00:00"
 }
