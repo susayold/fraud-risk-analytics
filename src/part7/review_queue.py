@@ -3,7 +3,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .graph_routing import graph_overlay_priority
+from .graph_routing import graph_overlay_priority, load_graph_weights
+from .io import ROOT
 from .reason_codes import reason_codes
 from .action_precedence import candidate_actions
 
@@ -44,7 +45,7 @@ def time_bucket(timestamps: pd.Series, bucket_type: str = "DAY", timezone: str =
     raise ValueError(f"Unsupported review queue bucket: {bucket_type}")
 
 
-def _priority(frame: pd.DataFrame, method: str, calibrated_probability: bool) -> pd.Series:
+def _priority(frame: pd.DataFrame, method: str, calibrated_probability: bool, graph_weights: dict[str, float] | None) -> pd.Series:
     score = pd.to_numeric(frame.risk_score, errors="raise").astype(float)
     exposure = frame.positive_exposure.astype(float)
     if method == "SCORE_ONLY":
@@ -58,9 +59,13 @@ def _priority(frame: pd.DataFrame, method: str, calibrated_probability: bool) ->
         # still supplies the explicit source_row_id tie-break.
         return score.rank(method="average", pct=True) * exposure
     if method == "GRAPH_NOVELTY":
-        return graph_overlay_priority(frame, score)
+        if graph_weights is None:
+            raise ValueError("Graph priority requires graph routing weights from config")
+        return graph_overlay_priority(frame, score, graph_weights)
     if method == "AMOUNT_GRAPH":
-        return graph_overlay_priority(frame, score * exposure)
+        if graph_weights is None:
+            raise ValueError("Graph priority requires graph routing weights from config")
+        return graph_overlay_priority(frame, score * exposure, graph_weights)
     raise ValueError(f"Unknown review priority method: {method}")
 
 
@@ -75,6 +80,7 @@ def apply_policy(
     emit_reason_codes: bool = True,
     queue_config: dict | None = None,
     precedence_config: dict | None = None,
+    graph_weights: dict[str, float] | None = None,
 ) -> pd.DataFrame:
     """Generate actions without reading a label/outcome column."""
     required = {"source_row_id", "risk_score", "positive_exposure"}
@@ -97,7 +103,9 @@ def apply_policy(
     result["candidate_action"] = candidate_actions(result, review_threshold, block_threshold, precedence_config=precedence_config).to_numpy()
     result["action"] = result["candidate_action"]
     eligible = result["candidate_action"].eq("REVIEW")
-    priority = _priority(result.loc[eligible], priority_method, calibrated_probability)
+    if graph_weights is None and priority_method in {"GRAPH_NOVELTY", "AMOUNT_GRAPH"}:
+        graph_weights = load_graph_weights(ROOT / "config" / "part7" / "graph_routing_policy.yaml")
+    priority = _priority(result.loc[eligible], priority_method, calibrated_probability, graph_weights)
     candidate_columns = ["source_row_id", "risk_score", "positive_exposure", "capacity_bucket"]
     if "transaction_timestamp" in result:
         candidate_columns.append("transaction_timestamp")

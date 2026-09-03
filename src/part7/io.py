@@ -88,8 +88,29 @@ def write_csv(path: Path, frame: pd.DataFrame | list[dict[str, Any]], columns: l
 
 def public_manifest(policy_version: str | None = None) -> pd.DataFrame:
     commit, _ = git_metadata()
+    volatile = {"report_manifest.csv", "part7_validation_report.csv", "P7_TEST_REPORT.json", "unit_test_evidence.json", "P7_PUBLIC_EVIDENCE_RECONCILIATION.json", "PART7_FINAL_SUMMARY.json"}
+    freeze_id = None
+    freeze_path = REPORT_DIR / "PART7_POLICY_FREEZE.json"
+    if freeze_path.exists():
+        try:
+            freeze_id = json.loads(freeze_path.read_text(encoding="utf-8")).get("freeze_id")
+        except json.JSONDecodeError:
+            freeze_id = None
+
+    def stage_for(path: Path) -> str:
+        if "final_oot" in path.parts:
+            return "FINAL_OOT"
+        if path.name in {"PART7_SELECTED_POLICY.json", "P7_CONFIRMATION_SCOPE_MANIFEST.json"}:
+            return "CONFIRMATION"
+        if path.name in {"PART7_POLICY_FREEZE.json", "PART7_FREEZE_VERIFICATION.json", "PART7_REPLAY_VERIFICATION.json"}:
+            return "FREEZE"
+        return "GOVERNANCE"
+
     rows = []
     for path in sorted(REPORT_DIR.glob("*")):
-        if path.is_file() and path.name != "report_manifest.csv":
-            rows.append({"relative_path": path.relative_to(ROOT).as_posix(), "bytes": path.stat().st_size, "sha256": sha256_file(path), "generated_at_utc": utc_now(), "policy_version": policy_version or "NOT_FROZEN", "code_commit": commit})
-    return pd.DataFrame(rows, columns=["relative_path", "bytes", "sha256", "generated_at_utc", "policy_version", "code_commit"])
+        if path.is_file() and path.name not in volatile:
+            rows.append({"relative_path": path.relative_to(ROOT).as_posix(), "stage": stage_for(path), "bytes": path.stat().st_size, "sha256": sha256_file(path), "generated_at_utc": utc_now(), "policy_version": policy_version or "NOT_FROZEN", "code_commit": commit, "freeze_id": freeze_id})
+    for path in sorted((REPORT_DIR / "final_oot").glob("*") if (REPORT_DIR / "final_oot").exists() else []):
+        if path.is_file():
+            rows.append({"relative_path": path.relative_to(ROOT).as_posix(), "stage": "FINAL_OOT", "bytes": path.stat().st_size, "sha256": sha256_file(path), "generated_at_utc": utc_now(), "policy_version": policy_version or "NOT_FROZEN", "code_commit": commit, "freeze_id": freeze_id})
+    return pd.DataFrame(rows, columns=["relative_path", "stage", "bytes", "sha256", "generated_at_utc", "policy_version", "code_commit", "freeze_id"])

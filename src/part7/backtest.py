@@ -8,7 +8,7 @@ from .economics import EconomicAssumptions, evaluate_economics
 from .evaluation_runtime import evaluate_decisions
 
 
-def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6, queue_config: dict | None = None, precedence_config: dict | None = None) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
+def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: list[float], assumptions: EconomicAssumptions, calibrated_probability: bool, high_amount_cutoff: float, max_threshold_pairs: int = 6, queue_config: dict | None = None, precedence_config: dict | None = None, graph_weights: dict[str, float] | None = None) -> tuple[pd.DataFrame, dict[str, pd.DataFrame]]:
     rows: list[dict] = []
     actions: dict[str, pd.DataFrame] = {}
     pairs = [(review, block) for review in thresholds for block in thresholds if review < block < 1]
@@ -28,7 +28,7 @@ def evaluate_variants(frame: pd.DataFrame, thresholds: list[float], capacities: 
                         else:
                             config = PolicyConfig(f"PART7_{variant}_{review_threshold:.6f}_{block_threshold:.6f}_{capacity:.4f}_{method}", review_threshold, block_threshold, task_capacity, method)
                         decision_frame = frame.drop(columns=["fraud_label"], errors="ignore")
-                        action_frame = decide(decision_frame, config, calibrated_probability, high_amount_cutoff=high_amount_cutoff, emit_reason_codes=False, queue_config=queue_config, precedence_config=precedence_config)
+                        action_frame = decide(decision_frame, config, calibrated_probability, high_amount_cutoff=high_amount_cutoff, emit_reason_codes=False, queue_config=queue_config, precedence_config=precedence_config, graph_weights=graph_weights)
                         metrics = evaluate_decisions(action_frame, frame[["source_row_id", "fraud_label"]], assumptions)
                         metrics.update({
                             "policy_version": config.policy_version,

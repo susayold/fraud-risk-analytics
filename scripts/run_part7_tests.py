@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 import unittest
 from datetime import datetime, timezone
@@ -11,6 +12,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_DIR = ROOT / "reports" / "part7"
 sys.path.insert(0, str(ROOT))
+PROTECTED_ARTIFACTS = (
+    ROOT / "reports/part7/PART7_POLICY_FREEZE.json",
+    ROOT / "reports/part7/PART7_SELECTED_POLICY.json",
+    ROOT / "reports/part7/P7_CONFIRMATION_SCOPE_MANIFEST.json",
+    ROOT / "reports/part7/PART7_REPLAY_VERIFICATION.json",
+    ROOT / "reports/part7/PART7_FINAL_SUMMARY.json",
+    ROOT / "assets/data/part7_summary.json",
+)
+
+
+def _hash_or_none(path: Path) -> str | None:
+    if not path.exists() or not path.is_file():
+        return None
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class EvidenceResult(unittest.TextTestResult):
@@ -37,11 +52,15 @@ class EvidenceRunner(unittest.TextTestRunner):
 
 
 def main() -> int:
+    protected_before = {path: _hash_or_none(path) for path in PROTECTED_ARTIFACTS}
     suite = unittest.defaultTestLoader.discover(str(ROOT / "tests" / "part7"), pattern="test_*.py")
     result = EvidenceRunner(stream=sys.stdout, verbosity=1).run(suite)
+    protected_after = {path: _hash_or_none(path) for path in PROTECTED_ARTIFACTS}
+    protected_mutations = [str(path.relative_to(ROOT)) for path in PROTECTED_ARTIFACTS if protected_before[path] != protected_after[path]]
     outcomes = {key.rsplit(".", 1)[-1]: value for key, value in result.outcomes.items()}
     report = {"generated_at_utc": datetime.now(timezone.utc).isoformat(), "test_count": result.testsRun,
-              "failures": len(result.failures), "errors": len(result.errors), "status": "PASS" if result.wasSuccessful() else "FAIL", "tests": outcomes}
+              "failures": len(result.failures), "errors": len(result.errors), "protected_artifact_mutations": protected_mutations,
+              "status": "PASS" if result.wasSuccessful() and not protected_mutations else "FAIL", "tests": outcomes}
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     (REPORT_DIR / "P7_TEST_REPORT.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     key_map = {}

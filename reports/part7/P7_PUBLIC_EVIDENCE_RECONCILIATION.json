@@ -1,24 +1,24 @@
 {
-  "generated_at_utc": "2026-09-02T22:52:16.160199+00:00",
-  "source_commit": "343c7a77d6f5c1cc9ed0536c0e79139836ecf9d5",
+  "generated_at_utc": "2026-09-03T00:04:36.977057+00:00",
+  "source_commit": "629c4ec31be0eda360014f2f2acbc52775b22515",
   "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0",
   "validation_csv": {
-    "pass": 28,
-    "blocked": 36,
+    "pass": 30,
+    "blocked": 34,
     "fail": 0
   },
   "summary_json": {
     "mandatory_gates": 64,
-    "pass": 28,
-    "blocked": 36,
+    "pass": 30,
+    "blocked": 34,
     "fail": 0,
     "status": "INPUT_BLOCKED",
     "final_lock_eligible": false
   },
   "assets_summary_json": {
     "mandatory_gates": 64,
-    "pass": 28,
-    "blocked": 36,
+    "pass": 30,
+    "blocked": 34,
     "fail": 0,
     "status": "INPUT_BLOCKED",
     "final_lock_eligible": false

@@ -8,8 +8,8 @@ from pathlib import Path
 from .io import ROOT, sha256_file, git_metadata, write_json, REPORT_DIR
 
 
-def config_map() -> dict[str, Path]:
-    base = ROOT / "config" / "part7"
+def config_map(config_dir: Path = ROOT / "config" / "part7") -> dict[str, Path]:
+    base = config_dir
     return {
         "economic_assumption_sha256": base / "economic_assumptions.yaml",
         "graph_routing_sha256": base / "graph_routing_policy.yaml",
@@ -19,8 +19,8 @@ def config_map() -> dict[str, Path]:
     }
 
 
-def bundle_hash(paths: list[Path] | None = None) -> str:
-    paths = paths or sorted((ROOT / "config" / "part7").glob("*.yaml"))
+def bundle_hash(paths: list[Path] | None = None, config_dir: Path = ROOT / "config" / "part7") -> str:
+    paths = paths or sorted(config_dir.glob("*.yaml"))
     digest = hashlib.sha256()
     for item in sorted(paths):
         digest.update(item.relative_to(ROOT).as_posix().encode())
@@ -28,27 +28,27 @@ def bundle_hash(paths: list[Path] | None = None) -> str:
     return digest.hexdigest()
 
 
-def code_tree_hash() -> str:
-    return bundle_hash([p for p in (ROOT / "src" / "part7").rglob("*.py") if "__pycache__" not in p.parts])
+def code_tree_hash(code_root: Path = ROOT) -> str:
+    return bundle_hash([p for p in (code_root / "src" / "part7").rglob("*.py") if "__pycache__" not in p.parts], config_dir=code_root / "src" / "part7")
 
 
-def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_path: Path | None = None, selected_policy_path: Path | None = None, confirmation_manifest_path: Path | None = None, write_report: bool = True) -> tuple[dict, dict]:
+def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_path: Path | None = None, selected_policy_path: Path | None = None, confirmation_manifest_path: Path | None = None, repo_root: Path = ROOT, report_dir: Path = REPORT_DIR, config_dir: Path = ROOT / "config" / "part7", code_root: Path = ROOT, write_report: bool = True) -> tuple[dict, dict]:
     freeze = json.loads(path.read_text(encoding="utf-8"))
     checks: dict[str, object] = {"freeze_id": freeze.get("freeze_id"), "post_freeze_mutation": freeze.get("post_freeze_mutation")}
-    for key, expected_path in config_map().items():
+    for key, expected_path in config_map(config_dir).items():
         if not freeze.get(key):
             raise RuntimeError(f"Frozen field {key} is missing")
         observed = sha256_file(expected_path)
         checks[key.replace("_sha256", "_hash_match")] = observed == freeze[key]
         if observed != freeze[key]:
             raise RuntimeError(f"Frozen config hash mismatch: {key}")
-    if freeze.get("config_bundle_sha256") != bundle_hash():
+    if freeze.get("config_bundle_sha256") != bundle_hash(config_dir=config_dir):
         raise RuntimeError("Frozen config bundle hash mismatch")
     checks["config_bundle_match"] = True
-    if freeze.get("code_tree_hash") != code_tree_hash():
+    if freeze.get("code_tree_hash") != code_tree_hash(code_root):
         raise RuntimeError("Frozen code tree hash mismatch")
     checks["code_tree_match"] = True
-    current_commit, _ = git_metadata()
+    current_commit, _ = git_metadata(repo_root)
     if freeze.get("code_commit") not in {current_commit, "UNKNOWN"}:
         raise RuntimeError("Final replay code commit does not match the policy freeze")
     checks["commit_match"] = True
@@ -67,7 +67,7 @@ def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_
         checks["score_hash_match"] = True
     else:
         checks["score_hash_match"] = False
-    selected_path = selected_policy_path or (REPORT_DIR / "PART7_SELECTED_POLICY.json")
+    selected_path = selected_policy_path or (report_dir / "PART7_SELECTED_POLICY.json")
     if not freeze.get("selected_policy_sha256") or not selected_path.exists() or sha256_file(selected_path) != freeze["selected_policy_sha256"]:
         raise RuntimeError("Frozen selected-policy artifact hash mismatch or missing")
     checks["selected_policy_hash_match"] = True
@@ -79,7 +79,7 @@ def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_
         checks["graph_artifact_hash_match"] = None
     if not freeze.get("confirmation_scope_hash"):
         raise RuntimeError("Frozen confirmation_scope_hash is missing")
-    manifest_path = confirmation_manifest_path or (REPORT_DIR / "P7_CONFIRMATION_SCOPE_MANIFEST.json")
+    manifest_path = confirmation_manifest_path or (report_dir / "P7_CONFIRMATION_SCOPE_MANIFEST.json")
     if not manifest_path.exists() or sha256_file(manifest_path) != freeze.get("confirmation_manifest_sha256"):
         raise RuntimeError("Confirmation manifest hash mismatch or missing")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -94,5 +94,5 @@ def verify_freeze(path: Path, *, score_path: Path | None = None, part6_artifact_
     checks["post_freeze_mutation"] = False
     checks["status"] = "PASS"
     if write_report:
-        write_json(REPORT_DIR / "PART7_REPLAY_VERIFICATION.json", checks)
+        write_json(report_dir / "PART7_REPLAY_VERIFICATION.json", checks)
     return freeze, checks

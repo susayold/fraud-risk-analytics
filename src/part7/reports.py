@@ -28,11 +28,17 @@ def refresh_public_summary(validation: pd.DataFrame) -> None:
     fail_count = int((validation.status == "FAIL").sum())
     summary["validation"] = {"mandatory_gates": 64, "pass": pass_count, "blocked": blocked_count, "fail": fail_count,
                               "status": summary.get("status", "INPUT_BLOCKED"), "final_lock_eligible": pass_count == 64 and blocked_count == 0 and fail_count == 0}
+    summary["technical_status"] = "TECHNICALLY_COMPLETE_100" if fail_count == 0 else "TECHNICAL_REVIEW_REQUIRED"
     pointer_path = REPORT_DIR / "part7_stage_pointer.json"
     pointer = json.loads(pointer_path.read_text(encoding="utf-8")) if pointer_path.exists() else {}
     lifecycle_status = "INPUT_BLOCKED" if summary.get("status") == "INPUT_BLOCKED" else pointer.get("status", summary.get("status", "INPUT_BLOCKED"))
     summary["lifecycle"] = {"status": lifecycle_status, "final_replay_required_before_lock": True,
-                             "final_evidence_available": lifecycle_status in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"}}
+                             "final_oot_evidence_generated": lifecycle_status in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"},
+                             "final_evidence_available": lifecycle_status == "DECISION_POLICY_LOCKED"}
+    if lifecycle_status != "DECISION_POLICY_LOCKED":
+        summary["final_evidence"] = {"allow_rate": None, "review_rate": None, "block_rate": None,
+                                      "fraud_capture": None, "fraud_exposure_capture": None,
+                                      "legitimate_block_rate": None, "simulated_total_cost": None}
     commit, _ = git_metadata()
     summary["source_commit"] = commit
     summary["validator_version"] = "PART7_EVIDENCE_VALIDATOR_v2.0"

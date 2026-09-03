@@ -19,6 +19,7 @@ def decide(
     high_amount_cutoff: float | None = None,
     queue_config: dict | None = None,
     precedence_config: dict | None = None,
+    graph_weights: dict[str, float] | None = None,
     emit_reason_codes: bool = True,
 ) -> pd.DataFrame:
     """Produce one action per row without labels or future outcomes."""
@@ -34,4 +35,5 @@ def decide(
         emit_reason_codes,
         queue_config=queue_config,
         precedence_config=precedence_config,
+        graph_weights=graph_weights,
     )

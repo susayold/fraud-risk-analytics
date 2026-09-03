@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 from .io import REPORT_DIR, ROOT, sha256_file, utc_now, write_csv
+from .lifecycle import lock_eligibility
 
 
 GATE_SPECS = [
@@ -130,10 +131,15 @@ def _row(name: str, family: str, description: str, *, source: Path, expected: st
 def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd.DataFrame:
     summary = _load(summary_path, {})
     blocked = summary.get("status", "INPUT_BLOCKED") == "INPUT_BLOCKED"
+    pointer_path = REPORT_DIR / "part7_stage_pointer.json"
+    pointer = _load(pointer_path, {})
+    lifecycle_status = pointer.get("status", summary.get("status", "INPUT_BLOCKED"))
+    final_stage = lifecycle_status in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"}
     audit_path = REPORT_DIR / "part7_input_audit.json"; audit = _load(audit_path, {})
     recon_path = REPORT_DIR / "decision_input_reconciliation.csv"; recon = _load(recon_path, pd.DataFrame())
     config_dir = ROOT / "config" / "part7"; src_dir = ROOT / "src" / "part7"; test_dir = ROOT / "tests" / "part7"
-    freeze_path = REPORT_DIR / "PART7_POLICY_FREEZE.json"; bootstrap_path = REPORT_DIR / "bootstrap_policy_ci.csv"; manifest_path = REPORT_DIR / "report_manifest.csv"; calibration_path = REPORT_DIR / "score_calibration_audit.csv"
+    final_dir = REPORT_DIR / "final_oot"
+    freeze_path = REPORT_DIR / "PART7_POLICY_FREEZE.json"; bootstrap_path = final_dir / "final_oot_bootstrap_policy_ci.csv" if final_stage else REPORT_DIR / "bootstrap_policy_ci.csv"; manifest_path = REPORT_DIR / "report_manifest.csv"; calibration_path = REPORT_DIR / "score_calibration_audit.csv"
     results: dict[str, tuple[Path, str, object, bool, bool]] = {}
 
     def add(name, source, expected, observed, passed, is_blocked=False):
@@ -172,10 +178,12 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     scope_path = config_dir / "temporal_scopes.yaml"; scope_text = scope_path.read_text(encoding="utf-8") if scope_path.exists() else ""
     add("P7T21_tune_precedes_confirm", scope_path, "scope order is declared", "P7_POLICY_TUNE before P7_POLICY_CONFIRM", scope_path.exists() and "P7_POLICY_TUNE" in scope_text, blocked)
     add("P7T22_oot_absent_threshold_search", scope_path, "FINAL_OOT is sealed from search", "OOT sealed", scope_path.exists() and "FINAL_OOT" in scope_text, blocked)
-    add("P7T23_oot_absent_economics_tuning", scope_path, "FINAL_OOT is sealed from economics tuning", "OOT sealed", scope_path.exists() and "economics" in scope_text.lower(), blocked)
+    add("P7T23_oot_absent_economics_tuning", scope_path, "FINAL_OOT is sealed from economic assumption tuning", "OOT sealed", scope_path.exists() and "economic" in scope_text.lower(), blocked)
     add("P7T24_no_model_reselection", decision_path, "no fit/retrain in decision runtime", "decision-only", decision_path.exists() and "fit(" not in decision_text)
 
-    action_path = REPORT_DIR / "decision_action_summary.csv"; queue_path = config_dir / "review_queue.yaml"; queue_text = queue_path.read_text(encoding="utf-8") if queue_path.exists() else ""
+    action_path = REPORT_DIR / "final_oot" / "final_oot_action_summary.csv" if final_stage else REPORT_DIR / "decision_action_summary.csv"
+    queue_evidence_path = REPORT_DIR / "final_oot" / "final_oot_review_capacity_by_day.csv" if final_stage else REPORT_DIR / "review_capacity_by_day.csv"
+    queue_path = config_dir / "review_queue.yaml"; queue_text = queue_path.read_text(encoding="utf-8") if queue_path.exists() else ""
     action_evidence = _load(action_path, pd.DataFrame())
     action_values = set(action_evidence.action.astype(str)) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "action" in action_evidence else set()
     add("P7T25_action_domain_exact", action_path, "actions subset ALLOW/REVIEW/BLOCK", sorted(action_values), bool(action_values) and action_values.issubset({"ALLOW", "REVIEW", "BLOCK"}), blocked)
@@ -185,7 +193,7 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     action_sum = int(action_evidence.rows.sum()) if isinstance(action_evidence, pd.DataFrame) and not action_evidence.empty and "rows" in action_evidence else None
     add("P7T27_action_totals_reconcile", action_path, "action counts sum to source rows", {"action_sum": action_sum, "source": total_rows}, action_sum is not None and total_rows == action_sum, blocked)
     add("P7T28_threshold_order_valid", contracts_path, "PolicyConfig enforces review < block", "PolicyConfig", "review_threshold < self.block_threshold" in contracts_text)
-    queue_evidence_path = REPORT_DIR / "review_capacity_by_day.csv"; queue_evidence = _load(queue_evidence_path, pd.DataFrame())
+    queue_evidence = _load(queue_evidence_path, pd.DataFrame())
     queue_ok = isinstance(queue_evidence, pd.DataFrame) and not queue_evidence.empty and {"selected_review_count", "bucket_capacity"}.issubset(queue_evidence.columns) and (queue_evidence.selected_review_count <= queue_evidence.bucket_capacity).all()
     add("P7T29_bucket_capacity_respected", queue_evidence_path, "selected_review_count <= bucket_capacity per bucket", "all buckets pass" if queue_ok else "execution evidence missing", queue_ok, blocked)
     add("P7T30_overflow_explicit", queue_path, "overflow action is explicit", "ALLOW", "overflow:" in queue_text and "action: ALLOW" in queue_text)
@@ -221,13 +229,10 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T48_public_reason_aggregate_only", src_dir / "io.py", "public output is report directory only", "REPORT_DIR", "REPORT_DIR" in (src_dir / "io.py").read_text(encoding="utf-8"))
 
     freeze = _load(freeze_path, {})
-    pointer_path = REPORT_DIR / "part7_stage_pointer.json"
-    pointer = _load(pointer_path, {})
-    replay_meta_path = REPORT_DIR / "final_replay_metadata.json"
+    replay_meta_path = REPORT_DIR / "final_oot" / "final_replay_metadata.json" if final_stage else REPORT_DIR / "final_replay_metadata.json"
     replay_meta = _load(replay_meta_path, {})
     freeze_verification_path = REPORT_DIR / "PART7_FREEZE_VERIFICATION.json"
     freeze_verification = _load(freeze_verification_path, {})
-    lifecycle_status = pointer.get("status", summary.get("status", "INPUT_BLOCKED"))
     replay_ready = (
         lifecycle_status in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"}
         and replay_meta.get("status") == "PASS"
@@ -252,15 +257,26 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
     add("P7T58_bootstrap_draws_minimum", bootstrap_path, "draws >= 500", draws, draws is not None and draws >= 500, blocked)
     finite_ci = has_boot and {"ci_lower", "ci_upper"}.issubset(boot.columns) and boot[["ci_lower", "ci_upper"]].apply(pd.to_numeric, errors="coerce").notna().all().all()
     add("P7T59_bootstrap_ci_finite", bootstrap_path, "CI values are finite", "finite" if finite_ci else None, finite_ci, blocked)
-    delta_path = REPORT_DIR / "delta_reconciliation.json"; delta = _load(delta_path, {})
-    add("P7T60_delta_reconciles", delta_path, "independent delta reconciliation is PASS", delta.get("status"), delta.get("status") == "PASS", blocked)
-    daily_path = REPORT_DIR / "daily_reconciliation.json"; daily = _load(daily_path, {})
-    add("P7T61_daily_metrics_reconcile", daily_path, "daily transactions equal confirmation transactions", {"daily": daily.get("daily_transactions"), "confirmation": daily.get("confirmation_transactions")}, daily.get("status") == "PASS", blocked)
-    segment_path = REPORT_DIR / "segment_reconciliation.json"; segment = _load(segment_path, {})
+    delta_path = final_dir / "final_oot_delta_reconciliation.json" if final_stage else REPORT_DIR / "delta_reconciliation.json"; delta = _load(delta_path, {})
+    delta_ok = delta.get("status") == "PASS"
+    if final_stage and isinstance(delta.get("metrics"), dict):
+        delta_ok = delta_ok and all(abs(float(values.get("delta", 0.0)) - (float(values.get("challenger", 0.0)) - float(values.get("baseline", 0.0)))) <= float(delta.get("tolerance", 1e-12)) for values in delta["metrics"].values())
+    add("P7T60_delta_reconciles", delta_path, "independent delta reconciliation is PASS", delta.get("status"), delta_ok, blocked)
+    daily_path = final_dir / "final_oot_daily_reconciliation.json" if final_stage else REPORT_DIR / "daily_reconciliation.json"; daily = _load(daily_path, {})
+    daily_expected = daily.get("final_oot_transactions") if final_stage else daily.get("confirmation_transactions")
+    add("P7T61_daily_metrics_reconcile", daily_path, "daily transactions equal final OOT transactions", {"daily": daily.get("daily_transactions"), "expected": daily_expected}, daily.get("status") == "PASS" and daily.get("daily_transactions") == daily_expected, blocked)
+    segment_path = final_dir / "final_oot_segment_reconciliation.json" if final_stage else REPORT_DIR / "segment_reconciliation.json"; segment = _load(segment_path, {})
     add("P7T62_segment_metrics_reconcile", segment_path, "segment reconciliation is explicit and non-additive where needed", {"status": segment.get("status"), "additivity": segment.get("additivity")}, segment.get("status") == "PASS" and segment.get("additivity") == "NON_ADDITIVE_SEGMENTS", blocked)
     add("P7T63_manifest_hashes_valid", manifest_path, "all manifest hashes verify", "valid" if _manifest_valid(manifest_path) else None, manifest_path.exists() and _manifest_valid(manifest_path), blocked)
     pass_before = sum(value[3] for value in results.values())
-    add("P7T64_final_status_gate", summary_path, "locked iff previous 63 gates pass", {"status": summary.get("status"), "pass_before": pass_before}, summary.get("status") == "DECISION_POLICY_LOCKED" and pass_before == 63, blocked)
+    first_63 = pd.Series([value[3] and "PASS" or ("BLOCKED" if value[4] else "FAIL") for value in list(results.values())[:63]])
+    if lifecycle_status == "FINAL_REPLAY_COMPLETE":
+        gate64_pass = lock_eligibility(pd.DataFrame({"status": first_63}), lifecycle_status)
+    elif lifecycle_status == "DECISION_POLICY_LOCKED":
+        gate64_pass = pass_before == 63 and summary.get("status") == "DECISION_POLICY_LOCKED"
+    else:
+        gate64_pass = False
+    add("P7T64_final_status_gate", summary_path, "first 63 gates pass after final replay; locked state remains locked", {"status": summary.get("status"), "lifecycle_status": lifecycle_status, "pass_before": pass_before}, gate64_pass, blocked or lifecycle_status not in {"FINAL_REPLAY_COMPLETE", "DECISION_POLICY_LOCKED"})
 
     return pd.DataFrame([_row(name, family, description, source=results[name][0], expected=results[name][1], observed=results[name][2], passed=results[name][3], blocked=results[name][4]) for name, family, description in GATE_SPECS])
 
