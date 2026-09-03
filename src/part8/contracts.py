@@ -12,6 +12,7 @@ GOVERNANCE_ACTIONS = (
     "CALIBRATION_REVIEW_RECOMMENDED", "MODEL_RETRAIN_REVIEW_RECOMMENDED", "GRAPH_REVIEW_RECOMMENDED",
 )
 FORBIDDEN_OPERATIONAL_FIELDS = {"fraud_label", "future_outcome", "future_dispute", "review_case_id"}
+FORBIDDEN_PUBLIC_FIELDS = FORBIDDEN_OPERATIONAL_FIELDS | {"source_row_id", "transaction_id", "transaction_timestamp", "risk_score", "primary_fraud_score", "amount", "positive_exposure", "action", "candidate_action", "reason_codes", "review_priority", "review_rank", "review_selected", "review_overflow", "bucket_selected", "overflow"}
 ACTION_DOMAIN = {"ALLOW", "REVIEW", "BLOCK"}
 
 
@@ -23,9 +24,7 @@ def ensure_severity(value: str) -> str:
 
 
 def ensure_public_safe(columns: list[str] | set[str]) -> None:
-    forbidden = sorted(set(columns) & FORBIDDEN_OPERATIONAL_FIELDS)
-    row_level = {"risk_score", "PRIMARY_FRAUD_SCORE", "action", "reason_codes", "amount"}
-    forbidden += sorted(set(columns) & row_level)
+    forbidden = sorted({str(column).lower() for column in columns} & FORBIDDEN_PUBLIC_FIELDS)
     if forbidden:
         raise ValueError(f"Public export contains forbidden row-level fields: {sorted(set(forbidden))}")
 
@@ -123,4 +122,3 @@ class MonitoringRun:
     status: str
     rows: int = 0
     window_count: int = 0
-

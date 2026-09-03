@@ -4,7 +4,9 @@ on:
   push:
     paths:
       - "src/part8/**"
+      - "src/part7/**"
       - "config/part8/**"
+      - "config/part7/**"
       - "tests/part8/**"
       - "scripts/run_part8_tests.py"
       - "requirements-part8.txt"
@@ -12,7 +14,9 @@ on:
   pull_request:
     paths:
       - "src/part8/**"
+      - "src/part7/**"
       - "config/part8/**"
+      - "config/part7/**"
       - "tests/part8/**"
       - "scripts/run_part8_tests.py"
       - "requirements-part8.txt"

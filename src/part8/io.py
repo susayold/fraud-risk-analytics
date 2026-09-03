@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -10,9 +11,9 @@ from typing import Any
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-REPORT_DIR = ROOT / "reports" / "part8"
-PRIVATE_DIR = ROOT / "private" / "part8"
+ROOT = Path(os.environ.get("PART8_ROOT", str(Path(__file__).resolve().parents[2])))
+REPORT_DIR = Path(os.environ.get("PART8_REPORT_DIR", str(ROOT / "reports" / "part8")))
+PRIVATE_DIR = Path(os.environ.get("PART8_PRIVATE_DIR", str(ROOT / "private" / "part8")))
 
 
 def utc_now() -> str:
@@ -55,6 +56,40 @@ def normalise_input(frame: pd.DataFrame) -> pd.DataFrame:
         frame["action"] = frame["action"].astype(str).str.upper()
     if "transaction_timestamp" in frame:
         frame["transaction_timestamp"] = pd.to_datetime(frame["transaction_timestamp"], utc=True, errors="coerce")
+    return frame
+
+
+def validate_monitoring_input_contract(frame: pd.DataFrame) -> dict:
+    """Validate the shared file contract before any baseline/replay work."""
+    required = {"source_row_id", "transaction_timestamp", "amount", "risk_score", "split_name"}
+    missing = sorted(required - set(frame.columns))
+    if missing:
+        raise ValueError(f"Monitoring contract missing columns: {missing}")
+    if frame.source_row_id.isna().any() or not frame.source_row_id.is_unique:
+        raise ValueError("source_row_id must be non-null and unique")
+    timestamps = pd.to_datetime(frame.transaction_timestamp, utc=True, errors="coerce")
+    if timestamps.isna().any():
+        raise ValueError("transaction_timestamp contains unparseable values")
+    amount = pd.to_numeric(frame.amount, errors="coerce")
+    if amount.isna().any() or not amount.map(math.isfinite).all():
+        raise ValueError("amount must be finite")
+    score = pd.to_numeric(frame.risk_score, errors="coerce")
+    if score.isna().any() or not score.between(0, 1).all():
+        raise ValueError("risk_score must be finite and within [0, 1]")
+    if "action" in frame:
+        actions = frame.action.astype(str).str.upper()
+        invalid = sorted(set(actions) - {"ALLOW", "REVIEW", "BLOCK"})
+        if invalid:
+            raise ValueError(f"action contains invalid values: {invalid}")
+    return {"status": "PASS", "rows": int(len(frame)), "unique_source_row_id": int(frame.source_row_id.nunique()), "columns": sorted(frame.columns.tolist())}
+
+
+def load_monitoring_input(path: Path) -> pd.DataFrame:
+    """Single governed loader used by every Part 8 file-based CLI stage."""
+    if not path.exists():
+        raise FileNotFoundError(path)
+    frame = normalise_input(load_frame(path))
+    validate_monitoring_input_contract(frame)
     return frame
 
 
