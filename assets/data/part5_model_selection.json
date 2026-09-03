@@ -1,0 +1,15 @@
+{
+  "status": "AVAILABLE",
+  "population": "VALIDATION_SELECTION_NATURAL",
+  "metric": "PR-AUC",
+  "rows": [
+    {"model": "BlendTop3_Equal", "pr_auc": 0.8722768863, "roc_auc": 0.9964868542, "ks": 0.9531575999, "brier": 0.0008491118, "top_1pct_capture": 0.9309278351},
+    {"model": "BlendTop3_Grid01", "pr_auc": 0.8722200000, "roc_auc": 0.9964160000, "ks": 0.9523640000, "brier": 0.0009020000, "top_1pct_capture": 0.9309000000},
+    {"model": "BlendTop2_Equal", "pr_auc": 0.8693560000, "roc_auc": 0.9966530000, "ks": 0.9566970000, "brier": 0.0006760000, "top_1pct_capture": 0.9294000000},
+    {"model": "CatBoost_F2", "pr_auc": 0.8662650000, "roc_auc": 0.9965130000, "ks": 0.9547740000, "brier": 0.0006580000, "top_1pct_capture": 0.9273000000},
+    {"model": "XGBoost_F2", "pr_auc": 0.8093570000, "roc_auc": 0.9967280000, "ks": 0.9523530000, "brier": 0.0010220000, "top_1pct_capture": 0.9021000000},
+    {"model": "AutoGluonExtreme", "pr_auc": 0.6377660000, "roc_auc": 0.9806850000, "ks": 0.8556920000, "brier": 0.0016580000, "top_1pct_capture": 0.7758000000},
+    {"model": "RandomForest_F2", "pr_auc": 0.5284560000, "roc_auc": 0.9025570000, "ks": 0.6473860000, "brier": 0.0019500000, "top_1pct_capture": 0.6093000000},
+    {"model": "TabDPTTurboFast", "pr_auc": 0.5185570000, "roc_auc": 0.9658260000, "ks": 0.8441060000, "brier": 0.0018070000, "top_1pct_capture": 0.7789000000}
+  ]
+}

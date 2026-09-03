@@ -46,12 +46,18 @@ def build_charts(root: Path) -> dict:
     part6 = json.loads((root / "assets/data/part6_summary.json").read_text(encoding="utf-8"))
     charts["G1"] = _available("G1", "graph", "Graph network scale", "bar", "assets/data/part6_summary.json", "DERIVED", [{"label": "Total nodes", "value": part6["graph"]["total_nodes"]}, {"label": "Unique pairs", "value": part6["graph"]["train_unique_edges"]}, {"label": "Leiden communities", "value": part6["graph"]["leiden_communities"]}], "label", "value", "", "Governed aggregate graph scale; no raw IDs or edges are published.")
     charts["G2"] = _available("G2", "graph", "Graph model comparison (Test warm PR-AUC)", "bar", "assets/data/part6_summary.json", "DERIVED", [{"label": row["model"], "pr_auc": row["pr_auc"]} for row in part6["model_comparison"]["test_warm"]], "label", "pr_auc", "", "Graph context is complementary; the overall Test difference is not statistically robust.")
+    part5 = json.loads((root / "assets/data/part5_final_summary.json").read_text(encoding="utf-8"))
+    selection = json.loads((root / "assets/data/part5_model_selection.json").read_text(encoding="utf-8"))
+    calibration = json.loads((root / "assets/data/part5_calibration.json").read_text(encoding="utf-8"))
+    topk = json.loads((root / "assets/data/part5_topk.json").read_text(encoding="utf-8"))
+    charts["M1"] = _available("M1", "model", "Validation selection leaderboard", "bar", "assets/data/part5_model_selection.json", "DERIVED", [{"label": r["model"], "pr_auc": r["pr_auc"]} for r in selection["rows"]], "label", "pr_auc", "", "BlendTop3_Equal is the frozen Validation champion.")
+    charts["M2"] = _blocked("M2", "model", "Precision-recall curve", "assets/data/part5_final_summary.json", "DERIVED", "PR-curve coordinates were not retained in the final aggregate evidence.")
+    charts["M2"]["status"] = "NOT_AVAILABLE"
+    charts["M2"]["badge"] = "NOT RETAINED"
+    charts["M3"] = _available("M3", "model", "OOT calibration summary", "bar", "assets/data/part5_calibration.json", "DERIVED", [{"label": "Brier", "value": calibration["metrics"]["brier"]}, {"label": "LogLoss", "value": calibration["metrics"]["log_loss"]}], "label", "value", "", "Calibration intercept and slope are available; exact bin coordinates are not synthesized.")
+    charts["M4"] = _available("M4", "model", "OOT Top-K fraud capture", "line", "assets/data/part5_topk.json", "DERIVED", [{"label": f"{r['top_k']:.1%}", "capture": r["capture"], "precision": r["precision"], "lift": r["lift"]} for r in topk["rows"]], "label", "capture", "", "Top-K is a ranking diagnostic, not a staffing recommendation.")
     blocked = [
         ("B2", "behavior", "Behavioral signal profile", "reports/part4/development_numeric_feature_signal.csv", "DERIVED", "Current evidence is QA-slice governed; no headline signal is promoted here."),
-        ("M1", "model", "Validation PR-AUC comparison", "reports/part5/executed_model_comparison.csv", "DERIVED", "Part 5 executed model metrics are not available in the public evidence set."),
-        ("M2", "model", "Precision-recall curve", "reports/part5/pr_curve.csv", "DERIVED", "Executed curve points are required."),
-        ("M3", "model", "Calibration curve", "reports/part5/calibration.csv", "DERIVED", "Calibration requires probability-usable executed evidence."),
-        ("M4", "model", "Top-K fraud capture", "reports/part5/topk.csv", "DERIVED", "Natural-prevalence executed evidence is required."),
         ("DE1", "decision", "Decision mix", "reports/part7/final_decision_mix.csv", "SIMULATED", "Part 7 final decision mart is INPUT BLOCKED."),
         ("DE2", "decision", "Review capacity", "reports/part7/review_capacity.csv", "SIMULATED", "Part 7 final decision mart is INPUT BLOCKED."),
         ("DE3", "decision", "Fraud capture vs intervention", "reports/part7/policy_sensitivity.csv", "SIMULATED", "Part 7 outcome evidence is INPUT BLOCKED."),

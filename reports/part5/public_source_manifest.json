@@ -1,0 +1,14 @@
+{
+  "part": 5,
+  "block": "C",
+  "source_archive": "PART5_FINAL_C09_C10_CHECKPOINT.zip",
+  "source_sha256": "1dc0a05cd86c29c2bf871c565a9c0afe6fc5d048bc094a78b7a5ff4de42f4349",
+  "source_location": "Google Drive project folder · Drive MANIFEST.txt",
+  "pipeline_status": "PASS",
+  "part5_status": "PART5_MODELING_LOCKED",
+  "champion_version": "FRAUD_CHAMPION_v1",
+  "public_artifacts": ["part5_final_summary.json", "part5_model_selection.json", "part5_calibration.json", "part5_topk.json", "part5_subgroups.json", "part5_uncertainty.json"],
+  "raw_artifacts_committed": false,
+  "raw_ids_edges_embeddings_models_committed": false,
+  "source_entries": ["checkpoint_manifest.json", "state/freeze/FRAUD_CHAMPION_v1.json", "history/PART5_FINAL_SUMMARY.json", "history/C09_summary.json", "history/C09_calibration_metrics.csv", "history/C10_oot_model_metrics.csv", "history/C10_oot_topk_capture.csv", "history/C10_oot_calibration_bins.csv", "history/C10_validation_to_oot_degradation.csv", "history/C10_subgroup_performance.csv"]
+}

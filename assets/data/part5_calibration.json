@@ -1,0 +1,8 @@
+{
+  "status": "AVAILABLE",
+  "population": "FINAL_OOT_NATURAL",
+  "metrics": {"intercept": -0.709138, "slope": 0.712842, "brier": 0.0009351946, "log_loss": 0.0060744910},
+  "bins": [],
+  "bins_status": "NOT_RETAINED_IN_PUBLIC_AGGREGATE",
+  "interpretation": "Calibration summary is available; exact bin coordinates are not exposed in this public aggregate, so no synthetic reliability curve is drawn."
+}

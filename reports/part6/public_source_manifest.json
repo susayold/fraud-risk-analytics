@@ -1,0 +1,12 @@
+{
+  "part": 6,
+  "block": "D",
+  "source_archive": "P6_PART6_FINAL_CLOSURE_V8_RESEARCH_GROUNDED_RESULTS.zip",
+  "source_location": "Google Drive project folder + validated local mirror used only for small aggregate extraction",
+  "pipeline_status": "PASS",
+  "closure_status": "LOCKED",
+  "source_entries": ["PART6_FINAL_CLOSURE.json", "NETWORK_ANALYTICS_SUMMARY.json", "TEST_MONTHLY_WARM_METRICS.csv"],
+  "public_artifacts": ["assets/data/part6_summary.json"],
+  "raw_ids_edges_embeddings_models_committed": false,
+  "claims_boundary": ["aggregate only", "TRAIN graph scope separated from lifetime foundation graph", "labels post-hoc only", "graph-only auto-BLOCK forbidden"]
+}

@@ -1947,6 +1947,147 @@
       }
     ]
   },
+  "M1": {
+    "chart_id": "M1",
+    "section": "model",
+    "title": "Validation selection leaderboard",
+    "chart_type": "bar",
+    "source_artifact": "assets/data/part5_model_selection.json",
+    "x_field": "label",
+    "y_field": "pr_auc",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "BlendTop3_Equal is the frozen Validation champion.",
+    "badge": "DERIVED",
+    "data": [
+      {
+        "label": "BlendTop3_Equal",
+        "pr_auc": 0.8722768863
+      },
+      {
+        "label": "BlendTop3_Grid01",
+        "pr_auc": 0.87222
+      },
+      {
+        "label": "BlendTop2_Equal",
+        "pr_auc": 0.869356
+      },
+      {
+        "label": "CatBoost_F2",
+        "pr_auc": 0.866265
+      },
+      {
+        "label": "XGBoost_F2",
+        "pr_auc": 0.809357
+      },
+      {
+        "label": "AutoGluonExtreme",
+        "pr_auc": 0.637766
+      },
+      {
+        "label": "RandomForest_F2",
+        "pr_auc": 0.528456
+      },
+      {
+        "label": "TabDPTTurboFast",
+        "pr_auc": 0.518557
+      }
+    ]
+  },
+  "M2": {
+    "chart_id": "M2",
+    "section": "model",
+    "title": "Precision-recall curve",
+    "chart_type": "evidence-state",
+    "source_artifact": "assets/data/part5_final_summary.json",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "NOT_AVAILABLE",
+    "reason": "PR-curve coordinates were not retained in the final aggregate evidence.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "NOT RETAINED",
+    "data": []
+  },
+  "M3": {
+    "chart_id": "M3",
+    "section": "model",
+    "title": "OOT calibration summary",
+    "chart_type": "bar",
+    "source_artifact": "assets/data/part5_calibration.json",
+    "x_field": "label",
+    "y_field": "value",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Calibration intercept and slope are available; exact bin coordinates are not synthesized.",
+    "badge": "DERIVED",
+    "data": [
+      {
+        "label": "Brier",
+        "value": 0.0009351946
+      },
+      {
+        "label": "LogLoss",
+        "value": 0.006074491
+      }
+    ]
+  },
+  "M4": {
+    "chart_id": "M4",
+    "section": "model",
+    "title": "OOT Top-K fraud capture",
+    "chart_type": "line",
+    "source_artifact": "assets/data/part5_topk.json",
+    "x_field": "label",
+    "y_field": "capture",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Top-K is a ranking diagnostic, not a staffing recommendation.",
+    "badge": "DERIVED",
+    "data": [
+      {
+        "label": "0.5%",
+        "capture": 0.2627,
+        "precision": 0.05094,
+        "lift": 52.54
+      },
+      {
+        "label": "1.0%",
+        "capture": 0.3438,
+        "precision": 0.03333,
+        "lift": 34.37
+      },
+      {
+        "label": "2.0%",
+        "capture": 0.4861,
+        "precision": 0.02357,
+        "lift": 24.31
+      },
+      {
+        "label": "5.0%",
+        "capture": 0.7101,
+        "precision": 0.01377,
+        "lift": 14.2
+      },
+      {
+        "label": "10.0%",
+        "capture": 0.8409,
+        "precision": 0.00815,
+        "lift": 8.41
+      }
+    ]
+  },
   "B2": {
     "chart_id": "B2",
     "section": "behavior",
@@ -1960,74 +2101,6 @@
     "render_condition": "status == AVAILABLE",
     "status": "INPUT_BLOCKED",
     "reason": "Current evidence is QA-slice governed; no headline signal is promoted here.",
-    "insight": "Upstream governed evidence is required before this view can render.",
-    "badge": "INPUT BLOCKED",
-    "data": []
-  },
-  "M1": {
-    "chart_id": "M1",
-    "section": "model",
-    "title": "Validation PR-AUC comparison",
-    "chart_type": "evidence-state",
-    "source_artifact": "reports/part5/executed_model_comparison.csv",
-    "x_field": "",
-    "y_field": "",
-    "support_field": "",
-    "claim_class": "DERIVED",
-    "render_condition": "status == AVAILABLE",
-    "status": "INPUT_BLOCKED",
-    "reason": "Part 5 executed model metrics are not available in the public evidence set.",
-    "insight": "Upstream governed evidence is required before this view can render.",
-    "badge": "INPUT BLOCKED",
-    "data": []
-  },
-  "M2": {
-    "chart_id": "M2",
-    "section": "model",
-    "title": "Precision-recall curve",
-    "chart_type": "evidence-state",
-    "source_artifact": "reports/part5/pr_curve.csv",
-    "x_field": "",
-    "y_field": "",
-    "support_field": "",
-    "claim_class": "DERIVED",
-    "render_condition": "status == AVAILABLE",
-    "status": "INPUT_BLOCKED",
-    "reason": "Executed curve points are required.",
-    "insight": "Upstream governed evidence is required before this view can render.",
-    "badge": "INPUT BLOCKED",
-    "data": []
-  },
-  "M3": {
-    "chart_id": "M3",
-    "section": "model",
-    "title": "Calibration curve",
-    "chart_type": "evidence-state",
-    "source_artifact": "reports/part5/calibration.csv",
-    "x_field": "",
-    "y_field": "",
-    "support_field": "",
-    "claim_class": "DERIVED",
-    "render_condition": "status == AVAILABLE",
-    "status": "INPUT_BLOCKED",
-    "reason": "Calibration requires probability-usable executed evidence.",
-    "insight": "Upstream governed evidence is required before this view can render.",
-    "badge": "INPUT BLOCKED",
-    "data": []
-  },
-  "M4": {
-    "chart_id": "M4",
-    "section": "model",
-    "title": "Top-K fraud capture",
-    "chart_type": "evidence-state",
-    "source_artifact": "reports/part5/topk.csv",
-    "x_field": "",
-    "y_field": "",
-    "support_field": "",
-    "claim_class": "DERIVED",
-    "render_condition": "status == AVAILABLE",
-    "status": "INPUT_BLOCKED",
-    "reason": "Natural-prevalence executed evidence is required.",
     "insight": "Upstream governed evidence is required before this view can render.",
     "badge": "INPUT BLOCKED",
     "data": []

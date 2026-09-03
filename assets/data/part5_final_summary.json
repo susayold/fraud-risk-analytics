@@ -1,0 +1,64 @@
+{
+  "part": 5,
+  "block": "C",
+  "status": "PART5_MODELING_LOCKED",
+  "claim_class": "DERIVED",
+  "pipeline": {
+    "checkpoint_archive": "PART5_FINAL_C09_C10_CHECKPOINT.zip",
+    "checkpoint_sha256": "1dc0a05cd86c29c2bf871c565a9c0afe6fc5d048bc094a78b7a5ff4de42f4349",
+    "checkpoint_status": "PASS",
+    "completed_blocks": ["C00", "C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10"],
+    "all_blocks_pass": true
+  },
+  "source": {
+    "dataset": "IBM Synthetic Credit Card Transactions",
+    "rows": 24386900,
+    "ood_rows": 1782241,
+    "source_manifest": "Drive MANIFEST.txt · PART5_FINAL_C09_C10_CHECKPOINT"
+  },
+  "champion": {
+    "version": "FRAUD_CHAMPION_v1",
+    "name": "BlendTop3_Equal",
+    "type": "probability_blend",
+    "frozen": true,
+    "freeze_timestamp": "2026-09-01T10:05:42.245522+00:00",
+    "frozen_before_oot_label_open": true,
+    "oot_score_created_before_label_open": true,
+    "oot_used_for_retuning": false,
+    "components": [
+      {"name": "CatBoost_F2", "weight": 0.3333333333, "calibration": "identity"},
+      {"name": "XGBoost_F2", "weight": 0.3333333333, "calibration": "Platt"},
+      {"name": "AutoGluonExtreme", "weight": 0.3333333333, "calibration": "Platt"}
+    ]
+  },
+  "validation": {
+    "population": "VALIDATION_SELECTION_NATURAL",
+    "metrics": {"pr_auc": 0.8722768863, "roc_auc": 0.9964868542, "ks": 0.9531575999, "brier": 0.0008491118, "log_loss": 0.0035369770, "top_1pct_capture": 0.9309278351, "top_1pct_lift": 93.082759}
+  },
+  "oot": {
+    "population": "FINAL_OOT_NATURAL",
+    "rows": 1782241,
+    "fraud_rows": 1728,
+    "prevalence": 0.000969566,
+    "metrics": {"pr_auc": 0.0678393931, "roc_auc": 0.9422932396, "ks": 0.7553848222, "brier": 0.0009351946, "log_loss": 0.0060744910},
+    "calibration": {"intercept": -0.709138, "slope": 0.712842}
+  },
+  "degradation": {
+    "validation_pr_auc": 0.8722768863,
+    "oot_pr_auc": 0.0678393931,
+    "absolute_delta": -0.8044374932,
+    "relative_delta": -0.9222,
+    "validation_roc_auc": 0.9964868542,
+    "oot_roc_auc": 0.9422932396,
+    "validation_ks": 0.9531575999,
+    "oot_ks": 0.7553848222,
+    "interpretation": "Observed temporal generalization degradation; no causal explanation assigned."
+  },
+  "governance": {
+    "primary_metric": "Average Precision / PR-AUC",
+    "pr_curve_points": "NOT_RETAINED",
+    "ap_bootstrap_ci_published": false,
+    "ap_bootstrap_caveat": "The retained AP interval is a histogram approximation and does not contain the exact OOT AP; it is not published as an exact confidence interval.",
+    "public_boundary": ["aggregate metrics only", "no raw IDs", "no model binaries", "no production threshold or loss claim"]
+  }
+}

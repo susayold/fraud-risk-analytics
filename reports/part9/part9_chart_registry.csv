@@ -10,11 +10,11 @@ P5,portfolio,Entity concentration (top 1% fraud share),bar,reports/part3/top_ent
 B1,behavior,Primary PIT feature family count,bar,docs/PART4_FEATURE_REGISTRY.csv,label,feature_count,,DERIVED,status == AVAILABLE,AVAILABLE
 G1,graph,Graph network scale,bar,assets/data/part6_summary.json,label,value,,DERIVED,status == AVAILABLE,AVAILABLE
 G2,graph,Graph model comparison (Test warm PR-AUC),bar,assets/data/part6_summary.json,label,pr_auc,,DERIVED,status == AVAILABLE,AVAILABLE
+M1,model,Validation selection leaderboard,bar,assets/data/part5_model_selection.json,label,pr_auc,,DERIVED,status == AVAILABLE,AVAILABLE
+M2,model,Precision-recall curve,evidence-state,assets/data/part5_final_summary.json,,,,DERIVED,status == AVAILABLE,NOT_AVAILABLE
+M3,model,OOT calibration summary,bar,assets/data/part5_calibration.json,label,value,,DERIVED,status == AVAILABLE,AVAILABLE
+M4,model,OOT Top-K fraud capture,line,assets/data/part5_topk.json,label,capture,,DERIVED,status == AVAILABLE,AVAILABLE
 B2,behavior,Behavioral signal profile,evidence-state,reports/part4/development_numeric_feature_signal.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-M1,model,Validation PR-AUC comparison,evidence-state,reports/part5/executed_model_comparison.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-M2,model,Precision-recall curve,evidence-state,reports/part5/pr_curve.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-M3,model,Calibration curve,evidence-state,reports/part5/calibration.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-M4,model,Top-K fraud capture,evidence-state,reports/part5/topk.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 DE1,decision,Decision mix,evidence-state,reports/part7/final_decision_mix.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED
 DE2,decision,Review capacity,evidence-state,reports/part7/review_capacity.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED
 DE3,decision,Fraud capture vs intervention,evidence-state,reports/part7/policy_sensitivity.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED

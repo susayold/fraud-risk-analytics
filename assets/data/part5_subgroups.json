@@ -1,0 +1,9 @@
+{
+  "status": "AVAILABLE",
+  "population": "FINAL_OOT_NATURAL",
+  "rows": [
+    {"segment": "User–merchant new", "rows": 36692, "fraud_rows": 691, "prevalence": 0.018832, "pr_auc": 0.279566, "top_1pct_capture": 0.2214, "support": "SUPPORTED"},
+    {"segment": "Card–merchant new", "rows": 69024, "fraud_rows": 915, "prevalence": 0.013256, "pr_auc": 0.202890, "top_1pct_capture": 0.2197, "support": "SUPPORTED"},
+    {"segment": "Online channel", "rows": 0, "fraud_rows": 0, "prevalence": null, "pr_auc": null, "top_1pct_capture": null, "support": "LOW_SUPPORT"}
+  ]
+}

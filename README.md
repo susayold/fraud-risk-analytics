@@ -57,7 +57,7 @@ Part 4 implements a governed point-in-time behavioral feature layer with 43 prim
 
 ## Part 5 — Fraud Rules & Machine Learning
 
-Part 5 P5.1 implements the resource-safe modeling contract: Development-only deterministic negative sampling, three expanding temporal CV folds, current-context F0 versus Part 4 behavioral F1/F2 feature sets, Development-fit preprocessing with unknown-category handling, Logistic Regression, Validation calibration/selection windows and aggregate-only reporting. The page remains `MODELING_IN_PROGRESS` until a real offline run supplies metrics; OOT is deliberately not accessed in P5.1. Part 5 ends at predictive ranking and diagnostic curves, while final ALLOW / REVIEW / BLOCK policy belongs to Part 7.
+Part 5 is locked from the Drive-backed C00–C10 final checkpoint: point-in-time feature governance, natural-prevalence Validation selection, calibrated `FRAUD_CHAMPION_v1`, final OOT replay, Top-K diagnostics and temporal degradation. Only aggregate public evidence is published; final ALLOW / REVIEW / BLOCK policy belongs to Part 7.
 
 ## Part 7 — Fraud Risk Decision Engine
 

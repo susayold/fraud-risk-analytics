@@ -1,0 +1,7 @@
+{
+  "status": "CAUTION",
+  "oot_ap_exact": 0.0678393931,
+  "retained_histogram_interval": {"low": 0.031183, "high": 0.050657},
+  "published_as_exact_ci": false,
+  "reason": "Exact OOT AP lies outside the retained histogram approximation; do not present this interval as a standard 95% CI."
+}

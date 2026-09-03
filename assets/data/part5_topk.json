@@ -1,0 +1,11 @@
+{
+  "status": "AVAILABLE",
+  "population": "FINAL_OOT_NATURAL",
+  "rows": [
+    {"top_k": 0.005, "selected_rows": 8912, "fraud_rows": 454, "precision": 0.05094, "capture": 0.2627, "lift": 52.54},
+    {"top_k": 0.01, "selected_rows": 17823, "fraud_rows": 594, "precision": 0.03333, "capture": 0.3438, "lift": 34.37},
+    {"top_k": 0.02, "selected_rows": 35645, "fraud_rows": 840, "precision": 0.02357, "capture": 0.4861, "lift": 24.31},
+    {"top_k": 0.05, "selected_rows": 89113, "fraud_rows": 1227, "precision": 0.01377, "capture": 0.7101, "lift": 14.20},
+    {"top_k": 0.10, "selected_rows": 178225, "fraud_rows": 1453, "precision": 0.00815, "capture": 0.8409, "lift": 8.41}
+  ]
+}

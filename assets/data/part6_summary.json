@@ -33,6 +33,35 @@
     "max_parameter_sync_diff": 0.0,
     "final_encoder_scope": "FULL_TRAIN_AFTER_TEMPORAL_METHOD_FREEZE"
   },
+  "foundation_graph": {
+    "scope": "G01_FULL_GRAPH_FOUNDATION",
+    "card_nodes": 6139,
+    "merchant_nodes": 100343,
+    "lifetime_unique_pairs": 978288,
+    "monthly_graph_rows": 10152751,
+    "warning": "Lifetime unique pairs are not the same quantity as final TRAIN edges."
+  },
+  "train_network": {
+    "scope": "FINAL_V8_TRAIN_NETWORK",
+    "total_nodes": 106482,
+    "train_unique_edges": 854007,
+    "leiden_communities": 8428,
+    "largest_community_nodes": 8849,
+    "train_rows": 20604847,
+    "train_fraud_rows": 25179,
+    "validation_rows": 1721615,
+    "validation_fraud_rows": 2491,
+    "test_rows": 2060438,
+    "test_fraud_rows": 2087,
+    "feature_dimensions": {"A_EDGE_ONLY": 21, "B_GNN_ONLY": 128, "C_EDGE_PLUS_GNN": 149},
+    "card_embedding_dim": 64,
+    "merchant_embedding_dim": 64,
+    "validation_both_nodes_seen_rate": 0.9815,
+    "validation_pair_seen_rate": 0.9430,
+    "test_both_nodes_seen_rate": 0.9241564172,
+    "test_pair_seen_rate": 0.8877321227,
+    "split_note": "This v8 graph split is governed separately from the Part 2 Development / Validation / OOT split."
+  },
   "model_comparison": {
     "validation_warm": [
       {"model": "A_EDGE_ONLY", "pr_auc": 0.8813120431671784},
@@ -48,6 +77,30 @@
     "test_best_diagnostic_only": "A_EDGE_ONLY",
     "test_selection_override": false
   },
+  "probability_quality": {
+    "validation": {"A_EDGE_ONLY": {}, "B_GNN_ONLY": {}, "C_EDGE_PLUS_GNN": {}},
+    "test": {
+      "A_EDGE_ONLY": {"pr_auc": 0.8834877512, "roc_auc": 0.999905, "ks": 0.999064, "brier": 0.000494, "log_loss": 0.001572},
+      "B_GNN_ONLY": {"pr_auc": 0.0172425558, "roc_auc": 0.838862, "ks": 0.594014, "brier": 0.001065, "log_loss": 0.007255},
+      "C_EDGE_PLUS_GNN": {"pr_auc": 0.8800191304, "roc_auc": 0.999768, "ks": 0.994648, "brier": 0.000379, "log_loss": 0.001459}
+    }
+  },
+  "pairwise_uncertainty": [
+    {"comparison": "B_MINUS_A", "delta": -0.8662451954, "ci95_low": -0.8808572882, "ci95_high": -0.8509816834, "probability_delta_gt_zero": 0.0, "classification": "STATISTICALLY_NEGATIVE"},
+    {"comparison": "C_MINUS_A", "delta": -0.0034686208, "ci95_low": -0.0159493408, "ci95_high": 0.0092262920, "probability_delta_gt_zero": 0.285, "classification": "NON_ROBUST_OR_INCONCLUSIVE"},
+    {"comparison": "C_MINUS_B", "delta": 0.8627765746, "ci95_low": 0.8507193761, "ci95_high": 0.8735317994, "probability_delta_gt_zero": 1.0, "classification": "STATISTICALLY_POSITIVE"}
+  ],
+  "ablations": [
+    {"id": "E_C_NO_RAW_IDS", "validation_pr_auc": 0.873409, "test_pr_auc": 0.861207},
+    {"id": "F_C_NO_TE", "validation_pr_auc": 0.088023, "test_pr_auc": 0.017528},
+    {"id": "D_EDGE_NO_TE", "validation_pr_auc": 0.018767, "test_pr_auc": 0.003682}
+  ],
+  "shap": [
+    {"feature": "te_zip", "mean_abs_shap": 1.233499}, {"feature": "year", "mean_abs_shap": 1.151136}, {"feature": "te_mcc", "mean_abs_shap": 0.866803}, {"feature": "online_transaction", "mean_abs_shap": 0.626915}, {"feature": "te_merchant_state", "mean_abs_shap": 0.455763}, {"feature": "te_merchant_city", "mean_abs_shap": 0.376808}, {"feature": "amount", "mean_abs_shap": 0.238152}, {"feature": "time_norm", "mean_abs_shap": 0.237613}, {"feature": "merchant_gnn_18", "mean_abs_shap": 0.150422}, {"feature": "merchant_gnn_57", "mean_abs_shap": 0.093957}, {"feature": "merchant_gnn_62", "mean_abs_shap": 0.079509}, {"feature": "merchant_gnn_50", "mean_abs_shap": 0.079252}
+  ],
+  "monthly_stability": {"status": "AVAILABLE_PARTIAL_EXTRACT", "months_available": "2019-01 through 2019-10", "source_entry": "TEST_MONTHLY_WARM_METRICS.csv", "rows": [
+    {"month": "2019-01", "A": 0.9766675503, "C": 0.9383957002}, {"month": "2019-02", "A": 0.9562525644, "C": 0.9225954582}, {"month": "2019-03", "A": 0.8883200964, "C": 0.9006070657}, {"month": "2019-04", "A": 0.9716582802, "C": 0.9240778156}, {"month": "2019-05", "A": 0.9456300758, "C": 0.9112708246}, {"month": "2019-06", "A": 0.9268150143, "C": 0.8795947415}, {"month": "2019-07", "A": 0.8137565928, "C": 0.7954893784}, {"month": "2019-08", "A": 0.9364365981, "C": 0.9360965856}, {"month": "2019-09", "A": 0.9497873873, "C": 0.9179244260}, {"month": "2019-10", "A": 0.9575254791, "C": 0.9105773990}
+  ]},
   "novelty_segments": [
     {"segment": "WARM_PAIR_SEEN", "rows": 1829117, "fraud": 710, "a_pr_auc": 0.7971541669498744, "c_pr_auc": 0.7647144666853372},
     {"segment": "WARM_PAIR_NEW", "rows": 75050, "fraud": 1332, "a_pr_auc": 0.914953458513595, "c_pr_auc": 0.9335069878747719},

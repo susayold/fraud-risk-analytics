@@ -12,14 +12,14 @@
     "P5",
     "B1",
     "G1",
-    "G2"
+    "G2",
+    "M1",
+    "M3",
+    "M4"
   ],
   "blocked_charts": [
-    "B2",
-    "M1",
     "M2",
-    "M3",
-    "M4",
+    "B2",
     "DE1",
     "DE2",
     "DE3",
@@ -29,7 +29,7 @@
     "MON3"
   ],
   "public_boundary": "PASS",
-  "source_count": 12,
+  "source_count": 16,
   "metric_count": 14,
   "chart_count": 23
 }

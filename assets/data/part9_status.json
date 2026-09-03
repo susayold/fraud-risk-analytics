@@ -32,9 +32,10 @@
     },
     "part5": {
       "label": "Fraud Scoring / ML",
-      "status": "IN_PROGRESS",
-      "technical_status": "MODELING_IN_PROGRESS",
-      "execution_status": "MODELING_IN_PROGRESS",
+      "status": "LOCKED",
+      "technical_status": "PART5_MODELING_LOCKED",
+      "execution_status": "LOCKED",
+      "champion_version": "FRAUD_CHAMPION_v1",
       "source_part": 5,
       "deep_link": "part-5.html"
     },
