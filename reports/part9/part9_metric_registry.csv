@@ -1,0 +1,15 @@
+metric_id,label,value,claim_class,source_part,source_artifact,status,section
+source_total_transactions,Total transactions,24386900.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+source_fraud_transactions,Fraud transactions,29757.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+source_fraud_rate,Fraud rate,0.0012202042900081602,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+source_users,Users,2000.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+source_cards,Cards,6139.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+source_merchants,Merchants,100343.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
+behavior_primary_features,Primary PIT behavioral features,43.0,DERIVED,4,docs/PART4_FEATURE_REGISTRY.csv,AVAILABLE,behavior
+monitoring_gate_count,Mandatory monitoring gates,72.0,GOVERNANCE,8,assets/data/part8_summary.json,AVAILABLE,monitoring
+fraud_capture_rate,Fraud capture rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+fraud_amount_capture,Fraud amount capture,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+precision,Precision / hit rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+review_rate,Review rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+capacity_utilization,Capacity utilization,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+expected_total_cost,Expected total cost,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business

@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "notes": "Conditional upstream sources may remain INPUT_BLOCKED; they are not replaced with fabricated metrics."
+}

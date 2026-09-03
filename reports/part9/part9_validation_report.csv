@@ -1,0 +1,41 @@
+gate_id,family,description,status,reason,evidence_artifact,claim_class
+P9T01,A,source registry exists,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T02,A,all required source files resolved,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T03,A,source hashes recorded,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T04,A,Part 2 totals reconcile,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T05,A,Part 4 feature count reconciles,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T06,B,hero has no invented metric,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T07,B,portfolio charts source real reports,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T08,B,behavior chart source registry,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T09,B,model charts render only with executed evidence,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T10,B,graph metrics render only with audited evidence,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T11,B,decision charts render only with genuine Part7 evidence,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T12,B,monitoring charts render only with genuine replay,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T13,C,observed metrics labeled correctly,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T14,C,derived metrics labeled correctly,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T15,C,simulated metrics labeled correctly,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T16,C,no production claim,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T17,C,limitations visible,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T18,D,chart registry exists,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T19,D,every chart has source,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T20,D,every chart has render condition,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T21,D,no blocked chart contains fake data,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T22,D,chart datasets aggregate-only,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T23,D,low-support categories governed,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T24,E,status registry exists,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T25,E,Part9 website status matches registry,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T26,E,README status matches registry,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T27,E,Part7 blocked state preserved,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T28,E,Part8 blocked state preserved,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T29,F,no source_row_id,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T30,F,no row-level score,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T31,F,no row-level label,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T32,F,no row-level action,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T33,F,no raw graph edge,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T34,G,all deep links valid,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T35,G,all navigation works,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T36,G,mobile layout passes smoke test,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T37,G,reduced motion supported,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T38,G,chart fallback text exists,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T39,H,GitHub Pages build passes,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE
+P9T40,H,final release audit passes,PASS,validated against presentation registry,reports/part9/,PRESENTATION_RELEASE

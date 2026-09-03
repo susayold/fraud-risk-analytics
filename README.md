@@ -25,11 +25,11 @@ https://susayold.github.io/fraud-risk-analytics/
 | 2 | Data & SQL Foundation | ✅ Locked |
 | 3 | Fraud Portfolio Analytics | ✅ Locked |
 | 4 | Behavioral Fraud Analytics | ✅ Locked — PIT + entity-complete QA validated; full-population signal not claimed |
-| 5 | Fraud Rules & Machine Learning | ⬜ Planned |
-| 6 | Network & Graph Fraud Analytics | ⬜ Planned |
+| 5 | Fraud Rules & Machine Learning | 🟠 In progress — metrics remain source-driven |
+| 6 | Network & Graph Fraud Analytics | 🟠 Evidence pending — Part 9 preserves the presentation boundary |
 | 7 | Fraud Risk Decision Engine | 🟠 Implemented — INPUT_BLOCKED pending frozen Part 5 row-level score |
 | 8 | Monitoring, Drift & Governance | 🟢 Framework ready — INPUT_BLOCKED pending genuine upstream score/policy mart |
-| 9 | Final Product & Portfolio | ⬜ Planned |
+| 9 | Final Product & Portfolio | ✅ Final portfolio ready — conditional upstream stages remain source-driven |
 
 ## Business Problem
 
@@ -68,6 +68,10 @@ Block E is implemented as a separate, config-first policy layer. It consumes the
 Block F is implemented as an offline, research-grounded monitoring framework. It uses two clocks: label-free operational early warning (`OPERATIONS_NOW`) and retrospective matured-outcome validation (`OUTCOMES_MATURED`). The implementation covers UTC windows, structural-missingness and category-novelty checks, frozen-bin drift metrics, score/policy/review/graph/segment monitoring, alert persistence, governance recommendations, 72 evidence gates, CI and an aggregate-only website chapter. The public snapshot is intentionally `MONITORING_FRAMEWORK_READY / INPUT_BLOCKED`; no production monitoring, raw row-level data or synthetic monitoring metrics are claimed.
 
 The hardened CLI is explicit: `python -m src.part8.run_part8_pipeline audit-input --input <private.csv>`, `baseline --input <private.csv>`, `calibrate-thresholds --input <private.csv>`, `freeze`, `verify-freeze`, `replay --input <private.csv>`, and `matured-outcomes --input <private.csv>`. Replay loads the governed input contract, verifies frozen artifact hashes, uses frozen sufficient statistics, and reads thresholds from the frozen configuration; caller-injected thresholds are not used for final replay.
+
+## Part 9 — Final Product & Portfolio Delivery
+
+Part 9 is the flagship recruiter-facing overview. It is built from a deterministic source/metric/status/chart registry, surfaces real Part 2–4 aggregate evidence, and keeps Part 5–8 conditional outputs visibly `INPUT_BLOCKED` when the required governed artifacts are unavailable. The page is `FINAL_PORTFOLIO_READY`; this describes presentation completeness, not enterprise deployment or completion of every upstream execution.
 
 ## Part 2 — Data & SQL Foundation
 

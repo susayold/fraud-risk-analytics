@@ -1,0 +1,8 @@
+layer,label,status,technical_status,execution_status,deep_link
+part2,Data Foundation,LOCKED,FOUNDATION_READY,,part-2.html
+part3,Portfolio Intelligence,LOCKED,PORTFOLIO_READY,,part-3.html
+part4,Behavioral Risk,LOCKED,PASS,,part-4.html
+part5,Fraud Scoring / ML,IN_PROGRESS,MODELING_IN_PROGRESS,MODELING_IN_PROGRESS,part-5.html
+part6,Network / Graph,INPUT_BLOCKED,PRESENTATION_PENDING,NOT_AVAILABLE,part-6.html
+part7,Decision Engine,INPUT_BLOCKED,TECHNICALLY_COMPLETE_100,INPUT_BLOCKED,part-7.html
+part8,Monitoring & Governance,INPUT_BLOCKED,MONITORING_FRAMEWORK_READY,INPUT_BLOCKED,part-8.html

@@ -1,0 +1,2112 @@
+{
+  "D1": {
+    "chart_id": "D1",
+    "section": "data",
+    "title": "Fraud class imbalance",
+    "chart_type": "bar",
+    "source_artifact": "assets/data/part2_summary.json",
+    "x_field": "label",
+    "y_field": "value",
+    "support_field": "",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Fraud is rare, so accuracy alone would obscure the risk signal.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": "Legitimate",
+        "value": 24357143
+      },
+      {
+        "label": "Fraud",
+        "value": 29757
+      }
+    ]
+  },
+  "D2": {
+    "chart_id": "D2",
+    "section": "data",
+    "title": "Transactions by chronological split",
+    "chart_type": "bar",
+    "source_artifact": "reports/split_summary.csv",
+    "x_field": "label",
+    "y_field": "transactions",
+    "support_field": "fraud_transactions",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Chronological splits preserve the time direction required for honest evaluation.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": "DEVELOPMENT",
+        "transactions": 9673486,
+        "fraud_transactions": 13661
+      },
+      {
+        "label": "VALIDATION",
+        "transactions": 7170680,
+        "fraud_transactions": 6586
+      },
+      {
+        "label": "OUT_OF_TIME_OOT",
+        "transactions": 7542734,
+        "fraud_transactions": 9510
+      }
+    ]
+  },
+  "D3": {
+    "chart_id": "D3",
+    "section": "data",
+    "title": "Fraud rate by chronological split",
+    "chart_type": "bar",
+    "source_artifact": "reports/split_summary.csv",
+    "x_field": "label",
+    "y_field": "fraud_rate",
+    "support_field": "",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Fraud prevalence is reported separately from volume to keep units interpretable.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": "DEVELOPMENT",
+        "fraud_rate": 0.0014122106549800144
+      },
+      {
+        "label": "VALIDATION",
+        "fraud_rate": 0.0009184624052391127
+      },
+      {
+        "label": "OUT_OF_TIME_OOT",
+        "fraud_rate": 0.0012608160383224438
+      }
+    ]
+  },
+  "P1": {
+    "chart_id": "P1",
+    "section": "portfolio",
+    "title": "Monthly fraud trend",
+    "chart_type": "line",
+    "source_artifact": "reports/part3/monthly_fraud_trend.csv",
+    "x_field": "month",
+    "y_field": "fraud_rate",
+    "support_field": "transactions",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "The trend is descriptive Development discovery evidence, not a causal time series.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "month": "1991-01",
+        "fraud_rate": 0.0,
+        "transactions": 55,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-02",
+        "fraud_rate": 0.0,
+        "transactions": 48,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-03",
+        "fraud_rate": 0.0,
+        "transactions": 45,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-04",
+        "fraud_rate": 0.0,
+        "transactions": 48,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-05",
+        "fraud_rate": 0.0,
+        "transactions": 45,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-06",
+        "fraud_rate": 0.0,
+        "transactions": 52,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-07",
+        "fraud_rate": 0.0,
+        "transactions": 178,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-08",
+        "fraud_rate": 0.0,
+        "transactions": 164,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-09",
+        "fraud_rate": 0.0,
+        "transactions": 190,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-10",
+        "fraud_rate": 0.0,
+        "transactions": 155,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-11",
+        "fraud_rate": 0.0,
+        "transactions": 179,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1991-12",
+        "fraud_rate": 0.0,
+        "transactions": 426,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-01",
+        "fraud_rate": 0.0,
+        "transactions": 418,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-02",
+        "fraud_rate": 0.0,
+        "transactions": 367,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-03",
+        "fraud_rate": 0.0,
+        "transactions": 426,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-04",
+        "fraud_rate": 0.0,
+        "transactions": 427,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-05",
+        "fraud_rate": 0.0,
+        "transactions": 441,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-06",
+        "fraud_rate": 0.0,
+        "transactions": 366,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-07",
+        "fraud_rate": 0.0,
+        "transactions": 406,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-08",
+        "fraud_rate": 0.0,
+        "transactions": 415,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-09",
+        "fraud_rate": 0.0,
+        "transactions": 376,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-10",
+        "fraud_rate": 0.0,
+        "transactions": 375,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-11",
+        "fraud_rate": 0.0,
+        "transactions": 519,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1992-12",
+        "fraud_rate": 0.0,
+        "transactions": 598,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-01",
+        "fraud_rate": 0.0,
+        "transactions": 627,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-02",
+        "fraud_rate": 0.0,
+        "transactions": 553,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-03",
+        "fraud_rate": 0.0,
+        "transactions": 607,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-04",
+        "fraud_rate": 0.0,
+        "transactions": 590,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-05",
+        "fraud_rate": 0.0,
+        "transactions": 690,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-06",
+        "fraud_rate": 0.0,
+        "transactions": 694,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-07",
+        "fraud_rate": 0.0,
+        "transactions": 727,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-08",
+        "fraud_rate": 0.0,
+        "transactions": 767,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-09",
+        "fraud_rate": 0.0,
+        "transactions": 755,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-10",
+        "fraud_rate": 0.0,
+        "transactions": 753,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-11",
+        "fraud_rate": 0.0,
+        "transactions": 782,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1993-12",
+        "fraud_rate": 0.0,
+        "transactions": 833,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-01",
+        "fraud_rate": 0.0,
+        "transactions": 863,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-02",
+        "fraud_rate": 0.0,
+        "transactions": 736,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-03",
+        "fraud_rate": 0.0,
+        "transactions": 865,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-04",
+        "fraud_rate": 0.0,
+        "transactions": 1180,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-05",
+        "fraud_rate": 0.0,
+        "transactions": 1200,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-06",
+        "fraud_rate": 0.0,
+        "transactions": 1187,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-07",
+        "fraud_rate": 0.0,
+        "transactions": 1182,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-08",
+        "fraud_rate": 0.0,
+        "transactions": 1367,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-09",
+        "fraud_rate": 0.0,
+        "transactions": 1396,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-10",
+        "fraud_rate": 0.0,
+        "transactions": 1358,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-11",
+        "fraud_rate": 0.0,
+        "transactions": 1429,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1994-12",
+        "fraud_rate": 0.0,
+        "transactions": 1553,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-01",
+        "fraud_rate": 0.0,
+        "transactions": 1624,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-02",
+        "fraud_rate": 0.0,
+        "transactions": 1621,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-03",
+        "fraud_rate": 0.0,
+        "transactions": 1700,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-04",
+        "fraud_rate": 0.0,
+        "transactions": 1694,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-05",
+        "fraud_rate": 0.0,
+        "transactions": 1690,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-06",
+        "fraud_rate": 0.0,
+        "transactions": 1622,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-07",
+        "fraud_rate": 0.0,
+        "transactions": 1716,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-08",
+        "fraud_rate": 0.0,
+        "transactions": 1831,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-09",
+        "fraud_rate": 0.0,
+        "transactions": 1757,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-10",
+        "fraud_rate": 0.0,
+        "transactions": 1773,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-11",
+        "fraud_rate": 0.0,
+        "transactions": 1918,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1995-12",
+        "fraud_rate": 0.0,
+        "transactions": 1982,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-01",
+        "fraud_rate": 0.0,
+        "transactions": 1897,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-02",
+        "fraud_rate": 0.0,
+        "transactions": 1941,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-03",
+        "fraud_rate": 0.0,
+        "transactions": 2206,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-04",
+        "fraud_rate": 0.0,
+        "transactions": 2083,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-05",
+        "fraud_rate": 0.0,
+        "transactions": 2427,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-06",
+        "fraud_rate": 0.0,
+        "transactions": 2474,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-07",
+        "fraud_rate": 0.0038654812524159,
+        "transactions": 2587,
+        "fraud_transactions": 10
+      },
+      {
+        "month": "1996-08",
+        "fraud_rate": 0.0,
+        "transactions": 2720,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-09",
+        "fraud_rate": 0.0,
+        "transactions": 2624,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-10",
+        "fraud_rate": 0.0,
+        "transactions": 2977,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-11",
+        "fraud_rate": 0.0,
+        "transactions": 2822,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1996-12",
+        "fraud_rate": 0.0,
+        "transactions": 3187,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-01",
+        "fraud_rate": 0.0,
+        "transactions": 3380,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-02",
+        "fraud_rate": 0.0,
+        "transactions": 3070,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-03",
+        "fraud_rate": 0.0020523345305284,
+        "transactions": 3898,
+        "fraud_transactions": 8
+      },
+      {
+        "month": "1997-04",
+        "fraud_rate": 0.0,
+        "transactions": 3693,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-05",
+        "fraud_rate": 0.0,
+        "transactions": 4289,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-06",
+        "fraud_rate": 0.0017039922103213,
+        "transactions": 4108,
+        "fraud_transactions": 7
+      },
+      {
+        "month": "1997-07",
+        "fraud_rate": 0.002055263758849,
+        "transactions": 4379,
+        "fraud_transactions": 9
+      },
+      {
+        "month": "1997-08",
+        "fraud_rate": 0.0,
+        "transactions": 4462,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-09",
+        "fraud_rate": 0.0009671179883945,
+        "transactions": 4136,
+        "fraud_transactions": 4
+      },
+      {
+        "month": "1997-10",
+        "fraud_rate": 0.0,
+        "transactions": 4693,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1997-11",
+        "fraud_rate": 0.0008637443316778,
+        "transactions": 4631,
+        "fraud_transactions": 4
+      },
+      {
+        "month": "1997-12",
+        "fraud_rate": 0.0,
+        "transactions": 5014,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-01",
+        "fraud_rate": 0.0,
+        "transactions": 5287,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-02",
+        "fraud_rate": 0.0,
+        "transactions": 5084,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-03",
+        "fraud_rate": 0.0,
+        "transactions": 5544,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-04",
+        "fraud_rate": 0.0007113640405477,
+        "transactions": 5623,
+        "fraud_transactions": 4
+      },
+      {
+        "month": "1998-05",
+        "fraud_rate": 0.0007923930269413,
+        "transactions": 6310,
+        "fraud_transactions": 5
+      },
+      {
+        "month": "1998-06",
+        "fraud_rate": 0.0,
+        "transactions": 6364,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-07",
+        "fraud_rate": 0.0,
+        "transactions": 7078,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1998-08",
+        "fraud_rate": 0.0011474469305794,
+        "transactions": 6972,
+        "fraud_transactions": 8
+      },
+      {
+        "month": "1998-09",
+        "fraud_rate": 0.0009832841691248,
+        "transactions": 7119,
+        "fraud_transactions": 7
+      },
+      {
+        "month": "1998-10",
+        "fraud_rate": 0.0001296008294453,
+        "transactions": 7716,
+        "fraud_transactions": 1
+      },
+      {
+        "month": "1998-11",
+        "fraud_rate": 0.0008078632018311,
+        "transactions": 7427,
+        "fraud_transactions": 6
+      },
+      {
+        "month": "1998-12",
+        "fraud_rate": 0.0001278608873545,
+        "transactions": 7821,
+        "fraud_transactions": 1
+      },
+      {
+        "month": "1999-01",
+        "fraud_rate": 0.0,
+        "transactions": 8192,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-02",
+        "fraud_rate": 0.0,
+        "transactions": 7914,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-03",
+        "fraud_rate": 0.0006703161657915,
+        "transactions": 8951,
+        "fraud_transactions": 6
+      },
+      {
+        "month": "1999-04",
+        "fraud_rate": 0.0007873130131593,
+        "transactions": 8891,
+        "fraud_transactions": 7
+      },
+      {
+        "month": "1999-05",
+        "fraud_rate": 0.0009441879983214,
+        "transactions": 9532,
+        "fraud_transactions": 9
+      },
+      {
+        "month": "1999-06",
+        "fraud_rate": 0.0,
+        "transactions": 9520,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-07",
+        "fraud_rate": 0.0,
+        "transactions": 10006,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-08",
+        "fraud_rate": 0.0,
+        "transactions": 10217,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-09",
+        "fraud_rate": 0.0,
+        "transactions": 10322,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-10",
+        "fraud_rate": 0.0,
+        "transactions": 11252,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-11",
+        "fraud_rate": 0.0,
+        "transactions": 11194,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "1999-12",
+        "fraud_rate": 0.0001631454441634,
+        "transactions": 12259,
+        "fraud_transactions": 2
+      },
+      {
+        "month": "2000-01",
+        "fraud_rate": 0.0011158045747987,
+        "transactions": 12547,
+        "fraud_transactions": 14
+      },
+      {
+        "month": "2000-02",
+        "fraud_rate": 0.0007492507492507,
+        "transactions": 12012,
+        "fraud_transactions": 9
+      },
+      {
+        "month": "2000-03",
+        "fraud_rate": 0.0005006078809983,
+        "transactions": 13983,
+        "fraud_transactions": 7
+      },
+      {
+        "month": "2000-04",
+        "fraud_rate": 0.000946487076811,
+        "transactions": 13735,
+        "fraud_transactions": 13
+      },
+      {
+        "month": "2000-05",
+        "fraud_rate": 0.0015116119279923,
+        "transactions": 14554,
+        "fraud_transactions": 22
+      },
+      {
+        "month": "2000-06",
+        "fraud_rate": 0.001677064466358,
+        "transactions": 14907,
+        "fraud_transactions": 25
+      },
+      {
+        "month": "2000-07",
+        "fraud_rate": 0.0012079598194417,
+        "transactions": 15729,
+        "fraud_transactions": 19
+      },
+      {
+        "month": "2000-08",
+        "fraud_rate": 0.0001273560876209,
+        "transactions": 15704,
+        "fraud_transactions": 2
+      },
+      {
+        "month": "2000-09",
+        "fraud_rate": 0.0007034597429174,
+        "transactions": 15637,
+        "fraud_transactions": 11
+      },
+      {
+        "month": "2000-10",
+        "fraud_rate": 0.0009884475196145,
+        "transactions": 16187,
+        "fraud_transactions": 16
+      },
+      {
+        "month": "2000-11",
+        "fraud_rate": 0.0011921194629188,
+        "transactions": 15938,
+        "fraud_transactions": 19
+      },
+      {
+        "month": "2000-12",
+        "fraud_rate": 0.0008335317932841,
+        "transactions": 16796,
+        "fraud_transactions": 14
+      },
+      {
+        "month": "2001-01",
+        "fraud_rate": 0.000896810716888,
+        "transactions": 17841,
+        "fraud_transactions": 16
+      },
+      {
+        "month": "2001-02",
+        "fraud_rate": 0.0010817307692307,
+        "transactions": 16640,
+        "fraud_transactions": 18
+      },
+      {
+        "month": "2001-03",
+        "fraud_rate": 0.002047502047502,
+        "transactions": 19536,
+        "fraud_transactions": 40
+      },
+      {
+        "month": "2001-04",
+        "fraud_rate": 0.0011180566143212,
+        "transactions": 19677,
+        "fraud_transactions": 22
+      },
+      {
+        "month": "2001-05",
+        "fraud_rate": 0.0016102296945299,
+        "transactions": 21115,
+        "fraud_transactions": 34
+      },
+      {
+        "month": "2001-06",
+        "fraud_rate": 0.0019473293768545,
+        "transactions": 21568,
+        "fraud_transactions": 42
+      },
+      {
+        "month": "2001-07",
+        "fraud_rate": 0.0022999690388783,
+        "transactions": 22609,
+        "fraud_transactions": 52
+      },
+      {
+        "month": "2001-08",
+        "fraud_rate": 0.0012318932925534,
+        "transactions": 23541,
+        "fraud_transactions": 29
+      },
+      {
+        "month": "2001-09",
+        "fraud_rate": 0.0008834702712253,
+        "transactions": 22638,
+        "fraud_transactions": 20
+      },
+      {
+        "month": "2001-10",
+        "fraud_rate": 0.0013225326500247,
+        "transactions": 24196,
+        "fraud_transactions": 32
+      },
+      {
+        "month": "2001-11",
+        "fraud_rate": 0.0008431347750937,
+        "transactions": 23721,
+        "fraud_transactions": 20
+      },
+      {
+        "month": "2001-12",
+        "fraud_rate": 0.0011639107400866,
+        "transactions": 24916,
+        "fraud_transactions": 29
+      },
+      {
+        "month": "2002-01",
+        "fraud_rate": 0.0007470315325941,
+        "transactions": 25434,
+        "fraud_transactions": 19
+      },
+      {
+        "month": "2002-02",
+        "fraud_rate": 0.0,
+        "transactions": 23629,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-03",
+        "fraud_rate": 0.0,
+        "transactions": 26788,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-04",
+        "fraud_rate": 0.0,
+        "transactions": 26765,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-05",
+        "fraud_rate": 0.0,
+        "transactions": 28656,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-06",
+        "fraud_rate": 0.0,
+        "transactions": 28826,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-07",
+        "fraud_rate": 0.0,
+        "transactions": 30111,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-08",
+        "fraud_rate": 0.0,
+        "transactions": 31110,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-09",
+        "fraud_rate": 0.0,
+        "transactions": 30568,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-10",
+        "fraud_rate": 0.0,
+        "transactions": 32610,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2002-11",
+        "fraud_rate": 0.0016572339826772,
+        "transactions": 31981,
+        "fraud_transactions": 53
+      },
+      {
+        "month": "2002-12",
+        "fraud_rate": 0.0019559759444152,
+        "transactions": 34254,
+        "fraud_transactions": 67
+      },
+      {
+        "month": "2003-01",
+        "fraud_rate": 0.0006070416835289,
+        "transactions": 34594,
+        "fraud_transactions": 21
+      },
+      {
+        "month": "2003-02",
+        "fraud_rate": 0.0014614096513929,
+        "transactions": 32845,
+        "fraud_transactions": 48
+      },
+      {
+        "month": "2003-03",
+        "fraud_rate": 0.0009210098602232,
+        "transactions": 36916,
+        "fraud_transactions": 34
+      },
+      {
+        "month": "2003-04",
+        "fraud_rate": 0.0007164705558158,
+        "transactions": 36289,
+        "fraud_transactions": 26
+      },
+      {
+        "month": "2003-05",
+        "fraud_rate": 0.0023335081279496,
+        "transactions": 38140,
+        "fraud_transactions": 89
+      },
+      {
+        "month": "2003-06",
+        "fraud_rate": 0.0011914217633042,
+        "transactions": 37770,
+        "fraud_transactions": 45
+      },
+      {
+        "month": "2003-07",
+        "fraud_rate": 0.0002998350907001,
+        "transactions": 40022,
+        "fraud_transactions": 12
+      },
+      {
+        "month": "2003-08",
+        "fraud_rate": 0.0,
+        "transactions": 40856,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2003-09",
+        "fraud_rate": 0.0,
+        "transactions": 40278,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2003-10",
+        "fraud_rate": 0.0,
+        "transactions": 42703,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2003-11",
+        "fraud_rate": 0.0,
+        "transactions": 41884,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2003-12",
+        "fraud_rate": 0.0008161229625263,
+        "transactions": 44111,
+        "fraud_transactions": 36
+      },
+      {
+        "month": "2004-01",
+        "fraud_rate": 0.0009236250082466,
+        "transactions": 45473,
+        "fraud_transactions": 42
+      },
+      {
+        "month": "2004-02",
+        "fraud_rate": 0.0010386473429951,
+        "transactions": 41400,
+        "fraud_transactions": 43
+      },
+      {
+        "month": "2004-03",
+        "fraud_rate": 0.0014486578610992,
+        "transactions": 46940,
+        "fraud_transactions": 68
+      },
+      {
+        "month": "2004-04",
+        "fraud_rate": 0.0010232963204876,
+        "transactions": 45930,
+        "fraud_transactions": 47
+      },
+      {
+        "month": "2004-05",
+        "fraud_rate": 0.0004527680592714,
+        "transactions": 48590,
+        "fraud_transactions": 22
+      },
+      {
+        "month": "2004-06",
+        "fraud_rate": 0.0016030581416856,
+        "transactions": 48657,
+        "fraud_transactions": 78
+      },
+      {
+        "month": "2004-07",
+        "fraud_rate": 0.0008613264427217,
+        "transactions": 51084,
+        "fraud_transactions": 44
+      },
+      {
+        "month": "2004-08",
+        "fraud_rate": 0.0014495794312308,
+        "transactions": 52429,
+        "fraud_transactions": 76
+      },
+      {
+        "month": "2004-09",
+        "fraud_rate": 0.000367107195301,
+        "transactions": 51756,
+        "fraud_transactions": 19
+      },
+      {
+        "month": "2004-10",
+        "fraud_rate": 0.0014215159191558,
+        "transactions": 54871,
+        "fraud_transactions": 78
+      },
+      {
+        "month": "2004-11",
+        "fraud_rate": 0.0013174986082761,
+        "transactions": 53890,
+        "fraud_transactions": 71
+      },
+      {
+        "month": "2004-12",
+        "fraud_rate": 0.0005716020934926,
+        "transactions": 55983,
+        "fraud_transactions": 32
+      },
+      {
+        "month": "2005-01",
+        "fraud_rate": 0.0,
+        "transactions": 57690,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2005-02",
+        "fraud_rate": 0.0,
+        "transactions": 52900,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2005-03",
+        "fraud_rate": 0.0,
+        "transactions": 59734,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2005-04",
+        "fraud_rate": 0.0,
+        "transactions": 58629,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2005-05",
+        "fraud_rate": 0.0003542102720978,
+        "transactions": 62110,
+        "fraud_transactions": 22
+      },
+      {
+        "month": "2005-06",
+        "fraud_rate": 8.195780812037963e-05,
+        "transactions": 61007,
+        "fraud_transactions": 5
+      },
+      {
+        "month": "2005-07",
+        "fraud_rate": 0.0,
+        "transactions": 64103,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2005-08",
+        "fraud_rate": 0.0001219326322206,
+        "transactions": 65610,
+        "fraud_transactions": 8
+      },
+      {
+        "month": "2005-09",
+        "fraud_rate": 0.0002976889933411,
+        "transactions": 63825,
+        "fraud_transactions": 19
+      },
+      {
+        "month": "2005-10",
+        "fraud_rate": 0.0004351544798403,
+        "transactions": 66643,
+        "fraud_transactions": 29
+      },
+      {
+        "month": "2005-11",
+        "fraud_rate": 0.0009479397599571,
+        "transactions": 65405,
+        "fraud_transactions": 62
+      },
+      {
+        "month": "2005-12",
+        "fraud_rate": 0.0012174442367059,
+        "transactions": 68997,
+        "fraud_transactions": 84
+      },
+      {
+        "month": "2006-01",
+        "fraud_rate": 0.0017486215503504,
+        "transactions": 70913,
+        "fraud_transactions": 124
+      },
+      {
+        "month": "2006-02",
+        "fraud_rate": 0.0027862362971985,
+        "transactions": 65680,
+        "fraud_transactions": 183
+      },
+      {
+        "month": "2006-03",
+        "fraud_rate": 0.0021375326379587,
+        "transactions": 73917,
+        "fraud_transactions": 158
+      },
+      {
+        "month": "2006-04",
+        "fraud_rate": 0.0017036013014396,
+        "transactions": 71613,
+        "fraud_transactions": 122
+      },
+      {
+        "month": "2006-05",
+        "fraud_rate": 0.001595002326045,
+        "transactions": 75235,
+        "fraud_transactions": 120
+      },
+      {
+        "month": "2006-06",
+        "fraud_rate": 0.0020011012772129,
+        "transactions": 74459,
+        "fraud_transactions": 149
+      },
+      {
+        "month": "2006-07",
+        "fraud_rate": 0.001820153357602,
+        "transactions": 77466,
+        "fraud_transactions": 141
+      },
+      {
+        "month": "2006-08",
+        "fraud_rate": 0.0010487478203735,
+        "transactions": 79142,
+        "fraud_transactions": 83
+      },
+      {
+        "month": "2006-09",
+        "fraud_rate": 0.0004868112581508,
+        "transactions": 78059,
+        "fraud_transactions": 38
+      },
+      {
+        "month": "2006-10",
+        "fraud_rate": 0.0,
+        "transactions": 80736,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2006-11",
+        "fraud_rate": 0.0,
+        "transactions": 79187,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2006-12",
+        "fraud_rate": 0.0,
+        "transactions": 82386,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2007-01",
+        "fraud_rate": 3.605379225804901e-05,
+        "transactions": 83209,
+        "fraud_transactions": 3
+      },
+      {
+        "month": "2007-02",
+        "fraud_rate": 0.0009636671441593,
+        "transactions": 76790,
+        "fraud_transactions": 74
+      },
+      {
+        "month": "2007-03",
+        "fraud_rate": 0.0011222175945208,
+        "transactions": 86436,
+        "fraud_transactions": 97
+      },
+      {
+        "month": "2007-04",
+        "fraud_rate": 0.001733654118313,
+        "transactions": 84792,
+        "fraud_transactions": 147
+      },
+      {
+        "month": "2007-05",
+        "fraud_rate": 0.0010355345947345,
+        "transactions": 88843,
+        "fraud_transactions": 92
+      },
+      {
+        "month": "2007-06",
+        "fraud_rate": 0.0015275877792977,
+        "transactions": 87720,
+        "fraud_transactions": 134
+      },
+      {
+        "month": "2007-07",
+        "fraud_rate": 0.0011256707576966,
+        "transactions": 91501,
+        "fraud_transactions": 103
+      },
+      {
+        "month": "2007-08",
+        "fraud_rate": 0.0013303864558075,
+        "transactions": 93206,
+        "fraud_transactions": 124
+      },
+      {
+        "month": "2007-09",
+        "fraud_rate": 0.0028481188009087,
+        "transactions": 90235,
+        "fraud_transactions": 257
+      },
+      {
+        "month": "2007-10",
+        "fraud_rate": 0.0026983734505853,
+        "transactions": 93019,
+        "fraud_transactions": 251
+      },
+      {
+        "month": "2007-11",
+        "fraud_rate": 0.0034457350901525,
+        "transactions": 92288,
+        "fraud_transactions": 318
+      },
+      {
+        "month": "2007-12",
+        "fraud_rate": 0.0029136078968105,
+        "transactions": 96444,
+        "fraud_transactions": 281
+      },
+      {
+        "month": "2008-01",
+        "fraud_rate": 0.0024389252469411,
+        "transactions": 98404,
+        "fraud_transactions": 240
+      },
+      {
+        "month": "2008-02",
+        "fraud_rate": 0.0021269651920458,
+        "transactions": 88859,
+        "fraud_transactions": 189
+      },
+      {
+        "month": "2008-03",
+        "fraud_rate": 0.0031899681003189,
+        "transactions": 100001,
+        "fraud_transactions": 319
+      },
+      {
+        "month": "2008-04",
+        "fraud_rate": 0.0023931588665504,
+        "transactions": 96943,
+        "fraud_transactions": 232
+      },
+      {
+        "month": "2008-05",
+        "fraud_rate": 0.0033115155281915,
+        "transactions": 102974,
+        "fraud_transactions": 341
+      },
+      {
+        "month": "2008-06",
+        "fraud_rate": 0.0027207345983415,
+        "transactions": 99973,
+        "fraud_transactions": 272
+      },
+      {
+        "month": "2008-07",
+        "fraud_rate": 0.0028590761371975,
+        "transactions": 104929,
+        "fraud_transactions": 300
+      },
+      {
+        "month": "2008-08",
+        "fraud_rate": 0.003261843035588,
+        "transactions": 106075,
+        "fraud_transactions": 346
+      },
+      {
+        "month": "2008-09",
+        "fraud_rate": 0.0027150462042684,
+        "transactions": 103129,
+        "fraud_transactions": 280
+      },
+      {
+        "month": "2008-10",
+        "fraud_rate": 0.0041874339923292,
+        "transactions": 107942,
+        "fraud_transactions": 452
+      },
+      {
+        "month": "2008-11",
+        "fraud_rate": 0.0039465320798034,
+        "transactions": 105409,
+        "fraud_transactions": 416
+      },
+      {
+        "month": "2008-12",
+        "fraud_rate": 0.0029681498226461,
+        "transactions": 108822,
+        "fraud_transactions": 323
+      },
+      {
+        "month": "2009-01",
+        "fraud_rate": 0.0028763792102206,
+        "transactions": 110208,
+        "fraud_transactions": 317
+      },
+      {
+        "month": "2009-02",
+        "fraud_rate": 0.0026007286010661,
+        "transactions": 100741,
+        "fraud_transactions": 262
+      },
+      {
+        "month": "2009-03",
+        "fraud_rate": 0.0011675787447191,
+        "transactions": 112198,
+        "fraud_transactions": 131
+      },
+      {
+        "month": "2009-04",
+        "fraud_rate": 0.0003206802085337,
+        "transactions": 109143,
+        "fraud_transactions": 35
+      },
+      {
+        "month": "2009-05",
+        "fraud_rate": 0.0006708684215172,
+        "transactions": 113286,
+        "fraud_transactions": 76
+      },
+      {
+        "month": "2009-06",
+        "fraud_rate": 0.0006501774442608,
+        "transactions": 110739,
+        "fraud_transactions": 72
+      },
+      {
+        "month": "2009-07",
+        "fraud_rate": 0.0003725104606135,
+        "transactions": 115433,
+        "fraud_transactions": 43
+      },
+      {
+        "month": "2009-08",
+        "fraud_rate": 0.0005899755459411,
+        "transactions": 116954,
+        "fraud_transactions": 69
+      },
+      {
+        "month": "2009-09",
+        "fraud_rate": 0.000123290445871,
+        "transactions": 113553,
+        "fraud_transactions": 14
+      },
+      {
+        "month": "2009-10",
+        "fraud_rate": 0.000455857772375,
+        "transactions": 118458,
+        "fraud_transactions": 54
+      },
+      {
+        "month": "2009-11",
+        "fraud_rate": 0.0002346377453919,
+        "transactions": 115071,
+        "fraud_transactions": 27
+      },
+      {
+        "month": "2009-12",
+        "fraud_rate": 0.0003343083994985,
+        "transactions": 119650,
+        "fraud_transactions": 40
+      },
+      {
+        "month": "2010-01",
+        "fraud_rate": 0.0012658123122998,
+        "transactions": 120871,
+        "fraud_transactions": 153
+      },
+      {
+        "month": "2010-02",
+        "fraud_rate": 0.003504494895627,
+        "transactions": 111571,
+        "fraud_transactions": 391
+      },
+      {
+        "month": "2010-03",
+        "fraud_rate": 0.0031145358454028,
+        "transactions": 123935,
+        "fraud_transactions": 386
+      },
+      {
+        "month": "2010-04",
+        "fraud_rate": 0.0028585477244126,
+        "transactions": 119991,
+        "fraud_transactions": 343
+      },
+      {
+        "month": "2010-05",
+        "fraud_rate": 0.0032446360122787,
+        "transactions": 125746,
+        "fraud_transactions": 408
+      },
+      {
+        "month": "2010-06",
+        "fraud_rate": 0.002317167364527,
+        "transactions": 122995,
+        "fraud_transactions": 285
+      },
+      {
+        "month": "2010-07",
+        "fraud_rate": 0.0026497043653289,
+        "transactions": 127184,
+        "fraud_transactions": 337
+      },
+      {
+        "month": "2010-08",
+        "fraud_rate": 0.0026698446846874,
+        "transactions": 129221,
+        "fraud_transactions": 345
+      },
+      {
+        "month": "2010-09",
+        "fraud_rate": 0.0024071911837622,
+        "transactions": 125042,
+        "fraud_transactions": 301
+      },
+      {
+        "month": "2010-10",
+        "fraud_rate": 0.0024647255652879,
+        "transactions": 128209,
+        "fraud_transactions": 316
+      },
+      {
+        "month": "2010-11",
+        "fraud_rate": 0.0027155302849315,
+        "transactions": 125574,
+        "fraud_transactions": 341
+      },
+      {
+        "month": "2010-12",
+        "fraud_rate": 0.0017496141680546,
+        "transactions": 130886,
+        "fraud_transactions": 229
+      },
+      {
+        "month": "2011-01",
+        "fraud_rate": 0.0004204217977236,
+        "transactions": 130821,
+        "fraud_transactions": 55
+      },
+      {
+        "month": "2011-02",
+        "fraud_rate": 0.0,
+        "transactions": 118318,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2011-03",
+        "fraud_rate": 0.0,
+        "transactions": 132054,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2011-04",
+        "fraud_rate": 0.0,
+        "transactions": 128700,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2011-05",
+        "fraud_rate": 0.0,
+        "transactions": 132073,
+        "fraud_transactions": 0
+      },
+      {
+        "month": "2011-06",
+        "fraud_rate": 0.0,
+        "transactions": 64968,
+        "fraud_transactions": 0
+      }
+    ]
+  },
+  "P2": {
+    "chart_id": "P2",
+    "section": "portfolio",
+    "title": "Channel fraud risk",
+    "chart_type": "bar",
+    "source_artifact": "reports/part3/channel_risk.csv",
+    "x_field": "label",
+    "y_field": "fraud_rate",
+    "support_field": "transactions",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Channel mix is a portfolio signal; support and scope stay visible in the tooltip.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": "Online Transaction",
+        "fraud_rate": 0.0094346821020458,
+        "fraud_lift": 6.68078949041735,
+        "transactions": 930503,
+        "fraud_transactions": 8779,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "Swipe Transaction",
+        "fraud_rate": 0.0005583906545397,
+        "fraud_lift": 0.3954018138658378,
+        "transactions": 8742983,
+        "fraud_transactions": 4882,
+        "support_status": "SUFFICIENT"
+      }
+    ]
+  },
+  "P3": {
+    "chart_id": "P3",
+    "section": "portfolio",
+    "title": "Amount-band fraud risk",
+    "chart_type": "bar",
+    "source_artifact": "reports/part3/amount_band_risk.csv",
+    "x_field": "label",
+    "y_field": "fraud_rate",
+    "support_field": "transactions",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Predefined amount bands keep the comparison interpretable and support-qualified.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": "NEGATIVE / REFUND-LIKE",
+        "fraud_rate": 0.0011080730496212,
+        "fraud_lift": 0.7846372251290884,
+        "transactions": 528846,
+        "fraud_transactions": 586,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "ZERO",
+        "fraud_rate": 0.000815565653035,
+        "fraud_lift": 0.5775099133823001,
+        "transactions": 8583,
+        "fraud_transactions": 7,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": ">0–25",
+        "fraud_rate": 0.0008141472533249,
+        "fraud_lift": 0.5765055308526114,
+        "transactions": 3754849,
+        "fraud_transactions": 3057,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "25–50",
+        "fraud_rate": 0.0008793477333503,
+        "fraud_lift": 0.6226746202837611,
+        "transactions": 1910507,
+        "fraud_transactions": 1680,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "50–100",
+        "fraud_rate": 0.0012056466418314,
+        "fraud_lift": 0.8537300278679263,
+        "transactions": 2372171,
+        "fraud_transactions": 2860,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "100–250",
+        "fraud_rate": 0.0039769677450836,
+        "fraud_lift": 2.816129258803793,
+        "transactions": 942678,
+        "fraud_transactions": 3749,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "250–500",
+        "fraud_rate": 0.0114267589482502,
+        "fraud_lift": 8.091398339160607,
+        "transactions": 122957,
+        "fraud_transactions": 1405,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": "500+",
+        "fraud_rate": 0.0096367229062167,
+        "fraud_lift": 6.82385653459974,
+        "transactions": 32895,
+        "fraud_transactions": 317,
+        "support_status": "SUFFICIENT"
+      }
+    ]
+  },
+  "P4": {
+    "chart_id": "P4",
+    "section": "portfolio",
+    "title": "Support-qualified MCC risk",
+    "chart_type": "bar",
+    "source_artifact": "reports/part3/mcc_risk.csv",
+    "x_field": "label",
+    "y_field": "fraud_rate",
+    "support_field": "transactions",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "Tiny categories are excluded from the headline ranking through the locked support rule.",
+    "badge": "OBSERVED",
+    "data": [
+      {
+        "label": 5045,
+        "fraud_rate": 0.12,
+        "fraud_lift": 84.97315862674768,
+        "transactions": 2075,
+        "fraud_transactions": 249,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 5732,
+        "fraud_rate": 0.0908732505420855,
+        "fraud_lift": 64.34822611034016,
+        "transactions": 5073,
+        "fraud_transactions": 461,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 5816,
+        "fraud_rate": 0.0883742911153119,
+        "fraud_lift": 62.57868881223148,
+        "transactions": 2116,
+        "fraud_transactions": 187,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 5712,
+        "fraud_rate": 0.0694822888283378,
+        "fraud_lift": 49.201079586332106,
+        "transactions": 2936,
+        "fraud_transactions": 204,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 5094,
+        "fraud_rate": 0.0683482506102522,
+        "fraud_lift": 48.39805617471389,
+        "transactions": 3687,
+        "fraud_transactions": 252,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 4112,
+        "fraud_rate": 0.0289687137891077,
+        "fraud_lift": 20.513025933455893,
+        "transactions": 1726,
+        "fraud_transactions": 50,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 4511,
+        "fraud_rate": 0.0278884462151394,
+        "fraud_lift": 19.748078034104708,
+        "transactions": 1506,
+        "fraud_transactions": 42,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 4131,
+        "fraud_rate": 0.0254188330444829,
+        "fraud_lift": 17.999321103297216,
+        "transactions": 1731,
+        "fraud_transactions": 44,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 7011,
+        "fraud_rate": 0.0152490421455938,
+        "fraud_lift": 10.797993976195906,
+        "transactions": 13050,
+        "fraud_transactions": 199,
+        "support_status": "SUFFICIENT"
+      },
+      {
+        "label": 3596,
+        "fraud_rate": 0.0145940208738722,
+        "fraud_lift": 10.334167089313468,
+        "transactions": 11306,
+        "fraud_transactions": 165,
+        "support_status": "SUFFICIENT"
+      }
+    ]
+  },
+  "B1": {
+    "chart_id": "B1",
+    "section": "behavior",
+    "title": "Primary PIT feature family count",
+    "chart_type": "bar",
+    "source_artifact": "docs/PART4_FEATURE_REGISTRY.csv",
+    "x_field": "label",
+    "y_field": "feature_count",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "AVAILABLE",
+    "reason": "",
+    "insight": "The feature registry is the source of truth for behavioral feature coverage.",
+    "badge": "DERIVED",
+    "data": [
+      {
+        "label": "amount_baseline",
+        "feature_count": 4
+      },
+      {
+        "label": "amount_deviation",
+        "feature_count": 4
+      },
+      {
+        "label": "amount_velocity",
+        "feature_count": 4
+      },
+      {
+        "label": "channel_familiarity",
+        "feature_count": 4
+      },
+      {
+        "label": "cold_start",
+        "feature_count": 3
+      },
+      {
+        "label": "entity_history",
+        "feature_count": 3
+      },
+      {
+        "label": "mcc_familiarity",
+        "feature_count": 4
+      },
+      {
+        "label": "merchant_familiarity",
+        "feature_count": 6
+      },
+      {
+        "label": "recency",
+        "feature_count": 3
+      },
+      {
+        "label": "velocity",
+        "feature_count": 8
+      }
+    ]
+  },
+  "P5": {
+    "chart_id": "P5",
+    "section": "portfolio",
+    "title": "Entity concentration",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part3/top_entity_concentration.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "OBSERVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "No safe aggregate source is currently registered for this view.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "B2": {
+    "chart_id": "B2",
+    "section": "behavior",
+    "title": "Behavioral signal profile",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part4/development_numeric_feature_signal.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Current evidence is QA-slice governed; no headline signal is promoted here.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "M1": {
+    "chart_id": "M1",
+    "section": "model",
+    "title": "Validation PR-AUC comparison",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part5/executed_model_comparison.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 5 executed model metrics are not available in the public evidence set.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "M2": {
+    "chart_id": "M2",
+    "section": "model",
+    "title": "Precision-recall curve",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part5/pr_curve.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Executed curve points are required.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "M3": {
+    "chart_id": "M3",
+    "section": "model",
+    "title": "Calibration curve",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part5/calibration.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Calibration requires probability-usable executed evidence.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "M4": {
+    "chart_id": "M4",
+    "section": "model",
+    "title": "Top-K fraud capture",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part5/topk.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Natural-prevalence executed evidence is required.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "G1": {
+    "chart_id": "G1",
+    "section": "graph",
+    "title": "Graph novelty mix",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part6/graph_novelty.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Audited aggregate graph evidence is not in this repository.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "G2": {
+    "chart_id": "G2",
+    "section": "graph",
+    "title": "Incremental graph value",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part6/graph_incremental_value.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "DERIVED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Executed tabular-versus-graph comparison is not available.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "DE1": {
+    "chart_id": "DE1",
+    "section": "decision",
+    "title": "Decision mix",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part7/final_decision_mix.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "SIMULATED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 7 final decision mart is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "SIMULATED",
+    "data": []
+  },
+  "DE2": {
+    "chart_id": "DE2",
+    "section": "decision",
+    "title": "Review capacity",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part7/review_capacity.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "SIMULATED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 7 final decision mart is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "SIMULATED",
+    "data": []
+  },
+  "DE3": {
+    "chart_id": "DE3",
+    "section": "decision",
+    "title": "Fraud capture vs intervention",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part7/policy_sensitivity.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "SIMULATED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 7 outcome evidence is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "SIMULATED",
+    "data": []
+  },
+  "DE4": {
+    "chart_id": "DE4",
+    "section": "decision",
+    "title": "Simulated economics",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part7/economics.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "SIMULATED",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 7 policy evidence is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "SIMULATED",
+    "data": []
+  },
+  "MON1": {
+    "chart_id": "MON1",
+    "section": "monitoring",
+    "title": "Drift timeline",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part8/monitoring_reconciliation.json",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "GOVERNANCE",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 8 final replay is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "MON2": {
+    "chart_id": "MON2",
+    "section": "monitoring",
+    "title": "Action and review drift",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part8/monitoring_reconciliation.json",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "GOVERNANCE",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Part 7 decision evidence is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  },
+  "MON3": {
+    "chart_id": "MON3",
+    "section": "monitoring",
+    "title": "Matured performance over time",
+    "chart_type": "evidence-state",
+    "source_artifact": "reports/part8/matured_model_performance.csv",
+    "x_field": "",
+    "y_field": "",
+    "support_field": "",
+    "claim_class": "GOVERNANCE",
+    "render_condition": "status == AVAILABLE",
+    "status": "INPUT_BLOCKED",
+    "reason": "Outcomes-matured replay evidence is INPUT BLOCKED.",
+    "insight": "Upstream governed evidence is required before this view can render.",
+    "badge": "INPUT BLOCKED",
+    "data": []
+  }
+}

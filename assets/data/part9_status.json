@@ -1,0 +1,59 @@
+{
+  "project_status": "FINAL_PORTFOLIO_READY",
+  "generated_from": "executed_reports_and_locked_summaries",
+  "layers": {
+    "part2": {
+      "label": "Data Foundation",
+      "status": "LOCKED",
+      "technical_status": "FOUNDATION_READY",
+      "source_part": 2,
+      "deep_link": "part-2.html"
+    },
+    "part3": {
+      "label": "Portfolio Intelligence",
+      "status": "LOCKED",
+      "technical_status": "PORTFOLIO_READY",
+      "source_part": 3,
+      "deep_link": "part-3.html"
+    },
+    "part4": {
+      "label": "Behavioral Risk",
+      "status": "LOCKED",
+      "technical_status": "PASS",
+      "source_part": 4,
+      "deep_link": "part-4.html"
+    },
+    "part5": {
+      "label": "Fraud Scoring / ML",
+      "status": "IN_PROGRESS",
+      "technical_status": "MODELING_IN_PROGRESS",
+      "execution_status": "MODELING_IN_PROGRESS",
+      "source_part": 5,
+      "deep_link": "part-5.html"
+    },
+    "part6": {
+      "label": "Network / Graph",
+      "status": "INPUT_BLOCKED",
+      "technical_status": "PRESENTATION_PENDING",
+      "execution_status": "NOT_AVAILABLE",
+      "source_part": 6,
+      "deep_link": "part-6.html"
+    },
+    "part7": {
+      "label": "Decision Engine",
+      "status": "INPUT_BLOCKED",
+      "technical_status": "TECHNICALLY_COMPLETE_100",
+      "execution_status": "INPUT_BLOCKED",
+      "source_part": 7,
+      "deep_link": "part-7.html"
+    },
+    "part8": {
+      "label": "Monitoring & Governance",
+      "status": "INPUT_BLOCKED",
+      "technical_status": "MONITORING_FRAMEWORK_READY",
+      "execution_status": "INPUT_BLOCKED",
+      "source_part": 8,
+      "deep_link": "part-8.html"
+    }
+  }
+}
