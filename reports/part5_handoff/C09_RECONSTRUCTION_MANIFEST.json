@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "status": "INPUT_BLOCKED",
+  "plan": "PART7_PART8_GENUINE_EXECUTION_10_OF_10_MASTER_PLAN_2026-09-03.md",
+  "ordered_chunks": [],
+  "chunk_sizes": [],
+  "chunk_sha256": [],
+  "combined_size": null,
+  "combined_sha256": null,
+  "archive_integrity": "NOT_EXECUTED",
+  "reconstruction_timestamp": "2026-09-03T17:03:57Z",
+  "blocker": "Manifest records five C09/C10 chunks, but connected Drive metadata does not resolve their original file IDs. Reconstruction is intentionally not attempted from generic download_...part_N names.",
+  "stop_conditions_triggered": [
+    "exact provider chunk mapping unavailable",
+    "archive hash cannot be verified",
+    "C09 cannot yet be reconstructed"
+  ],
+  "safety": {
+    "retrained": false,
+    "reselected": false,
+    "oot_opened": false,
+    "row_level_data_copied_to_repository": false
+  }
+}

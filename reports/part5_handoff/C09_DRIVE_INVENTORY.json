@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "status": "INPUT_BLOCKED",
+  "purpose": "Public-safe inventory of Drive evidence searched before genuine Part 5 to Part 7 recovery.",
+  "plan": "PART7_PART8_GENUINE_EXECUTION_10_OF_10_MASTER_PLAN_2026-09-03.md",
+  "searched_at_utc": "2026-09-03T17:03:57Z",
+  "search_scope": "Connected Google Drive metadata and the project backup manifest; no raw data was downloaded or copied into this repository.",
+  "precedence_applied": [
+    "checkpoint manifest",
+    "explicit chunk manifest",
+    "frozen champion metadata",
+    "runbook",
+    "filename inference"
+  ],
+  "search_queries": [
+    {
+      "query": "C09",
+      "result": "manifest content includes C09/C10 notebooks and checkpoint chunk records; no direct C09 checkpoint metadata returned"
+    },
+    {
+      "query": "C09_CHAMPION_FROZEN_CHECKPOINT",
+      "result": "no exact Drive metadata result"
+    },
+    {
+      "query": "PART5_FINAL_C09_C10_CHECKPOINT",
+      "result": "MANIFEST.txt only; exact split records are present in manifest content"
+    },
+    {
+      "query": "CHAMPION_FROZEN",
+      "result": "no exact Drive metadata result"
+    },
+    {
+      "query": "C10_FINAL_CHECKPOINT",
+      "result": "README_MASTER_RUNBOOK.md false-positive text match; no direct final checkpoint metadata"
+    },
+    {
+      "query": "checkpoint_manifest",
+      "result": "README_MASTER_RUNBOOK.md false-positive text match; no direct checkpoint manifest metadata"
+    }
+  ],
+  "entries": [
+    {
+      "drive_file_id": "1dz-XIcD81mKWtvq0XyOny_akfsqPTr5r",
+      "name": "MANIFEST.txt",
+      "mime_type": "text/plain",
+      "size_bytes": 237232,
+      "modified_time": "2026-09-01T14:52:43.292Z",
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": null,
+      "source_query": "PART5_FINAL_C09_C10_CHECKPOINT"
+    },
+    {
+      "drive_file_id": "1NN4JngtWUuN-lB185Bb-CfrsyMSQeXZW",
+      "name": "README_MASTER_RUNBOOK.md",
+      "mime_type": "text/markdown",
+      "size_bytes": 9659,
+      "modified_time": "2026-09-01T12:17:42.830Z",
+      "parent_folder": "1uVnmAiL8b_WYEuVJWLCZJQRt6b3VCgQp",
+      "chunk_index": null,
+      "source_query": "checkpoint_manifest"
+    },
+    {
+      "drive_file_id": null,
+      "name": "PART5_FINAL_C09_C10_CHECKPOINT.zip.part002of002.part001",
+      "mime_type": "application/octet-stream",
+      "size_bytes": 83886080,
+      "modified_time": null,
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": 1,
+      "source_query": "MANIFEST.txt content"
+    },
+    {
+      "drive_file_id": null,
+      "name": "PART5_FINAL_C09_C10_CHECKPOINT.zip.part002of002.part002",
+      "mime_type": "application/octet-stream",
+      "size_bytes": 83886080,
+      "modified_time": null,
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": 2,
+      "source_query": "MANIFEST.txt content"
+    },
+    {
+      "drive_file_id": null,
+      "name": "PART5_FINAL_C09_C10_CHECKPOINT.zip.part002of002.part003",
+      "mime_type": "application/octet-stream",
+      "size_bytes": 83886080,
+      "modified_time": null,
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": 3,
+      "source_query": "MANIFEST.txt content"
+    },
+    {
+      "drive_file_id": null,
+      "name": "PART5_FINAL_C09_C10_CHECKPOINT.zip.part002of002.part004",
+      "mime_type": "application/octet-stream",
+      "size_bytes": 83886080,
+      "modified_time": null,
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": 4,
+      "source_query": "MANIFEST.txt content"
+    },
+    {
+      "drive_file_id": null,
+      "name": "PART5_FINAL_C09_C10_CHECKPOINT.zip.part002of002.part005",
+      "mime_type": "application/octet-stream",
+      "size_bytes": 31091644,
+      "modified_time": null,
+      "parent_folder": "1NJLtv_JHQrjQvTXz-EnWg_d6jgICXJ59",
+      "chunk_index": 5,
+      "source_query": "MANIFEST.txt content"
+    }
+  ],
+  "direct_drive_metadata_gap": {
+    "exact_chunk_file_ids_resolved": false,
+    "reason": "The connected Drive listing exposes generic download_...part_N names and does not map them to the five manifest records. Filename-only mapping is forbidden by the execution plan.",
+    "next_safe_action": "Obtain a provider-preserved file manifest or the original checkpoint file IDs, then verify every chunk hash and archive integrity before reconstruction."
+  },
+  "stop_decision": {
+    "c09_reconstructed": false,
+    "champion_identity_verified": false,
+    "score_mart_built": false,
+    "retraining_performed": false,
+    "retain_input_blocked": true
+  }
+}

@@ -1,6 +1,8 @@
 {
-  "plan": "PART7_PART8_REAL_EXECUTED_EVIDENCE_10_OF_10_RESEARCH_BACKED_MASTER_PLAN_2026-09-03.md",
-  "snapshot_of_commit": "8b4f8a8e0f93ef31773df1b2b130416d5136407e",
+  "plan": "PART7_PART8_GENUINE_EXECUTION_10_OF_10_MASTER_PLAN_2026-09-03.md",
+  "snapshot_of_commit": "00d6176e72ad21af909bd19b352e3cd92e85b6bf",
+  "evidence_generated_from_commit": "00d6176e72ad21af909bd19b352e3cd92e85b6bf",
+  "artifact_published_in_commit": "this closure commit",
   "published_in_commit": "this closure commit",
   "snapshot_schema_version": "1.1",
   "evidence_scope": "public_status_reconciliation",
@@ -36,6 +38,12 @@
     "row_level_labels_committed": false,
     "model_binary_committed": false,
     "thresholds_or_policy_metrics_invented": false
+  },
+  "handoff_recovery": {
+    "inventory": "reports/part5_handoff/C09_DRIVE_INVENTORY.json",
+    "reconstruction_manifest": "reports/part5_handoff/C09_RECONSTRUCTION_MANIFEST.json",
+    "status": "INPUT_BLOCKED",
+    "exact_chunk_file_ids_resolved": false
   },
   "missing_private_evidence": [
     "private/part7/PART5_TO_PART7_FROZEN_SCORE_MART.parquet",
