@@ -17,6 +17,8 @@ jobs:
       - run: python -m src.part9.build_part9_assets
       - run: python -m src.part5_public.validate_public_evidence
       - run: python -m src.part6_public.validate_public_evidence
+      - run: python -m src.part7_public.validate_public_evidence
+      - run: python -m src.part8_public.validate_public_evidence
       - run: python -m src.part9.validate_part9
       - run: python -m src.portfolio.validate_public_portfolio
       - run: python -m unittest discover -s tests/portfolio_closure

@@ -52,6 +52,9 @@
       "status": "INPUT_BLOCKED",
       "technical_status": "TECHNICALLY_COMPLETE_100",
       "execution_status": "INPUT_BLOCKED",
+      "target_status": "DECISION_POLICY_LOCKED",
+      "lock_condition": "64 PASS / 0 BLOCKED / 0 FAIL plus real final OOT decision evidence",
+      "current_blocked_gates": 35,
       "source_part": 7,
       "deep_link": "part-7.html"
     },
@@ -60,6 +63,9 @@
       "status": "INPUT_BLOCKED",
       "technical_status": "MONITORING_FRAMEWORK_READY",
       "execution_status": "INPUT_BLOCKED",
+      "target_status": "MONITORING_GOVERNANCE_LOCKED",
+      "lock_condition": "72 PASS / 0 BLOCKED / 0 FAIL plus real monitoring replay evidence",
+      "current_blocked_gates": 52,
       "source_part": 8,
       "deep_link": "part-8.html"
     },

@@ -18,9 +18,12 @@ def validate() -> list[dict]:
     root = read("index.html")
     p5 = read("part-5.html")
     p6 = read("part-6.html")
+    p7 = read("part-7.html")
     p8 = read("part-8.html")
     p9 = read("part-9.html")
     summary = json.loads(read("assets/data/part6_summary.json"))
+    p7_summary = json.loads(read("assets/data/part7_summary.json"))
+    p8_summary = json.loads(read("assets/data/part8_summary.json"))
     status = json.loads(read("assets/data/project_status.json"))
     charts = json.loads(read("assets/data/part9_charts.json"))
     gates = [
@@ -54,6 +57,11 @@ def validate() -> list[dict]:
         check("PV28 Part 9 source registry is rebuilt", (ROOT / "reports/part9/source_manifest.csv").exists() and "part6_summary" in read("reports/part9/source_manifest.csv"), "reports/part9/source_manifest.csv"),
         check("PV29 Part 9 chart registry is rebuilt", (ROOT / "reports/part9/part9_chart_registry.csv").exists() and "P5" in read("reports/part9/part9_chart_registry.csv"), "reports/part9/part9_chart_registry.csv"),
         check("PV30 final validator artifacts exist", (ROOT / "reports/part9/part9_validation_report.csv").exists() and (ROOT / "reports/part9/PART9_FINAL_RELEASE_AUDIT.md").exists(), "reports/part9/"),
+        check("PV31 Part 7 stays evidence-derived blocked", p7_summary["status"] == "INPUT_BLOCKED" and p7_summary["validation"] == {"mandatory_gates": 64, "pass": 29, "blocked": 35, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "assets/data/part7_summary.json"),
+        check("PV32 Part 8 stays evidence-derived blocked", p8_summary["status"] == "INPUT_BLOCKED" and p8_summary["validation"] == {"mandatory_gates": 72, "pass": 20, "blocked": 52, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "assets/data/part8_summary.json"),
+        check("PV33 Part 7 exposes planned evidence slots", all(f"P7C{i}" in p7 for i in range(1, 9)), "part-7.html"),
+        check("PV34 Part 8 exposes planned evidence slots", all(f"P8C{i}" in p8 for i in range(1, 11)), "part-8.html"),
+        check("PV35 execution snapshot records public boundary", (ROOT / "reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json").exists() and "thresholds_or_policy_metrics_invented" in read("reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json"), "reports/execution_closure/"),
     ]
     return gates
 

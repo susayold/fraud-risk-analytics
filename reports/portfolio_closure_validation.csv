@@ -29,3 +29,8 @@ PV27 no production overclaim in Part 6,PASS,part-6.html
 PV28 Part 9 source registry is rebuilt,PASS,reports/part9/source_manifest.csv
 PV29 Part 9 chart registry is rebuilt,PASS,reports/part9/part9_chart_registry.csv
 PV30 final validator artifacts exist,PASS,reports/part9/
+PV31 Part 7 stays evidence-derived blocked,PASS,assets/data/part7_summary.json
+PV32 Part 8 stays evidence-derived blocked,PASS,assets/data/part8_summary.json
+PV33 Part 7 exposes planned evidence slots,PASS,part-7.html
+PV34 Part 8 exposes planned evidence slots,PASS,part-8.html
+PV35 execution snapshot records public boundary,PASS,reports/execution_closure/
