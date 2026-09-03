@@ -1,8 +1,8 @@
 {
-  "build_timestamp": "2026-09-03T09:45:46.436896+00:00",
-  "code_commit": "4abc19df909788543f84c1c5da7760251e785fdb",
-  "source_registry_hash": "3160999bcc9c727c2c99f23060846230f65f11deca39da0ea278f601369f8b04",
-  "summary_hash": "4a42477f887aba345a9c124d2c07467fa63766ae1ecea31c405ac213b3e61577",
-  "charts_hash": "baba960a33507b2167320451299387dac7f5b862a89442f131ce0713fd37b9bb",
-  "status_hash": "ebd241b221fd08f8d6d7f23ee3218cfe5d3bfe71959bbf057e81582ce99feb10"
+  "build_timestamp": "2026-09-03T10:56:19.950873+00:00",
+  "code_commit": "cac3ed192e527f5adbb3997c1a6b2f996a2882d7",
+  "source_registry_hash": "b7fd8e32bb11b13059479288faddad3e7f743823a50a0fc09dfdc795747452dc",
+  "summary_hash": "c68ca91660776d59ffdd871db9035ac9a7523903a1fed2e7015b2ced65626cd9",
+  "charts_hash": "7e62b9a0a7236082ebe2e4f140d58aeb0de64376069d9c1e0250c038294daf25",
+  "status_hash": "e92ad1ea457b16fffc778a5ee79b6f5de8f2711daeff69408314dd3852708183"
 }

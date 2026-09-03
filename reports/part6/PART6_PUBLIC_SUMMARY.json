@@ -1,0 +1,32 @@
+{
+  "artifact": "PART6_PUBLIC_SUMMARY",
+  "version": "v8_RESEARCH_GROUNDED",
+  "status": "LOCKED",
+  "source": "Drive-backed PART6_BLOCK_D_GRAPH_FRAUD_ANALYTICS_V8_FINAL_REPORT.docx and closure artifacts",
+  "source_dataset": "IBM TabFormer synthetic credit-card transactions",
+  "source_rows": 24386900,
+  "source_sha256": "2995d6efbee3609943c9eaffd873776c9078f001d9faf64270a5ca71793a8e4c",
+  "aggregate_evidence": [
+    "TRAIN_GRAPH_NODE_EMBEDDINGS_64D.parquet",
+    "TRAIN_NETWORK_NODE_METRICS.parquet",
+    "NETWORK_ANALYTICS_SUMMARY.json",
+    "VALIDATION_METRICS.csv",
+    "TEST_METRICS.csv",
+    "VALIDATION_SEGMENT_METRICS.csv",
+    "TEST_SEGMENT_METRICS.csv",
+    "COMMUNITY_FRAUD_ENRICHMENT.csv",
+    "PART6_FINAL_AUDIT.csv"
+  ],
+  "claim_boundary": {
+    "graph_context_is_complementary": true,
+    "graph_auto_block": false,
+    "global_test_uplift_is_robust": false,
+    "community_signal_is_causal": false,
+    "production_claim": false
+  },
+  "source_artifact_hashes": {
+    "PART6_FINAL_CLOSURE.json": "a050f285251b2664d5e18079277aaf87b7a1bd1412712a1ecb392e8e5716146e",
+    "NETWORK_ANALYTICS_SUMMARY.json": "feaa6c2ec52b5a51c11de272f68f4fec13d2763d0eacdabc21b4cff635c91fef",
+    "PART6_FINAL_AUDIT.csv": "da07bb2df32266ee6e224c08e8026cfe855c7e5a2a90c118008b4bbbfedb9d37"
+  }
+}

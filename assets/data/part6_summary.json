@@ -1,0 +1,78 @@
+{
+  "part": 6,
+  "block": "D",
+  "status": "LOCKED",
+  "technical_status": "GRAPH_EVIDENCE_READY",
+  "claim_class": "DERIVED",
+  "source": {
+    "report_title": "PART6_BLOCK_D_GRAPH_FRAUD_ANALYTICS_V8_FINAL_REPORT.docx",
+    "closure_artifact": "PART6_FINAL_CLOSURE.json",
+    "closure_status": "LOCKED",
+    "dataset": "IBM TabFormer synthetic credit-card transactions",
+    "rows": 24386900,
+    "dataset_sha256": "2995d6efbee3609943c9eaffd873776c9078f001d9faf64270a5ca71793a8e4c"
+  },
+  "graph": {
+    "total_nodes": 106482,
+    "train_unique_edges": 854007,
+    "train_rows": 20604847,
+    "leiden_communities": 8428,
+    "largest_community_nodes": 8849,
+    "embedding_dim": 64,
+    "community_construction_uses_fraud_label": false,
+    "community_construction_scope": "TRAIN_GRAPH_ONLY",
+    "validation_test_labels_used_only_for_posthoc_diagnostics": true,
+    "warm_test_rate": 0.9241564172277933,
+    "pair_seen_test_rate": 0.8877321227447195
+  },
+  "temporal_link_learning": {
+    "scope": "STRICTLY_BEFORE_TEMPORAL_CUTOFF",
+    "positive_links": 48796,
+    "link_ap": 0.9233583665863496,
+    "link_roc_auc": 0.9056249785850745,
+    "max_parameter_sync_diff": 0.0,
+    "final_encoder_scope": "FULL_TRAIN_AFTER_TEMPORAL_METHOD_FREEZE"
+  },
+  "model_comparison": {
+    "validation_warm": [
+      {"model": "A_EDGE_ONLY", "pr_auc": 0.8813120431671784},
+      {"model": "B_GNN_ONLY", "pr_auc": 0.020200378165916848},
+      {"model": "C_EDGE_PLUS_GNN", "pr_auc": 0.892047676747541}
+    ],
+    "test_warm": [
+      {"model": "A_EDGE_ONLY", "pr_auc": 0.8834877512193021},
+      {"model": "B_GNN_ONLY", "pr_auc": 0.017242555782403177},
+      {"model": "C_EDGE_PLUS_GNN", "pr_auc": 0.8800191304147755}
+    ],
+    "validation_champion": "C_EDGE_PLUS_GNN",
+    "test_best_diagnostic_only": "A_EDGE_ONLY",
+    "test_selection_override": false
+  },
+  "novelty_segments": [
+    {"segment": "WARM_PAIR_SEEN", "rows": 1829117, "fraud": 710, "a_pr_auc": 0.7971541669498744, "c_pr_auc": 0.7647144666853372},
+    {"segment": "WARM_PAIR_NEW", "rows": 75050, "fraud": 1332, "a_pr_auc": 0.914953458513595, "c_pr_auc": 0.9335069878747719},
+    {"segment": "NEW_CARD_ONLY", "rows": 146889, "fraud": 45, "a_pr_auc": 0.6708098455197555, "c_pr_auc": 0.7435261467421487}
+  ],
+  "community_enrichment": [
+    {"split": "VALIDATION", "segment": "SAME_COMMUNITY", "rows": 787408, "fraud": 161, "fraud_rate": 0.00020446833153841464},
+    {"split": "VALIDATION", "segment": "DIFFERENT_COMMUNITY", "rows": 934207, "fraud": 2330, "fraud_rate": 0.0024940939213686044},
+    {"split": "TEST", "segment": "DIFFERENT_COMMUNITY", "rows": 1172596, "fraud": 1954, "fraud_rate": 0.0016663880825109416},
+    {"split": "TEST", "segment": "SAME_COMMUNITY", "rows": 887842, "fraud": 133, "fraud_rate": 0.000149801428632572}
+  ],
+  "uncertainty": {
+    "comparison": "C_MINUS_A",
+    "test_warm_delta": -0.003468620804526701,
+    "ci95_low": -0.01594934081717137,
+    "ci95_high": 0.009226291956317531,
+    "classification": "NON_ROBUST_OR_INCONCLUSIVE",
+    "method": "FULL_POPULATION_PAIRED_POISSON_MULTIPLIER_BOOTSTRAP",
+    "replicates": 200
+  },
+  "public_boundary": {
+    "aggregate_only": true,
+    "raw_ids_published": false,
+    "raw_edges_published": false,
+    "graph_auto_block_allowed": false,
+    "labels_used_for_graph_construction": false
+  }
+}

@@ -73,6 +73,18 @@
       "bytes": 21635
     },
     {
+      "source_id": "part3_entity_concentration",
+      "path": "reports/part3/top_entity_concentration.csv",
+      "source_part": 3,
+      "section": "PORTFOLIO",
+      "claim_class": "DERIVED",
+      "metric_ids": "entity_concentration",
+      "chart_ids": "P5",
+      "status": "AVAILABLE",
+      "sha256": "337b2355fb74ab3df1fda639c56d4ba0ccc6f101d3ce430641df67bb91ffdd61",
+      "bytes": 775
+    },
+    {
       "source_id": "part4_feature_registry",
       "path": "docs/PART4_FEATURE_REGISTRY.csv",
       "source_part": 4,
@@ -93,20 +105,20 @@
       "metric_ids": "",
       "chart_ids": "M1;M2;M3;M4",
       "status": "AVAILABLE",
-      "sha256": "3576628ad29f4c8a373ee08b28e9ab30c68990d1a481e79d468a657ed7ed2c5a",
-      "bytes": 2578
+      "sha256": "5d3666c3c5130efac47a47260c6f1ba89be17817b68a17061b075843305f9590",
+      "bytes": 3657
     },
     {
-      "source_id": "part6_presentation",
-      "path": "part-6.html",
+      "source_id": "part6_summary",
+      "path": "assets/data/part6_summary.json",
       "source_part": 6,
       "section": "GRAPH",
       "claim_class": "DERIVED",
-      "metric_ids": "",
+      "metric_ids": "graph_network_scale;graph_model_comparison",
       "chart_ids": "G1;G2",
       "status": "AVAILABLE",
-      "sha256": "c8520e083700b2d24f30cc8fd9f3e219284b4253044d91918659ffa590630849",
-      "bytes": 2192
+      "sha256": "3e6cc4a35aaa1a0422825823a7ded10f1a77306f5dc3a24d1c69143e21ded3cb",
+      "bytes": 3322
     },
     {
       "source_id": "part7_summary",
@@ -388,6 +400,22 @@
       "insight": "Tiny categories are excluded from the headline ranking through the locked support rule.",
       "badge": "OBSERVED"
     },
+    "P5": {
+      "chart_id": "P5",
+      "section": "portfolio",
+      "title": "Entity concentration (top 1% fraud share)",
+      "chart_type": "bar",
+      "source_artifact": "reports/part3/top_entity_concentration.csv",
+      "x_field": "label",
+      "y_field": "fraud_capture_share",
+      "support_field": "",
+      "claim_class": "DERIVED",
+      "render_condition": "status == AVAILABLE",
+      "status": "AVAILABLE",
+      "reason": "",
+      "insight": "Aggregate concentration is shown without publishing raw entity identifiers.",
+      "badge": "DERIVED"
+    },
     "B1": {
       "chart_id": "B1",
       "section": "behavior",
@@ -404,21 +432,37 @@
       "insight": "The feature registry is the source of truth for behavioral feature coverage.",
       "badge": "DERIVED"
     },
-    "P5": {
-      "chart_id": "P5",
-      "section": "portfolio",
-      "title": "Entity concentration",
-      "chart_type": "evidence-state",
-      "source_artifact": "reports/part3/top_entity_concentration.csv",
-      "x_field": "",
-      "y_field": "",
+    "G1": {
+      "chart_id": "G1",
+      "section": "graph",
+      "title": "Graph network scale",
+      "chart_type": "bar",
+      "source_artifact": "assets/data/part6_summary.json",
+      "x_field": "label",
+      "y_field": "value",
       "support_field": "",
-      "claim_class": "OBSERVED",
+      "claim_class": "DERIVED",
       "render_condition": "status == AVAILABLE",
-      "status": "INPUT_BLOCKED",
-      "reason": "No safe aggregate source is currently registered for this view.",
-      "insight": "Upstream governed evidence is required before this view can render.",
-      "badge": "INPUT BLOCKED"
+      "status": "AVAILABLE",
+      "reason": "",
+      "insight": "Governed aggregate graph scale; no raw IDs or edges are published.",
+      "badge": "DERIVED"
+    },
+    "G2": {
+      "chart_id": "G2",
+      "section": "graph",
+      "title": "Graph model comparison (Test warm PR-AUC)",
+      "chart_type": "bar",
+      "source_artifact": "assets/data/part6_summary.json",
+      "x_field": "label",
+      "y_field": "pr_auc",
+      "support_field": "",
+      "claim_class": "DERIVED",
+      "render_condition": "status == AVAILABLE",
+      "status": "AVAILABLE",
+      "reason": "",
+      "insight": "Graph context is complementary; the overall Test difference is not statistically robust.",
+      "badge": "DERIVED"
     },
     "B2": {
       "chart_id": "B2",
@@ -497,38 +541,6 @@
       "render_condition": "status == AVAILABLE",
       "status": "INPUT_BLOCKED",
       "reason": "Natural-prevalence executed evidence is required.",
-      "insight": "Upstream governed evidence is required before this view can render.",
-      "badge": "INPUT BLOCKED"
-    },
-    "G1": {
-      "chart_id": "G1",
-      "section": "graph",
-      "title": "Graph novelty mix",
-      "chart_type": "evidence-state",
-      "source_artifact": "reports/part6/graph_novelty.csv",
-      "x_field": "",
-      "y_field": "",
-      "support_field": "",
-      "claim_class": "DERIVED",
-      "render_condition": "status == AVAILABLE",
-      "status": "INPUT_BLOCKED",
-      "reason": "Audited aggregate graph evidence is not in this repository.",
-      "insight": "Upstream governed evidence is required before this view can render.",
-      "badge": "INPUT BLOCKED"
-    },
-    "G2": {
-      "chart_id": "G2",
-      "section": "graph",
-      "title": "Incremental graph value",
-      "chart_type": "evidence-state",
-      "source_artifact": "reports/part6/graph_incremental_value.csv",
-      "x_field": "",
-      "y_field": "",
-      "support_field": "",
-      "claim_class": "DERIVED",
-      "render_condition": "status == AVAILABLE",
-      "status": "INPUT_BLOCKED",
-      "reason": "Executed tabular-versus-graph comparison is not available.",
       "insight": "Upstream governed evidence is required before this view can render.",
       "badge": "INPUT BLOCKED"
     },

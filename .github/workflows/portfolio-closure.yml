@@ -1,0 +1,20 @@
+name: portfolio-closure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pandas
+      - run: python -m src.part9.build_part9_assets
+      - run: python -m src.part9.validate_part9
+      - run: python -m src.portfolio.validate_public_portfolio
+      - run: python -m unittest discover -s tests/portfolio_closure

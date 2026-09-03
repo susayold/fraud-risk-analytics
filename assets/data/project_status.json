@@ -1,6 +1,7 @@
 {
+  "project": "Fraud Risk Analytics",
   "project_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
-  "generated_from": "executed_reports_and_locked_summaries",
+  "source_precedence": "final report JSON > locked summary > validator > README > HTML",
   "layers": {
     "part1": {
       "label": "Business Scope",

@@ -26,7 +26,7 @@ https://susayold.github.io/fraud-risk-analytics/
 | 3 | Fraud Portfolio Analytics | ✅ Locked |
 | 4 | Behavioral Fraud Analytics | ✅ Locked — PIT + entity-complete QA validated; full-population signal not claimed |
 | 5 | Fraud Rules & Machine Learning | 🟠 In progress — metrics remain source-driven |
-| 6 | Network & Graph Fraud Analytics | 🟠 Evidence pending — Part 9 preserves the presentation boundary |
+| 6 | Network & Graph Fraud Analytics | ✅ Locked — aggregate Card–Merchant graph evidence and governance boundary |
 | 7 | Fraud Risk Decision Engine | 🟠 Implemented — INPUT_BLOCKED pending frozen Part 5 row-level score |
 | 8 | Monitoring, Drift & Governance | 🟢 Framework ready — INPUT_BLOCKED pending genuine upstream score/policy mart |
 | 9 | Final Product & Portfolio | ✅ Final portfolio ready — conditional upstream stages remain source-driven |
@@ -71,7 +71,7 @@ The hardened CLI is explicit: `python -m src.part8.run_part8_pipeline audit-inpu
 
 ## Part 9 — Final Product & Portfolio Delivery
 
-Part 9 is the flagship recruiter-facing overview. It is built from a deterministic source/metric/status/chart registry, surfaces real Part 2–4 aggregate evidence, and keeps Part 5–8 conditional outputs visibly `INPUT_BLOCKED` when the required governed artifacts are unavailable. The page is `FINAL_PORTFOLIO_READY`; this describes presentation completeness, not enterprise deployment or completion of every upstream execution.
+Part 9 is the flagship recruiter-facing overview. It is built from a deterministic source/metric/status/chart registry, surfaces real Part 2–4 aggregate evidence plus locked Part 6 graph aggregates, and keeps Part 5/7/8 conditional outputs visibly `INPUT_BLOCKED` when the required governed artifacts are unavailable. The page is `FINAL_PORTFOLIO_RELEASE_LOCKED`; this describes presentation completeness and claim-boundary lock, not enterprise deployment or completion of every upstream execution.
 
 ## Part 2 — Data & SQL Foundation
 

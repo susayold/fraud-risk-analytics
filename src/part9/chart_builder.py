@@ -35,18 +35,23 @@ def build_charts(root: Path) -> dict:
     mcc = pd.read_csv(root / "reports/part3/mcc_risk.csv")
     mcc = mcc[mcc["support_status"].astype(str).eq("SUFFICIENT")].sort_values(["fraud_lift", "transactions"], ascending=[False, False]).head(10)
     charts["P4"] = _available("P4", "portfolio", "Support-qualified MCC risk", "bar", "reports/part3/mcc_risk.csv", "OBSERVED", mcc[["segment_value", "fraud_rate", "fraud_lift", "transactions", "fraud_transactions", "support_status"]].rename(columns={"segment_value": "label"}).to_dict("records"), "label", "fraud_rate", "transactions", "Tiny categories are excluded from the headline ranking through the locked support rule.")
+    concentration = pd.read_csv(root / "reports/part3/top_entity_concentration.csv")
+    concentration = concentration[concentration["rank_band"].astype(str).eq("top_1pct")].copy()
+    concentration["entity_type"] = concentration["entity_type"].replace({"MERCHANT_IDENTIFIER": "MERCHANT"})
+    concentration = concentration.rename(columns={"entity_type": "label", "fraud_capture_share": "fraud_capture_share"})
+    charts["P5"] = _available("P5", "portfolio", "Entity concentration (top 1% fraud share)", "bar", "reports/part3/top_entity_concentration.csv", "DERIVED", concentration[["label", "fraud_capture_share", "rank_band"]].to_dict("records"), "label", "fraud_capture_share", "", "Aggregate concentration is shown without publishing raw entity identifiers.")
     features = pd.read_csv(root / "docs/PART4_FEATURE_REGISTRY.csv")
     family = features.groupby("feature_family").size().reset_index(name="feature_count").rename(columns={"feature_family": "label"})
     charts["B1"] = _available("B1", "behavior", "Primary PIT feature family count", "bar", "docs/PART4_FEATURE_REGISTRY.csv", "DERIVED", family.to_dict("records"), "label", "feature_count", "", "The feature registry is the source of truth for behavioral feature coverage.")
+    part6 = json.loads((root / "assets/data/part6_summary.json").read_text(encoding="utf-8"))
+    charts["G1"] = _available("G1", "graph", "Graph network scale", "bar", "assets/data/part6_summary.json", "DERIVED", [{"label": "Total nodes", "value": part6["graph"]["total_nodes"]}, {"label": "Unique pairs", "value": part6["graph"]["train_unique_edges"]}, {"label": "Leiden communities", "value": part6["graph"]["leiden_communities"]}], "label", "value", "", "Governed aggregate graph scale; no raw IDs or edges are published.")
+    charts["G2"] = _available("G2", "graph", "Graph model comparison (Test warm PR-AUC)", "bar", "assets/data/part6_summary.json", "DERIVED", [{"label": row["model"], "pr_auc": row["pr_auc"]} for row in part6["model_comparison"]["test_warm"]], "label", "pr_auc", "", "Graph context is complementary; the overall Test difference is not statistically robust.")
     blocked = [
-        ("P5", "portfolio", "Entity concentration", "reports/part3/top_entity_concentration.csv", "OBSERVED", "No safe aggregate source is currently registered for this view."),
         ("B2", "behavior", "Behavioral signal profile", "reports/part4/development_numeric_feature_signal.csv", "DERIVED", "Current evidence is QA-slice governed; no headline signal is promoted here."),
         ("M1", "model", "Validation PR-AUC comparison", "reports/part5/executed_model_comparison.csv", "DERIVED", "Part 5 executed model metrics are not available in the public evidence set."),
         ("M2", "model", "Precision-recall curve", "reports/part5/pr_curve.csv", "DERIVED", "Executed curve points are required."),
         ("M3", "model", "Calibration curve", "reports/part5/calibration.csv", "DERIVED", "Calibration requires probability-usable executed evidence."),
         ("M4", "model", "Top-K fraud capture", "reports/part5/topk.csv", "DERIVED", "Natural-prevalence executed evidence is required."),
-        ("G1", "graph", "Graph novelty mix", "reports/part6/graph_novelty.csv", "DERIVED", "Audited aggregate graph evidence is not in this repository."),
-        ("G2", "graph", "Incremental graph value", "reports/part6/graph_incremental_value.csv", "DERIVED", "Executed tabular-versus-graph comparison is not available."),
         ("DE1", "decision", "Decision mix", "reports/part7/final_decision_mix.csv", "SIMULATED", "Part 7 final decision mart is INPUT BLOCKED."),
         ("DE2", "decision", "Review capacity", "reports/part7/review_capacity.csv", "SIMULATED", "Part 7 final decision mart is INPUT BLOCKED."),
         ("DE3", "decision", "Fraud capture vs intervention", "reports/part7/policy_sensitivity.csv", "SIMULATED", "Part 7 outcome evidence is INPUT BLOCKED."),

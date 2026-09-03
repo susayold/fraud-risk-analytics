@@ -48,5 +48,22 @@
     "not_claimed": ["full-population model performance", "causality", "loss prevented", "production performance", "ALLOW/REVIEW/BLOCK threshold"]
   },
   "findings": [],
-  "run": null
+  "run": null,
+  "public_presentation": {
+    "lifecycle": [
+      {"label": "Foundation", "status": "FRAMEWORK_READY", "detail": "PIT population, chronological splits and feature matrix"},
+      {"label": "Core models", "status": "FRAMEWORK_READY", "detail": "Rules and Logistic Regression baseline"},
+      {"label": "Frontier challengers", "status": "INPUT_BLOCKED", "detail": "Tree and boosting metrics require execution"},
+      {"label": "Calibration", "status": "FRAMEWORK_READY", "detail": "Sigmoid and isotonic candidates"},
+      {"label": "Champion freeze", "status": "INPUT_BLOCKED", "detail": "Selection evidence must be frozen"},
+      {"label": "Final OOT", "status": "INPUT_BLOCKED", "detail": "Frozen final-period replay only"}
+    ],
+    "model_inventory": [
+      {"name": "Rules", "status": "FRAMEWORK_READY"},
+      {"name": "Logistic Regression", "status": "IN_PROGRESS"},
+      {"name": "Random Forest", "status": "INPUT_BLOCKED"},
+      {"name": "XGBoost / LightGBM", "status": "INPUT_BLOCKED"},
+      {"name": "Calibration + OOT", "status": "INPUT_BLOCKED"}
+    ]
+  }
 }

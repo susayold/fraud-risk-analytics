@@ -6,15 +6,15 @@ P1,portfolio,Monthly fraud trend,line,reports/part3/monthly_fraud_trend.csv,mont
 P2,portfolio,Channel fraud risk,bar,reports/part3/channel_risk.csv,label,fraud_rate,transactions,OBSERVED,status == AVAILABLE,AVAILABLE
 P3,portfolio,Amount-band fraud risk,bar,reports/part3/amount_band_risk.csv,label,fraud_rate,transactions,OBSERVED,status == AVAILABLE,AVAILABLE
 P4,portfolio,Support-qualified MCC risk,bar,reports/part3/mcc_risk.csv,label,fraud_rate,transactions,OBSERVED,status == AVAILABLE,AVAILABLE
+P5,portfolio,Entity concentration (top 1% fraud share),bar,reports/part3/top_entity_concentration.csv,label,fraud_capture_share,,DERIVED,status == AVAILABLE,AVAILABLE
 B1,behavior,Primary PIT feature family count,bar,docs/PART4_FEATURE_REGISTRY.csv,label,feature_count,,DERIVED,status == AVAILABLE,AVAILABLE
-P5,portfolio,Entity concentration,evidence-state,reports/part3/top_entity_concentration.csv,,,,OBSERVED,status == AVAILABLE,INPUT_BLOCKED
+G1,graph,Graph network scale,bar,assets/data/part6_summary.json,label,value,,DERIVED,status == AVAILABLE,AVAILABLE
+G2,graph,Graph model comparison (Test warm PR-AUC),bar,assets/data/part6_summary.json,label,pr_auc,,DERIVED,status == AVAILABLE,AVAILABLE
 B2,behavior,Behavioral signal profile,evidence-state,reports/part4/development_numeric_feature_signal.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 M1,model,Validation PR-AUC comparison,evidence-state,reports/part5/executed_model_comparison.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 M2,model,Precision-recall curve,evidence-state,reports/part5/pr_curve.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 M3,model,Calibration curve,evidence-state,reports/part5/calibration.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 M4,model,Top-K fraud capture,evidence-state,reports/part5/topk.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-G1,graph,Graph novelty mix,evidence-state,reports/part6/graph_novelty.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
-G2,graph,Incremental graph value,evidence-state,reports/part6/graph_incremental_value.csv,,,,DERIVED,status == AVAILABLE,INPUT_BLOCKED
 DE1,decision,Decision mix,evidence-state,reports/part7/final_decision_mix.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED
 DE2,decision,Review capacity,evidence-state,reports/part7/review_capacity.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED
 DE3,decision,Fraud capture vs intervention,evidence-state,reports/part7/policy_sensitivity.csv,,,,SIMULATED,status == AVAILABLE,INPUT_BLOCKED

@@ -6,5 +6,9 @@
     document.querySelectorAll('[data-p8-pass]').forEach(function(x){x.textContent=validation.pass==null?'—':validation.pass;});
     document.querySelectorAll('[data-p8-blocked]').forEach(function(x){x.textContent=validation.blocked==null?'—':validation.blocked;});
     document.querySelectorAll('[data-p8-fail]').forEach(function(x){x.textContent=validation.fail==null?'—':validation.fail;});
-  }).catch(function(){});
+  }).catch(function(){
+    var status=document.querySelector('[data-p8-status]'); if(status){status.textContent='EVIDENCE LOAD ERROR';status.classList.remove('blocked');status.classList.add('error');}
+    var technical=document.querySelector('[data-p8-technical]'); if(technical) technical.textContent='STATUS UNAVAILABLE';
+    document.querySelectorAll('[data-p8-pass],[data-p8-blocked],[data-p8-fail]').forEach(function(x){x.textContent='—';});
+  });
 })();

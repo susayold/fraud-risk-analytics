@@ -52,7 +52,7 @@ def validate() -> pd.DataFrame:
     p4 = pd.read_csv(ROOT / "docs/PART4_FEATURE_REGISTRY.csv")
     checks = {
         "source registry exists": (REPORT_DIR / "source_manifest.csv").exists(),
-        "all required source files resolved": all(source_registry.loc[source_registry.source_id.isin(["part2_summary", "part2_split_summary", "part3_monthly_trend", "part3_channel_risk", "part3_amount_band_risk", "part3_mcc_risk", "part4_feature_registry", "part5_summary", "part7_summary", "part8_summary"]), "status"] == "AVAILABLE"),
+        "all required source files resolved": all(source_registry.loc[source_registry.source_id.isin(["part2_summary", "part2_split_summary", "part3_monthly_trend", "part3_channel_risk", "part3_amount_band_risk", "part3_mcc_risk", "part3_entity_concentration", "part4_feature_registry", "part5_summary", "part6_summary", "part7_summary", "part8_summary"]), "status"] == "AVAILABLE"),
         "source hashes recorded": source_registry.loc[source_registry.status == "AVAILABLE", "sha256"].astype(str).str.len().eq(64).all(),
         "Part 2 totals reconcile": summary["metrics"]["source_total_transactions"]["value"] == p2["transactions"] and summary["metrics"]["source_fraud_transactions"]["value"] == p2["fraud_transactions"],
         "Part 4 feature count reconciles": summary["metrics"]["behavior_primary_features"]["value"] == len(p4),
@@ -75,7 +75,7 @@ def validate() -> pd.DataFrame:
         "chart datasets aggregate-only": not public_errors,
         "low-support categories governed": charts["P4"].get("support_field") == "transactions" and "support-qualified" in charts["P4"]["title"].lower(),
         "status registry exists": (ASSET_DIR / "part9_status.json").exists(),
-        "Part9 website status matches registry": "FINAL_PORTFOLIO_READY" in html or statuses["project_status"] == "FINAL_PORTFOLIO_READY",
+        "Part9 website status matches registry": statuses["project_status"] in html or "FINAL_PORTFOLIO_READY" in html,
         "README status matches registry": "Final portfolio ready" in (ROOT / "README.md").read_text(encoding="utf-8"),
         "Part7 blocked state preserved": statuses["layers"]["part7"]["status"] == "INPUT_BLOCKED",
         "Part8 blocked state preserved": statuses["layers"]["part8"]["status"] == "INPUT_BLOCKED",

@@ -13,9 +13,10 @@ SOURCE_DEFINITIONS = [
     ("part3_channel_risk", "reports/part3/channel_risk.csv", 3, "PORTFOLIO", "OBSERVED", ["channel_fraud_risk"], ["P2"]),
     ("part3_amount_band_risk", "reports/part3/amount_band_risk.csv", 3, "PORTFOLIO", "OBSERVED", ["amount_band_fraud_risk"], ["P3"]),
     ("part3_mcc_risk", "reports/part3/mcc_risk.csv", 3, "PORTFOLIO", "OBSERVED", ["mcc_fraud_risk"], ["P4"]),
+    ("part3_entity_concentration", "reports/part3/top_entity_concentration.csv", 3, "PORTFOLIO", "DERIVED", ["entity_concentration"], ["P5"]),
     ("part4_feature_registry", "docs/PART4_FEATURE_REGISTRY.csv", 4, "BEHAVIOR", "DERIVED", ["behavior_primary_features"], ["B1"]),
     ("part5_summary", "assets/data/part5_summary.json", 5, "MODEL", "DERIVED", [], ["M1", "M2", "M3", "M4"]),
-    ("part6_presentation", "part-6.html", 6, "GRAPH", "DERIVED", [], ["G1", "G2"]),
+    ("part6_summary", "assets/data/part6_summary.json", 6, "GRAPH", "DERIVED", ["graph_network_scale", "graph_model_comparison"], ["G1", "G2"]),
     ("part7_summary", "assets/data/part7_summary.json", 7, "DECISION", "SIMULATED", [], ["DE1", "DE2", "DE3", "DE4"]),
     ("part8_summary", "assets/data/part8_summary.json", 8, "MONITORING", "GOVERNANCE", ["monitoring_gate_count"], ["MON1", "MON2", "MON3"]),
 ]

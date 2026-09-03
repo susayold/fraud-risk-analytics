@@ -1,6 +1,6 @@
 {
-  "status": "FINAL_PORTFOLIO_READY",
-  "upstream_execution_boundary": "Part 5/6/7/8 conditional views remain source-driven",
+  "status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
+  "upstream_execution_boundary": "Part 5/7/8 conditional views remain source-driven; Part 6 aggregate graph evidence is locked",
   "available_charts": [
     "D1",
     "D2",
@@ -9,17 +9,17 @@
     "P2",
     "P3",
     "P4",
-    "B1"
+    "P5",
+    "B1",
+    "G1",
+    "G2"
   ],
   "blocked_charts": [
-    "P5",
     "B2",
     "M1",
     "M2",
     "M3",
     "M4",
-    "G1",
-    "G2",
     "DE1",
     "DE2",
     "DE3",
@@ -29,7 +29,7 @@
     "MON3"
   ],
   "public_boundary": "PASS",
-  "source_count": 11,
+  "source_count": 12,
   "metric_count": 14,
   "chart_count": 23
 }
