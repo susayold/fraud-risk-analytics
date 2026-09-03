@@ -28,7 +28,7 @@
     "final_oot_threshold_tuning": false,
     "matured_outcomes_available": false
   },
-  "generated_at_utc": "2026-09-03T01:06:57.497167+00:00",
-  "source_commit": "64c054ab042fed7110451431d85d7b424c0cd3fc",
+  "generated_at_utc": "2026-09-03T01:07:38.781481+00:00",
+  "source_commit": "f7497a09e760cf0ec029a8b211078f23c4f8d596",
   "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0"
 }
