@@ -29,8 +29,8 @@
   },
   "validation": {
     "mandatory_gates": 64,
-    "pass": 29,
-    "blocked": 35,
+    "pass": 30,
+    "blocked": 34,
     "fail": 0,
     "status": "INPUT_BLOCKED",
     "final_lock_eligible": false
@@ -43,6 +43,6 @@
     "final_oot_evidence_generated": false,
     "final_evidence_available": false
   },
-  "source_commit": "83430b84638923e69f5437e6f03426401e13a40b",
+  "source_commit": "8b4f8a8e0f93ef31773df1b2b130416d5136407e",
   "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0"
 }

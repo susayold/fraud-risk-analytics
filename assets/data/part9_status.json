@@ -54,7 +54,7 @@
       "execution_status": "INPUT_BLOCKED",
       "target_status": "DECISION_POLICY_LOCKED",
       "lock_condition": "64 PASS / 0 BLOCKED / 0 FAIL plus real final OOT decision evidence",
-      "current_blocked_gates": 35,
+      "current_blocked_gates": 34,
       "source_part": 7,
       "deep_link": "part-7.html"
     },

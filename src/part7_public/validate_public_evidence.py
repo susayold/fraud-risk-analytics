@@ -20,9 +20,10 @@ def validate() -> list[tuple[str, bool, str]]:
     gates = summary["validation"]
     checks = [
         ("P7 public status is evidence-derived", summary["status"] == "INPUT_BLOCKED", "part7_summary.json"),
-        ("P7 mandatory gate contract is preserved", gates == {"mandatory_gates": 64, "pass": 29, "blocked": 35, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "part7_summary.json"),
+        ("P7 mandatory gate contract is preserved", gates == {"mandatory_gates": 64, "pass": 30, "blocked": 34, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "part7_summary.json"),
         ("P7 policy and final evidence remain null", all(summary["policy"][key] is None for key in ("review_threshold", "block_threshold", "review_capacity")) and all(value is None for value in summary["final_evidence"].values()), "part7_summary.json"),
-        ("P7 target is not presented as current lock", manifest["status"] == "INPUT_BLOCKED" and "64/64 PASS" in manifest["lock_rule"] and snapshot["part7"]["target_status"] == "DECISION_POLICY_LOCKED", "manifest and snapshot"),
+        ("P7 target is not presented as current lock", bool(manifest["status"] == "INPUT_BLOCKED" and "64/64 PASS" in manifest["lock_rule"] and snapshot["part7"]["target_status"] == "DECISION_POLICY_LOCKED" and snapshot["snapshot_of_commit"] and snapshot["published_in_commit"]), "manifest and snapshot"),
+        ("P7 snapshot reconciles canonical counts", all(snapshot["part7"][key] == gates[key] for key in ("mandatory_gates", "pass", "blocked", "fail", "final_lock_eligible")), "PRE_REAL_EXECUTION_SNAPSHOT.json"),
         ("P7 private handoff is named", "private/part7/PART5_TO_PART7_FROZEN_SCORE_MART.parquet" in manifest["required_private_inputs"] and "private/part7/PART5_TO_PART7_LINEAGE.json" in manifest["required_private_inputs"], "public_source_manifest.json"),
         ("P7 public page exposes all evidence slots", all(f"P7C{i}" in page for i in range(1, 9)), "part-7.html"),
         ("P7 page exposes blocked and safety boundary", all(token in page for token in ("INPUT_BLOCKED", "SIMULATED", "private")) and "graph-only auto-block is forbidden" in page.lower(), "part-7.html"),

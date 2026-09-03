@@ -13,6 +13,7 @@ import pandas as pd
 
 from .io import REPORT_DIR, ROOT, sha256_file, utc_now, write_csv
 from .lifecycle import lock_eligibility
+from .reports import refresh_public_summary
 
 
 GATE_SPECS = [
@@ -284,6 +285,7 @@ def validate(summary_path: Path = REPORT_DIR / "PART7_FINAL_SUMMARY.json") -> pd
 def main() -> int:
     parser = argparse.ArgumentParser(); parser.add_argument("--summary", type=Path, default=REPORT_DIR / "PART7_FINAL_SUMMARY.json"); args = parser.parse_args()
     frame = validate(args.summary); write_csv(REPORT_DIR / "part7_validation_report.csv", frame)
+    refresh_public_summary(frame)
     print(f"Part 7 validation: {(frame.status == 'PASS').sum()} PASS, {(frame.status == 'BLOCKED').sum()} BLOCKED, {(frame.status == 'FAIL').sum()} FAIL")
     return 1 if (frame.status == "FAIL").any() else 0
 

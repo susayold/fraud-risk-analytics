@@ -13,5 +13,5 @@ part5_calibration,assets/data/part5_calibration.json,5,MODEL,DERIVED,oot_calibra
 part5_topk,assets/data/part5_topk.json,5,MODEL,DERIVED,oot_topk,M4,AVAILABLE,e46bd56a5bba317a1bd7a0090833baec0f99286fd4f349976ea6af3ca208113c,683
 part5_summary,assets/data/part5_summary.json,5,MODEL,DERIVED,,,AVAILABLE,5d3666c3c5130efac47a47260c6f1ba89be17817b68a17061b075843305f9590,3657
 part6_summary,assets/data/part6_summary.json,6,GRAPH,DERIVED,graph_network_scale;graph_model_comparison,G1;G2,AVAILABLE,7ccc480b7138fa9492fd4f74b1098266e57b8091ef9390862a7bdaa7508baf39,7283
-part7_summary,assets/data/part7_summary.json,7,DECISION,SIMULATED,,DE1;DE2;DE3;DE4,AVAILABLE,7cb21eeded20005263e838d82f5daecab6e2fbe673432e7cb0f18e9797be40aa,1312
-part8_summary,assets/data/part8_summary.json,8,MONITORING,GOVERNANCE,monitoring_gate_count,MON1;MON2;MON3,AVAILABLE,ad9348b71fd041a96f857b73706fef23586f577d1abf57fc2c69c84f0a53e98c,996
+part7_summary,assets/data/part7_summary.json,7,DECISION,SIMULATED,,DE1;DE2;DE3;DE4,AVAILABLE,f1af313632df73cee03e16d412e291b083269c18c506a3b6ee756c4d4281eb56,1312
+part8_summary,assets/data/part8_summary.json,8,MONITORING,GOVERNANCE,monitoring_gate_count,MON1;MON2;MON3,AVAILABLE,994579001fea39f8b0cc7542248d1730cf6a56ded3d02573fdf5885519b2dd34,996

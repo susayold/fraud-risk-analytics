@@ -1,6 +1,8 @@
 {
   "plan": "PART7_PART8_REAL_EXECUTED_EVIDENCE_10_OF_10_RESEARCH_BACKED_MASTER_PLAN_2026-09-03.md",
-  "snapshot_commit": "a2f8678",
+  "snapshot_of_commit": "8b4f8a8e0f93ef31773df1b2b130416d5136407e",
+  "published_in_commit": "this closure commit",
+  "snapshot_schema_version": "1.1",
   "evidence_scope": "public_status_reconciliation",
   "part5": {
     "status": "PART5_MODELING_LOCKED",
@@ -11,8 +13,8 @@
     "status": "INPUT_BLOCKED",
     "target_status": "DECISION_POLICY_LOCKED",
     "mandatory_gates": 64,
-    "pass": 29,
-    "blocked": 35,
+    "pass": 30,
+    "blocked": 34,
     "fail": 0,
     "final_lock_eligible": false,
     "lock_condition": "64 PASS / 0 BLOCKED / 0 FAIL plus real final OOT decision evidence"

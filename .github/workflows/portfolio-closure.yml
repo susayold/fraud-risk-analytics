@@ -14,6 +14,18 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install pandas
+      - name: Part 7 core tests
+        run: python -m unittest discover -s tests/part7 -p "test_*.py"
+      - name: Part 8 core tests
+        run: python -m unittest discover -s tests/part8 -p "test_*.py"
+      - name: Part 7 public tests
+        run: python -m unittest discover -s tests/part7_public -p "test_*.py"
+      - name: Part 8 public tests
+        run: python -m unittest discover -s tests/part8_public -p "test_*.py"
+      - name: Part 7 canonical evidence validator
+        run: python -m src.part7.validate_part7
+      - name: Part 8 canonical evidence validator
+        run: python -m src.part8.validate_part8
       - run: python -m src.part9.build_part9_assets
       - run: python -m src.part5_public.validate_public_evidence
       - run: python -m src.part6_public.validate_public_evidence
