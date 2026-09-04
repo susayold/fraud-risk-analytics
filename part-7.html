@@ -1,10 +1,115 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Block E — governed fraud-risk decision policy and explicit evidence gates."><title>Part 7 — Fraud Risk Decision Engine</title><link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/navigation.css"><link rel="stylesheet" href="css/transitions.css"><link rel="stylesheet" href="css/part7-final.css"></head><body data-current-part="7"><div class="scroll-progress"></div><header class="top-nav"><a class="brand" href="index.html"><img class="brand-symbol" src="assets/icons/brand-shield-check.svg" alt=""><span class="brand-copy"><strong>FraudRisk</strong><span>Analytics</span></span></a><nav class="part-nav" aria-label="Case study parts"><a href="part-1.html">01 Scope</a><a href="part-2.html">02 Data</a><a href="part-3.html">03 Portfolio</a><a href="part-4.html">04 Behavior</a><a href="part-5.html">05 ML</a><a href="part-6.html">06 Graph</a><a class="active" href="part-7.html">07 Decision</a><a href="part-8.html">08 Monitor</a><a href="part-9.html">09 Deliver</a></nav></header>
-<main class="p7x-page"><section class="p7x-hero"><div><span class="part-pill">BLOCK E · PART 7</span><h1>From risk score<br><em>to governed action.</em></h1><p>A decision layer that turns the frozen Part 5 score into ALLOW, REVIEW or BLOCK under explicit thresholds, capacity, overflow, graph-routing and simulated-cost rules.</p><div class="p7x-lock"><span class="status-dot"></span><div><strong data-p7="status">INPUT_BLOCKED</strong><small data-p7="statusNote">Waiting for the verified private Part 5 score handoff.</small></div></div></div><div class="p7x-art"><div class="p7x-ring r1"></div><div class="p7x-ring r2"></div><div class="p7x-action-stack"><b>DECISION ENGINE</b><span>ALLOW</span><span>REVIEW</span><span>BLOCK</span></div><div class="p7x-art-note">POLICY ≠ CLASSIFIER</div></div></section>
-<section class="p7x-kpis"><article><span>UPSTREAM SCORE</span><strong data-p7="scoreVersion">Not resolved</strong><small>Part 5 · FRAUD_CHAMPION_v1</small></article><article><span>POLICY STATUS</span><strong data-p7="policyVersion">Not frozen</strong><small>Confirmation must precede replay</small></article><article><span>REVIEW THRESHOLD</span><strong data-p7="reviewThreshold">—</strong><small>Config-driven, not hard-coded</small></article><article><span>BLOCK THRESHOLD</span><strong data-p7="blockThreshold">—</strong><small>Frozen only after confirmation</small></article><article class="amber"><span>REVIEW CAPACITY</span><strong data-p7="capacity">—</strong><small>Explicit causal bucket allocation</small></article></section>
-<section class="p7x-panel"><div class="p7x-heading"><span class="eyebrow">01 · FROZEN SCORE HANDOFF</span><h2>The missing input is visible, not bypassed.</h2><p>The 10/10 plan requires a private `PART5_TO_PART7_FROZEN_SCORE_MART.parquet` containing both pre-OOT and OOT populations, with score lineage, timestamps, amount and split. It is not committed publicly.</p></div><div class="p7x-handoff-grid"><div><b>EXPECTED</b><strong>PROBABILITY_USABLE</strong><small>or explicit RANKING_ONLY</small></div><div><b>CHAMPION</b><strong>FRAUD_CHAMPION_v1</strong><small>BlendTop3_Equal · frozen</small></div><div><b>REQUIRED</b><strong>64 / 64 PASS</strong><small>evidence-backed gates</small></div><div class="blocked"><b>CURRENT</b><strong>INPUT_BLOCKED</strong><small>private handoff not present</small></div></div></section>
-<section class="p7x-grid two"><article class="p7x-panel"><span class="eyebrow">02 · CHRONOLOGICAL LIFECYCLE</span><h2>Tune → confirm → freeze → replay.</h2><div class="p7x-timeline"><div><b>01</b><strong>INPUT_AUDITED</strong><small>schema, hash, score range</small></div><div><b>02</b><strong>POLICY_TUNED</strong><small>Validation tune only</small></div><div><b>03</b><strong>POLICY_CONFIRMED</strong><small>later confirmation scope</small></div><div><b>04</b><strong>POLICY_FROZEN</strong><small>clean worktree + hashes</small></div><div><b>05</b><strong>FINAL REPLAY</strong><small>frozen policy on FINAL_OOT</small></div></div></article><article class="p7x-panel"><span class="eyebrow">03 · ACTION CONTRACT</span><h2>Exactly one action per row.</h2><div class="action-cards"><div class="allow"><b>ALLOW</b><small>below review band</small></div><div class="review"><b>REVIEW</b><small>eligible + selected within capacity</small></div><div class="block"><b>BLOCK</b><small>above frozen block threshold</small></div></div><p class="muted">Graph novelty may prioritize review; graph-only auto-BLOCK is forbidden.</p></article></section>
-<section class="p7x-panel"><div class="p7x-heading"><span class="eyebrow">04 · POLICY SEARCH GRID</span><h2>Candidate policy space is constrained.</h2><p>All candidates must satisfy <code>0 ≤ review_threshold &lt; block_threshold ≤ 1</code>. Tune uses only `P7_POLICY_TUNE`; FINAL_OOT is sealed from search and economics tuning.</p></div><div class="candidate-grid"><div><b>P0</b><strong>Allow all</strong><small>no-intervention baseline</small></div><div><b>P1</b><strong>Single block</strong><small>two-action diagnostic</small></div><div><b>P2</b><strong>Two thresholds</strong><small>ALLOW / REVIEW / BLOCK</small></div><div><b>P3</b><strong>Capacity constrained</strong><small>causal queue baseline</small></div><div><b>P4</b><strong>Amount aware</strong><small>exposure priority</small></div><div><b>P5</b><strong>Graph assisted</strong><small>novelty routing only</small></div></div></section>
-<section class="p7x-grid two"><article class="p7x-panel"><span class="eyebrow">05 · CAPACITY &amp; OVERFLOW</span><h2>Review load must reconcile.</h2><div class="blocked-chart"><b>P7C2 · REVIEW CAPACITY / OVERFLOW</b><span>Awaiting private decision mart and selected policy.</span></div><ul class="check-list"><li>UTC day buckets</li><li>review_eligible</li><li>review_selected</li><li>review_overflow</li><li>capacity utilization</li></ul></article><article class="p7x-panel"><span class="eyebrow">06 · ECONOMICS</span><h2>Simulated, never actual savings.</h2><div class="blocked-chart"><b>P7C4 · SIMULATED COST DECOMPOSITION</b><span>Awaiting declared assumptions and replay evidence.</span></div><p class="muted">Cost = fraud loss proxy + review cost + legitimate review friction + legitimate block friction. Every assumption is labeled `SIMULATED` unless backed by operations.</p></article></section>
-<section class="p7x-panel"><div class="p7x-heading"><span class="eyebrow">07 · EXPECTED PUBLIC EVIDENCE</span><h2>What will unlock only after a real replay.</h2></div><div class="evidence-list"><div><b>P7C1</b><span>Action mix</span><em>INPUT_BLOCKED</em></div><div><b>P7C2</b><span>Capacity / overflow</span><em>INPUT_BLOCKED</em></div><div><b>P7C3</b><span>Fraud capture vs intervention</span><em>INPUT_BLOCKED</em></div><div><b>P7C4</b><span>Simulated cost decomposition</span><em>INPUT_BLOCKED</em></div><div><b>P7C5</b><span>Daily policy stability</span><em>INPUT_BLOCKED</em></div><div><b>P7C6</b><span>Segment performance</span><em>INPUT_BLOCKED</em></div><div><b>P7C7</b><span>Bootstrap policy delta</span><em>INPUT_BLOCKED</em></div><div><b>P7C8</b><span>Reason-code mix</span><em>INPUT_BLOCKED</em></div></div></section>
-<section class="p7x-grid two"><article class="p7x-panel"><span class="eyebrow">08 · STOP CONDITIONS</span><h2>Fail closed by design.</h2><ul class="check-list red"><li>Reject fraud_label, target, chargeback and future_outcome at decision time.</li><li>Reject missing or non-finite score, invalid threshold order and mixed lineage.</li><li>Abort replay if thresholds, capacity, reason codes, score or graph config mutate after freeze.</li><li>Do not claim globally unseen OOT; Parts 5–6 have already evaluated it.</li></ul></article><article class="p7x-panel"><span class="eyebrow">09 · HANDOFF TO PART 8</span><h2>Monitoring needs the frozen policy.</h2><p>Part 8 can only freeze its pre-OOT policy reference after Part 7 produces a genuine decision mart and policy version. No automatic retraining or policy mutation is allowed.</p><div class="handoff-line"><b>Part 7</b><span data-p7="status">INPUT_BLOCKED</span><i>→</i><b>Part 8</b><span>waiting for policy handoff</span></div></article></section>
-<section class="p7x-final"><div><span class="eyebrow">10 · CURRENT RELEASE BOUNDARY</span><h2>Decision policy is not falsely marked complete.</h2><p>Source-driven page contract is ready. Final thresholds, action mix, capacity, economics, bootstrap and OOT decision evidence remain blocked until the private upstream artifacts exist.</p></div><div class="p7x-actions"><a href="index.html">← Final Portfolio</a><a href="part-8.html" class="primary">Part 8 · Monitoring →</a></div></section></main><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script><script src="js/app.js"></script><script src="js/page-transitions.js"></script><script src="js/part-7.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Block E — governed fraud-risk decision policy from frozen score handoff to capacity-aware ALLOW, REVIEW and BLOCK actions.">
+  <title>Part 7 — Fraud Risk Decision Engine</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/transitions.css">
+  <link rel="stylesheet" href="css/part7-final.css">
+  <link rel="stylesheet" href="css/portfolio-polish.css">
+</head>
+<body data-current-part="7" data-evidence-state="loading">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="top-nav">
+    <a class="brand" href="index.html"><img class="brand-symbol" src="assets/icons/brand-shield-check.svg" alt=""><span class="brand-copy"><strong>FraudRisk</strong><span>Analytics</span></span></a>
+    <nav class="part-nav" aria-label="Case study parts"><a href="part-1.html">01 Scope</a><a href="part-2.html">02 Data</a><a href="part-3.html">03 Portfolio</a><a href="part-4.html">04 Behavior</a><a href="part-5.html">05 ML</a><a href="part-6.html">06 Graph</a><a class="active" href="part-7.html">07 Decision</a><a href="part-8.html">08 Monitor</a><a href="part-9.html">09 Deliver</a></nav>
+  </header>
+
+  <main class="p7x-page">
+    <section class="p7x-hero">
+      <div>
+        <span class="part-pill">BLOCK E · PART 7</span>
+        <h1>From risk score<br><em>to governed action.</em></h1>
+        <p>A decision layer that converts the frozen Part 5 probability into auditable ALLOW, REVIEW or BLOCK actions under explicit thresholds, review capacity, overflow rules, graph-assisted routing and simulated economics.</p>
+        <div class="p7x-lock live-evidence-card" data-live-state>
+          <span class="status-dot"></span>
+          <div><strong data-p7="status">LOADING</strong><small data-p7="statusNote">Reading source-driven Part 7 evidence.</small></div>
+        </div>
+      </div>
+      <div class="p7x-art" aria-label="Decision engine illustration">
+        <div class="p7x-ring r1"></div><div class="p7x-ring r2"></div>
+        <div class="p7x-action-stack"><b>DECISION ENGINE</b><span>ALLOW</span><span>REVIEW</span><span>BLOCK</span></div>
+        <div class="p7x-art-note">POLICY ≠ CLASSIFIER · SCORE ≠ ACTION</div>
+      </div>
+    </section>
+
+    <section class="gate-strip" aria-label="Part 7 validation gates">
+      <article><span>MANDATORY GATES</span><strong data-p7="mandatoryGates">64</strong><small>validator contract</small></article>
+      <article class="good"><span>PASS</span><strong data-p7="passGates">—</strong><small>evidence satisfied</small></article>
+      <article class="warn"><span>BLOCKED</span><strong data-p7="blockedGates">—</strong><small>waiting on execution evidence</small></article>
+      <article class="bad"><span>FAIL</span><strong data-p7="failGates">—</strong><small>must remain zero</small></article>
+      <article><span>LOCK TARGET</span><strong>64 / 64</strong><small>0 blocked · 0 fail</small></article>
+    </section>
+
+    <section class="p7x-kpis">
+      <article><span>UPSTREAM SCORE</span><strong data-p7="scoreVersion">Not resolved</strong><small>Part 5 · frozen champion lineage</small></article>
+      <article><span>POLICY VERSION</span><strong data-p7="policyVersion">Not frozen</strong><small>selected only after confirmation</small></article>
+      <article><span>REVIEW THRESHOLD</span><strong data-p7="reviewThreshold">—</strong><small>policy parameter</small></article>
+      <article><span>BLOCK THRESHOLD</span><strong data-p7="blockThreshold">—</strong><small>policy parameter</small></article>
+      <article class="amber"><span>REVIEW CAPACITY</span><strong data-p7="capacity">—</strong><small>deterministic queue constraint</small></article>
+    </section>
+
+    <section class="p7x-panel execution-boundary">
+      <div class="p7x-heading"><span class="eyebrow">01 · EXECUTION &amp; EVIDENCE BOUNDARY</span><h2>Private execution can run ahead of public evidence — the website does not.</h2><p>The decision engine is implemented and the recovery workflow reconstructs the governed Part 5 score handoff outside the public repository. This page publishes only what the Part 7 summary JSON and validator support. Until the genuine replay is imported, thresholds and outcomes remain withheld rather than guessed.</p></div>
+      <div class="p7x-handoff-grid">
+        <div><b>SCORE CONTRACT</b><strong>PROBABILITY_USABLE</strong><small>explicit calibration lineage required</small></div>
+        <div><b>CHAMPION</b><strong>FRAUD_CHAMPION_v1</strong><small>BlendTop3_Equal · frozen</small></div>
+        <div><b>FINAL GATE</b><strong>64 / 64 PASS</strong><small>genuine replay evidence</small></div>
+        <div class="blocked" data-p7-state-box><b>PUBLIC STATE</b><strong data-p7="status">LOADING</strong><small data-p7="publicBoundary">source-driven evidence only</small></div>
+      </div>
+    </section>
+
+    <section class="p7x-grid two">
+      <article class="p7x-panel"><span class="eyebrow">02 · CHRONOLOGICAL LIFECYCLE</span><h2>Tune → confirm → freeze → replay.</h2><div class="p7x-timeline"><div><b>01</b><strong>INPUT AUDIT</strong><small>schema · lineage · score gate</small></div><div><b>02</b><strong>POLICY TUNE</strong><small>earlier pre-OOT scope only</small></div><div><b>03</b><strong>CONFIRM</strong><small>later pre-OOT scope</small></div><div><b>04</b><strong>FREEZE</strong><small>policy + config + code hashes</small></div><div><b>05</b><strong>FINAL REPLAY</strong><small>frozen policy on FINAL_OOT</small></div></div></article>
+      <article class="p7x-panel"><span class="eyebrow">03 · ACTION CONTRACT</span><h2>Exactly one action per transaction.</h2><div class="action-cards"><div class="allow"><b>ALLOW</b><small>below the review band</small></div><div class="review"><b>REVIEW</b><small>eligible and selected within capacity</small></div><div class="block"><b>BLOCK</b><small>above the frozen block threshold</small></div></div><p class="muted">Graph novelty can influence review priority. Graph evidence alone is not allowed to auto-BLOCK.</p></article>
+    </section>
+
+    <section class="p7x-panel">
+      <div class="p7x-heading"><span class="eyebrow">04 · POLICY SEARCH SPACE</span><h2>Policy optimization is constrained before it starts.</h2><p>All candidates satisfy <code>0 ≤ review_threshold &lt; block_threshold ≤ 1</code>. Policy search uses the pre-OOT tuning scope; confirmation is later and FINAL_OOT is excluded from threshold or economics tuning.</p></div>
+      <div class="candidate-grid"><div><b>P0</b><strong>Allow all</strong><small>no-intervention baseline</small></div><div><b>P1</b><strong>Single block</strong><small>two-action diagnostic</small></div><div><b>P2</b><strong>Two thresholds</strong><small>ALLOW / REVIEW / BLOCK</small></div><div><b>P3</b><strong>Capacity constrained</strong><small>causal queue baseline</small></div><div><b>P4</b><strong>Amount aware</strong><small>exposure-priority variant</small></div><div><b>P5</b><strong>Graph assisted</strong><small>novelty routing only</small></div></div>
+    </section>
+
+    <section class="p7x-panel">
+      <div class="p7x-heading"><span class="eyebrow">05 · FINAL REPLAY SCORECARD</span><h2>Business outcomes appear only after the policy is genuinely frozen and replayed.</h2><p>These cards are connected to the final evidence object. A blocked value is intentionally shown as “—”, never as zero.</p></div>
+      <div class="result-grid">
+        <article><span>ALLOW RATE</span><strong data-p7="allowRate">—</strong><small>final replay</small></article>
+        <article><span>REVIEW RATE</span><strong data-p7="reviewRate">—</strong><small>capacity constrained</small></article>
+        <article><span>BLOCK RATE</span><strong data-p7="blockRate">—</strong><small>frozen threshold</small></article>
+        <article><span>FRAUD CAPTURE</span><strong data-p7="fraudCapture">—</strong><small>retrospective</small></article>
+        <article><span>EXPOSURE CAPTURE</span><strong data-p7="exposureCapture">—</strong><small>positive exposure basis</small></article>
+        <article><span>LEGIT BLOCK RATE</span><strong data-p7="legitBlockRate">—</strong><small>friction guardrail</small></article>
+        <article class="wide"><span>SIMULATED TOTAL COST</span><strong data-p7="totalCost">—</strong><small>assumption-driven · not actual savings</small></article>
+      </div>
+    </section>
+
+    <section class="p7x-grid two">
+      <article class="p7x-panel"><span class="eyebrow">06 · CAPACITY &amp; OVERFLOW</span><h2>Review load must reconcile.</h2><div id="capacity-chart" class="blocked-chart evidence-slot"><b>P7C2 · REVIEW CAPACITY / OVERFLOW</b><span data-p7="capacityEvidence">Evidence unlocks after genuine replay.</span></div><ul class="check-list"><li>deterministic UTC buckets</li><li>review eligibility</li><li>selected within capacity</li><li>overflow accounting</li><li>capacity utilization reconciliation</li></ul></article>
+      <article class="p7x-panel"><span class="eyebrow">07 · ECONOMICS</span><h2>Simulated economics, explicitly bounded.</h2><div id="cost-chart" class="blocked-chart evidence-slot"><b>P7C4 · SIMULATED COST DECOMPOSITION</b><span data-p7="costEvidence">Evidence unlocks after genuine replay.</span></div><p class="muted">The model separates fraud-loss proxy, review cost, legitimate review friction and legitimate block friction. These are scenario economics, not realized bank savings.</p></article>
+    </section>
+
+    <section class="p7x-panel">
+      <div class="p7x-heading"><span class="eyebrow">08 · PUBLIC EVIDENCE REGISTER</span><h2>Eight evidence views, one lock condition.</h2></div>
+      <div class="evidence-list" data-p7-evidence-list>
+        <div><b>P7C1</b><span>Action mix</span><em>GATED</em></div><div><b>P7C2</b><span>Capacity / overflow</span><em>GATED</em></div><div><b>P7C3</b><span>Capture vs intervention</span><em>GATED</em></div><div><b>P7C4</b><span>Simulated cost decomposition</span><em>GATED</em></div><div><b>P7C5</b><span>Daily policy stability</span><em>GATED</em></div><div><b>P7C6</b><span>Segment performance</span><em>GATED</em></div><div><b>P7C7</b><span>Bootstrap policy delta</span><em>GATED</em></div><div><b>P7C8</b><span>Reason-code mix</span><em>GATED</em></div>
+      </div>
+    </section>
+
+    <section class="p7x-grid two">
+      <article class="p7x-panel"><span class="eyebrow">09 · FAIL-CLOSED GOVERNANCE</span><h2>Invalid evidence stops the policy.</h2><ul class="check-list red"><li>Decision-time target or future outcome fields are rejected.</li><li>Missing/non-finite scores and mixed lineage are rejected.</li><li>Invalid threshold ordering or post-freeze mutation aborts replay.</li><li>Part 5/6 already observed OOT, so Part 7 does not claim globally unseen OOT.</li></ul></article>
+      <article class="p7x-panel recruiter-lens"><span class="eyebrow">10 · RECRUITER LENS</span><h2>What this chapter demonstrates.</h2><div class="skill-grid"><span>Decision Analytics</span><span>Fraud Strategy</span><span>Threshold Optimization</span><span>Queue Capacity</span><span>Model Governance</span><span>Economic Trade-offs</span></div><p>It separates predictive ranking from operating policy — the distinction expected in real fraud and risk decisioning work.</p></article>
+    </section>
+
+    <section class="p7x-final">
+      <div><span class="eyebrow">11 · HANDOFF TO MONITORING</span><h2 data-p7="finalHeading">Decision evidence remains source-driven.</h2><p data-p7="finalCopy">Part 8 consumes a frozen policy and decision mart. The public website will change to locked only when the genuine Part 7 validator and final replay evidence say so.</p></div>
+      <div class="p7x-actions"><a href="index.html">← Final Portfolio</a><a href="part-8.html" class="primary">Part 8 · Monitoring →</a></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="js/app.js"></script><script src="js/page-transitions.js"></script><script src="js/part-7.js"></script>
+</body>
+</html>
