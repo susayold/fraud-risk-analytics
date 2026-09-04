@@ -20,7 +20,7 @@ class NavigationArchitectureTests(unittest.TestCase):
     def test_legacy_portfolio_link_routes_to_page2(self):
         html = read("part-1.html")
         self.assertIn('href="part-2.html#portfolio-baseline"', html)
-        self.assertIn("Technical evidence chapter", html)
+        self.assertIn("Explore Behavior", html)
 
 
 if __name__ == "__main__":
