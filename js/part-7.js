@@ -38,6 +38,7 @@
       set('passGates', v.pass ?? '—');
       set('blockedGates', v.blocked ?? '—');
       set('failGates', v.fail ?? '—');
+      set('lockSummary', locked ? `${v.pass ?? '—'} / ${v.mandatory_gates ?? '—'} PASS` : `${v.pass ?? '—'} / ${v.mandatory_gates ?? '—'} PASS · ${v.blocked ?? '—'} BLOCKED`);
       set('scoreVersion', data.score_version || 'Not resolved');
       set('policyVersion', data.policy_version || 'Not frozen');
       set('reviewThreshold', threshold(p.review_threshold));
@@ -64,6 +65,7 @@
       set('status', 'EVIDENCE LOAD ERROR');
       set('statusNote', 'Summary unavailable; no decision claim is shown.');
       set('publicBoundary', 'summary unavailable');
+      set('lockSummary', 'EVIDENCE UNAVAILABLE');
       setEvidenceAvailability(false);
     });
 

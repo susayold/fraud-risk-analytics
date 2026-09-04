@@ -29,6 +29,7 @@
     setAll('[data-p8-pass]', v.pass ?? '—');
     setAll('[data-p8-blocked]', v.blocked ?? '—');
     setAll('[data-p8-fail]', v.fail ?? '—');
+    setAll('[data-p8-lock-summary]', locked ? `${v.pass ?? '—'} / ${v.mandatory_gates ?? '—'} PASS` : `${v.pass ?? '—'} / ${v.mandatory_gates ?? '—'} PASS · ${v.blocked ?? '—'} BLOCKED`);
     setAll('[data-p8-operational]', s.two_clock?.operational || 'OPERATIONS_NOW');
     setAll('[data-p8-matured]', s.two_clock?.matured || 'OUTCOMES_MATURED');
     setAll('[data-p8-alert-count]', Array.isArray(alerts.alerts) ? alerts.alerts.length : '—');
@@ -45,6 +46,7 @@
     setAll('[data-p8-status]', 'EVIDENCE LOAD ERROR');
     setAll('[data-p8-technical]', 'STATUS UNAVAILABLE');
     setAll('[data-p8-pass],[data-p8-blocked],[data-p8-fail],[data-p8-alert-count]', '—');
+    setAll('[data-p8-lock-summary]', 'EVIDENCE UNAVAILABLE');
     setEvidence(false);
   });
 
