@@ -3,7 +3,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 HTML = (ROOT / "part-9.html").read_text(encoding="utf-8")
-JS = (ROOT / "js" / "part-9.js").read_text(encoding="utf-8")
+JS = (ROOT / "js" / "part-9-audit.js").read_text(encoding="utf-8")
 
 
 class SourcePrecedenceTests(unittest.TestCase):

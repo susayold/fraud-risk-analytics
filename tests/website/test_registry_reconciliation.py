@@ -4,7 +4,7 @@ import json
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-JS = (ROOT / "js" / "part-9.js").read_text(encoding="utf-8")
+JS = (ROOT / "js" / "part-9-audit.js").read_text(encoding="utf-8")
 
 
 class RegistryReconciliationTests(unittest.TestCase):
