@@ -1,87 +1,94 @@
-(function () {
-  "use strict";
-  const charts = new Map();
-  const ensurePolishCss = () => {
-    if (document.querySelector('link[href="css/portfolio-polish.css"]')) return;
-    const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'css/portfolio-polish.css'; document.head.appendChild(link);
-  };
-  ensurePolishCss();
-
-  const formatMetric = (metric) => {
-    if (!metric || metric.status !== "AVAILABLE" || metric.value === null || metric.value === undefined) return metric?.status === "NOT_APPLICABLE" ? "DEFINITION" : "INPUT BLOCKED";
-    if (metric.metric_id === "source_fraud_rate") return `${(Number(metric.value) * 100).toFixed(3)}%`;
-    return Number(metric.value).toLocaleString("en-US", { maximumFractionDigits: 0 });
-  };
-  const labelStatus = (status) => status === "LOCKED" ? "LOCKED" : status === "IN_PROGRESS" ? "IN PROGRESS" : String(status || "REVIEW").replaceAll("_", " ");
-  const sourceLabel = (chart) => `SOURCE · Part ${chart.source_artifact.match(/part([2-8])/i)?.[1] || ""} · ${chart.source_artifact.split("/").pop()}`;
-  const evidenceState = (card, chart) => {
-    const canvas = card.querySelector(".chart-canvas");
-    canvas.innerHTML = `<div class="chart-empty"><strong>${chart.badge || chart.status.replaceAll("_", " ")}</strong><p>${chart.reason || "Upstream governed evidence is required before this view can render."}</p></div>`;
-    card.querySelector(".chart-status").textContent = chart.status.replaceAll("_", " ");
-    card.querySelector(".chart-status").classList.add("blocked");
-  };
-  const seriesData = (chart) => chart.data.map((row) => row[chart.y_field]);
-  const categories = (chart) => chart.data.map((row) => row[chart.x_field]);
-  const chartOption = (chart) => {
-    const isLine = chart.chart_type === "line";
-    const isHorizontal = chart.chart_id === "P2" || chart.chart_id === "P4";
-    const data = seriesData(chart); const labels = categories(chart);
-    const option = { animationDuration: 650, animationEasing: "cubicOut", grid: { left: isHorizontal ? 98 : 44, right: 18, top: 18, bottom: isLine ? 42 : 34, containLabel: true }, tooltip: { trigger: "axis", backgroundColor: "#102536", borderColor: "rgba(175,214,231,.2)", textStyle: { color: "#e9f4f5" }, formatter: (items) => { const item = Array.isArray(items) ? items[0] : items; const row = chart.data[item.dataIndex] || {}; return `<b>${item.axisValueLabel || item.name}</b><br>${chart.y_field}: ${typeof item.value === "number" && chart.y_field.includes("rate") ? (item.value * 100).toFixed(3) + "%" : Number(item.value).toLocaleString()}${row.transactions ? `<br>support: ${Number(row.transactions).toLocaleString()}` : ""}${row.fraud_transactions ? `<br>fraud: ${Number(row.fraud_transactions).toLocaleString()}` : ""}`; } }, xAxis: { type: "category", data: labels, axisLabel: { color: "#9fb5bd", fontSize: 10, rotate: isLine ? 35 : 0, interval: isLine ? Math.max(0, Math.ceil(labels.length / 8) - 1) : 0 }, axisLine: { lineStyle: { color: "rgba(175,214,231,.2)" } }, axisTick: { show: false } }, yAxis: { type: "value", axisLabel: { color: "#9fb5bd", fontSize: 10, formatter: (value) => chart.y_field.includes("rate") ? `${(value * 100).toFixed(2)}%` : Number(value).toLocaleString() }, splitLine: { lineStyle: { color: "rgba(175,214,231,.08)" } } }, series: [{ type: isLine ? "line" : "bar", data, smooth: isLine, symbol: isLine ? "circle" : "none", symbolSize: 5, barMaxWidth: 28, itemStyle: { color: chart.chart_id === "D3" || chart.chart_id === "P4" ? "#7fc8ff" : "#65e6ad", borderRadius: isLine ? 0 : [5, 5, 0, 0] }, lineStyle: { color: "#65e6ad", width: 2 }, areaStyle: isLine ? { color: { type: "linear", x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: "rgba(101,230,173,.3)" }, { offset: 1, color: "rgba(101,230,173,0)" }] } } : undefined }] };
-    if (isHorizontal) { option.xAxis.type = "value"; option.xAxis.data = undefined; option.yAxis.type = "category"; option.yAxis.data = labels; option.yAxis.axisLabel = { color: "#9fb5bd", fontSize: 10 }; option.series[0] = { ...option.series[0], data: chart.data.map((row) => ({ value: row[chart.y_field], name: row[chart.x_field] })) }; }
-    if (chart.chart_id === "D1") { option.xAxis.data = labels; option.yAxis.axisLabel.formatter = (v) => Number(v).toLocaleString(); }
-    return option;
-  };
-  const renderChart = (card, chart) => {
-    if (!chart) return;
-    card.querySelector(".chart-source").textContent = sourceLabel(chart);
-    const insight = card.querySelector(".chart-insight"); if (insight) insight.textContent = chart.insight || "";
-    if (chart.status !== "AVAILABLE" || !chart.data?.length || typeof window.echarts === "undefined") { evidenceState(card, chart); return; }
-    const chartInstance = window.echarts.init(card.querySelector(".chart-canvas"), null, { renderer: "canvas" }); chartInstance.setOption(chartOption(chart)); charts.set(chartInstance, card); card.querySelector(".chart-status").textContent = chart.claim_class; card.querySelector(".chart-alt").textContent = `${chart.title}. ${chart.insight}`;
-  };
-
-  const injectExecutionStrip = statuses => {
-    const hero = document.querySelector('.p9-hero'); if (!hero || hero.querySelector('.execution-strip')) return;
-    const strip = document.createElement('div'); strip.className = 'execution-strip';
-    ['part5','part6','part7','part8'].forEach(key => {
-      const item = statuses.layers?.[key]; if (!item) return;
-      const a = document.createElement('a'); a.href = item.deep_link || '#'; a.dataset.state = item.status || 'REVIEW';
-      a.innerHTML = `<b>${key.replace('part','')}</b><span>${item.label}</span><strong>${labelStatus(item.status)}</strong>`; strip.appendChild(a);
-    });
-    hero.appendChild(strip);
-  };
-
-  const updateExecutiveCopy = statuses => {
-    const p7 = statuses.layers?.part7 || {}; const p8 = statuses.layers?.part8 || {};
-    const p7Locked = p7.status === 'DECISION_POLICY_LOCKED' || p7.status === 'LOCKED';
-    const p8Locked = p8.status === 'MONITORING_GOVERNANCE_LOCKED' || p8.status === 'LOCKED';
-    const boundary = document.querySelector('.hero-boundary');
-    if (boundary) {
-      const strong = boundary.querySelector('strong'); const spans = boundary.querySelectorAll('span');
-      if (strong) strong.textContent = 'Portfolio presentation ready · evidence states remain source-driven';
-      if (spans.length > 1) spans[1].textContent = p7Locked && p8Locked ? 'Parts 2–8 locked by their own evidence contracts' : 'Parts 2–6 locked · Decision / Monitoring remain validator-gated';
+(() => {
+  'use strict'
+  const $ = selector => document.querySelector(selector)
+  const all = selector => [...document.querySelectorAll(selector)]
+  const set = (key, value) => all(`[data-audit="${key}"]`).forEach(node => { node.textContent = value })
+  const esc = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]))
+  const clean = value => String(value ?? '').trim()
+  const slug = value => clean(value).toLowerCase().replace(/[^a-z0-9]+/g, '-')
+  const statusClass = value => slug(value).replace(/-+/g, '_')
+  const formatNumber = value => { const n = Number(value); return Number.isFinite(n) ? n.toLocaleString('en-US', {maximumFractionDigits: 4}) : '—' }
+  const formatMetric = row => {
+    if (!row || row.status === 'NOT_APPLICABLE') return 'NOT_APPLICABLE'
+    if (row.value === '' || row.value === null || row.value === undefined) return row.status || '—'
+    if (row.metric_id === 'source_fraud_rate') return `${(Number(row.value) * 100).toFixed(3)}%`
+    return formatNumber(row.value)
+  }
+  const parseCSV = text => {
+    const rows = []; let row = []; let field = ''; let quoted = false
+    for (let i = 0; i < text.length; i += 1) {
+      const char = text[i]; const next = text[i + 1]
+      if (char === '"' && quoted && next === '"') { field += '"'; i += 1; continue }
+      if (char === '"') { quoted = !quoted; continue }
+      if (char === ',' && !quoted) { row.push(field); field = ''; continue }
+      if ((char === '\n' || char === '\r') && !quoted) { if (char === '\r' && next === '\n') i += 1; row.push(field); if (row.some(value => value !== '')) rows.push(row); row = []; field = ''; continue }
+      field += char
     }
-    const decision = document.querySelector('.decision-section .blocked-module');
-    if (decision) {
-      const strong = decision.querySelector('strong'); const p = decision.querySelector('p');
-      if (strong) strong.textContent = labelStatus(p7.status || 'INPUT_BLOCKED');
-      if (p) p.textContent = p7Locked ? 'Frozen decision policy and final replay evidence are published.' : 'Decision framework is implemented; public metrics remain gated until validator-backed replay evidence is imported.';
-      decision.classList.toggle('is-locked', p7Locked);
-    }
-    const monitorHeading = document.querySelector('.monitor-section .section-heading');
-    if (monitorHeading && !monitorHeading.querySelector('.dynamic-status-note')) {
-      const badge = document.createElement('span'); badge.className = `dynamic-status-note${p8Locked ? ' locked' : ''}`; badge.textContent = `Part 8 · ${labelStatus(p8.status || 'INPUT_BLOCKED')}`; monitorHeading.appendChild(badge);
-    }
-    const takeaway = document.querySelector('.takeaway-card p');
-    if (takeaway) takeaway.textContent = p7Locked && p8Locked ? 'Fraud Risk Analytics demonstrates an executed analytical workflow from audited transactions through scoring, governed decision policy, monitoring and evidence-backed closure.' : 'Fraud Risk Analytics demonstrates the complete governed architecture from audited transactions through scoring, decision policy and monitoring, while keeping unfinished execution states explicit instead of overclaiming.';
-  };
+    if (field || row.length) { row.push(field); rows.push(row) }
+    if (!rows.length) return []
+    const headers = rows.shift().map(value => value.trim())
+    return rows.map(values => Object.fromEntries(headers.map((header, index) => [header, (values[index] ?? '').trim()])))
+  }
+  const getJSON = url => fetch(url, {cache:'no-store'}).then(response => response.ok ? response.json() : Promise.reject(new Error(`${url} ${response.status}`)))
+  const getText = url => fetch(url, {cache:'no-store'}).then(response => response.ok ? response.text() : Promise.reject(new Error(`${url} ${response.status}`)))
+  const files = {
+    project: getJSON('assets/data/project_status.json'),
+    part7: getJSON('assets/data/part7_summary.json'),
+    part8: getJSON('assets/data/part8_summary.json'),
+    summary: getJSON('reports/part9/PART9_FINAL_SUMMARY.json'),
+    manifest: getJSON('assets/data/part9_manifest.json'),
+    sources: getText('reports/part9/part9_source_registry.csv').then(parseCSV),
+    metrics: getText('reports/part9/part9_metric_registry.csv').then(parseCSV),
+    statuses: getText('reports/part9/part9_status_registry.csv').then(parseCSV),
+    validation: getText('reports/part9/part9_validation_report.csv').then(parseCSV),
+    audit: getText('reports/part9/PART9_FINAL_RELEASE_AUDIT.md')
+  }
 
-  Promise.all([fetch("assets/data/part9_summary.json", {cache:'no-store'}).then((r) => r.json()), fetch("assets/data/part9_charts.json", {cache:'no-store'}).then((r) => r.json()), fetch("assets/data/part9_status.json", {cache:'no-store'}).then((r) => r.json())]).then(([summary, chartData, statuses]) => {
-    document.querySelectorAll("[data-metric]").forEach((node) => { const metric = summary.metrics[node.dataset.metric]; node.textContent = formatMetric(metric); if (metric) node.title = `${metric.claim_class} · Part ${metric.source_part} · ${metric.source_artifact}`; });
-    document.querySelectorAll("[data-status-layer]").forEach((node) => { const item = statuses.layers[node.dataset.statusLayer]; if (!item) return; node.textContent = labelStatus(item.status); node.classList.toggle("blocked", item.status === "INPUT_BLOCKED"); node.classList.toggle("progress", item.status === "IN_PROGRESS"); });
-    injectExecutionStrip(statuses); updateExecutiveCopy(statuses);
-    const cards = document.querySelectorAll("[data-chart]"); const observer = new IntersectionObserver((entries, obs) => { entries.forEach((entry) => { if (!entry.isIntersecting) return; const card = entry.target; renderChart(card, chartData[card.dataset.chart]); obs.unobserve(card); }); }, { rootMargin: "180px 0px" }); cards.forEach((card) => observer.observe(card));
-    document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => { document.body.classList.toggle("technical-mode", button.dataset.view === "technical"); document.querySelectorAll("[data-view]").forEach((b) => b.classList.toggle("active", b === button)); }));
-  }).catch(() => { document.querySelectorAll("[data-metric]").forEach((node) => { node.textContent = "INPUT BLOCKED"; }); });
-  document.querySelector(".nav-toggle")?.addEventListener("click", (event) => { const expanded = event.currentTarget.getAttribute("aria-expanded") === "true"; event.currentTarget.setAttribute("aria-expanded", String(!expanded)); document.querySelector(".p9-links")?.classList.toggle("open", !expanded); });
-  window.addEventListener("resize", () => charts.forEach((_, chart) => chart.resize()));
-})();
+  const renderSourceRows = rows => {
+    const body = document.getElementById('source-rows'); if (!body) return
+    const search = clean(document.getElementById('source-search')?.value).toLowerCase(); const part = clean(document.getElementById('source-part')?.value); const claim = clean(document.getElementById('source-class')?.value); const status = clean(document.getElementById('source-status')?.value)
+    const filtered = rows.filter(row => (!search || `${row.source_id} ${row.path}`.toLowerCase().includes(search)) && (!part || row.source_part === part) && (!claim || row.claim_class === claim) && (!status || row.status === status))
+    body.innerHTML = filtered.length ? filtered.map(row => `<tr><th>${esc(row.source_id)}</th><td>Part ${esc(row.source_part)} · ${esc(row.section)}</td><td>${esc(row.path)}</td><td><span class="claim-tag ${statusClass(row.claim_class)}">${esc(row.claim_class)}</span></td><td><span class="status-pill ${statusClass(row.status)}">${esc(row.status)}</span></td><td><button class="hash-button" type="button" title="Copy full SHA-256 hash" data-hash="${esc(row.sha256)}">${esc(row.sha256.slice(0,10))}…</button><small class="hash-size">${esc(row.bytes)} bytes</small></td><td><span class="status-pill available">AGGREGATE SAFE</span></td></tr>`).join('') : '<tr><td colspan="7">No registered source matches this filter.</td></tr>'
+    set('source-table-note', `${filtered.length} of ${rows.length} registered sources shown · hashes are source-registry evidence.`)
+  }
+  const renderMetricRows = rows => {
+    const body = document.getElementById('metric-rows'); if (!body) return
+    body.innerHTML = rows.map(row => `<tr><th>${esc(row.label)}</th><td>${esc(formatMetric(row))}</td><td><span class="claim-tag ${statusClass(row.claim_class)}">${esc(row.claim_class)}</span></td><td>Part ${esc(row.source_part)}</td><td><span class="status-pill ${statusClass(row.status)}">${esc(row.status)}</span></td><td>${esc(row.source_artifact)}</td></tr>`).join('')
+  }
+  const setupFilters = rows => {
+    const optionValues = {
+      'source-part': [...new Set(rows.map(row => row.source_part).filter(Boolean))],
+      'source-class': [...new Set(rows.map(row => row.claim_class).filter(Boolean))],
+      'source-status': [...new Set(rows.map(row => row.status).filter(Boolean))]
+    }
+    Object.entries(optionValues).forEach(([id, values]) => { const select = document.getElementById(id); if (!select) return; values.sort((a,b) => String(a).localeCompare(String(b), undefined, {numeric:true})).forEach(value => { const option = document.createElement('option'); option.value = value; option.textContent = value; select.appendChild(option) }) })
+    const controls = ['source-search','source-part','source-class','source-status']
+    controls.forEach(id => { const control = document.getElementById(id); if (control) control.oninput = () => renderSourceRows(rows) })
+  }
+  const renderStatusRows = (registry, project, part7, part8) => {
+    const body = document.getElementById('status-rows'); if (!body) return
+    const live = {part7: part7?.status, part8: part8?.status}; const execution = {part7: part7?.execution_status || part7?.status, part8: part8?.execution_status || part8?.status}
+    const hasMismatch = registry.some(row => live[row.layer] && live[row.layer] !== row.status)
+    body.innerHTML = registry.map(row => {
+      const layer = row.layer; const liveStatus = live[layer]; const mismatch = liveStatus && liveStatus !== row.status; const reconciled = mismatch ? 'SOURCE MISMATCH' : (liveStatus || row.status || 'SOURCE UNAVAILABLE'); const executionStatus = execution[layer] || row.execution_status || row.status || '—'; const link = row.deep_link || project?.layers?.[layer]?.deep_link || '#'
+      return `<tr><th>${esc(row.label)}</th><td>Part ${esc(layer.replace('part',''))}</td><td><span class="status-pill ${statusClass(row.status)}">${esc(row.status)}</span></td><td><span class="status-pill ${statusClass(executionStatus)}">${esc(executionStatus)}</span></td><td><span class="status-pill ${statusClass(reconciled)}">${esc(reconciled)}</span></td><td><a href="${esc(link)}">Open ↗</a></td></tr>`
+    }).join('')
+    if (hasMismatch) document.body.dataset.auditState = 'mismatch'
+  }
+  const renderSummary = (project, part7, part8, summary, manifest, sources, metrics, statuses, validation, auditText) => {
+    const pass = validation.filter(row => row.status === 'PASS').length; const total = validation.length; const classes = new Set([...sources, ...metrics].map(row => row.claim_class).filter(Boolean)); const hashRows = sources.filter(row => row.sha256 && row.bytes).length
+    set('presentation-status', project?.presentation_status || summary?.presentation_status || 'PRESENTATION_READY'); set('execution-summary', project?.execution_summary || summary?.execution_summary || 'PART7_PART8_INPUT_BLOCKED'); set('presentation-gates', `${pass} / ${total}`); set('source-count', sources.length); set('metric-count', metrics.length); set('claim-class-count', classes.size); set('reconciliation-status', `SOURCE RECONCILIATION · ${project?.source_reconciliation_status || summary?.source_reconciliation_status || 'REVIEW'}`); set('validation-family-count', `${new Set(validation.map(row => row.family).filter(Boolean)).size} validation families · ${pass} PASS`); set('hash-coverage', `${hashRows} / ${sources.length} source hashes recorded`); set('manifest-commit', manifest?.code_commit ? `build ${manifest.code_commit.slice(0,10)}` : 'source-driven')
+    const auditStale = /Part 5 model charts remain `INPUT_BLOCKED`|Part 6 graph charts remain `INPUT_BLOCKED`/.test(auditText || '') && part7?.status !== 'INPUT_BLOCKED'
+    set('source-health', auditStale ? 'STALE · REVIEW' : 'CURRENT · PASS'); set('source-health-note', auditStale ? 'Release audit contradicts current canonical summaries.' : 'Release audit is reconciled with current source summaries; Part 7/8 remain honestly gated.')
+    set('policy-lineage', part7?.status === 'INPUT_BLOCKED' ? 'awaiting reconciliation' : 'source-controlled')
+    renderStatusRows(statuses, project, part7, part8); renderSourceRows(sources); renderMetricRows(metrics); setupFilters(sources)
+    document.body.dataset.auditState = 'ready'
+  }
+  const renderFailure = error => { if (error) console.error('Audit source render failed', error); document.body.dataset.auditState = 'error'; set('presentation-status', 'SOURCE UNAVAILABLE'); set('release-note', 'A canonical audit source could not be loaded; claims are not promoted.'); set('source-health', 'SOURCE UNAVAILABLE'); set('source-health-note', 'Inspect the release artifacts before relying on this page.') }
+  Promise.allSettled(Object.values(files)).then(results => {
+    const keys = Object.keys(files); const data = Object.fromEntries(keys.map((key, index) => [key, results[index].status === 'fulfilled' ? results[index].value : null]))
+    if (!data.project || !data.sources || !data.metrics || !data.statuses || !data.validation) { renderFailure(); return }
+    renderSummary(data.project, data.part7, data.part8, data.summary, data.manifest, data.sources, data.metrics, data.statuses, data.validation, data.audit)
+  }).catch(renderFailure)
+  document.addEventListener('click', event => { const button = event.target.closest('[data-hash]'); if (!button) return; navigator.clipboard?.writeText(button.dataset.hash).then(() => { const original = button.textContent; button.textContent = 'COPIED'; window.setTimeout(() => { button.textContent = original }, 1100) }).catch(() => { button.title = button.dataset.hash }) })
+})()

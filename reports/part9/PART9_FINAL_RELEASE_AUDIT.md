@@ -1,17 +1,20 @@
-# Part 9 Final Release Audit
+# Part 9 Evidence, Methodology & Audit Release
 
-`FINAL_PORTFOLIO_READY` means the presentation layer is complete and source-governed. It does not mean every upstream technical execution has completed.
+`PRESENTATION_READY` means the recruiter-facing evidence room, registries, claim boundaries and release checks are complete. It does not mean every upstream technical execution has completed.
 
-## Release checks
+## Current release interpretation
 
-- Part 2 hero totals are read from the locked summary artifact.
-- Part 3 charts use aggregate reports and preserve Development discovery scope.
-- Part 4 feature count is calculated from the primary feature registry.
-- Part 5 model charts remain `INPUT_BLOCKED` because public executed metric artifacts are unavailable.
-- Part 6 graph charts remain `INPUT_BLOCKED` because no audited aggregate graph artifact is present in the repository.
-- Part 7 decision charts remain `INPUT_BLOCKED` until the approved frozen Part 5 score is available.
-- Part 8 monitoring charts remain `INPUT_BLOCKED` until genuine final replay evidence exists.
-- All chart containers expose status, source, claim class, insight and accessible fallback text.
+- Presentation release gates: `40 / 40 PASS`.
+- Part 2 foundation, Part 3 portfolio, Part 4 behavioral registry, Part 5 model aggregate evidence and Part 6 graph aggregate evidence are available from their governed public artifacts.
+- Part 5 PR-curve coordinates remain `NOT_RETAINED`; the page does not reconstruct them.
+- Part 7 source file is available, but its execution status remains `INPUT_BLOCKED` (`30 / 64 PASS`).
+- Part 8 source file is available, but its execution status remains `INPUT_BLOCKED` (`20 / 72 PASS`).
+- Part 7/8 are not converted into zero, green or locked outcomes when evidence is unavailable.
+- All chart containers and audit views expose status, source, claim class and accessible fallback text.
+
+## Public boundary
+
+Only aggregate counts, metrics, versions, hashes, methodology and status evidence are published. Row-level transaction data, scores, labels, decisions, raw graph edges, embeddings, model binaries and private decision marts remain outside the public repository.
 - Public JSON is aggregate-only; no raw transaction or graph rows are shipped.
 - Desktop, tablet and mobile layouts are covered by responsive CSS, and reduced motion is supported.
 

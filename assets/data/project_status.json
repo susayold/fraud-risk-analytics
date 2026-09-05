@@ -1,6 +1,15 @@
 {
   "project": "Fraud Risk Analytics",
   "project_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
+  "presentation_status": "PRESENTATION_READY",
+  "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+  "source_reconciliation_status": "PASS",
+  "release_gates": {
+    "passed": 40,
+    "total": 40,
+    "status": "PASS",
+    "artifact": "reports/part9/part9_validation_report.csv"
+  },
   "source_precedence": "final report JSON > locked summary > validator > README > HTML",
   "layers": {
     "part1": {

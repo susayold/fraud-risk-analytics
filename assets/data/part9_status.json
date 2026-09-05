@@ -1,5 +1,8 @@
 {
   "project_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
+  "presentation_status": "PRESENTATION_READY",
+  "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+  "source_reconciliation_status": "PASS",
   "generated_from": "executed_reports_and_locked_summaries",
   "layers": {
     "part1": {
@@ -70,12 +73,12 @@
       "deep_link": "part-8.html"
     },
     "part9": {
-      "label": "Final Portfolio",
+      "label": "Evidence & Audit",
       "status": "PRESENTATION_READY",
-      "technical_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
+      "technical_status": "PRESENTATION_RELEASE_READY",
       "execution_status": "PRESENTATION_READY",
       "source_part": 9,
-      "deep_link": "index.html"
+      "deep_link": "part-9.html"
     }
   }
 }

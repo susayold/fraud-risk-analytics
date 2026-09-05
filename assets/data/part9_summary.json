@@ -2,8 +2,11 @@
   "project": {
     "name": "Fraud Risk Analytics",
     "part": 9,
-    "title": "Final Product & Portfolio Delivery",
-    "status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
+    "title": "Evidence, Methodology & Audit",
+    "status": "PRESENTATION_READY",
+    "presentation_status": "PRESENTATION_READY",
+    "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+    "source_reconciliation_status": "PASS",
     "claim": "End-to-end evidence-backed fraud-risk analytics portfolio; not a deployed enterprise fraud platform."
   },
   "hero": {

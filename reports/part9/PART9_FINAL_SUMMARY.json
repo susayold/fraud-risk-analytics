@@ -1,6 +1,10 @@
 {
-  "status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
-  "upstream_execution_boundary": "Part 5/7/8 conditional views remain source-driven; Part 6 aggregate graph evidence is locked",
+  "status": "PRESENTATION_READY",
+  "presentation_status": "PRESENTATION_READY",
+  "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+  "source_reconciliation_status": "PASS",
+  "upstream_execution_boundary": "Part 7 and Part 8 source files are available, but their execution evidence remains INPUT_BLOCKED; Part 5 and Part 6 aggregate evidence is locked",
+  "release_gates": {"passed": 40, "total": 40, "status": "PASS", "artifact": "reports/part9/part9_validation_report.csv"},
   "available_charts": [
     "D1",
     "D2",
