@@ -44,7 +44,7 @@ def validate() -> list[dict]:
         check("PV15 Part 5 metrics stay source-driven", "PART5_MODELING_LOCKED" in p5 and "NOT RETAINED" in p5, "part-5.html"),
         check("PV16 Part 5 no stale P5.1-only hero", "PART 5 · P5.1" not in p5, "part-5.html"),
         check("PV17 Part 8 has no stale fallback counts", "data-p8-pass>16" not in p8 and "data-p8-blocked>56" not in p8 and "data-p8-fail>0" not in p8, "part-8.html"),
-        check("PV18 Part 8 load failure is visible", "EVIDENCE LOAD ERROR" in read("js/part8.js"), "js/part8.js"),
+        check("PV18 Part 8 load failure is visible", "MONITORING EVIDENCE UNAVAILABLE" in read("js/part-8.js"), "js/part-8.js"),
         check("PV19 Part 9 concentration chart available", charts.get("P5", {}).get("status") == "AVAILABLE" and charts["P5"].get("source_artifact") == "reports/part3/top_entity_concentration.csv", "assets/data/part9_charts.json"),
         check("PV20 Part 9 graph charts available", all(charts.get(x, {}).get("status") == "AVAILABLE" for x in ("G1", "G2")), "assets/data/part9_charts.json"),
         check("PV21 project status registry exists", status.get("project_status") == "FINAL_PORTFOLIO_RELEASE_LOCKED" and len(status.get("layers", {})) == 9, "assets/data/project_status.json"),

@@ -1,0 +1,7 @@
+@media (prefers-reduced-motion: reduce) {
+  .monitoring-page * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
