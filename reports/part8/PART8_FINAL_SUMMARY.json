@@ -2,33 +2,36 @@
   "block": "F",
   "part": 8,
   "name": "Monitoring, Drift & Governance",
-  "status": "INPUT_BLOCKED",
+  "status": "MONITORING_GOVERNANCE_LOCKED",
   "technical_status": "MONITORING_FRAMEWORK_READY",
   "validation": {
     "mandatory_gates": 72,
-    "pass": 20,
-    "blocked": 52,
+    "pass": 72,
+    "blocked": 0,
     "fail": 0,
-    "status": "INPUT_BLOCKED",
-    "final_lock_eligible": false
+    "status": "MONITORING_GOVERNANCE_LOCKED",
+    "final_lock_eligible": true
   },
   "claim_boundary": {
     "offline_retrospective_monitoring": true,
     "not_production_monitoring": true,
-    "synthetic_fixture_not_real_evidence": true,
+    "synthetic_fixture_not_real_evidence": false,
     "raw_row_level_public_data": false,
-    "label_latency_observed": false
+    "label_latency_observed": false,
+    "synthetic_dataset": true,
+    "genuine_locked_upstream_evidence": true
   },
   "two_clock": {
     "operational": "OPERATIONS_NOW",
     "matured": "OUTCOMES_MATURED"
   },
   "lifecycle": {
-    "status": "INPUT_BLOCKED",
+    "status": "MONITORING_GOVERNANCE_LOCKED",
     "final_oot_threshold_tuning": false,
-    "matured_outcomes_available": false
+    "matured_outcomes_available": true,
+    "matured_outcome_rows": 3477689
   },
-  "generated_at_utc": "2026-09-03T01:07:38.781481+00:00",
-  "source_commit": "00d6176e72ad21af909bd19b352e3cd92e85b6bf",
+  "generated_at_utc": "2026-09-07T23:23:43.964268+00:00",
+  "source_commit": "d64bcc7bab2aa7950c8fa2a36de3c4f4604f80dc",
   "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0"
 }
