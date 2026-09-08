@@ -1,5 +1,48 @@
 {
-  "status": "INPUT_BLOCKED",
-  "alerts": [],
-  "note": "Alert thresholds are candidates only until pre-OOT baseline backtesting and freeze."
+  "status": "MONITORING_GOVERNANCE_LOCKED",
+  "alerts": [
+    {
+      "alert_id": "P8-score_js-FINAL_OOT",
+      "window_id": "FINAL_OOT",
+      "signal_family": "SCORE",
+      "metric": "score_js",
+      "severity": "GREEN",
+      "observed": null,
+      "threshold": 0.1643797077676235,
+      "support": 1782241,
+      "claim_class": "EARLY_WARNING",
+      "evidence_artifact": null
+    },
+    {
+      "alert_id": "P8-score_psi-FINAL_OOT",
+      "window_id": "FINAL_OOT",
+      "signal_family": "SCORE",
+      "metric": "score_psi",
+      "severity": "GREEN",
+      "observed": null,
+      "threshold": 0.2194980524045784,
+      "support": 1782241,
+      "claim_class": "EARLY_WARNING",
+      "evidence_artifact": null
+    },
+    {
+      "alert_id": "P8-score_wasserstein-FINAL_OOT",
+      "window_id": "FINAL_OOT",
+      "signal_family": "SCORE",
+      "metric": "score_wasserstein",
+      "severity": "BLOCKED",
+      "observed": 0.2086632777011647,
+      "threshold": null,
+      "support": 1782241,
+      "claim_class": "EARLY_WARNING",
+      "evidence_artifact": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "green": 2,
+    "blocked": 1
+  },
+  "note": "Source-driven FINAL_OOT alert rows. Missing observed values are not interpreted as measured zero.",
+  "source_artifact": "reports/part8/alert_log.csv"
 }
