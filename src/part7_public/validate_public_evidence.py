@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -13,21 +15,69 @@ def _load(relative: str):
 
 def validate() -> list[tuple[str, bool, str]]:
     summary = _load("assets/data/part7_summary.json")
-    manifest = _load("reports/part7/public_source_manifest.json")
-    snapshot = _load("reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json")
+    report_path = ROOT / "reports/part7/part7_validation_report.csv"
+    report = pd.read_csv(report_path)
     page = (ROOT / "part-7.html").read_text(encoding="utf-8")
     summary_text = json.dumps(summary, ensure_ascii=False)
-    gates = summary["validation"]
+    gates = summary.get("validation", {})
+    policy = summary.get("policy", {})
+    evidence = summary.get("final_evidence", {})
+    boundary = summary.get("claim_boundary", {})
+
     checks = [
-        ("P7 public status is evidence-derived", summary["status"] == "INPUT_BLOCKED", "part7_summary.json"),
-        ("P7 mandatory gate contract is preserved", gates == {"mandatory_gates": 64, "pass": 30, "blocked": 34, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "part7_summary.json"),
-        ("P7 policy and final evidence remain null", all(summary["policy"][key] is None for key in ("review_threshold", "block_threshold", "review_capacity")) and all(value is None for value in summary["final_evidence"].values()), "part7_summary.json"),
-        ("P7 target is not presented as current lock", bool(manifest["status"] == "INPUT_BLOCKED" and "64/64 PASS" in manifest["lock_rule"] and snapshot["part7"]["target_status"] == "DECISION_POLICY_LOCKED" and snapshot["snapshot_of_commit"] and snapshot["published_in_commit"]), "manifest and snapshot"),
-        ("P7 snapshot reconciles canonical counts", all(snapshot["part7"][key] == gates[key] for key in ("mandatory_gates", "pass", "blocked", "fail", "final_lock_eligible")), "PRE_REAL_EXECUTION_SNAPSHOT.json"),
-        ("P7 private handoff is named", "private/part7/PART5_TO_PART7_FROZEN_SCORE_MART.parquet" in manifest["required_private_inputs"] and "private/part7/PART5_TO_PART7_LINEAGE.json" in manifest["required_private_inputs"], "public_source_manifest.json"),
-        ("P7 public page exposes all evidence slots", all(f"P7C{i}" in page for i in range(1, 9)), "part-7.html"),
-        ("P7 page exposes blocked and safety boundary", all(token in page for token in ("INPUT_BLOCKED", "SIMULATED", "private")) and "graph-only auto-block is forbidden" in page.lower(), "part-7.html"),
-        ("P7 public summary has no row-level payload identifiers", all(token not in summary_text for token in ("source_row_id", "transaction_id", "risk_score", "decision_action", "fraud_label")), "part7_summary.json"),
+        (
+            "P7 public status is final evidence-derived",
+            summary.get("status") == "DECISION_POLICY_LOCKED",
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 mandatory gate contract is final locked",
+            gates.get("mandatory_gates") == 64
+            and gates.get("pass") == 64
+            and gates.get("blocked") == 0
+            and gates.get("fail") == 0
+            and gates.get("final_lock_eligible") is True,
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 published validator snapshot is 64/64 PASS",
+            len(report) == 64 and "status" in report and report["status"].astype(str).eq("PASS").all(),
+            "reports/part7/part7_validation_report.csv",
+        ),
+        (
+            "P7 frozen policy is published",
+            all(policy.get(key) is not None for key in ("review_threshold", "block_threshold", "review_capacity"))
+            and float(policy["review_threshold"]) < float(policy["block_threshold"]),
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 aggregate final OOT evidence is published",
+            all(evidence.get(key) is not None for key in ("allow_rate", "review_rate", "block_rate", "fraud_capture", "fraud_exposure_capture", "legitimate_block_rate", "simulated_total_cost")),
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 claim boundary remains explicit",
+            boundary.get("synthetic_data") is True
+            and boundary.get("simulated_costs") is True
+            and boundary.get("not_production_deployment") is True,
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 page exposes governed decision semantics",
+            all(token in page for token in ("ALLOW", "REVIEW", "BLOCK", "FINAL OOT", "SIMULATED ECONOMICS"))
+            and "graph-only auto-block" in page.lower(),
+            "part-7.html",
+        ),
+        (
+            "P7 public summary stays aggregate-only",
+            all(token not in summary_text for token in ("source_row_id", "transaction_id", "risk_score", "fraud_label")),
+            "assets/data/part7_summary.json",
+        ),
+        (
+            "P7 final-run provenance is retained",
+            bool(summary.get("source_commit")) and bool(summary.get("validator_version")),
+            "assets/data/part7_summary.json",
+        ),
     ]
     return checks
 
