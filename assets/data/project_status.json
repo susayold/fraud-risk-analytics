@@ -2,7 +2,7 @@
   "project": "Fraud Risk Analytics",
   "project_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
   "presentation_status": "PRESENTATION_READY",
-  "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+  "execution_summary": "PART7_PART8_LOCKED",
   "source_reconciliation_status": "PASS",
   "release_gates": {
     "passed": 40,
@@ -12,80 +12,14 @@
   },
   "source_precedence": "final report JSON > locked summary > validator > README > HTML",
   "layers": {
-    "part1": {
-      "label": "Business Scope",
-      "status": "READY",
-      "technical_status": "GOVERNANCE_READY",
-      "source_part": 1,
-      "deep_link": "part-1.html"
-    },
-    "part2": {
-      "label": "Data Foundation",
-      "status": "LOCKED",
-      "technical_status": "FOUNDATION_READY",
-      "source_part": 2,
-      "deep_link": "part-2.html"
-    },
-    "part3": {
-      "label": "Portfolio Intelligence",
-      "status": "LOCKED",
-      "technical_status": "PORTFOLIO_READY",
-      "source_part": 3,
-      "deep_link": "part-3.html"
-    },
-    "part4": {
-      "label": "Behavioral Risk",
-      "status": "LOCKED",
-      "technical_status": "PASS",
-      "source_part": 4,
-      "deep_link": "part-4.html"
-    },
-    "part5": {
-      "label": "Fraud Scoring / ML",
-      "status": "LOCKED",
-      "technical_status": "PART5_MODELING_LOCKED",
-      "execution_status": "LOCKED",
-      "champion_version": "FRAUD_CHAMPION_v1",
-      "source_part": 5,
-      "deep_link": "part-5.html"
-    },
-    "part6": {
-      "label": "Network / Graph",
-      "status": "LOCKED",
-      "technical_status": "GRAPH_EVIDENCE_READY",
-      "execution_status": "LOCKED",
-      "source_part": 6,
-      "deep_link": "part-6.html"
-    },
-    "part7": {
-      "label": "Decision Engine",
-      "status": "INPUT_BLOCKED",
-      "technical_status": "TECHNICALLY_COMPLETE_100",
-      "execution_status": "INPUT_BLOCKED",
-      "target_status": "DECISION_POLICY_LOCKED",
-      "lock_condition": "64 PASS / 0 BLOCKED / 0 FAIL plus real final OOT decision evidence",
-      "current_blocked_gates": 34,
-      "source_part": 7,
-      "deep_link": "part-7.html"
-    },
-    "part8": {
-      "label": "Monitoring & Governance",
-      "status": "INPUT_BLOCKED",
-      "technical_status": "MONITORING_FRAMEWORK_READY",
-      "execution_status": "INPUT_BLOCKED",
-      "target_status": "MONITORING_GOVERNANCE_LOCKED",
-      "lock_condition": "72 PASS / 0 BLOCKED / 0 FAIL plus real monitoring replay evidence",
-      "current_blocked_gates": 52,
-      "source_part": 8,
-      "deep_link": "part-8.html"
-    },
-    "part9": {
-      "label": "Final Portfolio",
-      "status": "PRESENTATION_READY",
-      "technical_status": "FINAL_PORTFOLIO_RELEASE_LOCKED",
-      "execution_status": "PRESENTATION_READY",
-      "source_part": 9,
-      "deep_link": "index.html"
-    }
+    "part1": {"label":"Business Scope","status":"READY","technical_status":"GOVERNANCE_READY","source_part":1,"deep_link":"part-1.html"},
+    "part2": {"label":"Data Foundation","status":"LOCKED","technical_status":"FOUNDATION_READY","source_part":2,"deep_link":"part-2.html"},
+    "part3": {"label":"Portfolio Intelligence","status":"LOCKED","technical_status":"PORTFOLIO_READY","source_part":3,"deep_link":"part-3.html"},
+    "part4": {"label":"Behavioral Risk","status":"LOCKED","technical_status":"PASS","source_part":4,"deep_link":"part-4.html"},
+    "part5": {"label":"Fraud Scoring / ML","status":"LOCKED","technical_status":"PART5_MODELING_LOCKED","execution_status":"LOCKED","champion_version":"FRAUD_CHAMPION_v1","source_part":5,"deep_link":"part-5.html"},
+    "part6": {"label":"Network / Graph","status":"LOCKED","technical_status":"GRAPH_EVIDENCE_READY","execution_status":"LOCKED","source_part":6,"deep_link":"part-6.html"},
+    "part7": {"label":"Decision Engine","status":"DECISION_POLICY_LOCKED","technical_status":"TECHNICALLY_COMPLETE_100","execution_status":"DECISION_POLICY_LOCKED","target_status":"DECISION_POLICY_LOCKED","lock_condition":"64 PASS / 0 BLOCKED / 0 FAIL plus verified frozen final OOT decision evidence","current_blocked_gates":0,"source_part":7,"deep_link":"part-7.html"},
+    "part8": {"label":"Monitoring & Governance","status":"MONITORING_GOVERNANCE_LOCKED","technical_status":"MONITORING_FRAMEWORK_READY","execution_status":"MONITORING_GOVERNANCE_LOCKED","target_status":"MONITORING_GOVERNANCE_LOCKED","lock_condition":"72 PASS / 0 BLOCKED / 0 FAIL plus verified offline monitoring replay and matured-outcome evidence","current_blocked_gates":0,"source_part":8,"deep_link":"part-8.html"},
+    "part9": {"label":"Evidence & Audit","status":"PRESENTATION_READY","technical_status":"FINAL_PORTFOLIO_RELEASE_LOCKED","execution_status":"PRESENTATION_READY","source_part":9,"deep_link":"part-9.html"}
   }
 }
