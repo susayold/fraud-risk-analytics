@@ -1,12 +1,41 @@
 {
   "part": 8,
   "block": "F",
-  "plan": "PART7_PART8_GENUINE_EXECUTION_10_OF_10_MASTER_PLAN_2026-09-03.md",
-  "status": "INPUT_BLOCKED",
-  "technical_status": "MONITORING_FRAMEWORK_READY",
-  "required_private_inputs": ["private/part8/PART7_TO_PART8_DECISION_MART.parquet", "reports/part8/PART8_MONITORING_BASELINE_FREEZE.json"],
-  "missing_evidence": ["frozen Part 7 policy", "pre-OOT baseline", "real operations_now replay", "matured outcomes replay", "real alert history"],
-  "public_boundary": ["aggregate metrics only", "no row-level score/action/label", "offline retrospective only", "no automatic retraining or policy mutation"],
+  "status": "MONITORING_GOVERNANCE_LOCKED",
+  "technical_status": "MONITORING_GOVERNANCE_LOCKED",
+  "validation": {
+    "mandatory_gates": 72,
+    "pass": 72,
+    "blocked": 0,
+    "fail": 0,
+    "final_lock_eligible": true
+  },
+  "monitoring_contract": {
+    "operations_clock": "OPERATIONS_NOW",
+    "outcomes_clock": "OUTCOMES_MATURED",
+    "matured_outcomes_available": true,
+    "matured_outcome_rows": 3477689
+  },
+  "private_execution_inputs": [
+    "Part 7 row-level decision mart",
+    "monitoring replay row-level inputs"
+  ],
+  "private_inputs_published": false,
+  "missing_evidence": [],
+  "public_boundary": [
+    "aggregate metrics only",
+    "no row-level score/action/label",
+    "offline retrospective monitoring only",
+    "no automatic retraining",
+    "no automatic policy mutation"
+  ],
+  "claim_boundary": [
+    "monitoring is offline and retrospective",
+    "not live production monitoring",
+    "synthetic project dataset",
+    "genuine locked upstream Part 7 evidence is used"
+  ],
   "target_status": "MONITORING_GOVERNANCE_LOCKED",
-  "lock_rule": "MONITORING_GOVERNANCE_LOCKED only at evidence-backed 72/72 PASS / 0 BLOCKED / 0 FAIL plus real monitoring replay evidence"
+  "lock_rule": "MONITORING_GOVERNANCE_LOCKED only at evidence-backed 72/72 PASS / 0 BLOCKED / 0 FAIL plus monitoring replay and matured-outcome evidence",
+  "provenance_note": "The final execution commit recorded in the run artifacts is preserved as run provenance; the public GitHub closure commit is a separate repository-reconciliation commit."
 }
