@@ -53,7 +53,7 @@ def validate() -> list[dict]:
     )
 
     gates = [
-        check("PV01 root opens final recruiter overview", "END-TO-END FRAUD RISK CASE STUDY" in root and "Financial Fraud Risk Analytics" in root and "Decision Policy" in root, "index.html"),
+        check("PV01 root opens final recruiter overview", 'data-current-part="1"' in root and 'href="part-7.html"' in root and 'href="part-8.html"' in root and "github.com/susayold/fraud-risk-analytics" in root, "index.html"),
         check("PV02 root is not a stale Part 1 governance landing page", "Business Scope &amp; Project Governance" not in root[:1800], "index.html"),
         check("PV03 root canonical is portfolio URL", 'rel="canonical" href="https://susayold.github.io/fraud-risk-analytics/"' in root, "index.html"),
         check("PV04 root links GitHub evidence", "github.com/susayold/fraud-risk-analytics" in root, "index.html"),
