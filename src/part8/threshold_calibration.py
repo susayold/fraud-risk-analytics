@@ -6,7 +6,7 @@ from .drift_metrics import frozen_bins, histogram_counts, jensen_shannon_counts,
 
 
 def calibrate_threshold_candidates(frame: pd.DataFrame, score_col: str = "risk_score") -> dict:
-    """Produce reviewable pre-OOT candidates only; never freezes final values."""
+    """Produce reviewable pre-OOT drift-threshold candidates only; never uses final OOT."""
     split = frame.get("split_name", pd.Series("UNKNOWN", index=frame.index)).astype(str).str.upper()
     pre_oot = frame[~split.isin({"FINAL_OOT", "OOT", "OUT_OF_TIME_OOT"})].copy()
     if score_col not in pre_oot or len(pre_oot) < 20:
@@ -20,11 +20,57 @@ def calibrate_threshold_candidates(frame: pd.DataFrame, score_col: str = "risk_s
         groups = [pd.to_numeric(group[score_col], errors="coerce").dropna() for _, group in pre_oot.groupby("operational_window_id")]
     groups = [group for group in groups if len(group) >= 5]
     if len(groups) < 3:
-        return {"status": "CANDIDATES_READY_LOW_SUPPORT", "source_scope": "PRE_OOT_ONLY", "oot_rows_used": 0, "candidate_support": len(groups), "candidates": {"score_js": None, "score_psi": None, "channel_share": None}}
+        return {
+            "status": "CANDIDATES_READY_LOW_SUPPORT",
+            "source_scope": "PRE_OOT_ONLY",
+            "oot_rows_used": 0,
+            "candidate_support": len(groups),
+            "candidates": {"score_js": None, "score_psi": None, "channel_share": None},
+        }
+
     js_values, psi_values = [], []
     reference_counts = histogram_counts(values, bins)
     for group in groups:
         current_counts = histogram_counts(group, bins)
         js_values.append(jensen_shannon_counts(reference_counts, current_counts))
         psi_values.append(psi_counts(reference_counts, current_counts))
-    return {"status": "CANDIDATES_READY", "source_scope": "PRE_OOT_ONLY", "oot_rows_used": 0, "candidate_support": len(groups), "candidates": {"score_js": {"candidate_amber": float(pd.Series(js_values).quantile(.95)), "candidate_red": float(pd.Series(js_values).quantile(.99)), "method": "pre-OOT historical window quantiles"}, "score_psi": {"candidate_amber": float(pd.Series(psi_values).quantile(.95)), "candidate_red": float(pd.Series(psi_values).quantile(.99)), "method": "pre-OOT historical window quantiles"}, "channel_share": {"candidate_amber": None, "candidate_red": None, "method": "requires pre-OOT policy channel history"}}}
+
+    js_series = pd.Series(js_values, dtype=float)
+    psi_series = pd.Series(psi_values, dtype=float)
+    return {
+        "status": "CANDIDATES_READY",
+        "source_scope": "PRE_OOT_ONLY",
+        "oot_rows_used": 0,
+        "candidate_support": len(groups),
+        "score_binning": {
+            "bin_count": int(len(bins) - 1),
+            "finite_unique_score_values": int(values.nunique()),
+            "score_min": float(values.min()),
+            "score_max": float(values.max()),
+        },
+        "drift_diagnostics": {
+            "js_min": float(js_series.min()),
+            "js_median": float(js_series.median()),
+            "js_max": float(js_series.max()),
+            "psi_min": float(psi_series.min()),
+            "psi_median": float(psi_series.median()),
+            "psi_max": float(psi_series.max()),
+        },
+        "candidates": {
+            "score_js": {
+                "candidate_amber": float(js_series.quantile(.95)),
+                "candidate_red": float(js_series.quantile(.99)),
+                "method": "pre-OOT historical window quantiles",
+            },
+            "score_psi": {
+                "candidate_amber": float(psi_series.quantile(.95)),
+                "candidate_red": float(psi_series.quantile(.99)),
+                "method": "pre-OOT historical window quantiles",
+            },
+            "channel_share": {
+                "candidate_amber": None,
+                "candidate_red": None,
+                "method": "requires pre-OOT policy channel history",
+            },
+        },
+    }
