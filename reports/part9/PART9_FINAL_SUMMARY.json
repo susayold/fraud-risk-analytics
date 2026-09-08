@@ -1,39 +1,16 @@
 {
   "status": "PRESENTATION_READY",
   "presentation_status": "PRESENTATION_READY",
-  "execution_summary": "PART7_PART8_INPUT_BLOCKED",
+  "execution_summary": "PART7_PART8_LOCKED",
   "source_reconciliation_status": "PASS",
-  "upstream_execution_boundary": "Part 7 and Part 8 source files are available, but their execution evidence remains INPUT_BLOCKED; Part 5 and Part 6 aggregate evidence is locked",
-  "release_gates": {"passed": 40, "total": 40, "status": "PASS", "artifact": "reports/part9/part9_validation_report.csv"},
-  "available_charts": [
-    "D1",
-    "D2",
-    "D3",
-    "P1",
-    "P2",
-    "P3",
-    "P4",
-    "P5",
-    "B1",
-    "G1",
-    "G2",
-    "M1",
-    "M3",
-    "M4"
-  ],
-  "blocked_charts": [
-    "M2",
-    "B2",
-    "DE1",
-    "DE2",
-    "DE3",
-    "DE4",
-    "MON1",
-    "MON2",
-    "MON3"
-  ],
+  "upstream_execution_boundary": "Parts 5–8 publish locked aggregate evidence. Part 7 is DECISION_POLICY_LOCKED (64/64) and Part 8 is MONITORING_GOVERNANCE_LOCKED (72/72); row-level score, label, decision and mart data remain private.",
+  "release_gates": {"passed":40,"total":40,"status":"PASS","artifact":"reports/part9/part9_validation_report.csv"},
+  "available_charts": ["D1","D2","D3","P1","P2","P3","P4","P5","B1","G1","G2","M1","M3","M4"],
+  "blocked_charts": ["M2","B2","DE1","DE2","DE3","DE4","MON1","MON2","MON3"],
   "public_boundary": "PASS",
   "source_count": 16,
   "metric_count": 14,
-  "chart_count": 23
+  "chart_count": 23,
+  "decision_status": "DECISION_POLICY_LOCKED",
+  "monitoring_status": "MONITORING_GOVERNANCE_LOCKED"
 }
