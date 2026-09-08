@@ -55,8 +55,6 @@ def _priority(frame: pd.DataFrame, method: str, calibrated_probability: bool, gr
             raise ValueError("Expected-value priority is disabled for ranking-only scores")
         return score * exposure
     if method == "EXPOSURE_WEIGHTED_RANK":
-        # Average rank is invariant to input row order. The final sort below
-        # still supplies the explicit source_row_id tie-break.
         return score.rank(method="average", pct=True) * exposure
     if method == "GRAPH_NOVELTY":
         if graph_weights is None:
@@ -96,8 +94,6 @@ def apply_policy(
         raise ValueError("Review overflow action must be ALLOW or REVIEW")
     if bool(config.get("carryover", {}).get("enabled", False)):
         raise ValueError("Review queue carryover is not supported; use explicit bucket capacity")
-    # Legacy callers without timestamps are kept deterministic in one explicit
-    # bucket; the governed Part 7 input contract still requires timestamps.
     result["capacity_bucket"] = time_bucket(result["transaction_timestamp"], config["bucket"].get("type", "DAY"), config["bucket"].get("timezone", "UTC")) if "transaction_timestamp" in result else "LEGACY_SINGLE_BUCKET"
     result["high_amount_cutoff"] = float(high_amount_cutoff) if high_amount_cutoff is not None else float("inf")
     result["candidate_action"] = candidate_actions(result, review_threshold, block_threshold, precedence_config=precedence_config).to_numpy()
@@ -114,8 +110,10 @@ def apply_policy(
     sort_columns = ["capacity_bucket", "review_priority", "risk_score", "positive_exposure"]
     ascending = [True, False, False, False]
     if "transaction_timestamp" in candidates:
-        sort_columns.append("transaction_timestamp"); ascending.append(True)
-    sort_columns.append("source_row_id"); ascending.append(True)
+        sort_columns.append("transaction_timestamp")
+        ascending.append(True)
+    sort_columns.append("source_row_id")
+    ascending.append(True)
     candidates = candidates.sort_values(sort_columns, ascending=ascending, kind="mergesort")
     capacity_mode = str(config["capacity"].get("mode", "FRACTION")).upper()
     capacity_fraction = float(review_capacity if capacity_mode == "FRACTION" else config["capacity"].get("fraction", review_capacity))
@@ -126,34 +124,43 @@ def apply_policy(
         capacity_fraction = None
     elif not 0 <= capacity_fraction <= 1:
         raise ValueError("review capacity fraction must be within [0, 1]")
-    selected_ids: set[int] = set()
-    rank_map: dict[int, int] = {}
-    bucket_capacity: dict[str, int] = {}
-    for bucket, group in candidates.groupby("capacity_bucket", sort=True):
-        cap = int(fixed_cases) if capacity_mode == "FIXED_CASES_PER_BUCKET" else int(np.floor(capacity_fraction * len(result.loc[result.capacity_bucket.eq(bucket)])))
-        bucket_capacity[str(bucket)] = max(cap, 0)
-        selected = group.head(max(cap, 0))
-        selected_ids.update(selected.source_row_id.astype(int).tolist())
-        rank_map.update({int(row.source_row_id): index for index, (_, row) in enumerate(group.iterrows(), start=1)})
+
+    # Vectorized capacity/rank bookkeeping used by the final run. This preserves
+    # the original deterministic ordering while avoiding per-bucket full-frame scans.
+    bucket_sizes = result.groupby("capacity_bucket", sort=False).size()
+    if capacity_mode == "FIXED_CASES_PER_BUCKET":
+        capacity_by_bucket = pd.Series(int(fixed_cases), index=bucket_sizes.index, dtype="int64")
+    else:
+        capacity_by_bucket = np.floor(
+            bucket_sizes.astype(float) * float(capacity_fraction)
+        ).clip(lower=0).astype("int64")
+
+    candidates["review_rank"] = candidates.groupby("capacity_bucket", sort=False).cumcount() + 1
+    candidates["bucket_capacity"] = candidates["capacity_bucket"].map(capacity_by_bucket).fillna(0).astype(int)
+    candidates["bucket_selected"] = candidates["review_rank"] <= candidates["bucket_capacity"]
+
     result["review_priority"] = np.nan
-    result.loc[eligible, "review_priority"] = priority
-    result["review_rank"] = result.source_row_id.map(rank_map).astype("Int64")
-    result["bucket_capacity"] = result.capacity_bucket.map(bucket_capacity).fillna(0).astype(int)
-    result["bucket_selected"] = result.source_row_id.isin(selected_ids)
+    result.loc[candidates.index, "review_priority"] = candidates["review_priority"].to_numpy()
+    result["review_rank"] = pd.Series(pd.array([pd.NA] * len(result), dtype="Int64"), index=result.index)
+    result.loc[candidates.index, "review_rank"] = candidates["review_rank"].astype("Int64").to_numpy()
+    result["bucket_capacity"] = result["capacity_bucket"].map(capacity_by_bucket).fillna(0).astype(int)
+    result["bucket_selected"] = False
+    result.loc[candidates.index, "bucket_selected"] = candidates["bucket_selected"].to_numpy()
+
     result["overflow"] = eligible & ~result["bucket_selected"]
     result.loc[result["overflow"], "action"] = overflow_action
     result.loc[eligible & result["bucket_selected"], "action"] = "REVIEW"
-    # Keep the decision pass vectorized. Row-level reason strings are private-only and
-    # are intentionally not materialized by default on a 24.4M-row population.
     result["reason_codes"] = "" if emit_reason_codes else None
     if not emit_reason_codes:
         return result
+
     def append_code(mask: pd.Series, code: str) -> None:
         current = result.loc[mask, "reason_codes"]
         result.loc[mask, "reason_codes"] = current.where(current.eq(""), current + ";") + code
+
     append_code(result.candidate_action.eq("BLOCK"), "RC001")
     append_code(result.candidate_action.eq("REVIEW"), "RC002")
-    append_code(result.source_row_id.isin(selected_ids), "RC010")
+    append_code(result["bucket_selected"], "RC010")
     append_code(result["overflow"], str(config["overflow"].get("reason_code", "RC011")))
     if priority_method in {"EXPOSURE_WEIGHTED_PROBABILITY", "EXPOSURE_WEIGHTED_RANK", "AMOUNT_GRAPH"}:
         append_code(result.candidate_action.eq("REVIEW"), "RC003")
