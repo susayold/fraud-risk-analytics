@@ -8,6 +8,8 @@ https://susayold.github.io/fraud-risk-analytics/
 
 ## Final Project Status
 
+**Final portfolio ready** — public recruiter-facing evidence is reconciled to the locked aggregate outputs while private row-level marts remain unpublished.
+
 | Part | Chapter | Status |
 |---|---|---|
 | 1 | Business Scope & Governance | ✅ Ready |
