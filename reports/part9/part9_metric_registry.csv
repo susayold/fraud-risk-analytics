@@ -7,9 +7,9 @@ source_cards,Cards,6139.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,he
 source_merchants,Merchants,100343.0,OBSERVED,2,assets/data/part2_summary.json,AVAILABLE,hero
 behavior_primary_features,Primary PIT behavioral features,43.0,DERIVED,4,docs/PART4_FEATURE_REGISTRY.csv,AVAILABLE,behavior
 monitoring_gate_count,Mandatory monitoring gates,72.0,GOVERNANCE,8,assets/data/part8_summary.json,AVAILABLE,monitoring
-fraud_capture_rate,Fraud capture rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
-fraud_amount_capture,Fraud amount capture,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+fraud_capture_rate,Fraud capture rate,0.29224537037037035,SIMULATED,7,assets/data/part7_summary.json,AVAILABLE,business
+fraud_amount_capture,Fraud exposure capture,0.3971250257193245,SIMULATED,7,assets/data/part7_summary.json,AVAILABLE,business
 precision,Precision / hit rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
-review_rate,Review rate,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
-capacity_utilization,Capacity utilization,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
-expected_total_cost,Expected total cost,,DEFINITION,1,docs/PART3_KPI_DICTIONARY.md,NOT_APPLICABLE,business
+review_rate,Review rate,0.0067841554537237106,SIMULATED,7,assets/data/part7_summary.json,AVAILABLE,business
+capacity_utilization,Review capacity utilization,0.685353134565242,SIMULATED,7,assets/data/part7_summary.json,AVAILABLE,business
+expected_total_cost,Simulated total policy cost,84087.43450600006,SIMULATED,7,assets/data/part7_summary.json,AVAILABLE,business
