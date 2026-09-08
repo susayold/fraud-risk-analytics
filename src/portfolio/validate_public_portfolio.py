@@ -93,6 +93,9 @@ def main() -> int:
         writer.writerows(gates)
     passed = sum(row["status"] == "PASS" for row in gates)
     print(f"Public portfolio validator: {passed} PASS / {len(gates) - passed} FAIL")
+    for row in gates:
+        if row["status"] == "FAIL":
+            print(f"FAIL | {row['gate']} | {row['evidence']}")
     return 0 if passed == len(gates) else 1
 
 
