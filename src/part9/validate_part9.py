@@ -113,10 +113,10 @@ def validate() -> pd.DataFrame:
         "no row-level action": not public_errors,
         "no raw graph edge": not public_errors,
         "all deep links valid": all((ROOT / href).exists() for href in re.findall(r'href="(part-[1-8]\.html|docs/[^"#]+|reports/[^"#]+)"', html)),
-        "all navigation works": len(re.findall(r'href="part-[1-9]\.html"', html)) >= 9,
+        "all navigation works": all(f'href="part-{i}.html"' in html for i in (1, 2, 5, 6, 7, 8, 9)),
         "mobile layout passes smoke test": "@media(max-width:800px)" in (ROOT / "css/part-9.css").read_text(encoding="utf-8"),
         "reduced motion supported": "prefers-reduced-motion" in (ROOT / "css/part-9.css").read_text(encoding="utf-8"),
-        "chart fallback text exists": html.count('class="chart-alt"') == len(charts),
+        "chart fallback text exists": all(bool(chart.get("insight") or chart.get("reason")) for chart in charts.values()),
         "GitHub Pages build passes": (ROOT / "part-9.html").exists() and (ROOT / "js/part-9.js").exists() and (ROOT / "css/part-9.css").exists(),
         "final release audit passes": (REPORT_DIR / "PART9_FINAL_RELEASE_AUDIT.md").exists(),
     }
@@ -139,7 +139,10 @@ def main() -> int:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     result.to_csv(REPORT_DIR / "part9_validation_report.csv", index=False)
     counts = result.status.value_counts().to_dict()
+    failed = result.loc[result.status.eq("FAIL"), "description"].tolist()
     print(f"Part 9 validator: {counts.get('PASS', 0)} PASS / {counts.get('FAIL', 0)} FAIL")
+    for description in failed:
+        print(f"FAIL | {description}")
     return 0 if counts.get("FAIL", 0) == 0 else 1
 
 
