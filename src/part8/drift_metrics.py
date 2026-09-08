@@ -13,13 +13,30 @@ def _finite(values) -> np.ndarray:
 
 
 def frozen_bins(reference, bins: int = 10) -> np.ndarray:
+    """Build frozen score bins that remain informative for discrete/saturated scores."""
     values = _finite(reference)
     if values.size == 0:
         raise ValueError("Reference distribution is empty")
-    edges = np.unique(np.quantile(values, np.linspace(0, 1, bins + 1)))
-    if edges.size < 2:
-        center = float(values[0])
-        edges = np.array([center - 0.5, center + 0.5])
+
+    quantile_edges = np.unique(np.quantile(values, np.linspace(0, 1, bins + 1)))
+    if quantile_edges.size >= 3:
+        edges = quantile_edges.astype(float)
+        edges[0] = -np.inf
+        edges[-1] = np.inf
+        return edges
+
+    unique_values = np.unique(values)
+    if unique_values.size == 1:
+        center = float(unique_values[0])
+        width = max(abs(center) * 1e-6, 1e-9)
+        return np.array([-np.inf, center + width, np.inf], dtype=float)
+
+    if unique_values.size <= bins + 1:
+        mids = (unique_values[:-1] + unique_values[1:]) / 2.0
+        return np.concatenate(([-np.inf], mids.astype(float), [np.inf]))
+
+    lo, hi = float(unique_values[0]), float(unique_values[-1])
+    edges = np.linspace(lo, hi, bins + 1, dtype=float)
     edges[0] = -np.inf
     edges[-1] = np.inf
     return edges
