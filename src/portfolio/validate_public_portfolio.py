@@ -26,6 +26,24 @@ def validate() -> list[dict]:
     p8_summary = json.loads(read("assets/data/part8_summary.json"))
     status = json.loads(read("assets/data/project_status.json"))
     charts = json.loads(read("assets/data/part9_charts.json"))
+
+    p7_locked = (
+        p7_summary.get("status") == "DECISION_POLICY_LOCKED"
+        and p7_summary.get("validation", {}).get("mandatory_gates") == 64
+        and p7_summary.get("validation", {}).get("pass") == 64
+        and p7_summary.get("validation", {}).get("blocked") == 0
+        and p7_summary.get("validation", {}).get("fail") == 0
+        and p7_summary.get("validation", {}).get("final_lock_eligible") is True
+    )
+    p8_locked = (
+        p8_summary.get("status") == "MONITORING_GOVERNANCE_LOCKED"
+        and p8_summary.get("validation", {}).get("mandatory_gates") == 72
+        and p8_summary.get("validation", {}).get("pass") == 72
+        and p8_summary.get("validation", {}).get("blocked") == 0
+        and p8_summary.get("validation", {}).get("fail") == 0
+        and p8_summary.get("validation", {}).get("final_lock_eligible") is True
+    )
+
     gates = [
         check("PV01 root opens final portfolio", "09 Deliver" in root and "FINAL PORTFOLIO" in root, "index.html"),
         check("PV02 root is not a Part 1 landing page", "Business Scope &amp; Project Governance" not in root[:1800], "index.html"),
@@ -48,8 +66,8 @@ def validate() -> list[dict]:
         check("PV19 Part 9 concentration chart available", charts.get("P5", {}).get("status") == "AVAILABLE" and charts["P5"].get("source_artifact") == "reports/part3/top_entity_concentration.csv", "assets/data/part9_charts.json"),
         check("PV20 Part 9 graph charts available", all(charts.get(x, {}).get("status") == "AVAILABLE" for x in ("G1", "G2")), "assets/data/part9_charts.json"),
         check("PV21 project status registry exists", status.get("project_status") == "FINAL_PORTFOLIO_RELEASE_LOCKED" and len(status.get("layers", {})) == 9, "assets/data/project_status.json"),
-        check("PV22 Part 7 remains input blocked", status["layers"]["part7"]["status"] == "INPUT_BLOCKED", "assets/data/project_status.json"),
-        check("PV23 Part 8 remains input blocked", status["layers"]["part8"]["status"] == "INPUT_BLOCKED", "assets/data/project_status.json"),
+        check("PV22 Part 7 is final locked", status["layers"]["part7"]["status"] == "LOCKED" and status["layers"]["part7"].get("execution_status") == "DECISION_POLICY_LOCKED", "assets/data/project_status.json"),
+        check("PV23 Part 8 is final locked", status["layers"]["part8"]["status"] == "LOCKED" and status["layers"]["part8"].get("execution_status") == "MONITORING_GOVERNANCE_LOCKED", "assets/data/project_status.json"),
         check("PV24 Part 6 status is locked", status["layers"]["part6"]["status"] == "LOCKED", "assets/data/project_status.json"),
         check("PV25 every part returns to final portfolio", all("href=\"index.html\"" in read(f"part-{i}.html") for i in range(1, 10)), "part-1.html … part-9.html"),
         check("PV26 no raw graph identifiers are public", all(token not in read("assets/data/part6_summary.json") for token in ("card_id", "merchant_id", "source_row_id", "edge_id")), "part6_summary.json"),
@@ -57,11 +75,11 @@ def validate() -> list[dict]:
         check("PV28 Part 9 source registry is rebuilt", (ROOT / "reports/part9/source_manifest.csv").exists() and "part6_summary" in read("reports/part9/source_manifest.csv"), "reports/part9/source_manifest.csv"),
         check("PV29 Part 9 chart registry is rebuilt", (ROOT / "reports/part9/part9_chart_registry.csv").exists() and "P5" in read("reports/part9/part9_chart_registry.csv"), "reports/part9/part9_chart_registry.csv"),
         check("PV30 final validator artifacts exist", (ROOT / "reports/part9/part9_validation_report.csv").exists() and (ROOT / "reports/part9/PART9_FINAL_RELEASE_AUDIT.md").exists(), "reports/part9/"),
-        check("PV31 Part 7 stays evidence-derived blocked", p7_summary["status"] == "INPUT_BLOCKED" and p7_summary["validation"] == {"mandatory_gates": 64, "pass": 30, "blocked": 34, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "assets/data/part7_summary.json"),
-        check("PV32 Part 8 stays evidence-derived blocked", p8_summary["status"] == "INPUT_BLOCKED" and p8_summary["validation"] == {"mandatory_gates": 72, "pass": 20, "blocked": 52, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "assets/data/part8_summary.json"),
-        check("PV33 Part 7 exposes planned evidence slots", all(f"P7C{i}" in p7 for i in range(1, 9)), "part-7.html"),
-        check("PV34 Part 8 exposes planned evidence slots", all(f"P8C{i}" in p8 for i in range(1, 11)), "part-8.html"),
-        check("PV35 execution snapshot records public boundary", (ROOT / "reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json").exists() and "thresholds_or_policy_metrics_invented" in read("reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json"), "reports/execution_closure/"),
+        check("PV31 Part 7 summary is 64/64 final locked", p7_locked, "assets/data/part7_summary.json"),
+        check("PV32 Part 8 summary is 72/72 final locked", p8_locked, "assets/data/part8_summary.json"),
+        check("PV33 Part 7 exposes governed decision page", all(token in p7 for token in ("ALLOW", "REVIEW", "BLOCK", "FINAL OOT")), "part-7.html"),
+        check("PV34 Part 8 exposes governed monitoring page", all(token in p8 for token in ("OPERATIONS_NOW", "OUTCOMES_MATURED", "NO AUTO-RETRAIN")), "part-8.html"),
+        check("PV35 historical pre-execution snapshot is retained as provenance only", (ROOT / "reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json").exists() and "thresholds_or_policy_metrics_invented" in read("reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json"), "reports/execution_closure/"),
     ]
     return gates
 
