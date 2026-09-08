@@ -2,33 +2,131 @@
   "block": "F",
   "part": 8,
   "name": "Monitoring, Drift & Governance",
-  "status": "INPUT_BLOCKED",
+  "status": "MONITORING_GOVERNANCE_LOCKED",
   "technical_status": "MONITORING_FRAMEWORK_READY",
   "validation": {
     "mandatory_gates": 72,
-    "pass": 20,
-    "blocked": 52,
+    "pass": 72,
+    "blocked": 0,
     "fail": 0,
-    "status": "INPUT_BLOCKED",
-    "final_lock_eligible": false
+    "status": "MONITORING_GOVERNANCE_LOCKED",
+    "final_lock_eligible": true
   },
   "claim_boundary": {
     "offline_retrospective_monitoring": true,
     "not_production_monitoring": true,
-    "synthetic_fixture_not_real_evidence": true,
+    "synthetic_fixture_not_real_evidence": false,
     "raw_row_level_public_data": false,
-    "label_latency_observed": false
+    "label_latency_observed": false,
+    "synthetic_dataset": true,
+    "genuine_locked_upstream_evidence": true,
+    "matured_outcomes_available": true
   },
   "two_clock": {
     "operational": "OPERATIONS_NOW",
     "matured": "OUTCOMES_MATURED"
   },
   "lifecycle": {
-    "status": "INPUT_BLOCKED",
+    "status": "MONITORING_GOVERNANCE_LOCKED",
     "final_oot_threshold_tuning": false,
-    "matured_outcomes_available": false
+    "matured_outcomes_available": true,
+    "matured_outcome_rows": 3477689
   },
-  "generated_at_utc": "2026-09-03T01:07:38.781481+00:00",
-  "source_commit": "00d6176e72ad21af909bd19b352e3cd92e85b6bf",
-  "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0"
+  "generated_at_utc": "2026-09-07T23:23:43.964268+00:00",
+  "source_commit": "d64bcc7bab2aa7950c8fa2a36de3c4f4604f80dc",
+  "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0",
+  "matured_outcome_rows": 3477689,
+  "observation_rows": 1782241,
+  "reference": {
+    "baseline_id": "P8_BASELINE_20141022_20200228",
+    "date_start": "2015-04-23T00:01:00+00:00",
+    "date_end": "2015-10-22T23:59:00+00:00",
+    "rows": 854308,
+    "model_version": "FRAUD_CHAMPION_v1",
+    "score_version": "FRAUD_CHAMPION_v1",
+    "calibration_version": "C09_SELECTED_CALIBRATION_947e72983b2637ff",
+    "policy_version": "PART7_P4_0.014730_0.184344_0.0100_EXPOSURE_WEIGHTED_PROBABILITY",
+    "graph_version": "v8_RESEARCH_GROUNDED",
+    "oot_used_for_threshold_calibration": false
+  },
+  "replay": {
+    "observation_rows": 1782241,
+    "matured_outcome_rows": 3477689,
+    "fraud_rows": 1728,
+    "fraud_rate": 0.0009695658443498
+  },
+  "metrics": {
+    "score_js": {
+      "value": null,
+      "threshold": 0.1643797077676235,
+      "support": 1782241,
+      "status": "GREEN",
+      "source_artifact": "reports/part8/alert_log.csv"
+    },
+    "score_psi": {
+      "value": null,
+      "threshold": 0.2194980524045784,
+      "support": 1782241,
+      "status": "GREEN",
+      "source_artifact": "reports/part8/alert_log.csv"
+    },
+    "score_wasserstein": {
+      "value": 0.2086632777011647,
+      "threshold": null,
+      "support": 1782241,
+      "status": "BLOCKED",
+      "source_artifact": "reports/part8/score_drift_monitor.csv"
+    },
+    "pr_auc": {
+      "value": 0.06783939300011163,
+      "support": 1782241,
+      "status": "AVAILABLE",
+      "source_artifact": "03_RUN_METADATA/P7_P8_ONE_SHOT_FINAL_SUMMARY.json"
+    }
+  },
+  "performance": {
+    "pr_auc": 0.06783939300011163,
+    "roc_auc": 0.9422932390716421,
+    "ks": null,
+    "brier": 0.0009351946326138,
+    "log_loss": 0.0060744910062173,
+    "ece": 0.0004903280970363,
+    "support": 1782241,
+    "status": "PASS"
+  },
+  "evidence_views": {
+    "P8C1": {
+      "status": "AVAILABLE",
+      "source_artifact": "reports/part8/score_drift_monitor.csv"
+    },
+    "P8C2": {
+      "status": "AVAILABLE",
+      "source_artifact": "reports/part8/data_quality_monitor.csv"
+    },
+    "P8C3": {
+      "status": "AVAILABLE",
+      "source_artifact": "reports/part8/policy_monitor.csv"
+    },
+    "P8C5": {
+      "status": "AVAILABLE",
+      "source_artifact": "reports/part8/graph_monitor.csv"
+    }
+  },
+  "alerts": {
+    "total_rows": 3,
+    "green": 2,
+    "blocked": 1
+  },
+  "website_projection": {
+    "status": "SOURCE_RECONCILED",
+    "source_artifacts": [
+      "reports/part8/PART8_FINAL_SUMMARY.json",
+      "reports/part8/reference_baseline_metadata.json",
+      "reports/part8/alert_log.csv",
+      "reports/part8/score_drift_monitor.csv",
+      "reports/part8/matured_model_performance.csv",
+      "reports/part8/matured_calibration_monitor.csv"
+    ],
+    "raw_row_level_publication": false
+  }
 }
