@@ -22,15 +22,23 @@ jobs:
         run: python -m unittest discover -s tests/part7_public -p "test_*.py"
       - name: Part 8 public tests
         run: python -m unittest discover -s tests/part8_public -p "test_*.py"
-      - name: Part 7 canonical evidence validator
-        run: python -m src.part7.validate_part7
-      - name: Part 8 canonical evidence validator
-        run: python -m src.part8.validate_part8
-      - run: python -m src.part9.build_part9_assets
-      - run: python -m src.part5_public.validate_public_evidence
-      - run: python -m src.part6_public.validate_public_evidence
-      - run: python -m src.part7_public.validate_public_evidence
-      - run: python -m src.part8_public.validate_public_evidence
-      - run: python -m src.part9.validate_part9
-      - run: python -m src.portfolio.validate_public_portfolio
-      - run: python -m unittest discover -s tests/portfolio_closure
+      # Canonical execution validators require the private row-level score/decision marts.
+      # They remain in src/part7 and src/part8 for governed replay, but public CI validates
+      # the immutable published 64/64 and 72/72 evidence snapshots instead of fabricating
+      # access to private artifacts.
+      - name: Build Part 9 source registry
+        run: python -m src.part9.build_part9_assets
+      - name: Part 5 public evidence validator
+        run: python -m src.part5_public.validate_public_evidence
+      - name: Part 6 public evidence validator
+        run: python -m src.part6_public.validate_public_evidence
+      - name: Part 7 final public evidence validator
+        run: python -m src.part7_public.validate_public_evidence
+      - name: Part 8 final public evidence validator
+        run: python -m src.part8_public.validate_public_evidence
+      - name: Part 9 portfolio validator
+        run: python -m src.part9.validate_part9
+      - name: Cross-part portfolio validator
+        run: python -m src.portfolio.validate_public_portfolio
+      - name: Portfolio closure tests
+        run: python -m unittest discover -s tests/portfolio_closure
