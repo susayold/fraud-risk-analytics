@@ -42,3 +42,18 @@ jobs:
         run: python -m src.portfolio.validate_public_portfolio
       - name: Portfolio closure tests
         run: python -m unittest discover -s tests/portfolio_closure
+      - name: Upload generated closure evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-closure-evidence
+          if-no-files-found: error
+          path: |
+            assets/data/part9_summary.json
+            assets/data/part9_charts.json
+            assets/data/part9_status.json
+            reports/part9/source_manifest.csv
+            reports/part9/part9_chart_registry.csv
+            reports/part9/part9_metric_registry.csv
+            reports/part9/part9_status_registry.csv
+            reports/part9/part9_validation_report.csv
+            reports/portfolio_closure_validation.csv
