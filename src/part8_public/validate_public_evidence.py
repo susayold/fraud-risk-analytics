@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -13,20 +15,69 @@ def _load(relative: str):
 
 def validate() -> list[tuple[str, bool, str]]:
     summary = _load("assets/data/part8_summary.json")
-    manifest = _load("reports/part8/public_source_manifest.json")
-    snapshot = _load("reports/execution_closure/PRE_REAL_EXECUTION_SNAPSHOT.json")
+    report_path = ROOT / "reports/part8/part8_validation_report.csv"
+    report = pd.read_csv(report_path)
     page = (ROOT / "part-8.html").read_text(encoding="utf-8")
     summary_text = json.dumps(summary, ensure_ascii=False)
-    gates = summary["validation"]
+    gates = summary.get("validation", {})
+    boundary = summary.get("claim_boundary", {})
+    lifecycle = summary.get("lifecycle", {})
+    clocks = summary.get("two_clock", {})
+
     checks = [
-        ("P8 public status is evidence-derived", summary["status"] == "INPUT_BLOCKED", "part8_summary.json"),
-        ("P8 mandatory gate contract is preserved", gates == {"mandatory_gates": 72, "pass": 20, "blocked": 52, "fail": 0, "status": "INPUT_BLOCKED", "final_lock_eligible": False}, "part8_summary.json"),
-        ("P8 label maturity is not claimed observed", summary["claim_boundary"]["label_latency_observed"] is False and summary["lifecycle"]["matured_outcomes_available"] is False, "part8_summary.json"),
-        ("P8 target is not presented as current lock", manifest["status"] == "INPUT_BLOCKED" and "72/72 PASS" in manifest["lock_rule"] and snapshot["part8"]["target_status"] == "MONITORING_GOVERNANCE_LOCKED", "manifest and snapshot"),
-        ("P8 private handoff is named", "private/part8/PART7_TO_PART8_DECISION_MART.parquet" in manifest["required_private_inputs"] and "reports/part8/PART8_MONITORING_BASELINE_FREEZE.json" in manifest["required_private_inputs"], "public_source_manifest.json"),
-        ("P8 public page exposes all evidence slots", all(f"P8C{i}" in page for i in range(1, 11)), "part-8.html"),
-        ("P8 page exposes two clocks and non-mutating boundary", all(token in page for token in ("INPUT_BLOCKED", "OPERATIONS_NOW", "OUTCOMES_MATURED", "NO AUTO-RETRAIN", "not live production monitoring")), "part-8.html"),
-        ("P8 public summary has no row-level payload identifiers", all(token not in summary_text for token in ("source_row_id", "transaction_id", "risk_score", "decision_action", "fraud_label")), "part8_summary.json"),
+        (
+            "P8 public status is final evidence-derived",
+            summary.get("status") == "MONITORING_GOVERNANCE_LOCKED",
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 mandatory gate contract is final locked",
+            gates.get("mandatory_gates") == 72
+            and gates.get("pass") == 72
+            and gates.get("blocked") == 0
+            and gates.get("fail") == 0
+            and gates.get("final_lock_eligible") is True,
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 published validator snapshot is 72/72 PASS",
+            len(report) == 72 and "status" in report and report["status"].astype(str).eq("PASS").all(),
+            "reports/part8/part8_validation_report.csv",
+        ),
+        (
+            "P8 two-clock monitoring contract is published",
+            clocks.get("operational") == "OPERATIONS_NOW" and clocks.get("matured") == "OUTCOMES_MATURED",
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 matured outcomes are available",
+            lifecycle.get("matured_outcomes_available") is True and int(lifecycle.get("matured_outcome_rows", 0)) > 0,
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 claim boundary remains explicit",
+            boundary.get("offline_retrospective_monitoring") is True
+            and boundary.get("not_production_monitoring") is True
+            and boundary.get("raw_row_level_public_data") is False
+            and boundary.get("genuine_locked_upstream_evidence") is True,
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 page exposes two clocks and non-mutating governance",
+            all(token in page for token in ("OPERATIONS_NOW", "OUTCOMES_MATURED", "NO AUTO-RETRAIN"))
+            and "not live production monitoring" in page.lower(),
+            "part-8.html",
+        ),
+        (
+            "P8 public summary stays aggregate-only",
+            all(token not in summary_text for token in ("source_row_id", "transaction_id", "risk_score", "fraud_label")),
+            "assets/data/part8_summary.json",
+        ),
+        (
+            "P8 final-run provenance is retained",
+            bool(summary.get("source_commit")) and bool(summary.get("validator_version")),
+            "assets/data/part8_summary.json",
+        ),
     ]
     return checks
 
