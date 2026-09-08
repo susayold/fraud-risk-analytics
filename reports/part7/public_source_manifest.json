@@ -1,12 +1,43 @@
 {
   "part": 7,
   "block": "E",
-  "plan": "PART7_PART8_GENUINE_EXECUTION_10_OF_10_MASTER_PLAN_2026-09-03.md",
-  "status": "INPUT_BLOCKED",
+  "status": "DECISION_POLICY_LOCKED",
   "technical_status": "TECHNICALLY_COMPLETE_100",
-  "required_private_inputs": ["private/part7/PART5_TO_PART7_FROZEN_SCORE_MART.parquet", "private/part7/PART5_TO_PART7_LINEAGE.json"],
-  "missing_evidence": ["real score mart", "policy tune/confirmation", "policy freeze", "final OOT decision mart", "aggregate decision evidence"],
-  "public_boundary": ["no source_row_id", "no row-level score", "no row-level action", "no private decision mart"],
+  "score_version": "FRAUD_CHAMPION_v1",
+  "policy_version": "PART7_P4_0.014730_0.184344_0.0100_EXPOSURE_WEIGHTED_PROBABILITY",
+  "validation": {
+    "mandatory_gates": 64,
+    "pass": 64,
+    "blocked": 0,
+    "fail": 0,
+    "final_lock_eligible": true
+  },
+  "final_oot_evidence": {
+    "available": true,
+    "rows": 1782241,
+    "fraud_rows": 1728,
+    "aggregate_only": true
+  },
+  "private_execution_inputs": [
+    "Part 5 frozen row-level champion score mart",
+    "Part 7 row-level decision mart"
+  ],
+  "private_inputs_published": false,
+  "missing_evidence": [],
+  "public_boundary": [
+    "no source_row_id",
+    "no row-level score",
+    "no row-level fraud label",
+    "no row-level action",
+    "no private decision mart"
+  ],
+  "claim_boundary": [
+    "IBM TabFormer source data are synthetic",
+    "decision economics are simulated",
+    "final OOT is a chronological project holdout, not globally unseen production traffic",
+    "this is not production deployment evidence"
+  ],
   "target_status": "DECISION_POLICY_LOCKED",
-  "lock_rule": "DECISION_POLICY_LOCKED only at evidence-backed 64/64 PASS / 0 BLOCKED / 0 FAIL plus real final OOT decision evidence"
+  "lock_rule": "DECISION_POLICY_LOCKED only at evidence-backed 64/64 PASS / 0 BLOCKED / 0 FAIL plus final OOT decision evidence",
+  "provenance_note": "The final execution commit recorded in the run artifacts is preserved as run provenance; the public GitHub closure commit is a separate repository-reconciliation commit."
 }
