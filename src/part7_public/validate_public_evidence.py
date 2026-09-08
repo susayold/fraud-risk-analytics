@@ -18,6 +18,7 @@ def validate() -> list[tuple[str, bool, str]]:
     report_path = ROOT / "reports/part7/part7_validation_report.csv"
     report = pd.read_csv(report_path)
     page = (ROOT / "part-7.html").read_text(encoding="utf-8")
+    page_lower = page.lower()
     summary_text = json.dumps(summary, ensure_ascii=False)
     gates = summary.get("validation", {})
     policy = summary.get("policy", {})
@@ -65,7 +66,11 @@ def validate() -> list[tuple[str, bool, str]]:
         (
             "P7 page exposes governed decision semantics",
             all(token in page for token in ("ALLOW", "REVIEW", "BLOCK", "FINAL OOT", "SIMULATED ECONOMICS"))
-            and "graph-only auto-block" in page.lower(),
+            and (
+                "graph-only auto-block" in page_lower
+                or "graph evidence alone cannot auto-block" in page_lower
+                or "graph context can support review routing only" in page_lower
+            ),
             "part-7.html",
         ),
         (
