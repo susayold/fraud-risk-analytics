@@ -34,6 +34,7 @@
   },
   "generated_at_utc": "2026-09-07T23:23:43.964268+00:00",
   "source_commit": "d64bcc7bab2aa7950c8fa2a36de3c4f4604f80dc",
+  "source_commit_scope": "final governed Kaggle execution provenance; not represented as a GitHub history commit",
   "validator_version": "PART8_EVIDENCE_VALIDATOR_v1.0",
   "matured_outcome_rows": 3477689,
   "observation_rows": 1782241,
@@ -60,28 +61,31 @@
       "value": null,
       "threshold": 0.1643797077676235,
       "support": 1782241,
-      "status": "GREEN",
-      "source_artifact": "reports/part8/alert_log.csv"
+      "status": "NOT_EVALUABLE",
+      "reason": "Observed JS value was not retained in the public aggregate. A threshold alone cannot support a GREEN claim.",
+      "source_artifact": "assets/data/part8_alert_summary.json"
     },
     "score_psi": {
       "value": null,
       "threshold": 0.2194980524045784,
       "support": 1782241,
-      "status": "GREEN",
-      "source_artifact": "reports/part8/alert_log.csv"
+      "status": "NOT_EVALUABLE",
+      "reason": "Observed PSI value was not retained in the public aggregate. Missing is not interpreted as zero or GREEN.",
+      "source_artifact": "assets/data/part8_alert_summary.json"
     },
     "score_wasserstein": {
       "value": 0.2086632777011647,
       "threshold": null,
       "support": 1782241,
-      "status": "BLOCKED",
-      "source_artifact": "reports/part8/score_drift_monitor.csv"
+      "status": "NOT_EVALUABLE",
+      "reason": "A Wasserstein value exists, but no family-matched frozen threshold is retained; cross-family PSI/JS thresholds are not reused.",
+      "source_artifact": "assets/data/part8_summary.json"
     },
     "pr_auc": {
       "value": 0.06783939300011163,
       "support": 1782241,
       "status": "AVAILABLE",
-      "source_artifact": "03_RUN_METADATA/P7_P8_ONE_SHOT_FINAL_SUMMARY.json"
+      "source_artifact": "assets/data/part8_monitoring_timeline.json"
     }
   },
   "performance": {
@@ -97,36 +101,39 @@
   "evidence_views": {
     "P8C1": {
       "status": "AVAILABLE",
-      "source_artifact": "reports/part8/score_drift_monitor.csv"
+      "source_artifact": "assets/data/part8_summary.json"
     },
     "P8C2": {
       "status": "AVAILABLE",
-      "source_artifact": "reports/part8/data_quality_monitor.csv"
+      "source_artifact": "reports/part8/PART8_FINAL_SUMMARY.json"
     },
     "P8C3": {
       "status": "AVAILABLE",
-      "source_artifact": "reports/part8/policy_monitor.csv"
+      "source_artifact": "assets/data/part7_summary.json"
     },
     "P8C5": {
       "status": "AVAILABLE",
-      "source_artifact": "reports/part8/graph_monitor.csv"
+      "source_artifact": "assets/data/part6_summary.json"
     }
   },
   "alerts": {
     "total_rows": 3,
-    "green": 2,
-    "blocked": 1
+    "green": 0,
+    "blocked": 0,
+    "not_evaluable": 3,
+    "note": "Public evaluability normalization: missing observed values or missing family-matched thresholds are NOT_EVALUABLE, not GREEN."
   },
   "website_projection": {
     "status": "SOURCE_RECONCILED",
     "source_artifacts": [
       "reports/part8/PART8_FINAL_SUMMARY.json",
-      "reports/part8/reference_baseline_metadata.json",
-      "reports/part8/alert_log.csv",
-      "reports/part8/score_drift_monitor.csv",
-      "reports/part8/matured_model_performance.csv",
-      "reports/part8/matured_calibration_monitor.csv"
+      "reports/part8/part8_validation_report.csv",
+      "reports/part8/P8_PUBLIC_EVIDENCE_RECONCILIATION.json",
+      "assets/data/part8_summary.json",
+      "assets/data/part8_alert_summary.json",
+      "assets/data/part8_monitoring_timeline.json"
     ],
+    "source_artifact_note": "Public website paths reference aggregate files that exist in this repository. Private row-level monitoring marts are not published.",
     "raw_row_level_publication": false
   }
 }

@@ -7,11 +7,14 @@
   "score_status": "PROBABILITY_USABLE",
   "policy_version": "PART7_P4_0.014730_0.184344_0.0100_EXPOSURE_WEIGHTED_PROBABILITY",
   "policy_profile": "balanced",
+  "selected_policy": "P4_EXPOSURE_WEIGHTED_PROBABILITY",
+  "selected_policy_note": "P4 Exposure-Weighted Probability is the final frozen policy. The graph-assisted P5 candidate was evaluated but was not selected as the final policy.",
   "claim_boundary": {
     "synthetic_data": true,
     "simulated_costs": true,
     "not_production_deployment": true,
-    "oot_not_globally_unseen": true
+    "oot_not_globally_unseen": true,
+    "oot_scope_note": "Final OOT was not used to tune the Part 5 model or Part 7 policy, but it is not claimed as globally untouched across every later project layer."
   },
   "policy": {
     "review_threshold": 0.0147300097,
@@ -47,6 +50,7 @@
     "final_evidence_available": true
   },
   "source_commit": "7cf0893cd907d0ac47bc30015489a126fc2f2fb4",
+  "source_commit_scope": "final governed Kaggle execution provenance; not represented as a GitHub history commit",
   "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0",
   "confirmation": {
     "scope": "P7_POLICY_CONFIRM",
@@ -86,12 +90,12 @@
     "status": "SOURCE_RECONCILED",
     "source_artifacts": [
       "reports/part7/PART7_FINAL_SUMMARY.json",
-      "reports/part7/PART7_SELECTED_POLICY.json",
-      "reports/part7/policy_profile_comparison.csv",
-      "reports/part7/final_oot/final_oot_policy_metrics.csv",
-      "reports/part7/final_oot/final_oot_delta_reconciliation.json",
-      "reports/part7/final_oot/final_oot_review_capacity_by_day.csv"
+      "reports/part7/PART7_FINAL_DECISION_CARD.md",
+      "reports/part7/part7_validation_report.csv",
+      "reports/part7/P7_PUBLIC_EVIDENCE_RECONCILIATION.json",
+      "assets/data/part7_summary.json"
     ],
+    "source_artifact_note": "Public website paths reference files that exist in this repository. Row-level final OOT decision marts remain private.",
     "raw_row_level_publication": false
   }
 }

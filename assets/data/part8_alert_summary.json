@@ -6,43 +6,50 @@
       "window_id": "FINAL_OOT",
       "signal_family": "SCORE",
       "metric": "score_js",
-      "severity": "GREEN",
+      "severity": "NOT_EVALUABLE",
+      "source_severity": "GREEN",
       "observed": null,
       "threshold": 0.1643797077676235,
       "support": 1782241,
       "claim_class": "EARLY_WARNING",
-      "evidence_artifact": null
+      "evidence_artifact": "assets/data/part8_summary.json",
+      "reason": "Observed JS value is not retained in the public aggregate; missing evidence cannot be promoted to GREEN."
     },
     {
       "alert_id": "P8-score_psi-FINAL_OOT",
       "window_id": "FINAL_OOT",
       "signal_family": "SCORE",
       "metric": "score_psi",
-      "severity": "GREEN",
+      "severity": "NOT_EVALUABLE",
+      "source_severity": "GREEN",
       "observed": null,
       "threshold": 0.2194980524045784,
       "support": 1782241,
       "claim_class": "EARLY_WARNING",
-      "evidence_artifact": null
+      "evidence_artifact": "assets/data/part8_summary.json",
+      "reason": "Observed PSI value is not retained in the public aggregate; missing evidence is not interpreted as zero or GREEN."
     },
     {
       "alert_id": "P8-score_wasserstein-FINAL_OOT",
       "window_id": "FINAL_OOT",
       "signal_family": "SCORE",
       "metric": "score_wasserstein",
-      "severity": "BLOCKED",
+      "severity": "NOT_EVALUABLE",
+      "source_severity": "BLOCKED",
       "observed": 0.2086632777011647,
       "threshold": null,
       "support": 1782241,
       "claim_class": "EARLY_WARNING",
-      "evidence_artifact": null
+      "evidence_artifact": "assets/data/part8_summary.json",
+      "reason": "Observed Wasserstein value exists, but no family-matched frozen threshold is retained. PSI/JS thresholds are not reused."
     }
   ],
   "summary": {
     "total": 3,
-    "green": 2,
-    "blocked": 1
+    "green": 0,
+    "blocked": 0,
+    "not_evaluable": 3
   },
-  "note": "Source-driven FINAL_OOT alert rows. Missing observed values are not interpreted as measured zero.",
-  "source_artifact": "reports/part8/alert_log.csv"
+  "note": "Public evaluability normalization of retained FINAL_OOT alert rows. source_severity preserves the upstream register label, while public severity follows the project rule: missing value or missing family-matched threshold => NOT_EVALUABLE.",
+  "source_artifact": "assets/data/part8_summary.json"
 }
