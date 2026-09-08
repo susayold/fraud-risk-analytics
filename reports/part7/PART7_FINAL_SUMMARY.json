@@ -2,11 +2,11 @@
   "block": "E",
   "part": 7,
   "name": "Fraud Risk Decision Engine",
-  "status": "INPUT_BLOCKED",
-  "score_version": "",
-  "score_status": null,
-  "policy_version": "",
-  "policy_profile": "",
+  "status": "DECISION_POLICY_LOCKED",
+  "score_version": "FRAUD_CHAMPION_v1",
+  "score_status": "PROBABILITY_USABLE",
+  "policy_version": "PART7_P4_0.014730_0.184344_0.0100_EXPOSURE_WEIGHTED_PROBABILITY",
+  "policy_profile": "balanced",
   "claim_boundary": {
     "synthetic_data": true,
     "simulated_costs": true,
@@ -14,35 +14,35 @@
     "oot_not_globally_unseen": true
   },
   "policy": {
-    "review_threshold": null,
-    "block_threshold": null,
-    "review_capacity": null
+    "review_threshold": 0.0147300097,
+    "block_threshold": 0.1843441516,
+    "review_capacity": 0.01
   },
   "final_evidence": {
-    "allow_rate": null,
-    "review_rate": null,
-    "block_rate": null,
-    "fraud_capture": null,
-    "fraud_exposure_capture": null,
-    "legitimate_block_rate": null,
-    "simulated_total_cost": null
+    "allow_rate": 0.9929852360034361,
+    "review_rate": 0.0067841554537237106,
+    "block_rate": 0.00023060854284016584,
+    "fraud_capture": 0.29224537037037035,
+    "fraud_exposure_capture": 0.3971250257193245,
+    "legitimate_block_rate": 0.00016792913053709801,
+    "simulated_total_cost": 84087.43450600006
   },
   "validation": {
     "mandatory_gates": 64,
-    "pass": 30,
-    "blocked": 34,
+    "pass": 64,
+    "blocked": 0,
     "fail": 0,
-    "status": "INPUT_BLOCKED",
-    "final_lock_eligible": false
+    "status": "DECISION_POLICY_LOCKED",
+    "final_lock_eligible": true
   },
-  "generated_at_utc": "2026-09-03T00:33:59.636671+00:00",
+  "generated_at_utc": "2026-09-07T23:14:04.163265+00:00",
   "technical_status": "TECHNICALLY_COMPLETE_100",
   "lifecycle": {
-    "status": "INPUT_BLOCKED",
+    "status": "DECISION_POLICY_LOCKED",
     "final_replay_required_before_lock": true,
-    "final_oot_evidence_generated": false,
-    "final_evidence_available": false
+    "final_oot_evidence_generated": true,
+    "final_evidence_available": true
   },
-  "source_commit": "00d6176e72ad21af909bd19b352e3cd92e85b6bf",
+  "source_commit": "7cf0893cd907d0ac47bc30015489a126fc2f2fb4",
   "validator_version": "PART7_EVIDENCE_VALIDATOR_v2.0"
 }
