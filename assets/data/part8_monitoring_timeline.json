@@ -1,6 +1,21 @@
 {
-  "status": "INPUT_BLOCKED",
-  "label_mode": "OPERATIONS_NOW",
-  "events": [],
-  "claim_boundary": "No final OOT monitoring replay has been run."
+  "status": "MONITORING_GOVERNANCE_LOCKED",
+  "label_mode": "OUTCOMES_MATURED",
+  "events": [
+    {"window_id":"M-2019-02","label_mode":"RETROSPECTIVE_MATURED","support":2,"fraud_support":0,"status":"INSUFFICIENT_SUPPORT","pr_auc":null,"roc_auc":null,"ks":null,"prevalence":0.0},
+    {"window_id":"M-2019-03","label_mode":"RETROSPECTIVE_MATURED","support":147202,"fraud_support":215,"status":"PASS","pr_auc":0.0672905611460232,"roc_auc":0.934118616090238,"ks":0.7701371470756551,"prevalence":0.0014605779812774},
+    {"window_id":"M-2019-04","label_mode":"RETROSPECTIVE_MATURED","support":141409,"fraud_support":218,"status":"PASS","pr_auc":0.0918858161333142,"roc_auc":0.9466726346814084,"ks":0.7572393151602368,"prevalence":0.0015416274777418},
+    {"window_id":"M-2019-05","label_mode":"RETROSPECTIVE_MATURED","support":145648,"fraud_support":260,"status":"PASS","pr_auc":0.1220672033355655,"roc_auc":0.9499009811411798,"ks":0.7860115425884264,"prevalence":0.0017851257827089},
+    {"window_id":"M-2019-06","label_mode":"RETROSPECTIVE_MATURED","support":142399,"fraud_support":215,"status":"PASS","pr_auc":0.1263522828881954,"roc_auc":0.9459084134675148,"ks":0.7558177154005488,"prevalence":0.0015098420634976},
+    {"window_id":"M-2019-07","label_mode":"RETROSPECTIVE_MATURED","support":146599,"fraud_support":156,"status":"PASS","pr_auc":0.0682735425206387,"roc_auc":0.9401329597566359,"ks":0.7316832120032,"prevalence":0.0010641273132831},
+    {"window_id":"M-2019-08","label_mode":"RETROSPECTIVE_MATURED","support":147139,"fraud_support":247,"status":"PASS","pr_auc":0.110263955942404,"roc_auc":0.9467047645569782,"ks":0.7729010412894168,"prevalence":0.0016786847810573},
+    {"window_id":"M-2019-09","label_mode":"RETROSPECTIVE_MATURED","support":141744,"fraud_support":142,"status":"PASS","pr_auc":0.0889278832904177,"roc_auc":0.938468855675827,"ks":0.769345284571655,"prevalence":0.0010018060729201},
+    {"window_id":"M-2019-10","label_mode":"RETROSPECTIVE_MATURED","support":145074,"fraud_support":275,"status":"PASS","pr_auc":0.1130153357623025,"roc_auc":0.9449869631194088,"ks":0.7909884108943495,"prevalence":0.0018955843224836},
+    {"window_id":"M-2019-11","label_mode":"RETROSPECTIVE_MATURED","support":141946,"fraud_support":0,"status":"INSUFFICIENT_SUPPORT","pr_auc":null,"roc_auc":null,"ks":null,"prevalence":0.0},
+    {"window_id":"M-2019-12","label_mode":"RETROSPECTIVE_MATURED","support":146579,"fraud_support":0,"status":"INSUFFICIENT_SUPPORT","pr_auc":null,"roc_auc":null,"ks":null,"prevalence":0.0},
+    {"window_id":"M-2020-01","label_mode":"RETROSPECTIVE_MATURED","support":170731,"fraud_support":0,"status":"INSUFFICIENT_SUPPORT","pr_auc":null,"roc_auc":null,"ks":null,"prevalence":0.0},
+    {"window_id":"M-2020-02","label_mode":"RETROSPECTIVE_MATURED","support":165769,"fraud_support":0,"status":"INSUFFICIENT_SUPPORT","pr_auc":null,"roc_auc":null,"ks":null,"prevalence":0.0}
+  ],
+  "claim_boundary": "Offline retrospective monthly outcome evidence; unsupported windows remain INSUFFICIENT_SUPPORT.",
+  "source_artifact": "reports/part8/matured_model_performance.csv"
 }
