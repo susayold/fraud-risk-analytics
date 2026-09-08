@@ -1,8 +1,19 @@
-version: PART8_ALERT_THRESHOLDS_v1
-threshold_source: EMPIRICAL_PRE_OOT_BASELINE
-final_numbers_frozen: false
+version: PART8_ALERT_THRESHOLDS_v3_FINAL
+threshold_source: EMPIRICAL_PRE_OOT_HISTORICAL_WINDOWS
+final_numbers_frozen: true
 signals:
-  score_js: {amber: null, red: null, min_support: 1, persistence: 2_consecutive}
-  score_psi: {amber: null, red: null, min_support: 1, persistence: 2_consecutive}
-  channel_share: {amber: null, red: null, min_support: 1, persistence: 2_of_3}
-
+  score_js:
+    amber: 0.16317330551962497
+    red: 0.16437970776762353
+    min_support: 10000
+    persistence: 2_consecutive
+  score_psi:
+    amber: 0.21623770981900786
+    red: 0.2194980524045784
+    min_support: 10000
+    persistence: 2_consecutive
+  channel_share:
+    amber: 0.5739523484157069
+    red: 0.5743043070093113
+    min_support: 10000
+    persistence: 2_of_3
