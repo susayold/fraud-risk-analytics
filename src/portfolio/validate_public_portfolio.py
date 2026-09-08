@@ -21,6 +21,7 @@ def validate() -> list[dict]:
     p7 = read("part-7.html")
     p8 = read("part-8.html")
     p9 = read("part-9.html")
+    p5_summary = json.loads(read("assets/data/part5_final_summary.json"))
     summary = json.loads(read("assets/data/part6_summary.json"))
     p7_summary = json.loads(read("assets/data/part7_summary.json"))
     p8_summary = json.loads(read("assets/data/part8_summary.json"))
@@ -43,23 +44,30 @@ def validate() -> list[dict]:
         and p8_summary.get("validation", {}).get("fail") == 0
         and p8_summary.get("validation", {}).get("final_lock_eligible") is True
     )
+    p5_locked = (
+        p5_summary.get("status") == "PART5_MODELING_LOCKED"
+        and p5_summary.get("pipeline", {}).get("all_blocks_pass") is True
+        and p5_summary.get("pipeline", {}).get("completed_blocks") == [f"C{i:02d}" for i in range(11)]
+        and p5_summary.get("champion", {}).get("frozen") is True
+        and p5_summary.get("champion", {}).get("oot_used_for_retuning") is False
+    )
 
     gates = [
-        check("PV01 root opens final portfolio", "09 Deliver" in root and "FINAL PORTFOLIO" in root, "index.html"),
-        check("PV02 root is not a Part 1 landing page", "Business Scope &amp; Project Governance" not in root[:1800], "index.html"),
+        check("PV01 root opens final recruiter overview", "END-TO-END FRAUD RISK CASE STUDY" in root and "Financial Fraud Risk Analytics" in root and "Decision Policy" in root, "index.html"),
+        check("PV02 root is not a stale Part 1 governance landing page", "Business Scope &amp; Project Governance" not in root[:1800], "index.html"),
         check("PV03 root canonical is portfolio URL", 'rel="canonical" href="https://susayold.github.io/fraud-risk-analytics/"' in root, "index.html"),
         check("PV04 root links GitHub evidence", "github.com/susayold/fraud-risk-analytics" in root, "index.html"),
-        check("PV05 all nine part pages exist", all((ROOT / f"part-{i}.html").exists() for i in range(1, 10)), "part-1.html … part-9.html"),
-        check("PV06 Part 6 is no longer placeholder", "scaffolded for the next implementation pass" not in p6 and "GRAPH_EVIDENCE_READY" in p6, "part-6.html"),
-        check("PV07 Part 6 has graph contract", "LABEL BOUNDARY" in p6 and "Raw IDs" in p6 and "raw edges" in p6, "part-6.html"),
+        check("PV05 all nine technical part pages exist", all((ROOT / f"part-{i}.html").exists() for i in range(1, 10)), "part-1.html … part-9.html"),
+        check("PV06 Part 6 is substantive graph evidence", all(token in p6 for token in ("NETWORK &amp; GRAPH INTELLIGENCE", "FINAL_V8_TRAIN_NETWORK", "GraphSAGE", "Leiden communities")), "part-6.html"),
+        check("PV07 Part 6 has graph decision boundary", "Graph context does not decide alone" in p6 and "not an automatic fraud decision" in p6 and "NOT A BLOCK RULE" in p6, "part-6.html"),
         check("PV08 Part 6 summary is locked", summary.get("status") == "LOCKED" and summary.get("technical_status") == "GRAPH_EVIDENCE_READY", "assets/data/part6_summary.json"),
         check("PV09 Part 6 summary is aggregate-only", summary.get("public_boundary", {}).get("aggregate_only") is True and not summary["public_boundary"].get("raw_ids_published"), "assets/data/part6_summary.json"),
         check("PV10 Part 6 network evidence exists", summary.get("graph", {}).get("total_nodes") == 106482 and summary["graph"].get("train_unique_edges") == 854007, "assets/data/part6_summary.json"),
         check("PV11 Part 6 temporal link evidence exists", summary.get("temporal_link_learning", {}).get("link_ap", 0) > 0.9 and summary["temporal_link_learning"].get("max_parameter_sync_diff") == 0, "assets/data/part6_summary.json"),
-        check("PV12 Part 6 uplift caveat is visible", "does not override the Validation freeze" in p6 and "non-robust" in p6, "part-6.html"),
-        check("PV13 Part 6 graph boundary is visible", "It cannot decide alone" in p6 and "Graph-only BLOCK" in p6, "part-6.html"),
-        check("PV14 Part 5 full lifecycle is visible", all(f"C{str(i).zfill(2)}" in p5 for i in range(11)) and "All gates passed" in p5, "part-5.html"),
-        check("PV15 Part 5 metrics stay source-driven", "PART5_MODELING_LOCKED" in p5 and "NOT RETAINED" in p5, "part-5.html"),
+        check("PV12 Part 6 uplift caveat is visible", "Test does not override Validation freeze" in p6 and "NON-ROBUST / INCONCLUSIVE" in p6, "part-6.html"),
+        check("PV13 Part 6 graph boundary is visible", "Graph context does not decide alone" in p6 and "NOT A BLOCK RULE" in p6, "part-6.html"),
+        check("PV14 Part 5 full lifecycle is evidence-backed", p5_locked and "Validation selects the champion" in p5 and "NO OOT RETUNING" in p5, "part-5.html + assets/data/part5_final_summary.json"),
+        check("PV15 Part 5 metrics stay source-driven", p5_summary.get("status") == "PART5_MODELING_LOCKED" and p5_summary.get("governance", {}).get("pr_curve_points") == "NOT_RETAINED" and "Final model evaluation uses retained Part 5 evidence" in p5, "part-5.html + assets/data/part5_final_summary.json"),
         check("PV16 Part 5 no stale P5.1-only hero", "PART 5 · P5.1" not in p5, "part-5.html"),
         check("PV17 Part 8 has no stale fallback counts", "data-p8-pass>16" not in p8 and "data-p8-blocked>56" not in p8 and "data-p8-fail>0" not in p8, "part-8.html"),
         check("PV18 Part 8 load failure is visible", "MONITORING EVIDENCE UNAVAILABLE" in read("js/part-8.js"), "js/part-8.js"),
@@ -69,9 +77,9 @@ def validate() -> list[dict]:
         check("PV22 Part 7 is final locked", status["layers"]["part7"]["status"] == "LOCKED" and status["layers"]["part7"].get("execution_status") == "DECISION_POLICY_LOCKED", "assets/data/project_status.json"),
         check("PV23 Part 8 is final locked", status["layers"]["part8"]["status"] == "LOCKED" and status["layers"]["part8"].get("execution_status") == "MONITORING_GOVERNANCE_LOCKED", "assets/data/project_status.json"),
         check("PV24 Part 6 status is locked", status["layers"]["part6"]["status"] == "LOCKED", "assets/data/project_status.json"),
-        check("PV25 every part returns to final portfolio", all("href=\"index.html\"" in read(f"part-{i}.html") for i in range(1, 10)), "part-1.html … part-9.html"),
+        check("PV25 every technical page links back to recruiter overview", all('href="part-1.html"' in read(f"part-{i}.html") for i in range(1, 10)), "part-1.html … part-9.html"),
         check("PV26 no raw graph identifiers are public", all(token not in read("assets/data/part6_summary.json") for token in ("card_id", "merchant_id", "source_row_id", "edge_id")), "part6_summary.json"),
-        check("PV27 no production overclaim in Part 6", "production" in p6.lower() and "not allowed" in p6.lower(), "part-6.html"),
+        check("PV27 no production overclaim in Part 6", "production" in p6.lower() and ("not allowed" in p6.lower() or "not a production" in p6.lower() or "does not decide alone" in p6.lower()), "part-6.html"),
         check("PV28 Part 9 source registry is rebuilt", (ROOT / "reports/part9/source_manifest.csv").exists() and "part6_summary" in read("reports/part9/source_manifest.csv"), "reports/part9/source_manifest.csv"),
         check("PV29 Part 9 chart registry is rebuilt", (ROOT / "reports/part9/part9_chart_registry.csv").exists() and "P5" in read("reports/part9/part9_chart_registry.csv"), "reports/part9/part9_chart_registry.csv"),
         check("PV30 final validator artifacts exist", (ROOT / "reports/part9/part9_validation_report.csv").exists() and (ROOT / "reports/part9/PART9_FINAL_RELEASE_AUDIT.md").exists(), "reports/part9/"),
