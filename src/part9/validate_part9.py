@@ -19,18 +19,18 @@ GATES = [
     ("B", "hero has no invented metric"), ("B", "portfolio charts source real reports"), ("B", "behavior chart source registry"), ("B", "model charts render only with executed evidence"), ("B", "graph metrics render only with audited evidence"), ("B", "decision charts render only with genuine Part7 evidence"), ("B", "monitoring charts render only with genuine replay"),
     ("C", "observed metrics labeled correctly"), ("C", "derived metrics labeled correctly"), ("C", "simulated metrics labeled correctly"), ("C", "no production claim"), ("C", "limitations visible"),
     ("D", "chart registry exists"), ("D", "every chart has source"), ("D", "every chart has render condition"), ("D", "no blocked chart contains fake data"), ("D", "chart datasets aggregate-only"), ("D", "low-support categories governed"),
-    ("E", "status registry exists"), ("E", "Part9 website status matches registry"), ("E", "README status matches registry"), ("E", "Part7 blocked state preserved"), ("E", "Part8 blocked state preserved"),
+    ("E", "status registry exists"), ("E", "Part9 website status matches registry"), ("E", "README status matches registry"), ("E", "Part7 final locked state reconciles"), ("E", "Part8 final locked state reconciles"),
     ("F", "no source_row_id"), ("F", "no row-level score"), ("F", "no row-level label"), ("F", "no row-level action"), ("F", "no raw graph edge"),
     ("G", "all deep links valid"), ("G", "all navigation works"), ("G", "mobile layout passes smoke test"), ("G", "reduced motion supported"), ("G", "chart fallback text exists"),
     ("H", "GitHub Pages build passes"), ("H", "final release audit passes"),
 ]
 
 
-def _load(name):
+def _load(name: str):
     return json.loads((ASSET_DIR / name).read_text(encoding="utf-8"))
 
 
-def _gate(gate_id, family, description, status, reason, evidence):
+def _gate(gate_id: str, family: str, description: str, status: str, reason: str, evidence: str) -> dict:
     return {"gate_id": gate_id, "family": family, "description": description, "status": status, "reason": reason, "evidence_artifact": evidence, "claim_class": "PRESENTATION_RELEASE"}
 
 
@@ -38,31 +38,59 @@ def validate() -> pd.DataFrame:
     summary = _load("part9_summary.json")
     charts = _load("part9_charts.json")
     statuses = _load("part9_status.json")
+    p7 = _load("part7_summary.json")
+    p8 = _load("part8_summary.json")
     source_registry = pd.read_csv(REPORT_DIR / "source_manifest.csv")
     html = (ROOT / "part-9.html").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
     errors = []
     available_sources = set(source_registry.loc[source_registry.status == "AVAILABLE", "path"].astype(str))
     metric_ids = set(summary.get("metrics", {}))
     rendered_metric_ids = set(re.findall(r'data-metric="([^"]+)"', html))
     chart_ids = set(re.findall(r'data-chart="([^"]+)"', html))
-    if not rendered_metric_ids <= metric_ids: errors.append("unregistered metric id in HTML")
-    if not chart_ids <= set(charts): errors.append("unregistered chart id in HTML")
+    if not rendered_metric_ids <= metric_ids:
+        errors.append("unregistered metric id in HTML")
+    if not chart_ids <= set(charts):
+        errors.append("unregistered chart id in HTML")
+
     public_errors = validate_public_payload(summary) + validate_public_payload(charts) + validate_public_payload(statuses)
     p2 = _load("part2_summary.json")
     p4 = pd.read_csv(ROOT / "docs/PART4_FEATURE_REGISTRY.csv")
+    required_sources = [
+        "part2_summary", "part2_split_summary", "part3_monthly_trend", "part3_channel_risk",
+        "part3_amount_band_risk", "part3_mcc_risk", "part3_entity_concentration", "part4_feature_registry",
+        "part5_final_summary", "part5_model_selection", "part5_calibration", "part5_topk", "part6_summary",
+        "part7_summary", "part8_summary",
+    ]
+    required_rows = source_registry.loc[source_registry.source_id.isin(required_sources)]
+
+    p7_locked = (
+        p7.get("status") == "DECISION_POLICY_LOCKED"
+        and p7.get("validation", {}).get("pass") == 64
+        and p7.get("validation", {}).get("blocked") == 0
+        and p7.get("validation", {}).get("fail") == 0
+    )
+    p8_locked = (
+        p8.get("status") == "MONITORING_GOVERNANCE_LOCKED"
+        and p8.get("validation", {}).get("pass") == 72
+        and p8.get("validation", {}).get("blocked") == 0
+        and p8.get("validation", {}).get("fail") == 0
+    )
+
     checks = {
         "source registry exists": (REPORT_DIR / "source_manifest.csv").exists(),
-        "all required source files resolved": all(source_registry.loc[source_registry.source_id.isin(["part2_summary", "part2_split_summary", "part3_monthly_trend", "part3_channel_risk", "part3_amount_band_risk", "part3_mcc_risk", "part3_entity_concentration", "part4_feature_registry", "part5_final_summary", "part5_model_selection", "part5_calibration", "part5_topk", "part6_summary", "part7_summary", "part8_summary"]), "status"] == "AVAILABLE"),
+        "all required source files resolved": len(required_rows) == len(required_sources) and required_rows.status.astype(str).eq("AVAILABLE").all(),
         "source hashes recorded": source_registry.loc[source_registry.status == "AVAILABLE", "sha256"].astype(str).str.len().eq(64).all(),
         "Part 2 totals reconcile": summary["metrics"]["source_total_transactions"]["value"] == p2["transactions"] and summary["metrics"]["source_fraud_transactions"]["value"] == p2["fraud_transactions"],
-        "Part 4 feature count reconciles": summary["metrics"]["behavior_primary_features"]["value"] == len(p4),
+        "Part 4 feature count reconciles": summary["metrics"]["behavior_primary_features"]["value"] == len(p4[p4["model_role"].astype(str).str.lower().eq("primary")]),
         "hero has no invented metric": all(metric.get("source_artifact") and (metric.get("status") != "AVAILABLE" or metric.get("value") is not None) for metric in summary["metrics"].values()),
         "portfolio charts source real reports": all(charts[key]["status"] == "AVAILABLE" and charts[key]["source_artifact"] in available_sources for key in ("P1", "P2", "P3", "P4")),
         "behavior chart source registry": charts["B1"]["status"] == "AVAILABLE" and charts["B1"]["source_artifact"] in available_sources,
         "model charts render only with executed evidence": all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("M1", "M2", "M3", "M4")),
         "graph metrics render only with audited evidence": all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("G1", "G2")),
-        "decision charts render only with genuine Part7 evidence": all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("DE1", "DE2", "DE3", "DE4")),
-        "monitoring charts render only with genuine replay": all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("MON1", "MON2", "MON3")),
+        "decision charts render only with genuine Part7 evidence": p7_locked and all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("DE1", "DE2", "DE3", "DE4")),
+        "monitoring charts render only with genuine replay": p8_locked and all(charts[key]["status"] != "AVAILABLE" or charts[key]["source_artifact"] in available_sources for key in ("MON1", "MON2", "MON3")),
         "observed metrics labeled correctly": all(metric["claim_class"] == "OBSERVED" for metric in summary["metrics"].values() if metric["source_part"] in (2, 3)),
         "derived metrics labeled correctly": summary["metrics"]["behavior_primary_features"]["claim_class"] == "DERIVED",
         "simulated metrics labeled correctly": all(charts[key]["claim_class"] == "SIMULATED" and charts[key]["badge"] == "SIMULATED" for key in ("DE1", "DE2", "DE3", "DE4")),
@@ -76,9 +104,9 @@ def validate() -> pd.DataFrame:
         "low-support categories governed": charts["P4"].get("support_field") == "transactions" and "support-qualified" in charts["P4"]["title"].lower(),
         "status registry exists": (ASSET_DIR / "part9_status.json").exists(),
         "Part9 website status matches registry": statuses["project_status"] in html or "FINAL_PORTFOLIO_READY" in html,
-        "README status matches registry": "Final portfolio ready" in (ROOT / "README.md").read_text(encoding="utf-8"),
-        "Part7 blocked state preserved": statuses["layers"]["part7"]["status"] == "INPUT_BLOCKED",
-        "Part8 blocked state preserved": statuses["layers"]["part8"]["status"] == "INPUT_BLOCKED",
+        "README status matches registry": "final portfolio ready" in readme.lower(),
+        "Part7 final locked state reconciles": statuses["layers"]["part7"]["status"] == "LOCKED" and statuses["layers"]["part7"].get("execution_status") == "DECISION_POLICY_LOCKED" and p7_locked,
+        "Part8 final locked state reconciles": statuses["layers"]["part8"]["status"] == "LOCKED" and statuses["layers"]["part8"].get("execution_status") == "MONITORING_GOVERNANCE_LOCKED" and p8_locked,
         "no source_row_id": not public_errors,
         "no row-level score": not public_errors,
         "no row-level label": not public_errors,
@@ -92,18 +120,20 @@ def validate() -> pd.DataFrame:
         "GitHub Pages build passes": (ROOT / "part-9.html").exists() and (ROOT / "js/part-9.js").exists() and (ROOT / "css/part-9.css").exists(),
         "final release audit passes": (REPORT_DIR / "PART9_FINAL_RELEASE_AUDIT.md").exists(),
     }
+
     files_to_scan = [ROOT / "part-9.html", ASSET_DIR / "part9_summary.json", ASSET_DIR / "part9_charts.json", ASSET_DIR / "part9_status.json"]
     fake_text = any(token in path.read_text(encoding="utf-8").lower() for path in files_to_scan for token in FORBIDDEN_TEXT)
     checks["hero has no invented metric"] = checks["hero has no invented metric"] and not fake_text and not errors
+
     rows = []
     for index, (family, description) in enumerate(GATES, 1):
         status = "PASS" if checks.get(description, False) else "FAIL"
-        rows.append(_gate(f"P9T{index:02d}", family, description, status, "validated against presentation registry" if status == "PASS" else "presentation contract check failed", "reports/part9/"))
+        rows.append(_gate(f"P9T{index:02d}", family, description, status, "validated against final presentation registry" if status == "PASS" else "presentation contract check failed", "reports/part9/"))
     return pd.DataFrame(rows)
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate Block G / Part 9 evidence-backed portfolio")
+    parser = argparse.ArgumentParser(description="Validate Part 9 evidence-backed final portfolio")
     parser.parse_args()
     result = validate()
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
